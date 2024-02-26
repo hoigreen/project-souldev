@@ -5,10 +5,10 @@ export default createMiddleware({
   locales: ['en', 'vi'],
 
   // Used when no locale matches
-  defaultLocale: 'en'
+  defaultLocale: 'en',
 });
 
 export const config = {
   // Match only internationalized pathnames
-  matcher: ['/', '/(vi|en)/:path*']
+  matcher: ['/', '/(vi|en)/:path*'],
 };

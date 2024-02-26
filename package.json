@@ -3,17 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
     "clean": "rm -rf .next && rm -rf node_modules",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
+    "dev": "next dev",
+    "postinstall": "pnpm exec simple-git-hooks",
+    "lint": "next lint",
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
-    "postinstall": "pnpm exec simple-git-hooks"
+    "start": "next start"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged"
@@ -109,6 +109,8 @@
     "eslint-config-next": "14.0.4",
     "lint-staged": "^15.2.2",
     "postcss": "^8",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "prisma": "^5.10.2",
     "simple-git-hooks": "^2.9.0",
     "tailwindcss": "^3.3.0",
