@@ -6,7 +6,36 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rm -rf .next && rm -rf node_modules",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "prettier": "prettier --write --ignore-unknown .",
+    "prettier:check": "prettier --check --ignore-unknown .",
+    "postinstall": "pnpm exec simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged"
+  },
+  "lint-staged": {
+    "*": "prettier --write --ignore-unknown ."
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-packagejson",
+      "prettier-plugin-tailwindcss"
+    ],
+    "singleQuote": true,
+    "tailwindAttributes": [
+      "classNames"
+    ],
+    "tailwindFunctions": [
+      "cva",
+      "cx",
+      "twMerge"
+    ],
+    "trailingComma": "all"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^1.4.0",
