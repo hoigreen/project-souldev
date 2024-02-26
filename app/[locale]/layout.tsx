@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
@@ -24,7 +24,7 @@ export default function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  unstable_setRequestLocale(locale);
+  unstableSetRequestLocale(locale);
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -32,8 +32,8 @@ export default function LocaleLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
-          enableSystem
           disableTransitionOnChange
+          enableSystem
         >
           {children}
         </ThemeProvider>

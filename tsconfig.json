@@ -1,7 +1,7 @@
 {
   "extends": "@codefixlabs/tsconfig/nextjs.json",
   "compilerOptions": {
-    "declaration": true,
+    "declaration": false,
     "plugins": [
       {
         "name": "next"

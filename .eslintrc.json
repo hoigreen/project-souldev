@@ -1,3 +1,12 @@
 {
-  "extends": ["eslint-config-codefixlabs/next"]
+  "extends": ["eslint-config-codefixlabs/next"],
+  "overrides": [
+    {
+      // enable the rule specifically for TypeScript files
+      "files": ["*.ts", "*.mts", "*.cts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    }
+  ]
 }
