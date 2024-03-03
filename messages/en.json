@@ -3,6 +3,15 @@
     "title": "Hello world!"
   },
   "Auth": {
-    "M_1": "Login account | SoulDev"
+    "M1": "Login account | SoulDev",
+    "M2": "Don't have an account?",
+    "M3": "Sign up",
+    "M4": "Please provide an email address valid",
+    "M5": "This is field required",
+    "M6": "Must contain at least 8 characters",
+    "M7": "Password must be no more than 16 characters long",
+    "M8": "Invalid email or password.",
+    "M9": "Email",
+    "M10": "Input an email address ..."
   }
 }

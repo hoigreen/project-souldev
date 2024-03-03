@@ -5,7 +5,7 @@ export default async function RootLayout({
 }) {
   return (
     <main className="flex min-h-screen flex-col">
-      <div className="flex grow items-center justify-center bg-green-50 bg-cover bg-center bg-repeat">
+      <div className="bg-neutral flex grow items-center justify-center bg-cover bg-center bg-repeat">
         {children}
       </div>
     </main>
