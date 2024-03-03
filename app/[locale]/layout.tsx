@@ -1,8 +1,6 @@
-import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 import './globals.css';
 import type { Metadata } from 'next';
-import { Roboto } from 'next/font/google';
-import { ThemeProvider } from '@/components/theme-provider';
+import { Nunito } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { getMessages } from '@/lib/get-message';
 import { NextIntlClientProvider } from 'next-intl';
@@ -11,7 +9,7 @@ import { ToasterProvider } from '@/components/providers/toaster-provider';
 
 const locales = ['en', 'de'];
 
-const roboto = Roboto({ subsets: ['vietnamese'], weight: '300' });
+const nunito = Nunito({ subsets: ['vietnamese'], weight: '400' });
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -38,7 +36,7 @@ export default async function LocaleLayout({
   const messages = await getMessages(locale);
 
   return (
-    <html lang={locale} className={roboto.className} suppressHydrationWarning>
+    <html lang={locale} className={nunito.className} suppressHydrationWarning>
       <body className="antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <QueryProvider>{children}</QueryProvider>
@@ -55,37 +53,7 @@ export default async function LocaleLayout({
             }}
           />
         </NextIntlClientProvider>
-        {/* <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          disableTransitionOnChange
-          enableSystem
-        >
-          {children}
-        </ThemeProvider> */}
       </body>
-      {/* <ClerkProvider
-        appearance={{
-          baseTheme: dark,
-        }}
-      >
-        <html lang='en'>
-          <body className={inter.className}>
-            <Topbar />
-
-            <main className='flex flex-row'>
-              <LeftSidebar />
-              <section className='main-container'>
-                <div className='w-full max-w-4xl'>{children}</div>
-              </section>
-              {/* @ts-ignore */}
-      {/* // <RightSidebar />
-  //           </main >
-
-  //   <Bottombar />
-  //         </body >
-  //       </html >
-  //     </ClerkProvider > */}
     </html>
   );
 }

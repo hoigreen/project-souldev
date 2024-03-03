@@ -1,5 +1,8 @@
 {
   "Page": {
     "title": "Hello world!"
+  },
+  "Auth": {
+    "M_1": "Login account | SoulDev"
   }
 }
