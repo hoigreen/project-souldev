@@ -2,8 +2,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 import { notFound } from 'next/navigation';
-import { getMessages } from '@/lib/get-message';
 import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from '@/lib/get-message';
 import { QueryProvider } from '@/components/ui/app/query-provider';
 import { ToasterProvider } from '@/components/providers/toaster-provider';
 
@@ -33,10 +33,10 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages(locale);
+  const messages = await getMessages(locale); //@typescript-eslint/no-unsafe-assignment
 
   return (
-    <html lang={locale} className={nunito.className} suppressHydrationWarning>
+    <html className={nunito.className} lang={locale} suppressHydrationWarning>
       <body className="antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <QueryProvider>{children}</QueryProvider>

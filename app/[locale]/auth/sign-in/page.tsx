@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
-import { LoginForm } from '@/components/auth/login/login-form';
 import { useTranslations } from 'next-intl';
+import { LoginForm } from '@/components/auth/login/login-form';
 import { Link } from '@/navigation';
 
 export async function generateMetadata() {
@@ -27,8 +27,8 @@ export default function LoginPage() {
       <div className="flex items-center justify-center gap-2 rounded border border-border px-12 py-6">
         <p className="text-base font-normal text-neutral-800">{t('M2')}</p>
         <Link
-          href="/auth/sign-up"
           className="font-semibold text-green-500 hover:opacity-70"
+          href="/auth/sign-up"
         >
           {t('M3')}
         </Link>

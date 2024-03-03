@@ -1,7 +1,7 @@
 'use client';
 
-import { Toaster, ToasterProps } from 'react-hot-toast';
+import { Toaster, ToasterProps as ToasterPropsType } from 'react-hot-toast';
 
-export function ToasterProvider({ children, ...props }: ToasterProps) {
+export function ToasterProvider({ children, ...props }: ToasterPropsType) {
   return <Toaster {...props}>{children}</Toaster>;
 }
