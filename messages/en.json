@@ -12,6 +12,12 @@
     "M7": "Password must be no more than 16 characters long",
     "M8": "Invalid email or password.",
     "M9": "Email",
-    "M10": "Input an email address ..."
+    "M10": "Input an email address ...",
+    "M11": "Password",
+    "M12": "Input password ...",
+    "M13": "Login",
+    "M14": "Or",
+    "M15": "Login with Google Account",
+    "M16": "Forget your password"
   }
 }

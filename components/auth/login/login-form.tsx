@@ -20,12 +20,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
 import { login } from '@/lib/actions';
 import cookie from '@/lib/cookie';
-
+import { redirect } from '@/navigation';
+import GOOGLE_SVG from '@/public/google.svg';
+import Image from 'next/image';
+import Link from 'next/link';
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: LoginForm
  * ------------------------------------------------------------------------------------------------------------------ */
 
-const loginFormVariants = cva('');
+const loginFormVariants = cva('flex w-full flex-col gap-7.5');
 
 export type LoginFormProps = HTMLAttributes<HTMLElement> &
   VariantProps<typeof loginFormVariants>;
@@ -62,13 +65,14 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
 
     if (error) {
       toast.error(
-        error.message === 'Invalid account' ? t('T_0975') : error.message,
+        error.message === 'Invalid account' ? t('M8') : error.message,
       );
 
       return;
     }
 
     cookie.set(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string, token, 7);
+    redirect('/');
   };
 
   return (
@@ -100,10 +104,10 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
               name="password"
               render={({ field, formState }) => (
                 <FormItem>
-                  <FormLabel>{t('T_0978')}</FormLabel>
+                  <FormLabel>{t('M11')}</FormLabel>
                   <FormControl>
                     <InputPassword
-                      placeholder={t('T_0979')}
+                      placeholder={t('M12')}
                       {...field}
                       disabled={formState.isSubmitting}
                     />
@@ -114,24 +118,41 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
             />
           </div>
 
-          {/* <div className="mt-3">
-            <p className="text-sm text-neutral-600">
-              <Link
-                className="text-info-600 font-medium hover:underline"
-                href="/auth/company/forgot-password"
-              >
-                {t('T_0977')}
-              </Link>
-            </p>
-          </div> */}
-
           <div className="mt-8">
             <Button block type="submit" loading={form.formState.isSubmitting}>
-              {t('T_0976')}
+              {t('M13')}
             </Button>
+          </div>
+          <div className="flex items-center justify-end">
+            <Link
+              href={''}
+              className="mt-4 text-center text-sm font-semibold text-green-500"
+            >
+              {t('M16')}
+            </Link>
           </div>
         </form>
       </Form>
+
+      <div className="flex items-center gap-3 px-2">
+        <div className="h-[1px] w-full flex-1 border" />
+        <span className="text-base font-bold uppercase text-neutral-400">
+          {t('M14')}
+        </span>
+        <div className="h-[1px] w-full flex-1 border" />
+      </div>
+
+      <div className="flex items-center justify-between gap-3">
+        <Button
+          variant="outline"
+          className="flex-1"
+          startIcon={
+            <Image src={GOOGLE_SVG} alt="Google" width={20} height={20} />
+          }
+        >
+          {t('M15')}
+        </Button>
+      </div>
     </div>
   );
 }
