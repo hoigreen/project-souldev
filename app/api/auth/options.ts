@@ -1,86 +1,51 @@
-// import CredentialsProvider from 'next-auth/providers/credentials';
-// import { NextAuthOptions } from 'next-auth';
+import { getCurrentUser } from '@/lib/actions';
+import { NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
-// export const authOptions: NextAuthOptions = {
-//   jwt: {
-//     maxAge: 24 * 60 * 60 * 7, // 7 days
-//   },
-//   session: {
-//     maxAge: 24 * 60 * 60 * 7, // 7 days
-//   },
-//   providers: [
-//     CredentialsProvider({
-//       name: 'Credentials',
-//       credentials: {},
-//       async authorize(_, req) {
-//         const { data, error } = await requestServer(
-//           CurrentUserDocument,
-//           {},
-//           {
-//             cookie: req.headers?.['cookie'],
-//           },
-//         );
+export const authOptions: NextAuthOptions = {
+  jwt: {
+    maxAge: 24 * 60 * 60 * 7, // 7 days
+  },
+  session: {
+    maxAge: 24 * 60 * 60 * 7, // 7 days
+  },
+  providers: [
+    CredentialsProvider({
+      name: 'Credentials',
+      credentials: {},
+      async authorize() {
+        const data = await getCurrentUser();
 
-//         if (error) {
-//           return null;
-//         }
+        if (!data) {
+          return null;
+        }
 
-//         const { currentUser } = data;
+        const user = data.data;
 
-//         const user = currentUser as User;
+        if (!user) {
+          return null;
+        }
 
-//         if (!user) {
-//           return null;
-//         }
+        return user;
+      },
+    }),
+  ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+      }
 
-//         const {
-//           data: { token },
-//         } = await session(
-//           {
-//             appId: process.env.HERMES_APP_ID as string,
-//             appUserId: user.id,
-//           },
-//           {
-//             headers: {
-//               Signature: user.chatSignature,
-//             },
-//           },
-//         );
+      return token;
+    },
 
-//         user.chatToken = token;
+    async session({ session, token }) {
+      session.user = {
+        email: token.email,
+      };
 
-//         return user;
-//       },
-//     }),
-//   ],
-//   callbacks: {
-//     async jwt({ token, user, session, trigger }) {
-//       if (user) {
-//         token.role = user.role;
-//         token.chatToken = user.chatToken;
-//         token.isOnboardingCompleted = user.isOnboardingCompleted;
-//         token.id = user.id;
-//         token.recruiterName = getFullName(user?.firstName, user?.lastName);
-//       }
-
-//       if (trigger === 'update' && session.isOnboardingCompleted) {
-//         token.isOnboardingCompleted = session.isOnboardingCompleted;
-//       }
-
-//       return token;
-//     },
-
-//     async session({ session, token }) {
-//       session.user = {
-//         ...session.user,
-//         id: token.id,
-//         role: token.role,
-//         chatToken: token.chatToken,
-//         isOnboardingCompleted: token.isOnboardingCompleted,
-//         recruiterName: token.recruiterName,
-//       };
-
-//       return session;
-//     },
-//   },
-// };
+      return session;
+    },
+  },
+};

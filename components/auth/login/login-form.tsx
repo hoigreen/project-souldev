@@ -18,12 +18,15 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
-import { login } from '@/lib/actions';
+import { getCurrentUser, login } from '@/lib/actions';
 import cookie from '@/lib/cookie';
 import { redirect } from '@/navigation';
 import GOOGLE_SVG from '@/public/google.svg';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import requestService from '@/services/request-service';
+import { endpoints } from '@/services/endpoints';
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: LoginForm
  * ------------------------------------------------------------------------------------------------------------------ */
@@ -35,6 +38,9 @@ export type LoginFormProps = HTMLAttributes<HTMLElement> &
 
 export function LoginForm({ className, ...props }: LoginFormProps) {
   const t = useTranslations('Auth');
+  // const { data: session } = useSession()
+
+  // console.log(session)
 
   const loginSchema = z.object({
     email: z.string().email(t('M4')),
@@ -55,24 +61,22 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
   const onSubmit: SubmitHandler<z.infer<typeof loginSchema>> = async (
     formData,
   ) => {
-    const {
-      data: { token },
-      error,
-    } = await login({
+    const data = await login({
       email: formData.email,
       password: formData.password,
     });
 
-    if (error) {
-      toast.error(
-        error.message === 'Invalid account' ? t('M8') : error.message,
-      );
+    if (!data) {
+      toast.error(t('M8'));
 
       return;
     }
 
-    cookie.set(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string, token, 7);
-    redirect('/');
+    cookie.set(
+      process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
+      data.data.token,
+      7,
+    );
   };
 
   return (

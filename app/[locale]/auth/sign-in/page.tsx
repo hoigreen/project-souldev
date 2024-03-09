@@ -1,7 +1,10 @@
+'use server';
+
 import { getTranslations } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
 import { LoginForm } from '@/components/auth/login/login-form';
 import { Link } from '@/navigation';
+import { getCurrentUser } from '@/lib/actions';
+import cookie from '@/lib/cookie';
 
 export async function generateMetadata() {
   const t = await getTranslations('Auth');
@@ -11,8 +14,8 @@ export async function generateMetadata() {
   };
 }
 
-export default function LoginPage() {
-  const t = useTranslations('Auth');
+export default async function LoginPage() {
+  const t = await getTranslations('Auth');
 
   return (
     <div className="mx-4 flex w-full flex-col gap-3 lg:mx-0 lg:max-w-lg">

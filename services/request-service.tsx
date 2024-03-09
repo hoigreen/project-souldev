@@ -11,23 +11,29 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((config: any) => {
-  let currentUser;
-  if (cookie.get('currentUser')) {
-    currentUser = cookie.get('currentUser');
+  let accessToken = null;
+  if (cookie.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string)) {
+    accessToken = cookie.get(
+      process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
+    );
   }
 
-  return {
-    ...config,
-    headers: {
-      Authorization: currentUser ? `Bearer ${currentUser}` : null,
-    },
-  };
+  if (accessToken) {
+    return {
+      ...config,
+      headers: {
+        Authorization: accessToken,
+      },
+    };
+  } else {
+    return config;
+  }
 });
 
 const response = (response: AxiosResponse) => response.data;
 
 const requestService = {
-  get: (url: string, body: any) => instance.get(url, body).then(response),
+  get: (url: string, body?: any) => instance.get(url, body).then(response),
 
   post: (url: string, body: any) => instance.post(url, body).then(response),
 
