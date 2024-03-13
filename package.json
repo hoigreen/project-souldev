@@ -9,14 +9,14 @@
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
     "dev": "next dev",
-    "postinstall": "pnpm exec simple-git-hooks",
+    "postinstall": "npm exec simple-git-hooks",
     "lint": "next lint -- --fix",
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
     "start": "next start"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged"
+    "pre-commit": "npm exec lint-staged"
   },
   "lint-staged": {
     "*": "prettier --write --ignore-unknown ."
