@@ -8,7 +8,6 @@ import { QueryProvider } from '@/components/ui/app/query-provider';
 import { ToasterProvider } from '@/components/providers/toaster-provider';
 import getSession from '@/lib/get-session';
 import { SessionProvider } from '@/components/providers/session-provider';
-import { getCurrentUser } from '@/lib/actions';
 
 const locales = ['en', 'de'];
 
@@ -38,8 +37,6 @@ export default async function LocaleLayout({
 
   const session = await getSession();
   const messages = await getMessages(locale);
-
-  // console.log(session)
 
   return (
     <html className={nunito.className} lang={locale} suppressHydrationWarning>

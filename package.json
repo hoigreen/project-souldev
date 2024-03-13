@@ -10,7 +10,7 @@
     "db:studio": "prisma studio",
     "dev": "next dev",
     "postinstall": "pnpm exec simple-git-hooks",
-    "lint": "next lint",
+    "lint": "next lint -- --fix",
     "prettier": "prettier --write --ignore-unknown .",
     "prettier:check": "prettier --check --ignore-unknown .",
     "start": "next start"

@@ -11,22 +11,22 @@ import {
   Input,
   InputPassword,
 } from '@codefixlabs/ui';
-import { VariantProps, cva } from 'class-variance-authority';
+import type { VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 import { useTranslations } from 'next-intl';
-import { HTMLAttributes } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { z } from 'zod';
+import type { HTMLAttributes } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
-import { getCurrentUser, login } from '@/lib/actions';
-import cookie from '@/lib/cookie';
-import { redirect } from '@/navigation';
-import GOOGLE_SVG from '@/public/google.svg';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
-import requestService from '@/services/request-service';
-import { endpoints } from '@/services/endpoints';
+import { login } from '@/lib/actions';
+import cookie from '@/lib/cookie';
+import GOOGLE_SVG from '@/public/google.svg';
+import type { LoginSchema } from '@/lib/validations/auth';
+import { loginSchema } from '@/lib/validations/auth';
+import { useSignInWithCredential } from '@/hooks/use-sign-in-with-credential';
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: LoginForm
  * ------------------------------------------------------------------------------------------------------------------ */
@@ -38,19 +38,9 @@ export type LoginFormProps = HTMLAttributes<HTMLElement> &
 
 export function LoginForm({ className, ...props }: LoginFormProps) {
   const t = useTranslations('Auth');
-  // const { data: session } = useSession()
+  const { signInWithCredential } = useSignInWithCredential();
 
-  // console.log(session)
-
-  const loginSchema = z.object({
-    email: z.string().email(t('M4')),
-    password: z
-      .string({ required_error: t('M5') })
-      .min(8, t('M6'))
-      .max(16, t('M7')),
-  });
-
-  const form = useForm<z.infer<typeof loginSchema>>({
+  const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
@@ -58,9 +48,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
     },
   });
 
-  const onSubmit: SubmitHandler<z.infer<typeof loginSchema>> = async (
-    formData,
-  ) => {
+  const onSubmit: SubmitHandler<LoginSchema> = async (formData) => {
     const data = await login({
       email: formData.email,
       password: formData.password,
@@ -77,6 +65,8 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
       data.data.token,
       7,
     );
+
+    await signInWithCredential(formData);
   };
 
   return (
@@ -92,8 +82,8 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
                   <FormLabel>{t('M9')}</FormLabel>
                   <FormControl>
                     <Input
-                      type="email"
                       placeholder={t('M10')}
+                      type="email"
                       {...field}
                       disabled={formState.isSubmitting}
                     />
@@ -123,14 +113,14 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
           </div>
 
           <div className="mt-8">
-            <Button block type="submit" loading={form.formState.isSubmitting}>
+            <Button block loading={form.formState.isSubmitting} type="submit">
               {t('M13')}
             </Button>
           </div>
           <div className="flex items-center justify-end">
             <Link
-              href={''}
               className="mt-4 text-center text-sm font-semibold text-green-500"
+              href=""
             >
               {t('M16')}
             </Link>
@@ -148,11 +138,11 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
 
       <div className="flex items-center justify-between gap-3">
         <Button
-          variant="outline"
           className="flex-1"
           startIcon={
-            <Image src={GOOGLE_SVG} alt="Google" width={20} height={20} />
+            <Image alt="Google" height={20} src={GOOGLE_SVG} width={20} />
           }
+          variant="outline"
         >
           {t('M15')}
         </Button>

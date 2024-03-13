@@ -12,13 +12,13 @@ export async function login(body: { email: string; password: string }) {
 }
 
 export async function getCurrentUser() {
-  const data = await requestService.get(
-    endpoints.user.currentUser(
-      cookie.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string) ?? '',
-    ),
-  );
-
-  console.log(data);
+  const data = await requestService.get(endpoints.user.currentUser, {
+    headers: {
+      Authorization: cookie.get(
+        process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
+      ),
+    },
+  });
 
   return data;
 }

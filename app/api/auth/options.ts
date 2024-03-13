@@ -1,6 +1,6 @@
-import { getCurrentUser } from '@/lib/actions';
-import { NextAuthOptions } from 'next-auth';
+import type { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { login } from '@/lib/actions';
 
 export const authOptions: NextAuthOptions = {
   jwt: {
@@ -12,29 +12,46 @@ export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
-      credentials: {},
-      async authorize() {
-        const data = await getCurrentUser();
-
-        if (!data) {
+      credentials: {
+        email: {
+          label: 'Email',
+          type: 'text',
+          placeholder: 'Enter your email',
+        },
+        password: {
+          label: 'Password',
+          type: 'password',
+          placeholder: 'Enter your password',
+        },
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials.password) {
           return null;
         }
 
-        const user = data.data;
+        try {
+          const dataLogin = await login(credentials);
 
-        if (!user) {
+          if (!dataLogin) {
+            return null;
+          }
+
+          return { ...dataLogin.data };
+        } catch (error) {
+          console.log(error);
+
           return null;
         }
-
-        return user;
       },
     }),
   ],
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
-        token.email = user.email;
+        token = {
+          ...token,
+          ...user,
+        };
       }
 
       return token;
@@ -42,7 +59,8 @@ export const authOptions: NextAuthOptions = {
 
     async session({ session, token }) {
       session.user = {
-        email: token.email,
+        ...token,
+        ...session.user,
       };
 
       return session;

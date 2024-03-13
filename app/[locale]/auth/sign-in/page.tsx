@@ -3,8 +3,6 @@
 import { getTranslations } from 'next-intl/server';
 import { LoginForm } from '@/components/auth/login/login-form';
 import { Link } from '@/navigation';
-import { getCurrentUser } from '@/lib/actions';
-import cookie from '@/lib/cookie';
 
 export async function generateMetadata() {
   const t = await getTranslations('Auth');
