@@ -4,10 +4,7 @@ import { login } from '@/lib/actions';
 
 export const authOptions: NextAuthOptions = {
   jwt: {
-    maxAge: 24 * 60 * 60 * 7, // 7 days
-  },
-  session: {
-    maxAge: 24 * 60 * 60 * 7, // 7 days
+    maxAge: 24 * 60 * 60 * 7,
   },
   providers: [
     CredentialsProvider({
@@ -65,5 +62,9 @@ export const authOptions: NextAuthOptions = {
 
       return session;
     },
+  },
+  session: {
+    strategy: 'jwt',
+    maxAge: 24 * 60 * 60 * 7,
   },
 };
