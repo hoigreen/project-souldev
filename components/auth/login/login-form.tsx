@@ -54,7 +54,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
       password: formData.password,
     });
 
-    if (!data) {
+    if (!data.success) {
       toast.error(t('M8'));
 
       return;
