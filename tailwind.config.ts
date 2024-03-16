@@ -1,9 +1,14 @@
-import { sharedConfig, slate } from '@codefixlabs/tailwindcss';
 import type { Config } from 'tailwindcss';
 
-const config: Pick<Config, 'presets' | 'theme' | 'plugins'> = {
-  plugins: [slate],
-  presets: [sharedConfig],
+const config = {
+  darkMode: ['class'],
+  content: [
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+  ],
+  prefix: '',
   theme: {
     container: {
       center: true,
@@ -69,6 +74,7 @@ const config: Pick<Config, 'presets' | 'theme' | 'plugins'> = {
       },
     },
   },
-};
+  plugins: [require('tailwindcss-animate')],
+} satisfies Config;
 
 export default config;

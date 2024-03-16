@@ -1,5 +1,4 @@
 {
-  "extends": ["eslint-config-codefixlabs/next"],
   "overrides": [
     {
       // enable the rule specifically for TypeScript files

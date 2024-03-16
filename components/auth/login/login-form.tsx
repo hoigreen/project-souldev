@@ -1,16 +1,5 @@
 'use client';
 
-import {
-  Button,
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  Input,
-  InputPassword,
-} from '@codefixlabs/ui';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
 import { useTranslations } from 'next-intl';
@@ -27,11 +16,22 @@ import GOOGLE_SVG from '@/public/google.svg';
 import type { LoginSchema } from '@/lib/validations/auth';
 import { loginSchema } from '@/lib/validations/auth';
 import { useSignInWithCredential } from '@/hooks/use-sign-in-with-credential';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: LoginForm
  * ------------------------------------------------------------------------------------------------------------------ */
 
-const loginFormVariants = cva('flex w-full flex-col gap-7.5');
+const loginFormVariants = cva('gap-7.5 flex w-full flex-col md:gap-10');
 
 export type LoginFormProps = HTMLAttributes<HTMLElement> &
   VariantProps<typeof loginFormVariants>;
@@ -73,7 +73,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
     <div {...props} className={loginFormVariants({ className })}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="mt-5 space-y-5">
+          <div className="space-y-5">
             <FormField
               control={form.control}
               name="email"
@@ -100,7 +100,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
                 <FormItem>
                   <FormLabel>{t('M11')}</FormLabel>
                   <FormControl>
-                    <InputPassword
+                    <Input
                       placeholder={t('M12')}
                       {...field}
                       disabled={formState.isSubmitting}
@@ -113,7 +113,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
           </div>
 
           <div className="mt-8">
-            <Button block loading={form.formState.isSubmitting} type="submit">
+            <Button disabled={form.formState.isSubmitting} type="submit">
               {t('M13')}
             </Button>
           </div>
@@ -137,13 +137,8 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
       </div>
 
       <div className="flex items-center justify-between gap-3">
-        <Button
-          className="flex-1"
-          startIcon={
-            <Image alt="Google" height={20} src={GOOGLE_SVG} width={20} />
-          }
-          variant="outline"
-        >
+        <Button className="flex-1" variant="outline">
+          <Image alt="Google" height={20} src={GOOGLE_SVG} width={20} />
           {t('M15')}
         </Button>
       </div>

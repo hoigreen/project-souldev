@@ -5,7 +5,7 @@ export default function RootLayout({
 }) {
   return (
     <main className="flex min-h-screen flex-col">
-      <div className="bg-neutral flex grow items-center justify-center bg-cover bg-center bg-repeat">
+      <div className="flex grow items-start justify-center bg-cover bg-center bg-repeat md:items-center">
         {children}
       </div>
     </main>
