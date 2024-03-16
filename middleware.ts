@@ -45,8 +45,13 @@ const nextAuthMiddleware = () =>
 
 export default function middleware(req: NextRequest) {
   const isPublic = publicPathRegex.test(req.nextUrl.pathname);
+  const isAuth = authPathRegex.test(req.nextUrl.pathname);
 
   if (isPublic) {
+    if (req.cookies.get('access_token') && isAuth) {
+      return (nextAuthMiddleware() as any)(req);
+    }
+
     // @ts-ignore
     return nextIntlMiddleware(req);
   } else {
