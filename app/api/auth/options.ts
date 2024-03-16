@@ -1,9 +1,13 @@
-import type { NextAuthOptions } from 'next-auth';
+import type { NextAuthOptions, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { login } from '@/lib/actions';
 
 export const authOptions: NextAuthOptions = {
   jwt: {
+    maxAge: 24 * 60 * 60 * 7,
+  },
+  session: {
+    strategy: 'jwt',
     maxAge: 24 * 60 * 60 * 7,
   },
   providers: [
@@ -33,7 +37,9 @@ export const authOptions: NextAuthOptions = {
             return null;
           }
 
-          return { ...dataLogin.data };
+          const user = dataLogin.data as User;
+
+          return user;
         } catch (error) {
           console.log(error);
 
@@ -45,10 +51,11 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token = {
-          ...token,
-          ...user,
-        };
+        token._id = user._id;
+        token.email = user.email;
+        token.image = user.image;
+        token.mobile = user.mobile;
+        token.token = user.token;
       }
 
       return token;
@@ -56,15 +63,15 @@ export const authOptions: NextAuthOptions = {
 
     async session({ session, token }) {
       session.user = {
-        ...token,
         ...session.user,
+        _id: token._id,
+        email: token.email,
+        image: token.image,
+        mobile: token.mobile,
+        token: token.token,
       };
 
       return session;
     },
-  },
-  session: {
-    strategy: 'jwt',
-    maxAge: 24 * 60 * 60 * 7,
   },
 };

@@ -19,7 +19,7 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = {
   title: 'SoulDev',
-  description: '',
+  description: 'Social network for developers - Soulmate of Dev',
 };
 
 export default async function LocaleLayout({

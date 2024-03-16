@@ -11,4 +11,6 @@ export const regexPattern = (pages: string[]) =>
     'i',
   );
 
-export const publicPathRegex = regexPattern(['/']);
+export const publicPathRegex = regexPattern(['/', '/auth/:path*']);
+
+export const authPathRegex = regexPattern(['/en/auth/sign-in']);

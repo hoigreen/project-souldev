@@ -2,28 +2,31 @@ import createIntlMiddleware from 'next-intl/middleware';
 import { withAuth } from 'next-auth/middleware';
 import { locales } from './navigation';
 import { NextRequest, NextResponse } from 'next/server';
-import { publicPathRegex } from './lib/regex';
+import { authPathRegex, publicPathRegex } from './lib/regex';
 
 const nextIntlMiddleware = createIntlMiddleware({
-  // A list of all locales that are supported
   locales: ['en', 'vi'],
-
-  // Used when no locale matches
   defaultLocale: 'en',
+  localeDetection: false,
 });
 
 const nextAuthMiddleware = () =>
   withAuth(
     (req) => {
-      if (req.nextauth.token) {
+      const token = req.nextauth.token;
+
+      if (token) {
         let locale = `${req.cookies.get('NEXT_LOCALE')?.value || 'en'}`;
         const localeFromPath = req.nextUrl.pathname.split('/')[1];
 
         if (
           locale !== localeFromPath &&
-          locales.includes(localeFromPath as 'vi' | 'en')
+          locales.includes(localeFromPath as any)
         ) {
           locale = localeFromPath;
+        }
+
+        if (authPathRegex.test(req.nextUrl.pathname)) {
           return NextResponse.redirect(new URL(`/${locale}/home`, req.url));
         }
       }
@@ -44,6 +47,7 @@ export default function middleware(req: NextRequest) {
   const isPublic = publicPathRegex.test(req.nextUrl.pathname);
 
   if (isPublic) {
+    // @ts-ignore
     return nextIntlMiddleware(req);
   } else {
     return (nextAuthMiddleware() as any)(req);
