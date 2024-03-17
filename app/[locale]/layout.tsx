@@ -8,6 +8,7 @@ import { QueryProvider } from '@/components/ui/app/query-provider';
 import { ToasterProvider } from '@/components/providers/toaster-provider';
 import getSession from '@/lib/get-session';
 import { SessionProvider } from '@/components/providers/session-provider';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const locales = ['en', 'de'];
 
@@ -41,23 +42,30 @@ export default async function LocaleLayout({
   return (
     <html className={nunito.className} lang={locale} suppressHydrationWarning>
       <body className="antialiased">
-        <SessionProvider session={session}>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            <QueryProvider>{children}</QueryProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SessionProvider session={session}>
+            <NextIntlClientProvider locale={locale} messages={messages}>
+              <QueryProvider>{children}</QueryProvider>
 
-            <ToasterProvider
-              toastOptions={{
-                success: {
-                  className: '!max-w-lg',
-                },
-                error: {
-                  className:
-                    '!bg-red-50 !text-red-900 !border !border-red-100 !max-w-lg',
-                },
-              }}
-            />
-          </NextIntlClientProvider>
-        </SessionProvider>
+              <ToasterProvider
+                toastOptions={{
+                  success: {
+                    className: '!max-w-lg',
+                  },
+                  error: {
+                    className:
+                      '!bg-red-50 !text-red-900 !border !border-red-100 !max-w-lg',
+                  },
+                }}
+              />
+            </NextIntlClientProvider>
+          </SessionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

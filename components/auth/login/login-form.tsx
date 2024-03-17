@@ -8,11 +8,9 @@ import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
-import Image from 'next/image';
 import Link from 'next/link';
 import { login } from '@/lib/actions';
 import cookie from '@/lib/cookie';
-import GOOGLE_SVG from '@/public/google.svg';
 import type { LoginSchema } from '@/lib/validations/auth';
 import { loginSchema } from '@/lib/validations/auth';
 import { useSignInWithCredential } from '@/hooks/use-sign-in-with-credential';
@@ -73,7 +71,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
     <div {...props} className={loginFormVariants({ className })}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="space-y-5">
+          <div className="w-full space-y-5">
             <FormField
               control={form.control}
               name="email"
@@ -101,6 +99,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
                   <FormLabel>{t('M11')}</FormLabel>
                   <FormControl>
                     <Input
+                      type="password"
                       placeholder={t('M12')}
                       {...field}
                       disabled={formState.isSubmitting}
@@ -110,16 +109,19 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
                 </FormItem>
               )}
             />
-          </div>
 
-          <div className="mt-8">
-            <Button disabled={form.formState.isSubmitting} type="submit">
+            <Button
+              className="w-full"
+              disabled={form.formState.isSubmitting}
+              type="submit"
+            >
               {t('M13')}
             </Button>
           </div>
+
           <div className="flex items-center justify-end">
             <Link
-              className="mt-4 text-center text-sm font-semibold text-green-500"
+              className="my-4 text-center text-xs font-semibold italic"
               href=""
             >
               {t('M16')}
@@ -127,21 +129,6 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
           </div>
         </form>
       </Form>
-
-      <div className="flex items-center gap-3 px-2">
-        <div className="h-[1px] w-full flex-1 border" />
-        <span className="text-base font-bold uppercase text-neutral-400">
-          {t('M14')}
-        </span>
-        <div className="h-[1px] w-full flex-1 border" />
-      </div>
-
-      <div className="flex items-center justify-between gap-3">
-        <Button className="flex-1" variant="outline">
-          <Image alt="Google" height={20} src={GOOGLE_SVG} width={20} />
-          {t('M15')}
-        </Button>
-      </div>
     </div>
   );
 }

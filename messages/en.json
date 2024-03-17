@@ -2,6 +2,11 @@
   "Page": {
     "title": "Hello world!"
   },
+  "Theme": {
+    "M1": "Light",
+    "M2": "Dark",
+    "M3": "System"
+  },
   "Auth": {
     "M1": "Login account | SoulDev",
     "M2": "Don't have an account?",
@@ -18,6 +23,7 @@
     "M13": "Login",
     "M14": "Or",
     "M15": "Login with Google Account",
-    "M16": "Forget your password"
+    "M16": "Forget your password",
+    "M17": "Login with Github"
   }
 }
