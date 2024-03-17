@@ -8,7 +8,7 @@
     "M3": "Hệ thống"
   },
   "Auth": {
-    "M1": "Đăng nhập tài khoản | SoulDev",
+    "M1": "Đăng nhập",
     "M2": "Chưa có tài khoản?",
     "M3": "Đăng ký",
     "M4": "Vui lòng cung cấp một địa chỉ email hợp lệ",
@@ -24,6 +24,16 @@
     "M14": "Hoặc",
     "M15": "Đăng nhập bằng tài khoản Google",
     "M16": "Quên mật khẩu của bạn",
-    "M17": "Đăng nhập bằng tài khoản Github"
+    "M17": "Đăng nhập bằng tài khoản Github",
+    "M18": "Đã có tài khoản SoulDev?",
+    "M19": "Đăng ký tài khoản",
+    "M20": "Có lỗi xảy ra, vui lòng thử lại sau.",
+    "M21": "Đăng ký tài khoản thành công!",
+    "M22": "Tên",
+    "M23": "Nhập tên của bạn",
+    "M24": "Họ",
+    "M25": "Nhập họ của bạn",
+    "M26": "Số điện thoại",
+    "M27": "Ví dụ: 0343392291"
   }
 }

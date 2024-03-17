@@ -20,9 +20,12 @@ export function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: 'SoulDev',
+  title: {
+    default: 'SoulDev',
+    template: '%s | SoulDev',
+  },
   description: 'Social network for developers - Soulmate of Dev',
-};
+} satisfies Metadata;
 
 export default async function LocaleLayout({
   children,

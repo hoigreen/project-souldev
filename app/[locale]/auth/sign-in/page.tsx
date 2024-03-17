@@ -18,7 +18,7 @@ export async function generateMetadata() {
   };
 }
 
-export default async function LoginPage({
+export default async function Page({
   params: { locale },
 }: {
   params: { locale: string };
@@ -27,8 +27,8 @@ export default async function LoginPage({
   const t = await getTranslations('Auth');
 
   return (
-    <Container className="flex w-full max-w-lg flex-col gap-3">
-      <div className="flex flex-col gap-3 py-3">
+    <Container className="flex w-full max-w-lg flex-col gap-3 md:gap-6">
+      <div className="flex flex-col gap-3 rounded py-3 md:border md:px-5 md:py-3">
         <div className="flex items-center justify-center">
           <Image
             className="dark:hidden"
@@ -87,7 +87,7 @@ export default async function LoginPage({
         </div>
       </div>
 
-      <div className="flex items-center justify-center gap-2 rounded border border-border p-3">
+      <div className="flex items-center justify-center gap-2 rounded border border-border p-3 md:p-5">
         <p className="text-sm font-normal ">{t('M2')}</p>
         <Link
           className="text-sm font-semibold  hover:opacity-70"

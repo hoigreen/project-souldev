@@ -8,7 +8,7 @@
     "M3": "System"
   },
   "Auth": {
-    "M1": "Login account | SoulDev",
+    "M1": "Login account",
     "M2": "Don't have an account?",
     "M3": "Sign up",
     "M4": "Please provide an email address valid",
@@ -24,6 +24,16 @@
     "M14": "Or",
     "M15": "Login with Google Account",
     "M16": "Forget your password",
-    "M17": "Login with Github"
+    "M17": "Login with Github",
+    "M18": "Already have a SoulDev account?",
+    "M19": "Sign up an account",
+    "M20": "Something went wrong, please try again later.",
+    "M21": "Sign up account successfully!",
+    "M22": "First name",
+    "M23": "Input your first name",
+    "M24": "Last name",
+    "M25": "Input your last name",
+    "M26": "Phone number",
+    "M27": "Ex. 0343392291"
   }
 }

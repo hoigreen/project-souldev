@@ -1,7 +1,8 @@
 import { z } from 'zod';
+import { NAME_REGEX } from '../regex';
 
 /* -----------------------------------------------------------------------------
- * Login Schema
+ * Signin Schema
  * -------------------------------------------------------------------------- */
 
 export const loginSchema = z.object({
@@ -21,3 +22,44 @@ export const loginSchema = z.object({
 });
 
 export type LoginSchema = z.infer<typeof loginSchema>;
+
+/* -----------------------------------------------------------------------------
+ * Signup Schema
+ * -------------------------------------------------------------------------- */
+
+export const signupSchema = z.object({
+  first_name: z
+    .string({
+      required_error: 'Please enter your first name',
+    })
+    .min(1, 'Please enter your first name')
+    .max(128, 'First name is too long')
+    .regex(NAME_REGEX, 'Only letters and spaces are allowed'),
+  last_name: z
+    .string({
+      required_error: 'Please enter your last name',
+    })
+    .min(1, 'Please enter your last name')
+    .max(128, 'Last name is too long')
+    .regex(NAME_REGEX, 'Only letters and spaces are allowed'),
+  email: z
+    .string({
+      required_error: 'Please enter a valid email address',
+    })
+    .email('Please enter a valid email address'),
+  phone: z
+    .string({
+      required_error: 'Phone is required!',
+    })
+    .min(10, 'Phone number is too short')
+    .max(10, 'Phone number cannot be longer than 15 digits'),
+  password: z
+    .string()
+    .min(8, { message: 'Password must be at least 8 characters long' })
+    .max(32, { message: 'Password must be no more than 32 characters long' }),
+  terms: z.boolean().refine((value) => value, {
+    message: 'You must agree to the terms of service',
+  }),
+});
+
+export type SignupSchema = z.infer<typeof signupSchema>;

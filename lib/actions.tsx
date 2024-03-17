@@ -4,6 +4,7 @@ import cookie from './cookie';
 import { endpoints } from '@/services/endpoints';
 import requestService from '@/services/request-service';
 import { signOut, SignOutParams } from 'next-auth/react';
+import { SignupBody } from './definitions';
 
 // This file contain server actions
 
@@ -33,6 +34,12 @@ export async function getCurrentUser() {
       ),
     },
   });
+
+  return data;
+}
+
+export async function register(body: SignupBody) {
+  const data = await requestService.post(endpoints.user.register, body);
 
   return data;
 }
