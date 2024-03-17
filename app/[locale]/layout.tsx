@@ -9,6 +9,7 @@ import { ToasterProvider } from '@/components/providers/toaster-provider';
 import getSession from '@/lib/get-session';
 import { SessionProvider } from '@/components/providers/session-provider';
 import { ThemeProvider } from '@/components/theme-provider';
+import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 
 const locales = ['en', 'vi'];
 
@@ -30,6 +31,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  unstableSetRequestLocale(locale);
   const isValidLocale = locales.some((cur) => cur === locale);
 
   if (!isValidLocale) {

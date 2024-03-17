@@ -1,6 +1,6 @@
 'use server';
 
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { Link } from '@/navigation';
 import { LoginForm } from '@/components/auth/login/login-form';
 import Container from '@/components/ui/containter';
@@ -18,7 +18,12 @@ export async function generateMetadata() {
   };
 }
 
-export default async function LoginPage() {
+export default async function LoginPage({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  unstable_setRequestLocale(locale);
   const t = await getTranslations('Auth');
 
   return (
