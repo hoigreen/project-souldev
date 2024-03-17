@@ -1,0 +1,29 @@
+{
+  "Page": {
+    "title": "Xin chào thế giới!"
+  },
+  "Theme": {
+    "M1": "Sáng",
+    "M2": "Tối",
+    "M3": "Hệ thống"
+  },
+  "Auth": {
+    "M1": "Đăng nhập tài khoản | SoulDev",
+    "M2": "Chưa có tài khoản?",
+    "M3": "Đăng ký",
+    "M4": "Vui lòng cung cấp một địa chỉ email hợp lệ",
+    "M5": "Trường này là bắt buộc",
+    "M6": "Phải chứa ít nhất 8 ký tự",
+    "M7": "Mật khẩu không được dài quá 16 ký tự",
+    "M8": "Email hoặc mật khẩu không hợp lệ.",
+    "M9": "Email",
+    "M10": "Nhập địa chỉ email ...",
+    "M11": "Mật khẩu",
+    "M12": "Nhập mật khẩu ...",
+    "M13": "Đăng nhập",
+    "M14": "Hoặc",
+    "M15": "Đăng nhập bằng tài khoản Google",
+    "M16": "Quên mật khẩu của bạn",
+    "M17": "Đăng nhập bằng tài khoản Github"
+  }
+}
