@@ -10,7 +10,7 @@ import getSession from '@/lib/get-session';
 import { SessionProvider } from '@/components/providers/session-provider';
 import { ThemeProvider } from '@/components/theme-provider';
 
-const locales = ['en', 'de'];
+const locales = ['en', 'vi'];
 
 const nunito = Nunito({ subsets: ['vietnamese'], weight: '400' });
 
