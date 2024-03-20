@@ -51,7 +51,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
     const data = await register(formData);
 
     if (!data.success) {
-      toast.error(t('M20'));
+      toast.error(data.message ? data.message : t('M20'));
 
       return;
     }
