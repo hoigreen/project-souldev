@@ -59,7 +59,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
     toast.success(t('M21'));
 
     startTransition(() => {
-      router.push('/auth/sign-in');
+      router.push('/auth/sign-up/verify');
     });
   };
 

@@ -35,6 +35,10 @@
     "M25": "Input your last name",
     "M26": "Phone number",
     "M27": "Ex. 0343392291",
-    "M28": "By signing up, you agree to the Terms of Service and Privacy Policy"
+    "M28": "By signing up, you agree to the Terms of Service and Privacy Policy",
+    "M29": "Verify account",
+    "M30": "Verify your email address",
+    "M31": "We have sent a verification email to your email address. Please check your email and click the link to verify your account.",
+    "M32": "Go to Sign in page"
   }
 }
