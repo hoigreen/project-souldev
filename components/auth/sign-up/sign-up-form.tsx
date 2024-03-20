@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Form,
   FormControl,
@@ -154,6 +155,32 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
                       disabled={formState.isSubmitting || isPending}
                     />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="terms"
+              render={({ field, formState }) => (
+                <FormItem className="mt-8">
+                  <FormItem>
+                    <FormControl>
+                      <div className="flex items-center gap-2 text-xs">
+                        <Checkbox
+                          disabled={formState.isSubmitting}
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+
+                        <FormLabel className="inline-block text-xs font-normal">
+                          {t('M28')}
+                        </FormLabel>
+                      </div>
+                    </FormControl>
+                  </FormItem>
+
                   <FormMessage />
                 </FormItem>
               )}
