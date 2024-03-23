@@ -25,6 +25,7 @@ export default function LoginActionButtons() {
       <Button
         className="flex items-center justify-center gap-3"
         variant="outline"
+        onClick={() => signIn('github')}
       >
         <Image
           className="dark:hidden"

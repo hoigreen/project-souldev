@@ -4,5 +4,6 @@ export const endpoints = {
     login: '/api/users/login',
     currentUser: '/api/users/current-user',
     authGoogle: '/api/users/auth-google',
+    authGitHub: '/api/users/auth-github',
   },
 };

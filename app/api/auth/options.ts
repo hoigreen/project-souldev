@@ -1,9 +1,11 @@
 import type { NextAuthOptions, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import GithubProvider, { GithubProfile } from 'next-auth/providers/github';
 import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google';
-import { authGoogle, login } from '@/lib/actions';
+import { authGitHub, authGoogle, login } from '@/lib/actions';
 import { SignupBody } from '@/lib/definitions';
 import cookie from '@/lib/cookie';
+import toast from 'react-hot-toast';
 
 export const authOptions: NextAuthOptions = {
   jwt: {
@@ -54,6 +56,10 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
+    GithubProvider({
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
+    }),
   ],
   callbacks: {
     async jwt({ token, user }) {
@@ -98,6 +104,26 @@ export const authOptions: NextAuthOptions = {
           data.data.token,
           7,
         );
+      }
+
+      if (account?.provider === 'github' && profile) {
+        const profileData = profile as GithubProfile;
+        const signUpData: SignupBody = {
+          email: profileData.email as string,
+          first_name: profileData.name?.split(' ')[0] as string,
+          last_name: profileData.name?.split(' ')[1] as string,
+          image: profileData.avatar_url as string,
+          password: '123456',
+          terms: true,
+        };
+        const data = await authGitHub(signUpData);
+
+        if (data.status)
+          cookie.set(
+            process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
+            data.data.token,
+            7,
+          );
       }
       return true;
     },

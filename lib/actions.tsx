@@ -50,3 +50,10 @@ export async function authGoogle(body: SignupBody) {
 
   return data;
 }
+
+export async function authGitHub(body: SignupBody) {
+  if (!body) return;
+  const data = await requestService.post(endpoints.user.authGitHub, body);
+
+  return data;
+}
