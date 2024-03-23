@@ -43,3 +43,10 @@ export async function register(body: SignupBody) {
 
   return data;
 }
+
+export async function authGoogle(body: SignupBody) {
+  if (!body) return;
+  const data = await requestService.post(endpoints.user.authGoogle, body);
+
+  return data;
+}

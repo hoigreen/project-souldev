@@ -1,6 +1,9 @@
 import type { NextAuthOptions, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { login } from '@/lib/actions';
+import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google';
+import { authGoogle, login } from '@/lib/actions';
+import { SignupBody } from '@/lib/definitions';
+import cookie from '@/lib/cookie';
 
 export const authOptions: NextAuthOptions = {
   jwt: {
@@ -47,6 +50,10 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    }),
   ],
   callbacks: {
     async jwt({ token, user }) {
@@ -72,6 +79,27 @@ export const authOptions: NextAuthOptions = {
       };
 
       return session;
+    },
+    async signIn({ account, profile }) {
+      if (account?.provider === 'google' && profile) {
+        const profileData = profile as GoogleProfile;
+        const signUpData: SignupBody = {
+          email: profileData.email as string,
+          first_name: profileData.given_name as string,
+          last_name: profileData.family_name as string,
+          image: profileData.picture as string,
+          password: '123456',
+          terms: true,
+        };
+        const data = await authGoogle(signUpData);
+
+        cookie.set(
+          process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
+          data.data.token,
+          7,
+        );
+      }
+      return true;
     },
   },
 };

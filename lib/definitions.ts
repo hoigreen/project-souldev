@@ -3,6 +3,7 @@ export type SignupBody = {
   password: string;
   first_name: string;
   last_name: string;
-  phone: string;
+  phone?: string;
   terms: boolean;
+  image?: string;
 };
