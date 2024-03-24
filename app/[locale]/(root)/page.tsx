@@ -38,7 +38,7 @@ export default function Page({
       <main>
         <Suspense fallback={<div className="h-dvh" />}></Suspense>
       </main>
-      <Footer />
+      <Footer routes={routes} />
     </>
   );
 }
