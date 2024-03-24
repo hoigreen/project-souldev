@@ -25,7 +25,7 @@ export default async function Page({
 
   return (
     <Container className="flex w-full max-w-lg flex-col gap-3 md:gap-6">
-      <div className="flex flex-col gap-3 rounded py-3 md:border md:bg-white md:px-5 md:py-3">
+      <div className="flex flex-col gap-3 rounded py-3 md:border md:bg-background md:px-5 md:py-3">
         <div className="flex items-center justify-center">
           <Image
             className="dark:hidden"

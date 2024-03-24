@@ -1,6 +1,11 @@
 {
-  "Page": {
-    "title": "Hello world!"
+  "Landing": {
+    "M1": "Sign in",
+    "M2": "Sign up",
+    "M3": "Home",
+    "M4": "About Us",
+    "M5": "Contact Us",
+    "M6": "Terms of Service"
   },
   "Theme": {
     "M1": "Light",

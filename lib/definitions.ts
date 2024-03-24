@@ -9,3 +9,9 @@ export type SignupBody = {
 };
 
 export type SearchParams = Record<string, string[] | string | undefined>;
+
+export interface Route {
+  name: string;
+  path: string;
+  routes?: Route[];
+}
