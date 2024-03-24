@@ -7,3 +7,5 @@ export type SignupBody = {
   terms: boolean;
   image?: string;
 };
+
+export type SearchParams = Record<string, string[] | string | undefined>;

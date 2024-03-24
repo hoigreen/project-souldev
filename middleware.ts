@@ -48,7 +48,12 @@ export default function middleware(req: NextRequest) {
   const isAuth = authPathRegex.test(req.nextUrl.pathname);
 
   if (isPublic) {
-    if (req.cookies.get('next-auth.session-token') && isAuth) {
+    if (
+      (req.cookies.get('next-auth.session-token') ||
+        req.cookies.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string) ||
+        req.cookies.get('__Secure-next-auth.session-token')) &&
+      isAuth
+    ) {
       return (nextAuthMiddleware() as any)(req);
     }
 

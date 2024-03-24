@@ -13,6 +13,11 @@ export const regexPattern = (pages: string[]) =>
 
 export const publicPathRegex = regexPattern(['/', '/auth/:path*']);
 
-export const authPathRegex = regexPattern(['/auth/sign-in', '/auth/sign-up']);
+export const authPathRegex = regexPattern([
+  '/auth/sign-in',
+  '/auth/sign-up/:path*',
+  '/auth/verify-success',
+  '/auth/verify-error',
+]);
 
 export const NAME_REGEX = /^[\p{L}\s]+$/u;
