@@ -56,6 +56,11 @@
     "M35": "Success",
     "M36": "Error",
     "M37": "Verify account failed!",
-    "M38": "Please check your email verification link or resend the verification email."
+    "M38": "Please check your email verification link or resend the verification email.",
+    "M39": "Forget password",
+    "M40": "Forget your password?",
+    "M41": "Please provide an email address valid which you associated with your account",
+    "M42": "Your request has been sent successfully! Please check your email to reset your password.",
+    "M43": "Send request"
   }
 }

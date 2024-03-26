@@ -57,3 +57,9 @@ export async function authGitHub(body: SignupBody) {
 
   return data;
 }
+
+export async function forgetPassWord(body: { email: string }) {
+  const data = await requestService.post(endpoints.user.forgetPassword, body);
+
+  return data;
+}

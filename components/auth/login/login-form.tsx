@@ -122,7 +122,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
           <div className="flex items-center justify-end">
             <Link
               className="my-4 text-center text-xs font-semibold italic"
-              href=""
+              href="/auth/forget-password"
             >
               {t('M16')}
             </Link>

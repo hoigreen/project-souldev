@@ -5,5 +5,6 @@ export const endpoints = {
     currentUser: '/api/users/current-user',
     authGoogle: '/api/users/auth-google',
     authGitHub: '/api/users/auth-github',
+    forgetPassword: '/api/users/forget-password',
   },
 };

@@ -63,3 +63,20 @@ export const signupSchema = z.object({
 });
 
 export type SignupSchema = z.infer<typeof signupSchema>;
+
+/* -----------------------------------------------------------------------------
+ * Forget Password Schema
+ * -------------------------------------------------------------------------- */
+
+export const forgetPasswordSchema = z.object({
+  email: z
+    .string({
+      required_error: 'Please enter your email address.',
+    })
+    .min(1)
+    .email({
+      message: 'Please enter a valid email address.',
+    }),
+});
+
+export type ForgetPasswordSchema = z.infer<typeof forgetPasswordSchema>;
