@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Nunito } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import './globals.css';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
@@ -13,7 +13,7 @@ import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl
 
 const locales = ['en', 'vi'];
 
-const nunito = Nunito({ subsets: ['vietnamese'], weight: '400' });
+const robotoFont = Roboto({ subsets: ['vietnamese'], weight: '400' });
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -45,7 +45,11 @@ export default async function LocaleLayout({
   const messages = await getMessages(locale);
 
   return (
-    <html className={nunito.className} lang={locale} suppressHydrationWarning>
+    <html
+      className={robotoFont.className}
+      lang={locale}
+      suppressHydrationWarning
+    >
       <body className="antialiased">
         <ThemeProvider
           attribute="class"

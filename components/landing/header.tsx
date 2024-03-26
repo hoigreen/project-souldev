@@ -48,7 +48,7 @@ export default function Header({ className, routes, ...props }: HeaderProps) {
           />
         </Link>
 
-        <ul className="flex w-fit space-x-8">
+        <ul className="hidden w-fit space-x-8 md:flex">
           {routes.map((route, index) => (
             <li
               key={index}
@@ -74,7 +74,7 @@ export default function Header({ className, routes, ...props }: HeaderProps) {
             buttonVariant="outline"
           />
 
-          <ThemeSwitcher title="Theme" />
+          <ThemeSwitcher title="Theme" className="max-sm:hidden" />
 
           <NavbarMobile className="md:hidden" routes={routes} />
         </div>

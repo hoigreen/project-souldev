@@ -28,7 +28,7 @@ export default function Page({
     },
     {
       name: t('M6'),
-      path: `/  terms`,
+      path: `/terms`,
     },
   ];
 
@@ -36,7 +36,7 @@ export default function Page({
     <>
       <Header routes={routes} />
       <main>
-        <Suspense fallback={<div className="h-dvh" />}></Suspense>
+        <Suspense fallback={<div className="h-dvh" />}>123</Suspense>
       </main>
       <Footer routes={routes} />
     </>

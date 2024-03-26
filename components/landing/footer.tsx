@@ -12,7 +12,7 @@ import Link from 'next/link';
  * Component: FooterMenu
  * ------------------------------------------------------------------------------------------------------------------ */
 
-const footerMenuVariants = cva('pb-6 pt-8 md:py-10');
+const footerMenuVariants = cva('pb-6 pt-8 max-sm:hidden md:py-10');
 
 export type FooterMenuProps = React.HTMLAttributes<HTMLElement> &
   VariantProps<typeof footerMenuVariants> & {
@@ -33,7 +33,7 @@ export function FooterMenu({ className, routes, ...props }: FooterMenuProps) {
               alt="SoulDev"
               width={200}
               height={40}
-              className="mx-auto dark:hidden"
+              className="dark:hidden"
             />
 
             <Image
@@ -41,7 +41,7 @@ export function FooterMenu({ className, routes, ...props }: FooterMenuProps) {
               alt="SoulDev"
               width={200}
               height={40}
-              className="mx-auto hidden dark:block"
+              className="hidden dark:block"
             />
 
             <p className="text-grayscale-2 italic xl:text-base">{t('M8')}</p>
@@ -91,16 +91,71 @@ export function FooterMenu({ className, routes, ...props }: FooterMenuProps) {
  * Component: FooterMobileMenu
  * ------------------------------------------------------------------------------------------------------------------ */
 
-const footerMobileMenuVariants = cva('');
+const footerMobileMenuVariants = cva('hidden py-6 max-sm:block');
 
 export type FooterMobileMenuProps = React.HTMLAttributes<HTMLElement> &
-  VariantProps<typeof footerMobileMenuVariants>;
+  VariantProps<typeof footerMobileMenuVariants> & {
+    routes: Route[];
+  };
 
-export function FooterMobileMenu({ className, ...props }: FooterMenuProps) {
+export function FooterMobileMenu({
+  className,
+  routes,
+  ...props
+}: FooterMenuProps) {
   const t = useTranslations('Landing');
 
   return (
-    <div className={footerMobileMenuVariants({ className })} {...props}></div>
+    <Container className={footerMobileMenuVariants({ className })} {...props}>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="max-w-md space-y-6">
+          <Image
+            src={Logo}
+            alt="SoulDev"
+            width={200}
+            height={40}
+            className="dark:hidden"
+          />
+
+          <Image
+            src={LogoDark}
+            alt="SoulDev"
+            width={200}
+            height={40}
+            className="hidden dark:block"
+          />
+
+          <p className="text-grayscale-2 text-sm italic">{t('M8')}</p>
+
+          <div className="flex flex-col items-start justify-between gap-3">
+            <h3 className="text-lg font-bold">{t('M9')}</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <p className="mb-2">{t('M10')}</p>
+              </li>
+              <li>
+                <p>{t('M12')}</p>
+              </li>
+              <li>
+                <p>{t('M11')}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <ul className="flex flex-col gap-4 text-base font-medium">
+          {routes.map((route, index) => (
+            <Link
+              key={index}
+              className="hover:text-primary/40"
+              href={route.path}
+            >
+              {route.name}
+            </Link>
+          ))}
+        </ul>
+      </div>
+    </Container>
   );
 }
 
