@@ -1,4 +1,4 @@
-# project-financial-management-frontend
+# project-souldev
 
 ## Getting started
 
