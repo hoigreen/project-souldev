@@ -72,34 +72,42 @@ export function ForgetPasswordForm({
         {...props}
         className={forgetPasswordFormVariants({ className })}
       >
-        <div className="w-full space-y-5">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field, formState }) => (
-              <FormItem>
-                <FormLabel>{t('M9')}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder={t('M10')}
-                    type="email"
-                    {...field}
-                    disabled={formState.isSubmitting}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        {form.formState.isSubmitted ? (
+          <div className="w-full space-y-4">
+            <p className="text-center text-sm text-neutral-600 dark:text-neutral-200 lg:text-base">
+              {t('M44')}
+            </p>
+          </div>
+        ) : (
+          <div className="w-full space-y-5">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field, formState }) => (
+                <FormItem>
+                  <FormLabel>{t('M9')}</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder={t('M10')}
+                      type="email"
+                      {...field}
+                      disabled={formState.isSubmitting}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <Button
-            className="w-full"
-            disabled={form.formState.isSubmitting}
-            type="submit"
-          >
-            {t('M13')}
-          </Button>
-        </div>
+            <Button
+              className="w-full"
+              disabled={form.formState.isSubmitting}
+              type="submit"
+            >
+              {t('M43')}
+            </Button>
+          </div>
+        )}
       </form>
     </Form>
   );

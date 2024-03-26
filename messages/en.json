@@ -61,6 +61,7 @@
     "M40": "Forget your password?",
     "M41": "Please provide an email address valid which you associated with your account",
     "M42": "Your request has been sent successfully! Please check your email to reset your password.",
-    "M43": "Send request"
+    "M43": "Send request",
+    "M44": "Your request has been sent successfully!"
   }
 }
