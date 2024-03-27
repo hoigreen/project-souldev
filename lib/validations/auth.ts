@@ -80,3 +80,27 @@ export const forgetPasswordSchema = z.object({
 });
 
 export type ForgetPasswordSchema = z.infer<typeof forgetPasswordSchema>;
+
+/* -----------------------------------------------------------------------------
+ * Reset Password Schema
+ * -------------------------------------------------------------------------- */
+
+export const resetPasswordSchema = z
+  .object({
+    resetToken: z.string().min(1, 'Invalid reset token'),
+    password: z
+      .string({
+        required_error: 'Please enter your password.',
+      })
+      .min(1, 'Please enter your password.'),
+    confirm_password: z
+      .string({
+        required_error: 'Please confirm your password.',
+      })
+      .min(1, 'Please confirm your password.'),
+  })
+  .refine((data) => data.password === data.confirm_password, {
+    message: 'Passwords do not match',
+    path: ['confirm_password'],
+  });
+export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>;

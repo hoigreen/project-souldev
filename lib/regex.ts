@@ -18,6 +18,8 @@ export const authPathRegex = regexPattern([
   '/auth/sign-up/:path*',
   '/auth/verify-success',
   '/auth/verify-error',
+  '/auth/reset-password/:path*',
+  '/auth/forget-password/:path*',
 ]);
 
 export const NAME_REGEX = /^[\p{L}\s]+$/u;

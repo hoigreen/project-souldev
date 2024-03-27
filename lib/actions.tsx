@@ -63,3 +63,9 @@ export async function forgetPassWord(body: { email: string }) {
 
   return data;
 }
+
+export async function resetPassWord(body: { token: string; password: string }) {
+  const data = await requestService.put(endpoints.user.resetPassword, body);
+
+  return data;
+}

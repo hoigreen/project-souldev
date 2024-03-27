@@ -6,5 +6,6 @@ export const endpoints = {
     authGoogle: '/api/users/auth-google',
     authGitHub: '/api/users/auth-github',
     forgetPassword: '/api/users/forget-password',
+    resetPassword: '/api/users/reset-password',
   },
 };

@@ -45,6 +45,21 @@
     "M35": "Thành công",
     "M36": "Lỗi",
     "M37": "Xác minh tài khoản không thành công!",
-    "M38": "Vui lòng kiểm tra liên kết xác minh email của bạn hoặc gửi lại email xác minh."
+    "M38": "Vui lòng kiểm tra liên kết xác minh email của bạn hoặc gửi lại email xác minh.",
+    "M39": "Quên mật khẩu",
+    "M40": "Bạn đã quên mật khẩu đăng nhập?",
+    "M41": "Nhập địa chỉ email đã liên kết với tài khoản của bạn",
+    "M42": "Yêu cầu đã được gửi thành công! Bạn sẽ nhận được một email với hướng dẫn cách đặt lại mật khẩu của mình.",
+    "M43": "Gửi yêu cầu",
+    "M44": "Yêu cầu đã được gửi đi",
+    "M45": "Đặt lại mật khẩu",
+    "M46": "Nhập mật khẩu mới của bạn",
+    "M47": "Mật khẩu mới",
+    "M48": "Xác nhận mật khẩu mới",
+    "M49": "Xác nhận mật khẩu",
+    "M50": "Vui lòng xác nhận mật khẩu của bạn",
+    "M51": "Trở lại trang đăng nhập",
+    "M52": "Xác nhận",
+    "M53": "Mật khẩu đã được thay đổi thành công! Bạn sẽ được chuyển hướng đến trang đăng nhập sau 5 giây nữa."
   }
 }

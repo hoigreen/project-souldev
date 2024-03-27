@@ -62,6 +62,15 @@
     "M41": "Please provide an email address valid which you associated with your account",
     "M42": "Your request has been sent successfully! Please check your email to reset your password.",
     "M43": "Send request",
-    "M44": "Your request has been sent successfully!"
+    "M44": "Your request has been sent successfully!",
+    "M45": "Reset password",
+    "M46": "Create a new password",
+    "M47": "New password",
+    "M48": "Please provide a new password",
+    "M49": "Confirm password",
+    "M50": "Please confirm your password",
+    "M51": "Back to login page",
+    "M52": "Submit",
+    "M53": "Reset password successfully! You are redirected to the login page in 5 seconds."
   }
 }
