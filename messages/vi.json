@@ -1,4 +1,8 @@
 {
+  "Locale": {
+    "M1": "Tiếng Anh",
+    "M2": "Tiếng Việt"
+  },
   "Landing": {
     "M1": "Đăng nhập",
     "M2": "Đăng ký",

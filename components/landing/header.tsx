@@ -12,6 +12,7 @@ import ButtonLink from './button-link';
 import { useTranslations } from 'next-intl';
 import NavbarMobile from './navbar-mobile';
 import { Route } from '@/lib/definitions';
+import { LocaleSwitcher } from '../switcher/locale-switcher';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: Header
@@ -75,6 +76,8 @@ export default function Header({ className, routes, ...props }: HeaderProps) {
           />
 
           <ThemeSwitcher title="Theme" className="max-sm:hidden" />
+
+          <LocaleSwitcher className="max-sm:hidden" />
 
           <NavbarMobile className="md:hidden" routes={routes} />
         </div>

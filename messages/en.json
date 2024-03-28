@@ -18,6 +18,10 @@
     "M2": "Dark",
     "M3": "System"
   },
+  "Locale": {
+    "M1": "English",
+    "M2": "Vietnamese"
+  },
   "Auth": {
     "M1": "Login account",
     "M2": "Don't have an account?",

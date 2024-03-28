@@ -39,7 +39,7 @@ export default function ThemeSwitcher({
             <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="start">
           <DropdownMenuItem onClick={() => setTheme('light')}>
             <span className="text-sm">{t('M1')}</span>
           </DropdownMenuItem>

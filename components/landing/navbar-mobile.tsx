@@ -12,6 +12,7 @@ import LogoTextDarkSvg from '@/public/logo-text-dark.svg';
 import Image from 'next/image';
 import ButtonLink from './button-link';
 import ThemeSwitcher from '../switcher/theme-switcher';
+import { LocaleSwitcher } from '../switcher/locale-switcher';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: NavbarMobile
@@ -82,7 +83,10 @@ export default function NavbarMobile({
 
             <div className="fixed inset-x-0 bottom-0">
               <div className="flex items-center justify-between p-6">
-                <ThemeSwitcher title="Theme" />
+                <div className="flex items-center gap-2">
+                  <ThemeSwitcher title="Theme" />
+                  <LocaleSwitcher />
+                </div>
 
                 <div className="flex space-x-3">
                   <ButtonLink
