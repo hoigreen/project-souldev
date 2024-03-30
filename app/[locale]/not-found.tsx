@@ -7,8 +7,11 @@ import ELEMENT_BOTTOM from '@/public/404/element-bot.svg';
 import ELEMENT_BOTTOM_DARK from '@/public/404/element-bot-dark.svg';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function NotFound() {
+  const t = useTranslations('404');
+
   return (
     <div className="relative flex h-screen w-screen items-center justify-center">
       {/* Background Light */}
@@ -53,20 +56,17 @@ export default function NotFound() {
 
       <div className="flex w-full max-w-2xl flex-col justify-center gap-8 px-4 lg:gap-16 lg:px-0">
         <h1 className="mx-auto text-center text-9xl font-light tracking-widest">
-          404
+          {t('M1')}
         </h1>
 
         <div className="mx-auto space-y-6">
-          <h2 className="text-center text-4xl font-bold">Page not found</h2>
-          <p className="text-center text-lg">
-            The page you are looking for might have been removed, had its name
-            changed, or is temporarily unavailable.
-          </p>
+          <h2 className="text-center text-4xl font-bold">{t('M2')}</h2>
+          <p className="text-center text-lg">{t('M3')}</p>
         </div>
 
         <Link href="/" className="mx-auto block">
           <Button size="lg" className="mx-auto text-xl">
-            Back to Home
+            {t('M4')}
           </Button>
         </Link>
       </div>

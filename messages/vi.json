@@ -76,5 +76,11 @@
     "M51": "Trở lại trang đăng nhập",
     "M52": "Xác nhận",
     "M53": "Mật khẩu đã được thay đổi thành công! Bạn sẽ được chuyển hướng đến trang đăng nhập sau 5 giây nữa."
+  },
+  "404": {
+    "M1": "404",
+    "M2": "Không tìm thấy trang",
+    "M3": "Trang bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.",
+    "M4": "Quay lại trang chủ"
   }
 }

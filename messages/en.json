@@ -76,5 +76,11 @@
     "M51": "Back to login page",
     "M52": "Submit",
     "M53": "Reset password successfully! You are redirected to the login page in 5 seconds."
+  },
+  "404": {
+    "M1": "404",
+    "M2": "Page not found",
+    "M3": "The page you are looking for does not exist or has been moved.",
+    "M4": "Back to home page"
   }
 }
