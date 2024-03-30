@@ -73,8 +73,8 @@ const config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       backgroundImage: {
-        banner: "url('/banner.svg')",
-        'banner-dark': "url('/banner-dark.svg')",
+        banner: "url('/banner.webp')",
+        'banner-dark': "url('/banner-dark.webp')",
       },
     },
   },
