@@ -1,5 +1,5 @@
-import { useTranslations } from 'next-intl';
 import { unstable_setRequestLocale } from 'next-intl/server';
+import React from 'react';
 
 export default function LandingLayout({
   children,

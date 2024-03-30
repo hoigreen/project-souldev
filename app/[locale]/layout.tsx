@@ -10,6 +10,7 @@ import getSession from '@/lib/get-session';
 import { SessionProvider } from '@/components/providers/session-provider';
 import { ThemeProvider } from '@/components/theme-provider';
 import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
+import React from 'react';
 
 const locales = ['en', 'vi'];
 

@@ -3,7 +3,7 @@ import Header from '@/components/landing/header';
 import { Route } from '@/lib/definitions';
 import { useTranslations } from 'next-intl';
 import { unstable_setRequestLocale } from 'next-intl/server';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 
 export default function Page({
   params: { locale },

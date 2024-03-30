@@ -5,7 +5,6 @@ import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google';
 import { authGitHub, authGoogle, login } from '@/lib/actions';
 import { SignupBody } from '@/lib/definitions';
 import cookie from '@/lib/cookie';
-import toast from 'react-hot-toast';
 
 export const authOptions: NextAuthOptions = {
   jwt: {
