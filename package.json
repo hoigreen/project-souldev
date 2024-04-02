@@ -2,6 +2,7 @@
   "name": "project-souldev",
   "version": "1.0.0",
   "private": true,
+  "description": "Souldev project",
   "scripts": {
     "build": "next build",
     "dev": "next dev",
@@ -73,9 +74,7 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-tailwindcss": "^3.13.0",
-    "iconsax": "^0.0.1",
     "iconsax-react": "^0.0.8",
-    "input-otp": "^1.2.0",
     "lucide-react": "^0.363.0",
     "micro": "^10.0.1",
     "next": "14.0.4",
