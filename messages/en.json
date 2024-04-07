@@ -2,8 +2,8 @@
   "Landing": {
     "M1": "Sign in",
     "M2": "Sign up",
-    "M3": "Home",
-    "M4": "About Us",
+    "M3": "About Us",
+    "M4": "Features",
     "M5": "Contact Us",
     "M6": "Terms of Service",
     "M7": "Copyright © 2024 | SoulDev",
@@ -11,7 +11,11 @@
     "M9": "Contact infomation",
     "M10": "12 District, Ho Chi Minh City, Vietnam",
     "M11": "Phone: 0343694755",
-    "M12": "Email: info@souldev.vercel.app"
+    "M12": "Email: info@souldev.vercel.app",
+    "M13": "Empowering Developers Through Community: Uniting Creativity, Collaboration, and Innovation",
+    "M14": "Welcome to <emphasize>SoldDev</emphasize>, the ultimate destination for developers to connect, collaborate, and innovate. Join our vibrant community to exchange ideas, share insights, and build together. Experience the power of unity in coding.",
+    "M15": "Get started",
+    "M16": "Sign up"
   },
   "Theme": {
     "M1": "Light",

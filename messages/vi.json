@@ -6,8 +6,8 @@
   "Landing": {
     "M1": "Đăng nhập",
     "M2": "Đăng ký",
-    "M3": "Trang chủ",
-    "M4": "Về SoulDev",
+    "M3": "Về SoulDev",
+    "M4": "Tính năng",
     "M5": "Liên hệ",
     "M6": "Điều khoản dịch vụ",
     "M7": "© Bản quyền thuộc SoulDev | 2024",
@@ -15,7 +15,8 @@
     "M9": "Thông tin về chúng tôi",
     "M10": "Quận 12, Thành phố Hồ Chí Minh, Việt Nam",
     "M11": "Điện thoại: 0343694755",
-    "M12": "Thư điện tử: info@souldev.vercel.app"
+    "M12": "Thư điện tử: info@souldev.vercel.app",
+    "M13": "Empowering Developers Through Community: Uniting Creativity, Collaboration, and Innovation"
   },
   "Theme": {
     "M1": "Sáng",
