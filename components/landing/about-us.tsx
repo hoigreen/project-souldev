@@ -6,7 +6,6 @@ import HERO_IMAGE from '@/public/svg/landing-page/hero.svg';
 import { useTranslations } from 'next-intl';
 import { EmphasizedTextBold } from '../ui/emphasize';
 import { Link } from '@/navigation';
-import { cn } from '@/lib/utils';
 import { buttonVariants } from '../ui/button';
 
 /* ---------------------------------------------------------------------------------------------------------------------
