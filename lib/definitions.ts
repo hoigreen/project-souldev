@@ -15,3 +15,9 @@ export interface Route {
   path: string;
   routes?: Route[];
 }
+
+export interface FeatureItem {
+  description: string;
+  title: string;
+  icon: any;
+}

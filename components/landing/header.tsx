@@ -18,7 +18,9 @@ import { LocaleSwitcher } from '../switcher/locale-switcher';
  * Component: Header
  * ------------------------------------------------------------------------------------------------------------------ */
 
-const headerVariants = cva('pointer-events-auto sticky top-0 z-50 border-b');
+const headerVariants = cva(
+  'pointer-events-auto sticky top-0 z-50 border-b bg-background',
+);
 
 export type HeaderProps = React.HTMLAttributes<HTMLElement> &
   VariantProps<typeof headerVariants> & {

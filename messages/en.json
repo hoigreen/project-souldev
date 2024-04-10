@@ -18,7 +18,35 @@
     "M16": "Sign up",
     "M17": "Meet the team",
     "M18": "Connect with developers around the world to share insights, exchange ideas, and collaborate on projects. Join our community to experience the power of unity in coding.",
-    "M19": "* SoulDev on app will be available soon on App Store and Google Play."
+    "M19": "* SoulDev on app will be available soon on App Store and Google Play.",
+    "M20": "Discover amazing features",
+    "M21": "Unique features and better quality than you think. Let's explore the features of SoulDev.",
+    "M22": {
+      "featuredItem1": {
+        "title": "Friend Finder",
+        "description": "Easily locate and connect with people who share similar interests, hobbies, or professions"
+      },
+      "featuredItem2": {
+        "title": "Knowledge Exchange",
+        "description": "Engage in discussions, ask questions, and seek advice from experts or fellow learners in various fields of study."
+      },
+      "featuredItem3": {
+        "title": "Creative Spaces",
+        "description": "Share your artwork, music, writing, or other creative endeavors with a supportive community, and receive feedback to fuel your creativity."
+      },
+      "featuredItem4": {
+        "title": "Talent Showcase",
+        "description": "Showcase your talents, whether it's music, dance, comedy, or any other performance art, to a wide audience and receive recognition and feedback."
+      },
+      "featuredItem5": {
+        "title": "Content Sharing",
+        "description": "Share articles, videos, photos, and other content with your network to spark discussions, inspire others, or simply entertain."
+      },
+      "featuredItem6": {
+        "title": "Instant Messaging",
+        "description": " Join chatrooms dedicated to specific topics or interests to engage in discussions, exchange ideas, and connect with others who share your passions."
+      }
+    }
   },
   "Theme": {
     "M1": "Light",
