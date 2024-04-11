@@ -61,7 +61,11 @@ export default function Features({
   ];
 
   return (
-    <section className={featuresVariants({ className })} {...props}>
+    <section
+      className={featuresVariants({ className })}
+      id="features"
+      {...props}
+    >
       <Container className="w-full space-y-12 md:space-y-16 lg:space-y-20">
         <div className="mx-auto w-full flex-1 space-y-4 md:max-w-md md:space-y-6 lg:max-w-lg lg:space-y-8 xl:max-w-2xl 2xl:max-w-3xl">
           <h1 className="xs:text-3xl text-center text-2xl font-bold leading-snug md:text-4xl md:leading-snug lg:text-5xl lg:leading-snug xl:text-6xl xl:leading-snug">

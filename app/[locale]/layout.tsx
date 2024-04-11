@@ -51,7 +51,7 @@ export default async function LocaleLayout({
       lang={locale}
       suppressHydrationWarning
     >
-      <body className="antialiased">
+      <body className="scroll-smooth antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

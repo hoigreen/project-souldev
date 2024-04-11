@@ -22,7 +22,11 @@ export default function Contact({
   const t = useTranslations('Landing');
 
   return (
-    <section className={contactVariants({ className })} id="contact" {...props}>
+    <section
+      className={contactVariants({ className })}
+      id="contact-us"
+      {...props}
+    >
       <Container>
         <div className="flex w-full flex-col justify-center gap-y-12 md:gap-y-16 lg:gap-y-20">
           <div className="w-full space-y-4 md:space-y-6 lg:space-y-8">
