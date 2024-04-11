@@ -12,7 +12,7 @@ import { useTranslations } from 'next-intl';
 import { FeatureItem } from '@/lib/definitions';
 
 /* ---------------------------------------------------------------------------------------------------------------------
- * Component: Hero
+ * Component: Features
  * ------------------------------------------------------------------------------------------------------------------ */
 
 const featuresVariants = cva('py-6 md:py-0');

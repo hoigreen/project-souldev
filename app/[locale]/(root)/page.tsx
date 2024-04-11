@@ -1,4 +1,5 @@
 import AboutUs from '@/components/landing/about-us';
+import Contact from '@/components/landing/contact';
 import Features from '@/components/landing/features';
 import Hero from '@/components/landing/hero';
 import { unstable_setRequestLocale } from 'next-intl/server';
@@ -16,6 +17,7 @@ export default function Page({
       <AboutUs />
       <Hero />
       <Features />
+      <Contact />
     </>
   );
 }

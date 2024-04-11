@@ -50,7 +50,12 @@
         "title": "Trò Chuyện Bốn Phương",
         "description": "Tham gia vào các bữa tiệc trò chuyện theo chủ đề hoặc sở thích cụ thể để tham gia vào các cuộc trò chuyện sôi nổi, trao đổi ý tưởng và kết nối với những người khác có cùng niềm đam mê."
       }
-    }
+    },
+    "M23": "Chia sẻ cảm nghĩ của bạn",
+    "M24": "Chia sẻ những cảm xúc, trải nghiệm và suy nghĩ của bạn cho chúng tôi. SoulDev sẽ giữ bí mật thông tin của bạn và không chia sẻ với bất kỳ bên thứ ba nào khác. Hãy yên tâm chia sẻ!",
+    "M25": "Nhập địa chỉ email của bạn",
+    "M26": "Xác nhận",
+    "M27": "Cám ơn vì đã chia sẻ cảm xúc của bạn với chúng tôi. Đội ngũ của chúng tôi sẽ liên hệ lại với bạn trong thời gian sớm nhất."
   },
   "Theme": {
     "M1": "Sáng",

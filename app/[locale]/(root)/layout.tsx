@@ -38,7 +38,7 @@ export default function LandingLayout({
   return (
     <>
       <Header routes={routes} />
-      <main className="space-y-[8rem] pb-[8rem] lg:space-y-[9rem] lg:pb-[9rem] xl:space-y-[10rem] xl:pb-[10rem] 2xl:space-y-[12rem] 2xl:pb-[12rem]">
+      <main className="space-y-[8rem] lg:space-y-[9rem] xl:space-y-[10rem] 2xl:space-y-[12rem]">
         {children}
       </main>
       <Footer routes={routes} />

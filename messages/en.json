@@ -46,7 +46,12 @@
         "title": "Instant Messaging",
         "description": " Join chatrooms dedicated to specific topics or interests to engage in discussions, exchange ideas, and connect with others who share your passions."
       }
-    }
+    },
+    "M23": "Share your feelings",
+    "M24": "Share your thoughts, feelings, and experiences with a supportive community that values your unique perspective. Anymore, you can share your feelings with SoulDev. Connect with us now!",
+    "M25": "Input your email address",
+    "M26": "Request",
+    "M27": "Thanks for your request! We will contact you soon."
   },
   "Theme": {
     "M1": "Light",
