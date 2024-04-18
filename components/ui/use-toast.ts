@@ -126,7 +126,7 @@ export const reducer = (state: State, action: Action): State => {
   }
 };
 
-const listeners: Array<(state: State) => void> = [];
+const listeners: Array<(state: State) => void> = []; // eslint-disable-line no-unused-vars -- used in the code below
 
 let memoryState: State = { toasts: [] };
 

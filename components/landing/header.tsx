@@ -51,11 +51,11 @@ export default function Header({ className, routes, ...props }: HeaderProps) {
           />
         </Link>
 
-        <ul className="hidden w-fit space-x-8 md:flex">
+        <ul className="hidden w-fit items-center md:flex md:gap-4 xl:gap-6 2xl:gap-8">
           {routes.map((route, index) => (
             <li
               key={index}
-              className="cursor-pointer text-right text-base text-primary transition-colors duration-200 hover:opacity-90"
+              className="cursor-pointer text-right text-sm text-primary transition-colors duration-200 hover:opacity-90 lg:text-base"
               onClick={() => router.push(route.path)}
             >
               {route.name}
@@ -65,13 +65,13 @@ export default function Header({ className, routes, ...props }: HeaderProps) {
 
         <div className="flex items-center gap-2 lg:gap-4">
           <ButtonLink
-            className="hidden font-bold md:block"
+            className="hidden font-bold lg:block"
             label={t('M1')}
             link="/auth/sign-in"
           />
 
           <ButtonLink
-            className="hidden font-bold md:block"
+            className="hidden font-bold lg:block"
             label={t('M2')}
             link="/auth/sign-up"
             buttonVariant="outline"

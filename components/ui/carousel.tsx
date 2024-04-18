@@ -18,7 +18,7 @@ type CarouselProps = {
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
   orientation?: 'horizontal' | 'vertical';
-  setApi?: (api: CarouselApi) => void;
+  setApi?: (api: CarouselApi) => void; // eslint-disable-line no-unused-vars -- used in Carousel component
 };
 
 type CarouselContextProps = {

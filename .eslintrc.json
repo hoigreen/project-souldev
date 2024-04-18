@@ -1,3 +1,6 @@
 {
-  "extends": ["next", "next/core-web-vitals", "eslint-config-next"]
+  "extends": ["next", "next/core-web-vitals", "eslint-config-next"],
+  "rules": {
+    "no-unused-vars": ["error"]
+  }
 }

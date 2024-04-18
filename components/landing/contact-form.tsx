@@ -41,7 +41,7 @@ export default function ContactForm({
     disabled: isPending,
   });
 
-  const handleSubmit: SubmitHandler<ContactSchema> = (values) => {
+  const handleSubmit: SubmitHandler<ContactSchema> = () => {
     startTransition(async () => {
       try {
         toast.success(t('M27'));
