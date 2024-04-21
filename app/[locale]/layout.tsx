@@ -8,7 +8,7 @@ import { QueryProvider } from '@/components/ui/app/query-provider';
 import { ToasterProvider } from '@/components/providers/toaster-provider';
 import getSession from '@/lib/get-session';
 import { SessionProvider } from '@/components/providers/session-provider';
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/components/ui/app/theme-provider';
 import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 import React from 'react';
 
