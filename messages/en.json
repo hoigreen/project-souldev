@@ -125,5 +125,12 @@
     "M2": "Page not found",
     "M3": "The page you are looking for does not exist or has been moved.",
     "M4": "Back to home page"
+  },
+  "SidebarLink": {
+    "M1": "Home",
+    "M2": "Search",
+    "M3": "Friends",
+    "M4": "Groups",
+    "M5": "Pages"
   }
 }

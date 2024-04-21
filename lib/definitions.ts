@@ -23,3 +23,9 @@ export interface FeatureItem {
 }
 
 export type Locale = 'en' | 'vi';
+
+export type RoutesLink = {
+  route: string;
+  image: string;
+  label: string;
+};

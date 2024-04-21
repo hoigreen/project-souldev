@@ -125,5 +125,12 @@
     "M2": "Không tìm thấy trang",
     "M3": "Trang bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.",
     "M4": "Quay lại trang chủ"
+  },
+  "SidebarLink": {
+    "M1": "Trang chủ",
+    "M2": "Tìm kiếm",
+    "M3": "Bạn bè",
+    "M4": "Hội nhóm",
+    "M5": "Trang"
   }
 }
