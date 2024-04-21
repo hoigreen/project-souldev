@@ -1,4 +1,7 @@
 {
+  "Action": {
+    "M1": "Back to Homepage"
+  },
   "Landing": {
     "M1": "Sign in",
     "M2": "Sign up",
