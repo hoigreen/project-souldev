@@ -14,7 +14,7 @@ export function Typography({
         __html: markdownToHtml(content ? content : ''),
       }}
       className={twMerge(
-        'prose prose-sm prose-neutral max-w-full break-words text-justify',
+        'prose prose-sm prose-neutral max-w-full break-words text-justify dark:prose-invert',
         className,
       )}
     />
