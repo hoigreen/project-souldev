@@ -21,3 +21,5 @@ export interface FeatureItem {
   title: string;
   icon: any;
 }
+
+export type Locale = 'en' | 'vi';
