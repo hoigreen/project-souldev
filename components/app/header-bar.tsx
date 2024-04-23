@@ -1,6 +1,5 @@
 import { Link } from '@/navigation';
 import { VariantProps, cva } from 'class-variance-authority';
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { HTMLAttributes } from 'react';
 import LogoTextSvg from '@/public/logo-text.svg';
@@ -18,8 +17,6 @@ export type HeaderbarProps = HTMLAttributes<HTMLElement> &
   VariantProps<typeof headerbarVariants>;
 
 export function Headerbar({ className, ...props }: HeaderbarProps) {
-  const t = useTranslations('Auth');
-
   return (
     <nav {...props} className={headerbarVariants({ className })}>
       <Link href="/" title="SoulDev">
