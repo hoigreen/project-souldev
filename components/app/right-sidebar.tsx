@@ -10,21 +10,21 @@ import { HTMLAttributes } from 'react';
 import { SignOutButton } from '../auth/sign-out/sign-out-button';
 
 /* ---------------------------------------------------------------------------------------------------------------------
- * Component: LeftSidebar
+ * Component: RightSidebar
  * ------------------------------------------------------------------------------------------------------------------ */
 
-const leftSidebarVariants = cva(
+const rightSidebarVariants = cva(
   'sticky bottom-0 bottom-0 top-[4.375rem] flex w-80 flex-col justify-between text-white',
 );
 
-export type LeftSidebar = HTMLAttributes<HTMLElement> &
-  VariantProps<typeof leftSidebarVariants>;
+export type RightSidebarProps = HTMLAttributes<HTMLElement> &
+  VariantProps<typeof rightSidebarVariants>;
 
-export function LeftSidebar({ className, ...props }: LeftSidebar) {
+export function RightSidebar({ className, ...props }: RightSidebarProps) {
   const t = useTranslations('SidebarLink');
 
   return (
-    <aside {...props} className={leftSidebarVariants()}>
+    <aside {...props} className={rightSidebarVariants()}>
       {/* Menu */}
       <div className="border-b-2 pb-4">
         {routesLink.map((link) => (
