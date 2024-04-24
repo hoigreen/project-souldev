@@ -57,7 +57,7 @@ export function LeftSidebar({ className, ...props }: LeftSidebar) {
       </div>
 
       {/* Action */}
-      <div className="pb-2">
+      <div className="px-4 pb-2">
         <SignOutButton />
       </div>
     </aside>

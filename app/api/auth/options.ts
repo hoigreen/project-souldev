@@ -68,6 +68,9 @@ export const authOptions: NextAuthOptions = {
         token.image = user.image;
         token.mobile = user.mobile;
         token.token = user.token;
+        token.name = user.name;
+        token.first_name = user.first_name || (user.name?.split(' ')[0] ?? '');
+        token.last_name = user.last_name || (user.name?.split(' ')[1] ?? '');
       }
 
       return token;
@@ -81,6 +84,9 @@ export const authOptions: NextAuthOptions = {
         image: token.image,
         mobile: token.mobile,
         token: token.token,
+        name: token.name,
+        first_name: token.first_name,
+        last_name: token.last_name,
       };
 
       return session;

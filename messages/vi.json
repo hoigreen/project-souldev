@@ -133,5 +133,16 @@
     "M3": "Bạn bè",
     "M4": "Hội nhóm",
     "M5": "Trang"
+  },
+  "Account": {
+    "M1": "Hồ sơ cá nhân",
+    "M2": "Cài đặt",
+    "M3": "Đăng xuất"
+  },
+  "Notifications": {
+    "M1": "Thông báo",
+    "M2": "Không có thông báo",
+    "M3": "Đánh dấu tất cả là đã đọc",
+    "M4": "Xem tất cả"
   }
 }

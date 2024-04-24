@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { HTMLAttributes } from 'react';
 import LogoTextSvg from '@/public/logo-text.svg';
 import LogoTextDarkSvg from '@/public/logo-text-dark.svg';
+import { UserMenu } from './user-menu';
+import { NotificationsMenu } from './notifications-menu';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: Headerbar
@@ -36,9 +38,18 @@ export function Headerbar({ className, ...props }: HeaderbarProps) {
         />
       </Link>
 
-      {/* Navbar */}
+      {/* Searchbar */}
 
       {/* Avatar dropdown */}
+      <div className="flex items-center gap-2 md:gap-3">
+        {/* Message */}
+
+        {/* Notification */}
+        <NotificationsMenu />
+
+        {/* User menu */}
+        <UserMenu />
+      </div>
     </nav>
   );
 }

@@ -133,5 +133,16 @@
     "M3": "Friends",
     "M4": "Groups",
     "M5": "Pages"
+  },
+  "Account": {
+    "M1": "Profile",
+    "M2": "Settings",
+    "M3": "Sign out"
+  },
+  "Notifications": {
+    "M1": "Notifications",
+    "M2": "No notifications",
+    "M3": "Mark all as read",
+    "M4": "View all"
   }
 }
