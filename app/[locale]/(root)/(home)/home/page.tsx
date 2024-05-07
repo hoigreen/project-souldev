@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: 'Feeds',
@@ -11,7 +11,7 @@ export default function HomePage({
 }: {
   params: { locale: string };
 }) {
-  unstable_setRequestLocale(locale);
+  unstableSetRequestLocale(locale);
 
   return <div>HomePage</div>;
 }

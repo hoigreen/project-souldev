@@ -12,7 +12,7 @@ import { NotificationsMenu } from './notifications-menu';
  * ------------------------------------------------------------------------------------------------------------------ */
 
 const headerbarVariants = cva(
-  'pointer-events-auto sticky top-0 z-50 flex items-center justify-between border-b bg-background px-2 py-2 md:px-4',
+  'pointer-events-auto sticky top-0 z-50 flex items-center justify-between border-b bg-background p-2 md:px-4',
 );
 
 export type HeaderbarProps = HTMLAttributes<HTMLElement> &
@@ -24,14 +24,14 @@ export function Headerbar({ className, ...props }: HeaderbarProps) {
       <Link href="/" title="SoulDev">
         <Image
           src={LogoTextSvg}
-          className="dark:hidden max-md:h-[2.5rem] max-md:w-auto"
+          className="dark:hidden max-md:h-10 max-md:w-auto"
           width={200}
           height={40}
           alt="SoulDev"
         />
         <Image
           src={LogoTextDarkSvg}
-          className="hidden dark:block max-md:h-[2.5rem]"
+          className="hidden dark:block max-md:h-10"
           width={200}
           height={40}
           alt="SoulDev"

@@ -1,5 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import { markdownToHtml } from '@/lib/markdown';
+import React from 'react';
 
 export function Typography({
   className,
@@ -11,7 +12,7 @@ export function Typography({
   return (
     <div
       dangerouslySetInnerHTML={{
-        __html: markdownToHtml(content ? content : ''),
+        __html: markdownToHtml(content || ''),
       }}
       className={twMerge(
         'prose prose-sm prose-neutral max-w-full break-words text-justify dark:prose-invert',

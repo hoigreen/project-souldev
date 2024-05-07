@@ -1,6 +1,9 @@
 'use server';
 
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import {
+  getTranslations,
+  unstable_setRequestLocale as unstableSetRequestLocale,
+} from 'next-intl/server';
 import { VerifyBox } from '@/components/auth/verify/verify-box';
 
 export async function generateMetadata() {
@@ -16,7 +19,7 @@ export default async function Page({
 }: {
   params: { locale: string };
 }) {
-  unstable_setRequestLocale(locale);
+  unstableSetRequestLocale(locale);
 
   return <VerifyBox />;
 }

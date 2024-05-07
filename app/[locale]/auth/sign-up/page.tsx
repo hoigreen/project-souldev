@@ -1,6 +1,9 @@
 'use server';
 
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import {
+  getTranslations,
+  unstable_setRequestLocale as unstableSetRequestLocale,
+} from 'next-intl/server';
 import { Link } from '@/navigation';
 import Container from '@/components/ui/containter';
 import Image from 'next/image';
@@ -19,7 +22,7 @@ export default async function Page({
 }: {
   params: { locale: string };
 }) {
-  unstable_setRequestLocale(locale);
+  unstableSetRequestLocale(locale);
   const t = await getTranslations('Auth');
 
   return (

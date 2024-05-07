@@ -1,5 +1,8 @@
 import { ResetPasswordBox } from '@/components/auth/reset-password/reset-password-box';
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import {
+  getTranslations,
+  unstable_setRequestLocale as unstableSetRequestLocale,
+} from 'next-intl/server';
 import React from 'react';
 
 export async function generateMetadata() {
@@ -15,8 +18,7 @@ export default async function Page({
 }: {
   params: { locale: string; resetToken: string };
 }) {
-  console.log(resetToken);
-  unstable_setRequestLocale(locale);
+  unstableSetRequestLocale(locale);
 
   return <ResetPasswordBox resetToken={resetToken} />;
 }

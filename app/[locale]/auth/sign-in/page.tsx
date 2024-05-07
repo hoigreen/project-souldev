@@ -1,6 +1,9 @@
 'use server';
 
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import {
+  getTranslations,
+  unstable_setRequestLocale as unstableSetRequestLocale,
+} from 'next-intl/server';
 import { Link } from '@/navigation';
 import { LoginForm } from '@/components/auth/login/login-form';
 import Container from '@/components/ui/containter';
@@ -20,7 +23,7 @@ export default async function Page({
 }: {
   params: { locale: string };
 }) {
-  unstable_setRequestLocale(locale);
+  unstableSetRequestLocale(locale);
   const t = await getTranslations('Auth');
 
   return (
@@ -46,11 +49,11 @@ export default async function Page({
         <LoginForm />
 
         <div className="flex items-center gap-3 p-2">
-          <div className="h-[1px] w-full flex-1 border" />
+          <div className="h-px w-full flex-1 border" />
           <span className="text-base font-bold uppercase text-neutral-400">
             {t('M14')}
           </span>
-          <div className="h-[1px] w-full flex-1 border" />
+          <div className="h-px w-full flex-1 border" />
         </div>
 
         <LoginActionButtons />

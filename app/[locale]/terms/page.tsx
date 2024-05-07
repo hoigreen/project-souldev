@@ -4,14 +4,14 @@ import { Typography } from '@/components/ui/typography';
 import { Locale } from '@/lib/definitions';
 import { terms } from '@/lib/terms';
 import { useTranslations } from 'next-intl';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 
 export default function Page({
   params: { locale },
 }: {
   params: { locale: Locale };
 }) {
-  unstable_setRequestLocale(locale);
+  unstableSetRequestLocale(locale);
   const t = useTranslations('Action');
 
   return (

@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 import React from 'react';
 
 export default function LandingLayout({
@@ -8,7 +8,7 @@ export default function LandingLayout({
   children: React.ReactNode;
   params: { locale: string };
 }): React.JSX.Element {
-  unstable_setRequestLocale(locale);
+  unstableSetRequestLocale(locale);
 
   return <>{children}</>;
 }

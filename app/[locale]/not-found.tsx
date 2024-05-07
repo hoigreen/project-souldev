@@ -49,10 +49,10 @@ export default function NotFound() {
       />
 
       {/* Circle */}
-      <div className="pointer-events-none absolute left-[162px] top-[584px] -z-10 h-14 w-14 rounded-full bg-neutral-900 dark:bg-gray-400" />
-      <div className="pointer-events-none absolute right-[148px] top-[62px] -z-10 h-[141px] w-[141px] rounded-full bg-[#FFE4CB] dark:bg-[#8B7250]" />
-      <div className="pointer-events-none absolute right-8 top-[265px] -z-10 h-[167px] w-[167px] rounded-full bg-[#28464D] lg:right-[352px]" />
-      <div className="pointer-events-none absolute bottom-[205px] right-[289px] -z-10 h-14 w-14 rounded-full bg-[#D8EDF7] dark:bg-[#415159]" />
+      <div className="pointer-events-none absolute left-[162px] top-[584px] -z-10 size-14 rounded-full bg-neutral-900 dark:bg-gray-400" />
+      <div className="pointer-events-none absolute right-[148px] top-[62px] -z-10 size-[141px] rounded-full bg-[#FFE4CB] dark:bg-[#8B7250]" />
+      <div className="pointer-events-none absolute right-8 top-[265px] -z-10 size-[167px] rounded-full bg-[#28464D] lg:right-[352px]" />
+      <div className="pointer-events-none absolute bottom-[205px] right-[289px] -z-10 size-14 rounded-full bg-[#D8EDF7] dark:bg-[#415159]" />
 
       <div className="flex w-full max-w-2xl flex-col justify-center gap-8 px-4 lg:gap-16 lg:px-0">
         <h1 className="mx-auto text-center text-9xl font-light tracking-widest">

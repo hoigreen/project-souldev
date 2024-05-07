@@ -17,10 +17,10 @@ const leftSidebarVariants = cva(
   'sticky bottom-0 bottom-0 top-[4.375rem] flex w-80 flex-col justify-between text-white',
 );
 
-export type LeftSidebar = HTMLAttributes<HTMLElement> &
+export type LeftSidebarProps = HTMLAttributes<HTMLElement> &
   VariantProps<typeof leftSidebarVariants>;
 
-export function LeftSidebar({ className, ...props }: LeftSidebar) {
+export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
   const t = useTranslations('SidebarLink');
 
   return (

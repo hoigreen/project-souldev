@@ -2,17 +2,17 @@ import Dialogs from '@/components/app/dialogs';
 import { Headerbar } from '@/components/app/header/header-bar';
 import { LeftSidebar } from '@/components/app/left-sidebar';
 import { RightSidebar } from '@/components/app/right-sidebar';
-import { unstable_setRequestLocale } from 'next-intl/server';
-import { Fragment } from 'react';
+import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
+import { Fragment, ReactNode } from 'react';
 
 export default function HomeLayout({
   children,
   params: { locale },
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   params: { locale: string };
 }) {
-  unstable_setRequestLocale(locale);
+  unstableSetRequestLocale(locale);
 
   return (
     <Fragment>

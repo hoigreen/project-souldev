@@ -1,5 +1,6 @@
 import ThemeSwitcher from '@/components/switcher/theme-switcher';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
+import React from 'react';
 
 export default function RootLayout({
   children,
@@ -8,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  unstable_setRequestLocale(locale);
+  unstableSetRequestLocale(locale);
 
   return (
     <main className="flex min-h-screen flex-col gap-10 bg-white pb-8 dark:bg-neutral-900">
