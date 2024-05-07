@@ -76,6 +76,10 @@ const config = {
         banner: "url('/banner.webp')",
         'banner-dark': "url('/banner-dark.webp')",
       },
+      boxShadow: {
+        'count-badge': '0px 0px 6px 2px rgba(219, 188, 159, 0.30)',
+        'groups-sidebar': '-30px 0px 60px 0px rgba(28, 28, 31, 0.50)',
+      },
     },
   },
   plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],

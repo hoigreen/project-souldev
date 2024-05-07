@@ -8,6 +8,22 @@ module.exports = withNextIntl({
         hostname: 'lh3.googleusercontent.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.clerk.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.clerk.dev',
+      },
+      {
+        protocol: 'https',
+        hostname: 'uploadthing.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
     ],
   },
 });

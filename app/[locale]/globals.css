@@ -63,3 +63,28 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 6.25rem;
 }
+
+@layer utilities {
+  .css-invert {
+    @apply brightness-200 invert-[50%];
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #09090a;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #5c5c7b;
+    border-radius: 50px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #7878a3;
+  }
+}
