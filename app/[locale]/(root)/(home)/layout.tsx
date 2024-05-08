@@ -22,7 +22,9 @@ export default function HomeLayout({
         <div className="flex min-h-[calc(100vh-4.125rem)]">
           <LeftSidebar />
 
-          <div className="mx-auto w-full max-w-4xl flex-1">{children}</div>
+          <div className="mx-auto w-full max-w-4xl flex-1 py-2 md:py-4">
+            {children}
+          </div>
 
           <RightSidebar />
         </div>

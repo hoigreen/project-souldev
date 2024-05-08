@@ -3,7 +3,7 @@ import { RoutesLink } from './definitions';
 export const routesLink: RoutesLink[] = [
   {
     image: '/svg/app/home.svg',
-    route: '/',
+    route: '/home',
     label: 'M1',
   },
   {
