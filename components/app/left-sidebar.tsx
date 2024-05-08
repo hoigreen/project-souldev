@@ -23,37 +23,13 @@ export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
     <aside
       {...props}
       className={cn(
-        'custom-scrollbar dark:bg-dark @apply border-r-dark-4 bg-dark-2 max-md:hidden; sticky bottom-0 left-0 top-[4.375rem] z-20 flex w-80 flex-col justify-between overflow-auto border-r bg-white pb-5 pt-28 text-white',
+        'custom-scrollbar dark:bg-dark @apply border-r-dark-4 bg-dark-2 max-xl:hidden',
+        'sticky bottom-0 left-0 top-[4.375rem] z-20 flex w-80 flex-col justify-between overflow-auto border-r bg-white pb-5 pt-28 text-white',
         className,
       )}
     >
       {/* Menu */}
       <div className="flex w-full flex-1 flex-col gap-6 px-6">
-        {/* {sidebarLinks.map((link) => {
-          const isActive =
-            (pathname.includes(link.route) && link.route.length > 1) ||
-            pathname === link.route;
-
-          if (link.route === "/profile") link.route = `${link.route}/${userId}`;
-
-          return (
-            <Link
-              href={link.route}
-              key={link.label}
-              className={`leftsidebar_link ${isActive && "bg-primary-500 "}`}
-            >
-              <Image
-                src={link.imgURL}
-                alt={link.label}
-                width={24}
-                height={24}
-              />
-
-              <p className="text-light-1 max-lg:hidden">{link.label}</p>
-            </Link>
-          );
-        })} */}
-
         {routesLink.map((link) => {
           const isActive =
             (pathname.includes(link.route) && link.route.length > 1) ||
@@ -73,13 +49,7 @@ export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
                 className,
               )}
             >
-              <Image
-                src={link.image}
-                alt={link.label}
-                width={32}
-                height={32}
-                className="hover:opacity-80 max-lg:hidden"
-              />
+              {link.icon}
 
               {t(link.label)}
             </Link>
