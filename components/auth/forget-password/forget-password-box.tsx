@@ -12,7 +12,7 @@ import { ForgetPasswordForm } from './forget-password-form';
  * ------------------------------------------------------------------------------------------------------------------ */
 
 const forgetPasswordBoxVariants = cva(
-  'gap-7.5 flex w-full max-w-lg flex-col items-center rounded-lg bg-background p-3 shadow-md md:gap-10 md:p-6',
+  'flex w-full max-w-lg flex-col items-center gap-7.5 rounded-lg bg-background p-3 shadow-md md:gap-10 md:p-6',
 );
 
 export type ForgetPasswordBoxProps = HTMLAttributes<HTMLElement> &

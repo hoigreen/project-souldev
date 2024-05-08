@@ -29,7 +29,7 @@ import { Button } from '@/components/ui/button';
  * Component: LoginForm
  * ------------------------------------------------------------------------------------------------------------------ */
 
-const loginFormVariants = cva('gap-7.5 flex w-full flex-col md:gap-10');
+const loginFormVariants = cva('flex w-full flex-col gap-7.5 md:gap-10');
 
 export type LoginFormProps = HTMLAttributes<HTMLElement> &
   VariantProps<typeof loginFormVariants>;

@@ -25,7 +25,7 @@ import toast from 'react-hot-toast';
  * Component: SignUpForm
  * ------------------------------------------------------------------------------------------------------------------ */
 
-const signUpFormVariants = cva('gap-7.5 flex w-full flex-col md:gap-10');
+const signUpFormVariants = cva('flex w-full flex-col gap-7.5 md:gap-10');
 
 export type SignUpFormProps = HTMLAttributes<HTMLElement> &
   VariantProps<typeof signUpFormVariants>;

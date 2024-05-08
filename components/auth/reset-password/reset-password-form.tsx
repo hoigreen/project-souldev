@@ -27,7 +27,7 @@ import { useRouter } from '@/navigation';
  * Component: ResetPasswordForm
  * ------------------------------------------------------------------------------------------------------------------ */
 
-const resetPasswordFormVariants = cva('gap-7.5 flex w-full flex-col md:gap-10');
+const resetPasswordFormVariants = cva('flex w-full flex-col gap-7.5 md:gap-10');
 
 export type ResetPasswordFormProps = HTMLAttributes<HTMLElement> &
   VariantProps<typeof resetPasswordFormVariants> & {

@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type SignupBody = {
   email: string;
   password: string;
@@ -26,6 +28,6 @@ export type Locale = 'en' | 'vi';
 
 export type RoutesLink = {
   route: string;
-  image: string;
+  icon: React.ReactNode;
   label: string;
 };

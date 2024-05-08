@@ -27,7 +27,7 @@ import { forgetPassWord } from '@/lib/actions';
  * ------------------------------------------------------------------------------------------------------------------ */
 
 const forgetPasswordFormVariants = cva(
-  'gap-7.5 flex w-full flex-col md:gap-10',
+  'flex w-full flex-col gap-7.5 md:gap-10',
 );
 
 export type ForgetPasswordFormProps = HTMLAttributes<HTMLElement> &

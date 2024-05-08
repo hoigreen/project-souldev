@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import { VariantProps, cva } from 'class-variance-authority';
 import { HTMLAttributes } from 'react';
 // import { getTranslations } from 'next-intl/server';
@@ -6,9 +7,7 @@ import { HTMLAttributes } from 'react';
  * Component: RightSidebar
  * ------------------------------------------------------------------------------------------------------------------ */
 
-const rightSidebarVariants = cva(
-  'custom-scrollbar sticky bottom-0 right-0 top-[4.375rem] z-20 flex flex w-80 flex-col flex-col justify-between gap-12 overflow-auto border-l bg-white px-10 pb-6 pt-28 text-white dark:bg-black max-xl:hidden',
-);
+const rightSidebarVariants = cva();
 
 export type RightSidebarProps = HTMLAttributes<HTMLElement> &
   VariantProps<typeof rightSidebarVariants>;
@@ -27,7 +26,14 @@ export async function RightSidebar({ className, ...props }: RightSidebarProps) {
   // const suggestedCommunities = await fetchCommunities({ pageSize: 4 });
 
   return (
-    <aside {...props} className={rightSidebarVariants()}>
+    <aside
+      {...props}
+      className={cn(
+        'custom-scrollbar sticky bottom-0 right-0 top-[4.375rem] z-20 flex w-80 flex-col justify-between',
+        'gap-12 overflow-auto border-l bg-white px-10 pb-6 pt-28 text-white dark:bg-black max-xl:hidden',
+        className,
+      )}
+    >
       <div className="flex grow flex-col justify-start">
         <h3 className="font-semibold text-neutral-800 dark:text-neutral-200 lg:text-lg">
           Suggested Communities
