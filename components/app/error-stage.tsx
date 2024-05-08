@@ -4,16 +4,18 @@ import { buttonVariants } from '../ui/button';
 import PageNotFoundImage from '@/public/illustrations/404.svg';
 import ServerErrorImage from '@/public/illustrations/500.svg';
 import UnauthorizedImage from '@/public/illustrations/401.svg';
+import React from 'react';
 
 export enum ErrorStageType {
-  PageNotFound = 'PageNotFound',
-  ServerError = 'ServerError',
-  Unauthorized = 'Unauthorized',
-  ResourceNotFound = 'ResourceNotFound',
+  PageNotFound = 'PageNotFound', // eslint-disable-line no-unused-vars -- used
+  ServerError = 'ServerError', // eslint-disable-line no-unused-vars -- used
+  Unauthorized = 'Unauthorized', // eslint-disable-line no-unused-vars -- used
+  ResourceNotFound = 'ResourceNotFound', // eslint-disable-line no-unused-vars -- used
 }
 
 type ErrorStageTypeMap = {
   [key in ErrorStageType]: {
+    // eslint-disable-line no-unused-vars -- used
     title: string;
     description: string;
     action: string;

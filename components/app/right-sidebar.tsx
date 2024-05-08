@@ -1,64 +1,81 @@
-'use client';
-
-import { routesLink } from '@/lib/constants';
-import { cn } from '@/lib/utils';
 import { VariantProps, cva } from 'class-variance-authority';
-import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import Link from 'next/link';
 import { HTMLAttributes } from 'react';
-import { SignOutButton } from '../auth/sign-out/sign-out-button';
+// import { getTranslations } from 'next-intl/server';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: RightSidebar
  * ------------------------------------------------------------------------------------------------------------------ */
 
 const rightSidebarVariants = cva(
-  'sticky bottom-0 bottom-0 top-[4.375rem] flex w-80 flex-col justify-between text-white',
+  'custom-scrollbar sticky bottom-0 right-0 top-[4.375rem] z-20 flex flex w-80 flex-col flex-col justify-between gap-12 overflow-auto border-l bg-white px-10 pb-6 pt-28 text-white dark:bg-black max-xl:hidden',
 );
 
 export type RightSidebarProps = HTMLAttributes<HTMLElement> &
   VariantProps<typeof rightSidebarVariants>;
 
-export function RightSidebar({ className, ...props }: RightSidebarProps) {
-  const t = useTranslations('SidebarLink');
+export async function RightSidebar({ className, ...props }: RightSidebarProps) {
+  // const t = await getTranslations('SidebarLink');
+
+  // const user = await currentUser();
+  // if (!user) return null;
+
+  // const similarMinds = await fetchUsers({
+  //   userId: user.id,
+  //   pageSize: 4,
+  // });
+
+  // const suggestedCommunities = await fetchCommunities({ pageSize: 4 });
 
   return (
     <aside {...props} className={rightSidebarVariants()}>
-      {/* Menu */}
-      <div className="border-b-2 pb-4">
-        {routesLink.map((link) => (
-          <Link
-            key={link.label}
-            href={link.route}
-            className={cn(
-              'group group-hover:opacity-80',
-              'flex min-h-14 items-center gap-2 px-4 py-1.5 text-xs font-medium transition md:gap-3 md:text-sm lg:gap-4 lg:text-base',
-              'rounded-br-lg rounded-tr-lg hover:bg-neutral-200 dark:hover:bg-neutral-200',
-              className,
-            )}
-          >
-            <Image
-              src={link.image}
-              alt={link.label}
-              width={32}
-              height={32}
-              className="hover:opacity-80 max-lg:hidden"
-            />
-            <span
-              className={cn(
-                'text-neutral-800 hover:text-neutral-600 dark:text-neutral-200 dark:hover:text-neutral-300',
-              )}
-            >
-              {t(link.label)}
-            </span>
-          </Link>
-        ))}
-      </div>
+      <div className="flex grow flex-col justify-start">
+        <h3 className="font-semibold text-neutral-800 dark:text-neutral-200 lg:text-lg">
+          Suggested Communities
+        </h3>
 
-      {/* Action */}
-      <div className="pb-2">
-        <SignOutButton />
+        <div className="mt-7 flex w-[350px] flex-col gap-9">
+          {/* {suggestedCommunities.communities.length > 0 ? (
+            <>
+              {suggestedCommunities.communities.map((community) => (
+                <UserCard
+                  key={community.id}
+                  id={community.id}
+                  name={community.name}
+                  username={community.username}
+                  imgUrl={community.image}
+                  personType="Community"
+                />
+              ))}
+            </>
+          ) : (
+            <p className="!text-base-regular text-light-3">
+              No communities yet
+            </p>
+          )} */}
+        </div>
+      </div>
+      <div className="flex flex-1 flex-col justify-start">
+        <h3 className="font-semibold text-neutral-800 dark:text-neutral-200 lg:text-lg">
+          Similar Minds
+        </h3>
+        <div className="mt-7 flex w-[350px] flex-col gap-10">
+          {/* {similarMinds.users.length > 0 ? (
+            <>
+              {similarMinds.users.map((person) => (
+                <UserCard
+                  key={person.id}
+                  id={person.id}
+                  name={person.name}
+                  username={person.username}
+                  imgUrl={person.image}
+                  personType="User"
+                />
+              ))}
+            </>
+          ) : (
+            <p className="!text-base-regular text-light-3">No users yet</p>
+          )} */}
+        </div>
       </div>
     </aside>
   );

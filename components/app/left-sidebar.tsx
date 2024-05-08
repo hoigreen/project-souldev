@@ -14,7 +14,7 @@ import { SignOutButton } from '../auth/sign-out/sign-out-button';
  * ------------------------------------------------------------------------------------------------------------------ */
 
 const leftSidebarVariants = cva(
-  'sticky bottom-0 bottom-0 top-[4.375rem] flex w-80 flex-col justify-between text-white',
+  'dark:bg-dark sticky bottom-0 bottom-0 top-[4.375rem] flex w-80 flex-col justify-between bg-white text-white',
 );
 
 export type LeftSidebarProps = HTMLAttributes<HTMLElement> &
@@ -26,7 +26,7 @@ export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
   return (
     <aside {...props} className={leftSidebarVariants()}>
       {/* Menu */}
-      <div className="border-b-2 pb-4">
+      <div className="pb-4">
         {routesLink.map((link) => (
           <Link
             key={link.label}
@@ -54,6 +54,8 @@ export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
             </span>
           </Link>
         ))}
+
+        <hr className="mx-2 mt-4 bg-neutral-200 dark:bg-neutral-600" />
       </div>
 
       {/* Action */}
