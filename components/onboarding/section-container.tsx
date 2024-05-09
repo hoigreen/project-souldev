@@ -20,7 +20,7 @@ export function SectionContainer({
   ...props
 }: SectionContainerProps) {
   return (
-    <div {...props} className={cn('container', className)}>
+    <div {...props} className={cn(className)}>
       <div
         className={clsx(
           !noPadding && 'p-4 lg:p-7.5',

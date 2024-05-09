@@ -56,7 +56,7 @@ export default function UserOnboarding() {
   // }
 
   return (
-    <SectionContainer className="w-full max-w-5xl">
+    <SectionContainer className="w-full md:max-w-3xl">
       123
       {/* <div>
         <div className="space-y-7.5 divide-y">
