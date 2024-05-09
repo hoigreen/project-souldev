@@ -58,3 +58,7 @@ export const routesLink3: RoutesLink[] = [
     label: 'M8',
   },
 ];
+
+export const FACEBOOK_URL_REGEX = /^(https?:\/\/)?(?:www\.)?facebook\.com/;
+export const TWITTER_URL_REGEX = /^(https?:\/\/)?(?:www\.)?twitter\.com/;
+export const GITHUB_URL_REGEX = /^(https?:\/\/)?(?:www\.)?github\.com/;

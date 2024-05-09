@@ -147,5 +147,14 @@
     "M2": "Không có thông báo",
     "M3": "Đánh dấu tất cả là đã đọc",
     "M4": "Xem tất cả"
+  },
+  "Onboarding": {
+    "M1": "Please enter a valid Twitter URL",
+    "M2": "Please enter a valid Facebook URL",
+    "M3": "Please enter a valid Github URL",
+    "M4": "Please enter a valid phone number",
+    "M5": "Please enter your first name",
+    "M6": "Please enter your last name",
+    "M7": ""
   }
 }

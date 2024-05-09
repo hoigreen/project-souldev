@@ -9,6 +9,7 @@ declare module 'next-auth' {
     image: string;
     mobile: string;
     token: string;
+    isOnboardingCompleted: boolean;
   }
 
   // eslint-disable-next-line no-unused-vars -- used in the code below
@@ -27,5 +28,6 @@ declare module 'next-auth/jwt' {
     image: string;
     mobile: string;
     token: string;
+    isOnboardingCompleted: boolean;
   }
 }

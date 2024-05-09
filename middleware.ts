@@ -26,8 +26,14 @@ const nextAuthMiddleware = () =>
           locale = localeFromPath;
         }
 
-        if (authPathRegex.test(req.nextUrl.pathname)) {
-          return NextResponse.redirect(new URL(`/${locale}/home`, req.url));
+        if (!token.isOnboardingCompleted) {
+          return NextResponse.redirect(
+            new URL(`/${locale}/auth/onboarding`, req.url),
+          );
+        } else {
+          if (authPathRegex.test(req.nextUrl.pathname)) {
+            return NextResponse.redirect(new URL(`/${locale}/home`, req.url));
+          }
         }
       }
 
