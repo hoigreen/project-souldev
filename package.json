@@ -100,6 +100,7 @@
     "remark-html": "^16.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.0",
+    "sharp": "^0.33.3",
     "slugify": "^1.6.6",
     "sonner": "^1.4.3",
     "svix": "^1.7.0",
