@@ -39,9 +39,10 @@ export default async function HomePage({
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
       <Heading title="Home" />
-      {/* <section className='mt-9 flex flex-col gap-10'>
-        {result.posts.length === 0 ? (
-          <p className='no-result'>No threads found</p>
+
+      <section className="mt-9 flex flex-col gap-10">
+        {/* {result.posts.length === 0 ? (
+          <p className='text-lg font-semibold text-center'>No posts found</p>
         ) : (
           <>
             {result.posts.map((post) => (
@@ -58,8 +59,8 @@ export default async function HomePage({
               />
             ))}
           </>
-        )}
-      </section> */}
+        )} */}
+      </section>
     </div>
   );
 }

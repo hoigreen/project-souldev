@@ -1,13 +1,12 @@
 'use client';
 
-import { routesLink } from '@/lib/constants';
+import { routesLink, routesLink2, routesLink3 } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import Link from 'next/link';
 import { HTMLAttributes } from 'react';
 import { SignOutButton } from '../auth/sign-out/sign-out-button';
 import { usePathname } from '@/navigation';
+import { NavItem } from './nav-item';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: LeftSidebar
@@ -28,39 +27,28 @@ export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
         className,
       )}
     >
-      {/* Menu */}
-      <div className="flex w-full flex-1 flex-col gap-6 px-6">
-        {routesLink.map((link) => {
-          const isActive =
-            (pathname.includes(link.route) && link.route.length > 1) ||
-            pathname === link.route;
-
-          return (
-            <Link
-              key={link.label}
-              href={link.route}
-              className={cn(
-                'group group-hover:opacity-80',
-                'flex min-h-14 items-center gap-2 px-4 py-1.5 text-xs font-medium transition md:gap-3 md:text-sm lg:gap-4 lg:text-base',
-                'rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-200',
-                'text-neutral-800 hover:text-neutral-600 dark:text-neutral-200 dark:hover:text-neutral-300',
-                isActive &&
-                  'hover:text-dark bg-neutral-900 text-white hover:bg-foreground dark:bg-neutral-200 dark:text-black dark:hover:text-white',
-                className,
-              )}
-            >
-              {link.icon}
-
-              {t(link.label)}
-            </Link>
-          );
-        })}
+      <div className="flex-grow space-y-6">
+        <div className="w-full space-y-2 px-6">
+          {routesLink.map((link) => (
+            <NavItem key={link.label} link={link} />
+          ))}
+        </div>
 
         <hr className="mx-2 mt-4 bg-neutral-200 dark:bg-neutral-600" />
+
+        <div className="spacey-2 px-6">
+          {routesLink2.map((link) => (
+            <NavItem key={link.label} link={link} />
+          ))}
+        </div>
       </div>
 
       {/* Action */}
-      <div className="mt-10 px-6">
+      <div className="mt-10 space-y-2 px-6">
+        {routesLink3.map((link) => (
+          <NavItem key={link.label} link={link} />
+        ))}
+
         <SignOutButton className="w-full" />
       </div>
     </aside>

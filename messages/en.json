@@ -132,7 +132,10 @@
     "M2": "Search",
     "M3": "Friends",
     "M4": "Groups",
-    "M5": "Pages"
+    "M5": "Pages",
+    "M6": "Messages",
+    "M7": "Profile",
+    "M8": "Account Settings"
   },
   "Account": {
     "M1": "Profile",
