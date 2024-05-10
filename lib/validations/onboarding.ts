@@ -7,22 +7,21 @@ import {
 
 export const twitterUrlSchema = z
   .string()
-  .regex(TWITTER_URL_REGEX, 'M1')
-  .nullish();
+  .regex(TWITTER_URL_REGEX, 'Please enter a valid Twitter URL')
+  .optional();
 export const facebookUrlSchema = z
   .string()
-  .regex(FACEBOOK_URL_REGEX, 'M2')
-  .nullish();
+  .regex(FACEBOOK_URL_REGEX, 'Please enter a valid Facebook URL')
+  .optional();
 export const githubUrlSchema = z
   .string()
-  .regex(GITHUB_URL_REGEX, 'M3')
-  .nullish();
+  .regex(GITHUB_URL_REGEX, 'Please enter a valid GitHub URL')
+  .optional();
 
 export const userOnboardingSchema = z.object({
-  first_name: z.string().min(1, 'M5').max(128),
-  last_name: z.string().min(1, 'M6').max(128),
+  first_name: z.string().min(1, 'First name is required').max(128),
+  last_name: z.string().min(1, 'Last name is required').max(128),
   mobile: z.string().min(1, 'M4'),
-  image: z.string().nullish(),
   twitter: twitterUrlSchema,
   facebook: facebookUrlSchema,
   github: githubUrlSchema,

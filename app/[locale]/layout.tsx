@@ -11,10 +11,9 @@ import { SessionProvider } from '@/components/providers/session-provider';
 import { ThemeProvider } from '@/components/ui/app/theme-provider';
 import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 import React from 'react';
+import { roboto } from '@/components/ui/fonts';
 
 const locales = ['en', 'vi'];
-
-const robotoFont = Roboto({ subsets: ['vietnamese'], weight: '400' });
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -46,11 +45,7 @@ export default async function LocaleLayout({
   const messages = await getMessages(locale);
 
   return (
-    <html
-      className={robotoFont.className}
-      lang={locale}
-      suppressHydrationWarning
-    >
+    <html className={roboto.variable} lang={locale} suppressHydrationWarning>
       <body className="scroll-smooth antialiased">
         <ThemeProvider
           attribute="class"

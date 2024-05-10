@@ -155,6 +155,21 @@
     "M4": "Please enter a valid phone number",
     "M5": "Please enter your first name",
     "M6": "Please enter your last name",
-    "M7": ""
+    "M7": "Please complete the information",
+    "M8": "Let everyone know a bit about you",
+    "M9": "First name",
+    "M10": "Ex: John",
+    "M11": "Last name",
+    "M12": "Ex: Doe",
+    "M13": "Phone number",
+    "M14": "Ex: 0312345678",
+    "M15": "Bio",
+    "M16": "Ex: I'm a software developer",
+    "M17": "Twitter URL",
+    "M18": "https://twitter.com/username",
+    "M19": "Facebook URL",
+    "M20": "https://facebook.com/username",
+    "M21": "Github URL",
+    "M22": "https://github.com/username"
   }
 }

@@ -8,29 +8,25 @@ import { HTMLAttributes } from 'react';
 
 export interface SectionContainerProps extends HTMLAttributes<HTMLDivElement> {
   errors?: Array<any>;
-  gridClassName?: string;
   noPadding?: boolean;
 }
 
 export function SectionContainer({
   children,
   className,
-  gridClassName = 'grid-cols-1 lg:grid-cols-[400px_1fr]',
   noPadding = false,
   ...props
 }: SectionContainerProps) {
   return (
-    <div {...props} className={cn(className)}>
-      <div
-        className={clsx(
-          !noPadding && 'p-4 lg:p-7.5',
-          'rounded-3xl bg-white dark:bg-black',
-        )}
-      >
-        <div className={clsx(gridClassName, 'grid items-start gap-6')}>
-          {children}
-        </div>
-      </div>
+    <div
+      {...props}
+      className={clsx(
+        !noPadding && 'p-4 lg:p-7.5',
+        'rounded-3xl bg-white dark:bg-black',
+        className,
+      )}
+    >
+      {children}
     </div>
   );
 }

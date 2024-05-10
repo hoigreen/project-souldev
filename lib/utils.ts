@@ -38,3 +38,11 @@ export function formatThreadCount(count: number): string {
     return `${threadCount} ${threadWord}`;
   }
 }
+
+export const translateConstant = (t: any, message: string | undefined) => {
+  if (!message?.startsWith('T_')) {
+    return message;
+  } else {
+    return t(message);
+  }
+};
