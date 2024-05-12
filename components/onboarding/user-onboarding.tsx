@@ -24,11 +24,12 @@ import { Button } from '../ui/button';
 import { Heading } from '../app/heading';
 import Image from 'next/image';
 import { Edit2, Profile } from 'iconsax-react';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState, useTransition } from 'react';
 import { cn, isBase64Image } from '@/lib/utils';
 import toast from 'react-hot-toast';
-import { updateAvatar } from '@/lib/actions';
+import { completeOnboarding, updateAvatar } from '@/lib/actions';
 import { Label } from '../ui/label';
+import { useRouter } from '@/navigation';
 
 export default function UserOnboarding() {
   const [isHover, setIsHover] = useState(false);
@@ -37,6 +38,8 @@ export default function UserOnboarding() {
   const { update } = useSession();
   const { data: session } = useSession();
   const user = session?.user as User;
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm<UserOnboardingSchema>({
     resolver: zodResolver(userOnboardingSchema),
@@ -49,22 +52,28 @@ export default function UserOnboarding() {
   });
 
   const onSubmit = async (formData: UserOnboardingSchema) => {
-    // if (file) {
-    //   console.log(imgRes)
-    //   if (!imgRes.success) {
-    //     toast.error(t('M26'));
-    //     return
-    //   }
-    // }
-    // const response = await completeOnboarding({
-    //   ...formData,
-    //   isOnboardingCompleted: true,
-    // });
-    // if (!response.success) {
-    //   return toast.error(t('M24'));
-    // } else {
-    // await update({ isOnboar: true })
-    // }
+    const response = await completeOnboarding(
+      { _id: user._id },
+      {
+        first_name: formData.first_name.trim(),
+        last_name: formData.last_name.trim(),
+        mobile: formData.mobile.trim(),
+        bio: formData.bio,
+        twitter: formData.twitter,
+        facebook: formData.facebook,
+        github: formData.github,
+        isOnboardingCompleted: true,
+      },
+    );
+
+    if (!response.success) {
+      return toast.error(t('M24'));
+    } else {
+      await update({ isOnboardingCompleted: true });
+      startTransition(() => {
+        router.push('/home');
+      });
+    }
   };
 
   const handleImage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -87,10 +96,6 @@ export default function UserOnboarding() {
     }
   };
 
-  useEffect(() => {
-    setImageUrl(user.image);
-  }, []);
-
   const handleUploadImage = async (file: File) => {
     const formData = new FormData();
     formData.append('image', file);
@@ -105,6 +110,10 @@ export default function UserOnboarding() {
 
     await update({ image: imgRes.userData.image });
   };
+
+  useEffect(() => {
+    setImageUrl(user.image);
+  }, []);
 
   return (
     <SectionContainer className="w-full space-y-6 pb-8 md:max-w-3xl md:pb-0">
@@ -267,7 +276,12 @@ export default function UserOnboarding() {
           />
 
           <div className="flex justify-end">
-            <Button type="submit">Submit</Button>
+            <Button
+              type="submit"
+              disabled={isPending || form.formState.isSubmitting}
+            >
+              Submit
+            </Button>
           </div>
         </form>
       </Form>

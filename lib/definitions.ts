@@ -35,3 +35,14 @@ export type RoutesLink = {
 export type UserParams = {
   userId: string;
 };
+
+export type OnboardingRequestBody = {
+  first_name: string;
+  last_name: string;
+  mobile: string;
+  twitter?: string;
+  facebook?: string;
+  github?: string;
+  bio?: string;
+  isOnboardingCompleted: boolean;
+};

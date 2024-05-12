@@ -64,7 +64,7 @@ export default function PostCard({
       <div className="flex items-start justify-between">
         <div className="flex w-full flex-1 flex-row gap-4">
           <div className="flex flex-col items-center">
-            <Link href={`/profile/${author.id}`} className="relative h-11 w-11">
+            <Link href={`/profile/${author.id}`} className="relative size-11">
               <Image
                 src={author.image}
                 alt="Profile image"
@@ -73,7 +73,7 @@ export default function PostCard({
               />
             </Link>
 
-            <div className="thread-card_bar" />
+            <div className="relative mt-2 w-0.5 grow rounded-full bg-neutral-800" />
           </div>
 
           <div className="flex w-full flex-col">

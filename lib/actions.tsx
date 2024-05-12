@@ -2,7 +2,7 @@
 
 import { endpoints } from '@/services/endpoints';
 import requestService from '@/services/request-service';
-import { SignupBody } from './definitions';
+import { OnboardingRequestBody, SignupBody } from './definitions';
 import { getEndpoint } from '@/services/url';
 import { Params } from './url-builder';
 
@@ -69,7 +69,12 @@ export async function updateAvatar(params: Params, formData: FormData) {
   return data;
 }
 
-export async function completeOnboarding(body: any) {
-  // const data = await requestService.post(endpoints.user.completeOnboarding, body);
-  // return data;
+export async function completeOnboarding(
+  params: Params,
+  body: OnboardingRequestBody,
+) {
+  return await requestService.post(
+    getEndpoint(endpoints.user.completeOnboarding, params),
+    body,
+  );
 }

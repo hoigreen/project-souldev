@@ -44,7 +44,7 @@ export function FooterMenu({ className, routes, ...props }: FooterMenuProps) {
               className="hidden dark:block"
             />
 
-            <p className="text-grayscale-2 italic xl:text-base">{t('M8')}</p>
+            <p className="italic xl:text-base">{t('M8')}</p>
           </div>
         </div>
 
@@ -125,7 +125,7 @@ export function FooterMobileMenu({
             className="hidden dark:block"
           />
 
-          <p className="text-grayscale-2 text-sm italic">{t('M8')}</p>
+          <p className="text-sm italic">{t('M8')}</p>
 
           <div className="flex flex-col items-start justify-between gap-3">
             <h3 className="text-lg font-bold">{t('M9')}</h3>
@@ -183,7 +183,7 @@ export default function Footer({
 
       <FooterMobileMenu routes={routes} />
 
-      <p className="text-grayscale-2 w-full gap-y-4 border-t pb-8 pt-6 text-center text-sm font-medium md:py-6 md:text-base xl:text-lg">
+      <p className="w-full gap-y-4 border-t pb-8 pt-6 text-center text-sm font-medium md:py-6 md:text-base xl:text-lg">
         {t('M7')}
       </p>
     </div>

@@ -8,5 +8,6 @@ export const endpoints = {
     forgetPassword: '/api/users/forget-password',
     resetPassword: '/api/users/reset-password',
     updateAvatar: '/api/users/update-avatar/:_id',
+    completeOnboarding: '/api/users/complete-onboarding/:_id',
   },
 };

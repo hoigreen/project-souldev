@@ -14,8 +14,8 @@ export enum ErrorStageType {
 }
 
 type ErrorStageTypeMap = {
+  // eslint-disable-next-line no-unused-vars -- used
   [key in ErrorStageType]: {
-    // eslint-disable-line no-unused-vars -- used
     title: string;
     description: string;
     action: string;
