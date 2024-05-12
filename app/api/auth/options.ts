@@ -4,7 +4,7 @@ import GithubProvider, { GithubProfile } from 'next-auth/providers/github';
 import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google';
 import { authGitHub, authGoogle, getCurrentUser, login } from '@/lib/actions';
 import { SignupBody } from '@/lib/definitions';
-import cookie from '@/lib/cookie';
+import { cookies } from 'next/headers';
 
 export const authOptions: NextAuthOptions = {
   jwt: {
@@ -123,6 +123,8 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
     async signIn({ account, profile }) {
+      const cookie = cookies();
+
       if (account?.provider === 'google' && profile) {
         const profileData = profile as GoogleProfile;
         const signUpData: SignupBody = {
@@ -133,13 +135,15 @@ export const authOptions: NextAuthOptions = {
           password: '123456',
           terms: true,
         };
+
         const data = await authGoogle(signUpData);
 
-        cookie.set(
-          process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
-          data.data.token,
-          7,
-        );
+        cookie.set({
+          name: process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
+          value: data.data.token as string,
+          expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+          path: '/',
+        });
       }
 
       if (account?.provider === 'github' && profile) {
@@ -152,14 +156,15 @@ export const authOptions: NextAuthOptions = {
           password: '123456',
           terms: true,
         };
+
         const data = await authGitHub(signUpData);
 
-        if (data.status)
-          cookie.set(
-            process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
-            data.data.token,
-            7,
-          );
+        cookie.set({
+          name: process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
+          value: data.data.token as string,
+          expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+          path: '/',
+        });
       }
       return true;
     },
