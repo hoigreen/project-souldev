@@ -4,12 +4,16 @@ import { ReactNode } from 'react';
 import { SignOutButton } from '@/components/auth/sign-out/sign-out-button';
 import { LocaleSwitcher } from '@/components/switcher/locale-switcher';
 import ThemeSwitcher from '@/components/switcher/theme-switcher';
+import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 
 export default async function CompanyOnboardingLayout({
   children,
+  params: { locale },
 }: {
   children: ReactNode;
+  params: { locale: string };
 }) {
+  unstableSetRequestLocale(locale);
   const session = await getSession();
 
   if (!session) {
