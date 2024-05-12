@@ -2,7 +2,7 @@ import type { NextAuthOptions, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GithubProvider, { GithubProfile } from 'next-auth/providers/github';
 import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google';
-import { authGitHub, authGoogle, login } from '@/lib/actions';
+import { authGitHub, authGoogle, getCurrentUser, login } from '@/lib/actions';
 import { SignupBody } from '@/lib/definitions';
 import cookie from '@/lib/cookie';
 
@@ -61,17 +61,46 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account, session, trigger }) {
       if (user) {
-        token._id = user._id;
-        token.email = user.email;
-        token.image = user.image;
-        token.mobile = user.mobile;
+        if (account?.provider === 'google' || account?.provider === 'github') {
+          const response = await getCurrentUser({
+            email: token.email || user.email,
+          });
+
+          token._id = response.data._id;
+          token.email = response.data.email;
+          token.image = response.data.image;
+          token.mobile = response.data.mobile;
+          token.name = response.data.name;
+          token.first_name =
+            response.data.first_name ||
+            (response.data.name?.split(' ')[0] ?? '');
+          token.last_name =
+            response.data.last_name ||
+            (response.data.name?.split(' ')[1] ?? '');
+          token.isOnboardingCompleted = response.data.isOnboardingCompleted;
+        } else {
+          token._id = user._id;
+          token.email = user.email;
+          token.image = user.image;
+          token.mobile = user.mobile;
+          token.name = user.name;
+          token.first_name =
+            user.first_name || (user.name?.split(' ')[0] ?? '');
+          token.last_name = user.last_name || (user.name?.split(' ')[1] ?? '');
+          token.isOnboardingCompleted = user.isOnboardingCompleted;
+        }
+
         token.token = user.token;
-        token.name = user.name;
-        token.first_name = user.first_name || (user.name?.split(' ')[0] ?? '');
-        token.last_name = user.last_name || (user.name?.split(' ')[1] ?? '');
-        token.isOnboardingCompleted = user.isOnboardingCompleted;
+      }
+
+      if (trigger === 'update' && session.isOnboardingCompleted) {
+        token.isOnboardingCompleted = session.isOnboardingCompleted;
+      }
+
+      if (trigger === 'update' && session.image) {
+        token.image = session.image;
       }
 
       return token;

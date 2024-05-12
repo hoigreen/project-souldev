@@ -170,6 +170,10 @@
     "M19": "Facebook URL",
     "M20": "https://facebook.com/username",
     "M21": "Github URL",
-    "M22": "https://github.com/username"
+    "M22": "https://github.com/username",
+    "M23": "Edit",
+    "M24": "Something went wrong, please try again.",
+    "c": "Update avatar successfully!",
+    "M26": "Something went wrong when uploading file!"
   }
 }

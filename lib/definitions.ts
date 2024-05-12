@@ -31,3 +31,7 @@ export type RoutesLink = {
   icon: React.ReactNode;
   label: string;
 };
+
+export type UserParams = {
+  userId: string;
+};
