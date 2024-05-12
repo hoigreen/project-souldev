@@ -16,7 +16,7 @@ export async function login(body: { email: string; password: string }) {
 
 export async function getCurrentUser(params: Params) {
   const data = await requestService.get(
-    getEndpoint(endpoints.user.currentUser, params),
+    getEndpoint({ path: endpoints.user.currentUser, params }),
   );
 
   return data;
@@ -56,7 +56,7 @@ export async function resetPassWord(body: { token: string; password: string }) {
 
 export async function updateAvatar(params: Params, formData: FormData) {
   const data = await requestService.post(
-    getEndpoint(endpoints.user.updateAvatar, params),
+    getEndpoint({ path: endpoints.user.updateAvatar, params }),
     formData,
     {
       headers: {
@@ -74,7 +74,7 @@ export async function completeOnboarding(
   body: OnboardingRequestBody,
 ) {
   return await requestService.post(
-    getEndpoint(endpoints.user.completeOnboarding, params),
+    getEndpoint({ path: endpoints.user.completeOnboarding, params }),
     body,
   );
 }
