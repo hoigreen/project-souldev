@@ -135,7 +135,10 @@
     "M5": "Pages",
     "M6": "Messages",
     "M7": "Profile",
-    "M8": "Account Settings"
+    "M8": "Account Settings",
+    "M9": "Notifications",
+    "M10": "Explore",
+    "M11": "Create"
   },
   "Account": {
     "M1": "Profile",

@@ -1,4 +1,6 @@
 import {
+  AddSquare,
+  Bezier,
   Flag,
   Home2,
   Messages2,
@@ -22,8 +24,13 @@ export const routesLink: RoutesLink[] = [
     label: 'M2',
   },
   {
+    icon: <Bezier variant="TwoTone" size={24} />,
+    route: '/explore',
+    label: 'M10',
+  },
+  {
     icon: <UserAdd variant="TwoTone" size={24} />,
-    route: '/friends',
+    route: '/peoples',
     label: 'M3',
   },
   {
@@ -40,6 +47,14 @@ export const routesLink: RoutesLink[] = [
 
 export const routesLink2: RoutesLink[] = [
   {
+    icon: <AddSquare variant="TwoTone" size={24} />,
+    route: '/post/create',
+    label: 'M11',
+  },
+];
+
+export const routesLink3: RoutesLink[] = [
+  {
     icon: <Messages2 variant="TwoTone" size={24} />,
     route: '/messages',
     label: 'M6',
@@ -51,10 +66,10 @@ export const routesLink2: RoutesLink[] = [
   },
 ];
 
-export const routesLink3: RoutesLink[] = [
+export const routesLink4: RoutesLink[] = [
   {
     icon: <Setting2 variant="TwoTone" size={24} />,
-    route: '/setting',
+    route: '/account-setting',
     label: 'M8',
   },
 ];

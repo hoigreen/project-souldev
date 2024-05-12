@@ -16,7 +16,7 @@ export default function HomeLayout({
 
   return (
     <Fragment>
-      <main className="bg-gray-50">
+      <main className="bg-gray-100 dark:bg-neutral-900">
         <Headerbar />
 
         <div className="flex min-h-[calc(100vh-4.125rem)]">

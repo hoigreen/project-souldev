@@ -57,14 +57,14 @@ export default function PostCard({
     <div
       className={cn(
         'flex w-full flex-col rounded-xl',
-        isComment ? 'xs:px-7 px-0' : 'bg-dark-2 p-7',
+        isComment ? 'xs:px-7 px-0' : 'bg-white p-7 dark:bg-black',
         className,
       )}
     >
       <div className="flex items-start justify-between">
         <div className="flex w-full flex-1 flex-row gap-4">
           <div className="flex flex-col items-center">
-            <Link href={`/profile/${author.id}`} className="relative size-11">
+            <Link href={`/people/${author.id}`} className="relative size-11">
               <Image
                 src={author.image}
                 alt="Profile image"

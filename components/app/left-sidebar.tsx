@@ -1,6 +1,11 @@
 'use client';
 
-import { routesLink, routesLink2, routesLink3 } from '@/lib/constants';
+import {
+  routesLink,
+  routesLink2,
+  routesLink3,
+  routesLink4,
+} from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { HTMLAttributes } from 'react';
 import { SignOutButton } from '../auth/sign-out/sign-out-button';
@@ -17,8 +22,8 @@ export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
     <aside
       {...props}
       className={cn(
-        'custom-scrollbar dark:bg-dark @apply border-r-dark-4 bg-dark-2 max-xl:hidden',
-        'sticky bottom-0 left-0 top-[4.375rem] z-20 flex w-80 flex-col justify-between overflow-auto border-r bg-white pb-5 pt-28 text-white',
+        'custom-scrollbar bg-white dark:bg-black max-xl:hidden',
+        'sticky bottom-0 left-0 top-[4.375rem] z-20 flex w-80 flex-col justify-between overflow-auto border-r pb-5 pt-28 text-white',
         className,
       )}
     >
@@ -31,8 +36,16 @@ export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
 
         <hr className="mx-2 mt-4 bg-neutral-200 dark:bg-neutral-600" />
 
-        <div className="spacey-y-2 px-6">
+        <div className="px-6">
           {routesLink2.map((link) => (
+            <NavItem key={link.label} link={link} />
+          ))}
+        </div>
+
+        <hr className="mx-2 mt-4 bg-neutral-200 dark:bg-neutral-600" />
+
+        <div className="space-y-2 px-6">
+          {routesLink3.map((link) => (
             <NavItem key={link.label} link={link} />
           ))}
         </div>
@@ -40,7 +53,7 @@ export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
 
       {/* Action */}
       <div className="mt-10 space-y-2 px-6">
-        {routesLink3.map((link) => (
+        {routesLink4.map((link) => (
           <NavItem key={link.label} link={link} />
         ))}
 

@@ -30,10 +30,10 @@ export function NavItem({ className, link, ...props }: NavItemProps) {
       className={cn(
         'group group-hover:opacity-80',
         'flex min-h-14 items-center gap-2 px-4 py-1.5 text-xs font-medium transition md:gap-3 md:text-sm lg:gap-4 lg:text-base',
-        'rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-200',
-        'text-neutral-800 hover:text-neutral-600 dark:text-neutral-200 dark:hover:text-neutral-300',
+        'rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-400',
+        'text-neutral-800 hover:text-neutral-600 dark:text-neutral-200 dark:hover:text-neutral-800',
         isActive &&
-          'hover:text-dark bg-neutral-900 text-white hover:bg-foreground dark:bg-neutral-200 dark:text-black dark:hover:text-white',
+          'bg-neutral-900 text-white hover:bg-foreground hover:text-neutral-800 dark:bg-neutral-200 dark:text-black dark:hover:text-neutral-800',
         className,
       )}
       {...props}
