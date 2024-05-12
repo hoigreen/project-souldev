@@ -1,10 +1,10 @@
 'use server';
 
+import { OnboardingRequestBody, SignupBody } from '@/lib/definitions';
+import { Params } from '@/lib/url-builder';
 import { endpoints } from '@/services/endpoints';
 import requestService from '@/services/request-service';
-import { OnboardingRequestBody, SignupBody } from './definitions';
 import { getEndpoint } from '@/services/url';
-import { Params } from './url-builder';
 
 // This file contain server actions
 

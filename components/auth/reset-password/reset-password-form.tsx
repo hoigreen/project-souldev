@@ -16,12 +16,12 @@ import { useTranslations } from 'next-intl';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { resetPassWord } from '@/lib/actions';
 import {
   ResetPasswordSchema,
   resetPasswordSchema,
 } from '@/lib/validations/auth';
 import { useRouter } from '@/navigation';
+import { resetPassWord } from '@/lib/actions/users';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: ResetPasswordForm

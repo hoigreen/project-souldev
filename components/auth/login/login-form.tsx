@@ -9,7 +9,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
-import { login } from '@/lib/actions';
 import cookie from '@/lib/cookie';
 import type { LoginSchema } from '@/lib/validations/auth';
 import { loginSchema } from '@/lib/validations/auth';
@@ -24,6 +23,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { login } from '@/lib/actions/users';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: LoginForm

@@ -2,9 +2,14 @@ import type { NextAuthOptions, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GithubProvider, { GithubProfile } from 'next-auth/providers/github';
 import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google';
-import { authGitHub, authGoogle, getCurrentUser, login } from '@/lib/actions';
 import { SignupBody } from '@/lib/definitions';
 import { cookies } from 'next/headers';
+import {
+  authGitHub,
+  authGoogle,
+  getCurrentUser,
+  login,
+} from '@/lib/actions/users';
 
 export const authOptions: NextAuthOptions = {
   jwt: {

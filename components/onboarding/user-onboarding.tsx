@@ -27,9 +27,9 @@ import { Edit2, Profile } from 'iconsax-react';
 import { ChangeEvent, useEffect, useState, useTransition } from 'react';
 import { cn, isBase64Image } from '@/lib/utils';
 import toast from 'react-hot-toast';
-import { completeOnboarding, updateAvatar } from '@/lib/actions';
 import { Label } from '../ui/label';
 import { useRouter } from '@/navigation';
+import { completeOnboarding, updateAvatar } from '@/lib/actions/users';
 
 export default function UserOnboarding() {
   const [isHover, setIsHover] = useState(false);
