@@ -3,14 +3,8 @@ import Link from 'next/link';
 
 import { cn, formatDateString, getFullName } from '@/lib/utils';
 import React from 'react';
-import { UserProfile } from '@/lib/definitions';
+import { Like, UserProfile } from '@/lib/definitions';
 import { Clock, MessageText1, Send } from 'iconsax-react';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
 import { useTranslations } from 'next-intl';
 import ReactPost from './react-post';
 // import DeleteThread from "../forms/DeleteThread";
@@ -19,7 +13,6 @@ import ReactPost from './react-post';
 
 export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   id: string;
-  currentUserId: string;
   content?: string;
   author: UserProfile;
   page: {
@@ -33,29 +26,24 @@ export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
       image: string;
     };
   }[];
-  reactions: {
-    image: string;
-    _id: string;
-    id: string;
-    name: string;
-    username: string;
-  }[];
+  likes: Like[];
   isComment?: boolean;
 };
 
 export default function PostCard({
   className,
   id,
-  currentUserId,
   content,
   author,
   page,
   createdAt,
   comments,
-  reactions,
+  likes,
   isComment,
 }: PostCardProps): React.JSX.Element {
   const t = useTranslations('Home');
+
+  console.log(author, 'author');
 
   return (
     <div
@@ -80,7 +68,7 @@ export default function PostCard({
             <div className="relative mt-2 w-0.5 grow rounded-full bg-neutral-800 dark:bg-neutral-400" />
           </div>
 
-          <div className="flex flex-1 flex-col justify-between">
+          <div className="min-h-24 flex-1 space-y-6">
             <div className="grow space-y-3">
               <div className="block space-y-0.5">
                 <Link href={`/people/${author._id}`} className="w-fit">
@@ -90,19 +78,23 @@ export default function PostCard({
                 </Link>
                 <span className="flex items-center gap-2 text-xs font-light italic">
                   <Clock className="size-3" variant="TwoTone" />
-                  {createdAt ? formatDateString(createdAt) : 'So long ago'}
+                  {createdAt ? formatDateString(createdAt) : t('M8')}
                 </span>
               </div>
 
               <p className="mt-2 text-sm">{content}</p>
             </div>
 
-            <div className={`${isComment && 'mb-10'} mt-5 flex flex-col gap-3`}>
+            <div
+              className={cn(
+                'border-t border-neutral-200 pt-2 dark:border-neutral-700',
+                isComment && 'mb-10',
+              )}
+            >
               <div className="flex gap-3.5">
                 {/* React */}
                 <ReactPost
                   postId={id}
-                  currentUserId={currentUserId}
                   isLike={false}
                   userId={author._id}
                   isComment={isComment}
@@ -110,33 +102,25 @@ export default function PostCard({
 
                 {/* Comment Post */}
                 <Link href={`/post/${id}`}>
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <MessageText1
-                          variant="TwoTone"
-                          size={20}
-                          className="text-foreground"
-                        />
-                      </TooltipTrigger>
-                      <TooltipContent>{t('M6')}</TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
+                  <div className="flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1 hover:bg-neutral-100 dark:bg-neutral-600">
+                    <MessageText1
+                      variant="TwoTone"
+                      size={20}
+                      className="text-foreground"
+                    />
+                    <p className="text-sm font-medium">{t('M6')}</p>
+                  </div>
                 </Link>
 
                 {/* Share post */}
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Send
-                        variant="TwoTone"
-                        size={20}
-                        className="cursor-pointer text-foreground"
-                      />
-                    </TooltipTrigger>
-                    <TooltipContent>{t('M7')}</TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <div className="flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1 hover:bg-neutral-100 dark:bg-neutral-600">
+                  <Send
+                    variant="TwoTone"
+                    size={20}
+                    className="cursor-pointer text-foreground"
+                  />
+                  <p className="text-sm font-medium">{t('M6')}</p>
+                </div>
               </div>
 
               <div className="flex flex-row gap-2">
@@ -151,15 +135,14 @@ export default function PostCard({
                       </Link>
                     )}
 
-                    {comments.length > 0 && reactions.length > 0 && (
+                    {comments.length > 0 && likes.length > 0 && (
                       <p className="text-subtle-medium text-gray-1 mt-1">•</p>
                     )}
 
-                    {reactions.length > 0 && (
+                    {likes.length > 0 && (
                       <Link href={`/thread/reactions/${id}`}>
                         <p className="text-subtle-medium text-gray-1 mt-1">
-                          {reactions.length}{' '}
-                          {reactions.length > 1 ? 'likes' : 'like'}
+                          {likes.length} {likes.length > 1 ? 'likes' : 'like'}
                         </p>
                       </Link>
                     )}
@@ -213,18 +196,18 @@ export default function PostCard({
               </div>
             )}
 
-            {comments.length > 0 && reactions.length > 0 && (
+            {comments.length > 0 && likes.length > 0 && (
               <div className="ml-1 mt-3 flex items-center">
                 <p className="text-subtle-medium text-gray-1 mt-1">•</p>
               </div>
             )}
 
-            {reactions.length > 0 && (
+            {likes.length > 0 && (
               <div className="ml-1 mt-3 flex items-center gap-2">
-                {reactions.slice(0, 2).map((reaction, index) => (
+                {likes.slice(0, 2).map((like, index) => (
                   <Image
                     key={index}
-                    src={reaction.image}
+                    src={like.user_id.image}
                     alt={`user_${index}`}
                     width={24}
                     height={24}
@@ -236,7 +219,7 @@ export default function PostCard({
 
                 <Link href={`/thread/reactions/${id}`}>
                   <p className="text-subtle-medium text-gray-1 mt-1">
-                    {reactions.length} {reactions.length > 1 ? 'likes' : 'like'}
+                    {likes.length} {likes.length > 1 ? 'likes' : 'like'}
                   </p>
                 </Link>
               </div>

@@ -10,13 +10,11 @@ import { cn } from '@/lib/utils';
 import { Spinner } from '../spinner';
 
 type ListPostsClientProps = React.HTMLAttributes<HTMLDivElement> & {
-  currentUserId: string;
   searchParams: SearchParams;
   data: PostsResponse;
 };
 
 export default function ListPostsClient({
-  currentUserId,
   className,
   // searchParams,
   data,
@@ -59,12 +57,11 @@ export default function ListPostsClient({
 
   return (
     <div className={cn('mt-9 flex flex-col gap-10', className)}>
-      {posts.map((item) => (
+      {posts.map((item, index) => (
         <PostCard
-          key={item._id}
-          reactions={[]}
+          key={index}
+          likes={item.likes}
           id={item._id}
-          currentUserId={currentUserId}
           content={item.content}
           author={item.user_id}
           page={null}

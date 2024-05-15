@@ -2,12 +2,19 @@
 
 import { PostsResponse } from '@/lib/definitions';
 import { Params, Query } from '@/lib/url-builder';
+import { endpoints } from '@/services/endpoints';
 import requestService from '@/services/request-service';
 import { getEndpoint } from '@/services/url';
 
 export async function getPosts(query?: Query): Promise<PostsResponse> {
   return await requestService.get(
     getEndpoint({ path: '/api/post/get-posts', query }),
+  );
+}
+
+export async function likePost(params: Params): Promise<void> {
+  return await requestService.post(
+    getEndpoint({ path: endpoints.posts.like, params }),
   );
 }
 

@@ -8,7 +8,7 @@ export interface RequestService {
   ) => Promise<any>;
   post: (
     url: string,
-    body: Record<string, any> | FormData,
+    body?: Record<string, any> | FormData,
     config?: AxiosRequestConfig<any | undefined>,
   ) => Promise<any>;
   put: (

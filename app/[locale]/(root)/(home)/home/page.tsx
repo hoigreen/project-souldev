@@ -55,11 +55,9 @@ export default async function HomePage({
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
       <Heading title={t('M1')} />
 
-      <ListPostsClient
-        currentUserId={session.user?.id}
-        searchParams={searchParams}
-        data={result}
-      />
+      {/* Filter */}
+
+      <ListPostsClient searchParams={searchParams} data={result} />
     </div>
   );
 }

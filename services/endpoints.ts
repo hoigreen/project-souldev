@@ -30,5 +30,8 @@ export const endpoints = {
   posts: {
     // GET /api/posts
     getAll: '/api/post/get-posts',
+
+    // POST like post
+    like: '/api/post/like/:postId',
   },
 };

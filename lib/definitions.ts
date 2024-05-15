@@ -97,3 +97,7 @@ export interface PostsResponse {
   pageSize: number;
   items: Post[];
 }
+
+export interface Like {
+  user_id: UserProfile;
+}
