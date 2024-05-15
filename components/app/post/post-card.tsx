@@ -11,6 +11,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { useTranslations } from 'next-intl';
+import ReactPost from './react-post';
 // import DeleteThread from "../forms/DeleteThread";
 // import EditThread from "../atoms/EditThread";
 // import ReactThread from "../atoms/ReactThread";
@@ -44,14 +46,17 @@ export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
 export default function PostCard({
   className,
   id,
+  currentUserId,
   content,
   author,
-  page: community,
+  page,
   createdAt,
   comments,
   reactions,
   isComment,
 }: PostCardProps): React.JSX.Element {
+  const t = useTranslations('Home');
+
   return (
     <div
       className={cn(
@@ -95,16 +100,15 @@ export default function PostCard({
             <div className={`${isComment && 'mb-10'} mt-5 flex flex-col gap-3`}>
               <div className="flex gap-3.5">
                 {/* React */}
-                {/* <ReactThread
-                  threadId={id}
+                <ReactPost
+                  postId={id}
                   currentUserId={currentUserId}
-                  interactState={reactState}
-                  parentId={parentId}
+                  isLike={false}
+                  userId={author._id}
                   isComment={isComment}
-                /> */}
+                />
 
                 {/* Comment Post */}
-
                 <Link href={`/post/${id}`}>
                   <TooltipProvider>
                     <Tooltip>
@@ -115,7 +119,7 @@ export default function PostCard({
                           className="text-foreground"
                         />
                       </TooltipTrigger>
-                      <TooltipContent>Comment</TooltipContent>
+                      <TooltipContent>{t('M6')}</TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
                 </Link>
@@ -130,7 +134,7 @@ export default function PostCard({
                         className="cursor-pointer text-foreground"
                       />
                     </TooltipTrigger>
-                    <TooltipContent>Share</TooltipContent>
+                    <TooltipContent>{t('M7')}</TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
               </div>
@@ -241,19 +245,19 @@ export default function PostCard({
         )}
       </div>
 
-      {!isComment && community && (
+      {!isComment && page && (
         <Link
-          href={`/communities/${community.id}`}
+          href={`/communities/${page.id}`}
           className="mt-5 flex items-center"
         >
           <p className="text-subtle-medium text-gray-1">
             {createdAt ? formatDateString(createdAt) : 'So long ago'}
-            {community && ` - ${community.name} Community`}
+            {page && ` - ${page.name} Community`}
           </p>
 
           <Image
-            src={community.image}
-            alt={community.name}
+            src={page.image}
+            alt={page.name}
             width={14}
             height={14}
             className="ml-1 rounded-full object-cover"
