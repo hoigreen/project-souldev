@@ -1,8 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { cn, formatDateString } from '@/lib/utils';
+import { cn, formatDateString, getFullName } from '@/lib/utils';
 import React from 'react';
+import { UserProfile } from '@/lib/definitions';
+import { Clock, MessageText1, Send } from 'iconsax-react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 // import DeleteThread from "../forms/DeleteThread";
 // import EditThread from "../atoms/EditThread";
 // import ReactThread from "../atoms/ReactThread";
@@ -10,19 +18,14 @@ import React from 'react';
 export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   id: string;
   currentUserId: string;
-  parentId: string | null;
-  content: string;
-  author: {
-    name: string;
-    image: string;
-    id: string;
-  };
-  community: {
+  content?: string;
+  author: UserProfile;
+  page: {
     id: string;
     name: string;
     image: string;
   } | null;
-  createdAt: string;
+  createdAt?: string;
   comments: {
     author: {
       image: string;
@@ -36,22 +39,18 @@ export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
     username: string;
   }[];
   isComment?: boolean;
-  reactState?: boolean;
 };
 
 export default function PostCard({
   className,
   id,
-  currentUserId,
-  parentId,
   content,
   author,
-  community,
+  page: community,
   createdAt,
   comments,
   reactions,
   isComment,
-  reactState,
 }: PostCardProps): React.JSX.Element {
   return (
     <div
@@ -64,29 +63,38 @@ export default function PostCard({
       <div className="flex items-start justify-between">
         <div className="flex w-full flex-1 flex-row gap-4">
           <div className="flex flex-col items-center">
-            <Link href={`/people/${author.id}`} className="relative size-11">
+            <Link href={`/people/${author._id}`} className="relative size-12">
               <Image
                 src={author.image}
                 alt="Profile image"
                 fill
-                className="cursor-pointer rounded-full"
+                className="aspect-square cursor-pointer rounded-full border"
               />
             </Link>
 
-            <div className="relative mt-2 w-0.5 grow rounded-full bg-neutral-800" />
+            <div className="relative mt-2 w-0.5 grow rounded-full bg-neutral-800 dark:bg-neutral-400" />
           </div>
 
-          <div className="flex w-full flex-col">
-            <Link href={`/profile/${author.id}`} className="w-fit">
-              <h4 className="text-base-semibold text-light-1 cursor-pointer">
-                {author.name}
-              </h4>
-            </Link>
+          <div className="flex flex-1 flex-col justify-between">
+            <div className="grow space-y-3">
+              <div className="block space-y-0.5">
+                <Link href={`/people/${author._id}`} className="w-fit">
+                  <h4 className="cursor-pointer text-base font-semibold">
+                    {getFullName(author.first_name, author.last_name)}
+                  </h4>
+                </Link>
+                <span className="flex items-center gap-2 text-xs font-light italic">
+                  <Clock className="size-3" variant="TwoTone" />
+                  {createdAt ? formatDateString(createdAt) : 'So long ago'}
+                </span>
+              </div>
 
-            <p className="text-small-regular text-light-2 mt-2">{content}</p>
+              <p className="mt-2 text-sm">{content}</p>
+            </div>
 
             <div className={`${isComment && 'mb-10'} mt-5 flex flex-col gap-3`}>
               <div className="flex gap-3.5">
+                {/* React */}
                 {/* <ReactThread
                   threadId={id}
                   currentUserId={currentUserId}
@@ -94,29 +102,37 @@ export default function PostCard({
                   parentId={parentId}
                   isComment={isComment}
                 /> */}
-                <Link href={`/thread/${id}`}>
-                  <Image
-                    src="/assets/reply.svg"
-                    alt="reply"
-                    width={24}
-                    height={24}
-                    className="cursor-pointer object-contain"
-                  />
+
+                {/* Comment Post */}
+
+                <Link href={`/post/${id}`}>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <MessageText1
+                          variant="TwoTone"
+                          size={20}
+                          className="text-foreground"
+                        />
+                      </TooltipTrigger>
+                      <TooltipContent>Comment</TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </Link>
-                <Image
-                  src="/assets/repost.svg"
-                  alt="repost"
-                  width={24}
-                  height={24}
-                  className="cursor-pointer object-contain"
-                />
-                <Image
-                  src="/assets/share.svg"
-                  alt="share"
-                  width={24}
-                  height={24}
-                  className="cursor-pointer object-contain"
-                />
+
+                {/* Share post */}
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Send
+                        variant="TwoTone"
+                        size={20}
+                        className="cursor-pointer text-foreground"
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent>Share</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
 
               <div className="flex flex-row gap-2">
@@ -231,7 +247,7 @@ export default function PostCard({
           className="mt-5 flex items-center"
         >
           <p className="text-subtle-medium text-gray-1">
-            {formatDateString(createdAt)}
+            {createdAt ? formatDateString(createdAt) : 'So long ago'}
             {community && ` - ${community.name} Community`}
           </p>
 

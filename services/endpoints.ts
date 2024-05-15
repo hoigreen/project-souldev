@@ -29,6 +29,6 @@ export const endpoints = {
   },
   posts: {
     // GET /api/posts
-    getAll: '/api/posts',
+    getAll: '/api/post/get-posts',
   },
 };

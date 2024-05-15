@@ -177,5 +177,12 @@
     "M23": "Chỉnh sửa",
     "M24": "Đã có lỗi xảy ra, vui lòng thử lại",
     "M25": "Cập nhật thông tin thành công!"
+  },
+  "Home": {
+    "M1": "Trang chủ",
+    "M2": "Không tìm thấy bài đăng",
+    "M3": "Đang tải thêm ...",
+    "M4": "Không có gì để hiển thị",
+    "M5": "Không có gì để tải thêm"
   }
 }

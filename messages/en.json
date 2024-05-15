@@ -177,5 +177,12 @@
     "M23": "Edit",
     "M24": "Something went wrong, please try again.",
     "M25": "Update avatar successfully!"
+  },
+  "Home": {
+    "M1": "Home",
+    "M2": "No posts found",
+    "M3": "Loading ...",
+    "M4": "Nothing to show",
+    "M5": "Nothing more to load"
   }
 }

@@ -1,9 +1,16 @@
+import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
-import PostCard from '@/components/app/post/post-card';
-import { SearchParams } from '@/lib/definitions';
+import ListPostsClient from '@/components/app/post/list-posts-client';
+import { getPosts } from '@/lib/actions/posts';
+import { Post, SearchParams } from '@/lib/definitions';
 import getSession from '@/lib/get-session';
 import { Metadata } from 'next';
-import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
+import {
+  getTranslations,
+  unstable_setRequestLocale as unstableSetRequestLocale,
+} from 'next-intl/server';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Feeds',
@@ -19,16 +26,23 @@ export default async function HomePage({
 }) {
   unstableSetRequestLocale(locale);
 
+  const t = await getTranslations('Home');
+
   const session = await getSession();
+
   if (!session) return null;
 
-  // const userInfo = await fetchUser(user.id);
-  // if (!userInfo?.onboarded) redirect("/onboarding");
+  const result = await getPosts();
 
-  // const result = await fetchPosts(
-  //   searchParams.page ? +searchParams.page : 1,
-  //   30
-  // );
+  if (!result) {
+    return <ErrorStage stage={ErrorStageType.ServerError} />;
+  }
+
+  const posts: Post[] = result.items;
+
+  if (posts.length === 0) {
+    return <p className="text-center text-lg font-semibold">{t('M2')}</p>;
+  }
 
   // const reactionsData = await getReactionsData({
   //   userId: userInfo._id,
@@ -39,42 +53,13 @@ export default async function HomePage({
 
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
-      <Heading title="Home" />
+      <Heading title={t('M1')} />
 
-      <section className="mt-9 flex flex-col gap-10">
-        <PostCard
-          reactions={[]}
-          id="123"
-          currentUserId={session.user?.id}
-          parentId={'123'}
-          content={
-            'Tớ rất thích câu nói: \'Hãy tử tế ngay cả khi bạn không được đối xử tử tế. Dù cả thế giới này muốn bạn thay đổi, mình vẫn mong bạn là chính mình."'
-          }
-          author={{ id: '123', name: '123', image: '/123.svg' }}
-          community={null}
-          createdAt={'123'}
-          comments={[]}
-        />
-        {/* {result.posts.length === 0 ? (
-          <p className='text-lg font-semibold text-center'>No posts found</p>
-        ) : (
-          <>
-            {result.posts.map((post) => (
-              <ThreadCard
-              key={post._id}
-              id={post._id}
-                currentUserId={user.id}
-                parentId={post.parentId}
-                content={post.text}
-                author={post.author}
-                community={post.community}
-                createdAt={post.createdAt}
-                comments={post.children}
-              />
-            ))}
-          </>
-        )} */}
-      </section>
+      <ListPostsClient
+        currentUserId={session.user?.id}
+        searchParams={searchParams}
+        data={result}
+      />
     </div>
   );
 }

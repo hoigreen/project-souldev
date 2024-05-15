@@ -46,3 +46,10 @@ export const translateConstant = (t: any, message: string | undefined) => {
     return t(message);
   }
 };
+
+export function getFullName(
+  firstName?: string | null,
+  lastName?: string | null,
+) {
+  return [firstName, lastName].filter(Boolean).join(' ');
+}

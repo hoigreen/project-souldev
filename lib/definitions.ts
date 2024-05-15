@@ -46,3 +46,54 @@ export type OnboardingRequestBody = {
   bio?: string;
   isOnboardingCompleted: boolean;
 };
+
+export enum AuthType {
+  Local = 'local',
+  Google = 'google',
+  Github = 'github',
+}
+
+export enum IsVerifiedStatus {
+  Verified = 1,
+  NotVerified = 0,
+}
+
+export interface UserProfile {
+  _id: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  authType: AuthType;
+  mobile: string;
+  is_verified: IsVerifiedStatus;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  image: string;
+  bio: string;
+  facebook: string;
+  github: string;
+}
+
+export type Post = {
+  _id: string;
+  tittle: string;
+  name: string;
+  user_id: UserProfile;
+  content: string;
+  images: [];
+  id_category: string;
+  likes: [];
+  shares: [];
+  created?: string;
+  __v?: number;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+export interface PostsResponse {
+  totalPage: number;
+  page: number;
+  pageSize: number;
+  items: Post[];
+}
