@@ -5,12 +5,10 @@ import { getPosts } from '@/lib/actions/posts';
 import { Post, SearchParams } from '@/lib/definitions';
 import getSession from '@/lib/get-session';
 import { Metadata } from 'next';
-import { useTranslations } from 'next-intl';
 import {
   getTranslations,
   unstable_setRequestLocale as unstableSetRequestLocale,
 } from 'next-intl/server';
-import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Feeds',
@@ -25,9 +23,7 @@ export default async function HomePage({
   searchParams: SearchParams;
 }) {
   unstableSetRequestLocale(locale);
-
   const t = await getTranslations('Home');
-
   const session = await getSession();
 
   if (!session) return null;
@@ -44,20 +40,17 @@ export default async function HomePage({
     return <p className="text-center text-lg font-semibold">{t('M2')}</p>;
   }
 
-  // const reactionsData = await getReactionsData({
-  //   userId: userInfo._id,
-  //   posts: result.posts,
-  // });
-
-  // const { childrenReactions, childrenReactionState } = reactionsData;
-
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
       <Heading title={t('M1')} />
 
       {/* Filter */}
 
-      <ListPostsClient searchParams={searchParams} data={result} />
+      <ListPostsClient
+        searchParams={searchParams}
+        data={result}
+        currentUserId={session.user._id}
+      />
     </div>
   );
 }

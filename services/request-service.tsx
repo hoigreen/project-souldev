@@ -1,5 +1,6 @@
-import cookie from '@/lib/cookie';
+// import cookie from '@/lib/cookie';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { cookies } from 'next/headers';
 
 export interface RequestService {
   get: (
@@ -37,18 +38,20 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((config: any) => {
+  const cookie = cookies();
   let accessToken = null;
+
   if (cookie.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string)) {
     accessToken = cookie.get(
       process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
-    );
+    )?.value;
   }
 
   if (accessToken) {
     return {
       ...config,
       headers: {
-        Authorization: accessToken,
+        Authorization: `Bearer ${accessToken}`,
       },
     };
   } else {

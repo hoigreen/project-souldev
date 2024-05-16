@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { usePathname } from '@/navigation';
+import { usePathname, useRouter } from '@/navigation';
 import Image from 'next/image';
 import { Heart } from 'iconsax-react';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
-import { likePost } from '@/lib/actions/posts';
+import { likePost, unlikePost } from '@/lib/actions/posts';
 
 const ReactPost = ({
   postId,
@@ -17,10 +17,19 @@ const ReactPost = ({
   isComment?: boolean;
   userId?: string | null;
 }): React.JSX.Element => {
+  const [isLiked, setIsLiked] = React.useState(isLike);
   const t = useTranslations('Home');
+  const router = useRouter();
 
   const handleClick = async () => {
-    await likePost({ postId });
+    if (isLike) {
+      await unlikePost({ postId });
+    } else {
+      await likePost({ postId });
+    }
+
+    setIsLiked(!isLiked);
+    router.refresh();
   };
 
   return (
@@ -29,15 +38,15 @@ const ReactPost = ({
       onClick={handleClick}
     >
       <Heart
-        variant={isLike ? 'Bold' : 'TwoTone'}
+        variant={isLiked ? 'Bold' : 'TwoTone'}
         size={20}
         className={cn(
           'cursor-pointer hover:opacity-85',
-          isLike && 'text-red-500',
+          isLiked && 'text-red-500',
         )}
       />
 
-      <p className={cn('text-sm font-medium', isLike && 'text-red-500')}>
+      <p className={cn('text-sm font-medium', isLiked && 'text-red-500')}>
         {t('M9')}
       </p>
     </div>

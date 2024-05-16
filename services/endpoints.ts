@@ -33,5 +33,8 @@ export const endpoints = {
 
     // POST like post
     like: '/api/post/like/:postId',
+
+    // POST unlike post
+    unlike: '/api/post/unlike/:postId',
   },
 };

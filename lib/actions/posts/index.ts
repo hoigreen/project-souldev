@@ -18,6 +18,12 @@ export async function likePost(params: Params): Promise<void> {
   );
 }
 
+export async function unlikePost(params: Params): Promise<void> {
+  return await requestService.post(
+    getEndpoint({ path: endpoints.posts.unlike, params }),
+  );
+}
+
 // try {
 //   // Calculate the number of posts to skip based on the page number and page size.
 //   const skipAmount = (pageNumber - 1) * pageSize;

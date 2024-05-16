@@ -12,12 +12,14 @@ import { Spinner } from '../spinner';
 type ListPostsClientProps = React.HTMLAttributes<HTMLDivElement> & {
   searchParams: SearchParams;
   data: PostsResponse;
+  currentUserId: string;
 };
 
 export default function ListPostsClient({
   className,
-  // searchParams,
+  currentUserId,
   data,
+  // searchParams,
 }: ListPostsClientProps) {
   const { ref, inView } = useInView();
   const t = useTranslations('Home');
@@ -67,6 +69,7 @@ export default function ListPostsClient({
           page={null}
           createdAt={item.createdAt}
           comments={[]}
+          currentUserId={currentUserId}
         />
       ))}
 

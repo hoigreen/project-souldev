@@ -28,8 +28,6 @@ export default function useInfiniteQueryPosts({
       return response;
     },
     queryKey: ['infinite-get-posts'],
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
   });
 
   return query;

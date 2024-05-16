@@ -28,6 +28,7 @@ export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   }[];
   likes: Like[];
   isComment?: boolean;
+  currentUserId: string;
 };
 
 export default function PostCard({
@@ -40,10 +41,9 @@ export default function PostCard({
   comments,
   likes,
   isComment,
+  currentUserId,
 }: PostCardProps): React.JSX.Element {
   const t = useTranslations('Home');
-
-  console.log(author, 'author');
 
   return (
     <div
@@ -95,7 +95,9 @@ export default function PostCard({
                 {/* React */}
                 <ReactPost
                   postId={id}
-                  isLike={false}
+                  isLike={likes.some(
+                    (like) => like.user_id._id === currentUserId,
+                  )}
                   userId={author._id}
                   isComment={isComment}
                 />
