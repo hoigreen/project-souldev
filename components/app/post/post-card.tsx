@@ -7,6 +7,8 @@ import { Like, UserProfile } from '@/lib/definitions';
 import { Clock, MessageText1, Send } from 'iconsax-react';
 import { useTranslations } from 'next-intl';
 import ReactPost from './react-post';
+import Carousel from '@/components/ui/app/carousel';
+import { ViewImageDialog } from '@/components/ui/dialogs/view-image-dialog';
 // import DeleteThread from "../forms/DeleteThread";
 // import EditThread from "../atoms/EditThread";
 // import ReactThread from "../atoms/ReactThread";
@@ -29,6 +31,7 @@ export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   likes: Like[];
   isComment?: boolean;
   currentUserId: string;
+  images: string[];
 };
 
 export default function PostCard({
@@ -42,13 +45,14 @@ export default function PostCard({
   likes,
   isComment,
   currentUserId,
+  images,
 }: PostCardProps): React.JSX.Element {
   const t = useTranslations('Home');
 
   return (
     <div
       className={cn(
-        'flex w-full flex-col rounded-xl',
+        'flex w-full flex-col rounded-xl shadow-lg',
         isComment ? 'xs:px-7 px-0' : 'bg-white p-7 dark:bg-black',
         className,
       )}
@@ -83,6 +87,50 @@ export default function PostCard({
               </div>
 
               <p className="mt-2 text-sm">{content}</p>
+
+              {/* Images */}
+              {images.length <= 1 ? (
+                images.map((image, index) => (
+                  <div className="flex flex-1 rounded-xl" key={index}>
+                    <div className="relative aspect-square size-full">
+                      <ViewImageDialog
+                        alt={String(author.last_name)}
+                        src={image}
+                      >
+                        <Image
+                          alt={String(author.last_name)}
+                          fill
+                          priority
+                          src={image}
+                        />
+                      </ViewImageDialog>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <Carousel
+                  classNames={{
+                    viewport: 'mx-auto',
+                    container: 'flex gap-3',
+                  }}
+                >
+                  {images.map((image, index) => (
+                    <div
+                      className="flex flex-[0_0_90%] overflow-hidden rounded-xl md:flex-[0_0_75%] lg:flex-[0_0_70%] xl:flex-[0_0_60%]"
+                      key={index}
+                    >
+                      <div className="relative aspect-square size-full">
+                        <Image
+                          alt={String(author.last_name)}
+                          fill
+                          priority
+                          src={image}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </Carousel>
+              )}
             </div>
 
             <div
@@ -110,7 +158,9 @@ export default function PostCard({
                       size={20}
                       className="text-foreground"
                     />
-                    <p className="text-sm font-medium">{t('M6')}</p>
+                    <p className="hidden text-xs font-medium sm:block md:text-sm">
+                      {t('M6')}
+                    </p>
                   </div>
                 </Link>
 
@@ -121,7 +171,9 @@ export default function PostCard({
                     size={20}
                     className="cursor-pointer text-foreground"
                   />
-                  <p className="text-sm font-medium">{t('M6')}</p>
+                  <p className="hidden text-xs font-medium sm:block md:text-sm">
+                    {t('M7')}
+                  </p>
                 </div>
               </div>
 
@@ -185,7 +237,7 @@ export default function PostCard({
                     height={24}
                     className={`${
                       index !== 0 && '-ml-5'
-                    } rounded-full object-cover`}
+                    } rounded-full object-fill`}
                   />
                 ))}
 

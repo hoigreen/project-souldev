@@ -27,7 +27,7 @@ export default function useInfiniteQueryPosts({
 
       return response;
     },
-    queryKey: ['infinite-get-posts'],
+    queryKey: ['infinite-get-posts', initialData],
   });
 
   return query;

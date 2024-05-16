@@ -46,7 +46,12 @@ const ReactPost = ({
         )}
       />
 
-      <p className={cn('text-sm font-medium', isLiked && 'text-red-500')}>
+      <p
+        className={cn(
+          'hidden text-xs font-medium sm:block md:text-sm',
+          isLiked && 'text-red-500',
+        )}
+      >
         {t('M9')}
       </p>
     </div>

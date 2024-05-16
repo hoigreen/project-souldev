@@ -29,7 +29,7 @@ export async function RightSidebar({ className, ...props }: RightSidebarProps) {
     <aside
       {...props}
       className={cn(
-        'custom-scrollbar sticky bottom-0 right-0 top-[4.375rem] z-20 flex w-80 flex-col justify-between',
+        'custom-scrollbar fixed bottom-0 right-0 top-[4.375rem] z-20 flex w-80 flex-col justify-between',
         'gap-12 overflow-auto border-l bg-white px-10 pb-6 pt-28 text-white dark:bg-black max-xl:hidden',
         className,
       )}

@@ -23,7 +23,7 @@ export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
       {...props}
       className={cn(
         'custom-scrollbar bg-white dark:bg-black max-xl:hidden',
-        'sticky bottom-0 left-0 top-[4.375rem] z-20 flex w-80 flex-col justify-between overflow-auto border-r pb-5 pt-28 text-white',
+        'fixed bottom-0 left-0 top-[4.375rem] z-20 flex w-80 flex-col justify-between overflow-auto border-r pb-5 pt-28 text-white',
         className,
       )}
     >

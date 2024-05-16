@@ -12,7 +12,7 @@ export async function getPosts(query?: Query): Promise<PostsResponse> {
   );
 }
 
-export async function createPost(body: PostBody): Promise<void> {
+export async function createPost(body: FormData): Promise<void> {
   return await requestService.post(endpoints.posts.add, body);
 }
 

@@ -15,6 +15,7 @@ import { ActionPost } from '@/lib/definitions';
 import { PostSchema, postSchema } from '@/lib/validations/post';
 import { usePathname, useRouter } from '@/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -23,6 +24,8 @@ type PostFormProps = {
 };
 
 export default function PostForm({ action }: PostFormProps): React.JSX.Element {
+  const [files, setFiles] = React.useState<File[]>([]);
+  const t = useTranslations('Post');
   const router = useRouter();
   const pathname = usePathname();
 
@@ -34,10 +37,12 @@ export default function PostForm({ action }: PostFormProps): React.JSX.Element {
   });
 
   const onSubmit = async (values: PostSchema) => {
+    const formData = new FormData();
+    formData.append('content', values.content);
+    formData.append('image', files[0]);
+
     if (action === ActionPost.Create) {
-      await createPost({
-        content: values.content,
-      });
+      await createPost(formData);
     } else {
       // await editThread({
       //   threadId,

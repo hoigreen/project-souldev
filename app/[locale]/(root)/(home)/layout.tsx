@@ -16,18 +16,16 @@ export default function HomeLayout({
 
   return (
     <Fragment>
-      <main className="bg-gray-100 dark:bg-neutral-900">
+      <main className="min-h-[calc(100vh-4.125rem)] bg-gray-100 dark:bg-neutral-900">
         <Headerbar />
 
-        <div className="flex">
-          <LeftSidebar className="h-[calc(100vh-4.125rem)]" />
-
-          <div className="mx-auto w-full max-w-4xl flex-1 py-2 md:py-4">
+        <LeftSidebar />
+        <div className="xl:px-80">
+          <div className="mx-auto min-h-[calc(100vh-4.125rem)] w-full max-w-3xl flex-1 p-2 px-4 md:px-0 md:py-4">
             {children}
           </div>
-
-          <RightSidebar className="h-[calc(100vh-4.125rem)]" />
         </div>
+        <RightSidebar />
       </main>
 
       <Dialogs />

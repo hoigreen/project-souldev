@@ -70,6 +70,7 @@ export default function ListPostsClient({
           createdAt={item.createdAt}
           comments={[]}
           currentUserId={currentUserId}
+          images={item.images}
         />
       ))}
 
