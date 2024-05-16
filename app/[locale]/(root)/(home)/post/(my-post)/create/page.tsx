@@ -1,16 +1,23 @@
 import { Heading } from '@/components/app/heading';
-import PostCard from '@/components/app/post/post-card';
-import getSession from '@/lib/get-session';
-import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
+import CreatePostBox from '@/components/app/post/create-post-box';
+import {
+  getTranslations,
+  unstable_setRequestLocale as unstableSetRequestLocale,
+} from 'next-intl/server';
 
 export default async function Page({
-  params: { locale, postId },
+  params: { locale },
 }: {
-  params: { locale: string; postId: string };
+  params: { locale: string };
 }) {
   unstableSetRequestLocale(locale);
+  const t = await getTranslations('Post');
 
   return (
-    <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12"></div>
+    <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
+      <Heading title={t('M1')} />
+
+      <CreatePostBox />
+    </div>
   );
 }

@@ -101,3 +101,12 @@ export interface PostsResponse {
 export interface Like {
   user_id: UserProfile;
 }
+
+export interface PostBody {
+  content: string;
+}
+
+export enum ActionPost {
+  Create = 'create',
+  Update = 'update',
+}

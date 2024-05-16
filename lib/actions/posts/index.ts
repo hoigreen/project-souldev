@@ -1,6 +1,6 @@
 'use server';
 
-import { PostsResponse } from '@/lib/definitions';
+import { PostBody, PostsResponse } from '@/lib/definitions';
 import { Params, Query } from '@/lib/url-builder';
 import { endpoints } from '@/services/endpoints';
 import requestService from '@/services/request-service';
@@ -10,6 +10,10 @@ export async function getPosts(query?: Query): Promise<PostsResponse> {
   return await requestService.get(
     getEndpoint({ path: '/api/post/get-posts', query }),
   );
+}
+
+export async function createPost(body: PostBody): Promise<void> {
+  return await requestService.post(endpoints.posts.add, body);
 }
 
 export async function likePost(params: Params): Promise<void> {
