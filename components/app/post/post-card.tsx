@@ -9,8 +9,8 @@ import { useTranslations } from 'next-intl';
 import ReactPost from './react-post';
 import Carousel from '@/components/ui/app/carousel';
 import { ViewImageDialog } from '@/components/ui/dialogs/view-image-dialog';
-import { markdownToHTML } from '@/lib/markdown';
 import { Typography } from '@/components/ui/typography';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 // import DeleteThread from "../forms/DeleteThread";
 // import EditThread from "../atoms/EditThread";
 // import ReactThread from "../atoms/ReactThread";
@@ -225,7 +225,7 @@ export default function PostCard({
         </div>
       </div>
 
-      <div className="flex flex-row gap-2">
+      <div className="flex items-center gap-2">
         {!isComment && (
           <>
             {comments.length > 0 && (
@@ -261,16 +261,13 @@ export default function PostCard({
             {likes.length > 0 && (
               <div className="ml-1 mt-3 flex items-center gap-2">
                 {likes.slice(0, 2).map((like, index) => (
-                  <Image
+                  <Avatar
+                    className={cn('size-6', index !== 0 && '-ml-5')}
                     key={index}
-                    src={like.user_id.image}
-                    alt={`user_${index}`}
-                    width={24}
-                    height={24}
-                    className={`${
-                      index !== 0 && '-ml-5'
-                    } rounded-full object-cover`}
-                  />
+                  >
+                    <AvatarImage src={like.user_id.image} alt="Avatar" />
+                    <AvatarFallback>{like.user_id.first_name}</AvatarFallback>
+                  </Avatar>
                 ))}
 
                 <Link href={`/thread/reactions/${id}`}>
