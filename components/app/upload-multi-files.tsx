@@ -70,9 +70,7 @@ export function UploadMultipleFiles({
                     >
                       <input {...getInputProps()} />
                       <Add variant="TwoTone" />
-                      <p className="mt-2 text-xs text-neutral-600">
-                        {t('T_0213')}
-                      </p>
+                      <p className="mt-2 text-xs text-neutral-600">{t('M1')}</p>
                     </div>
                   )}
                 </Dropzone>

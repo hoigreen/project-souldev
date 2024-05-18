@@ -116,7 +116,8 @@
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^5.2.0",
     "vaul": "^0.8.9",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",

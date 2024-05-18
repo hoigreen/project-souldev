@@ -5,6 +5,7 @@ import PageNotFoundImage from '@/public/illustrations/404.svg';
 import ServerErrorImage from '@/public/illustrations/500.svg';
 import UnauthorizedImage from '@/public/illustrations/401.svg';
 import React from 'react';
+import Image from 'next/image';
 
 export enum ErrorStageType {
   PageNotFound = 'PageNotFound', // eslint-disable-line no-unused-vars -- used
@@ -30,10 +31,12 @@ const errorStageTypeMap: ErrorStageTypeMap = {
     description: 'The resource you are looking for does not exist.',
     href: '/',
     image: (
-      <PageNotFoundImage
+      <Image
+        src={PageNotFoundImage}
+        width={282}
+        height={219}
         className="aspect-[282/219] h-auto max-w-full"
-        height="219"
-        width="282"
+        alt="Page not found"
       />
     ),
     title: 'Resource not found',
@@ -43,10 +46,12 @@ const errorStageTypeMap: ErrorStageTypeMap = {
     description: 'The page you are looking for does not exist.',
     href: '/',
     image: (
-      <PageNotFoundImage
+      <Image
+        src={PageNotFoundImage}
+        width={282}
+        height={219}
         className="aspect-[282/219] h-auto max-w-full"
-        height="219"
-        width="282"
+        alt="Page not found"
       />
     ),
     title: 'Page not found',
@@ -57,10 +62,12 @@ const errorStageTypeMap: ErrorStageTypeMap = {
       'The server has been deserted for a while. Try to refresh this page or feel free to contact us if the problem persists.',
     href: '/',
     image: (
-      <ServerErrorImage
+      <Image
+        src={ServerErrorImage}
+        width={275}
+        height={240}
         className="aspect-[275/240] h-auto max-w-full"
-        height="240"
-        width="275"
+        alt="Server error"
       />
     ),
     title: 'Internal Server Error',
@@ -70,10 +77,12 @@ const errorStageTypeMap: ErrorStageTypeMap = {
     description: 'You are not authorized to access this page.',
     href: '/',
     image: (
-      <UnauthorizedImage
+      <Image
+        src={UnauthorizedImage}
+        width={284}
+        height={245}
         className="aspect-[284/245] h-auto max-w-full"
-        height="245"
-        width="284"
+        alt="Unauthorized"
       />
     ),
     title: 'Unauthorized',

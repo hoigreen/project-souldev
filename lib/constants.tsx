@@ -77,3 +77,7 @@ export const routesLink4: RoutesLink[] = [
 export const FACEBOOK_URL_REGEX = /^(https?:\/\/)?(?:www\.)?facebook\.com/;
 export const TWITTER_URL_REGEX = /^(https?:\/\/)?(?:www\.)?twitter\.com/;
 export const GITHUB_URL_REGEX = /^(https?:\/\/)?(?:www\.)?github\.com/;
+
+export enum Modals {
+  CreatePost = 'CreatePost',
+}

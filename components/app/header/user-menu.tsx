@@ -1,5 +1,6 @@
 'use client';
 
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import signOut from '@/lib/sign-out';
+import { AvatarFallback } from '@radix-ui/react-avatar';
 import { cva, VariantProps } from 'class-variance-authority';
 import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
@@ -36,22 +38,21 @@ export const UserMenu: FC<UserMenuProps> = ({ className, ...props }) => {
       {user && (
         <DropdownMenu>
           <DropdownMenuTrigger className="data-state-open:bg-neutral-300 relative flex items-center gap-4 rounded-full p-1 transition hover:bg-neutral-300">
-            <Image
-              alt={user?.first_name ?? 'User'}
-              className="rounded-full border-2 border-neutral-200 object-cover object-center"
-              height={32}
-              src={user?.image || '/images/default-user.jpg'}
-              width={32}
-            />
+            <Avatar>
+              <AvatarImage src={user.image} alt="Avatar" />
+              <AvatarFallback>{user.first_name}</AvatarFallback>
+            </Avatar>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="min-w-60">
             <DropdownMenuLabel>{t('M1')}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href={''}>{t('M2')}</Link>
+              <Link href="/setting" className="text-base">
+                {t('M2')}
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem
-              className="text-red-500"
+              className="text-base font-medium text-red-500 hover:text-red-600"
               onSelect={() => signOut()}
             >
               {t('M3')}

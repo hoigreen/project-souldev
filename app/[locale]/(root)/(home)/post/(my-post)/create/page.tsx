@@ -1,5 +1,6 @@
 import { Heading } from '@/components/app/heading';
-import CreatePostBox from '@/components/app/post/create-post-box';
+import PostForm from '@/components/app/post/form';
+import { ActionPost } from '@/lib/definitions';
 import {
   getTranslations,
   unstable_setRequestLocale as unstableSetRequestLocale,
@@ -17,7 +18,7 @@ export default async function Page({
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
       <Heading title={t('M1')} />
 
-      <CreatePostBox />
+      <PostForm action={ActionPost.Create} />
     </div>
   );
 }

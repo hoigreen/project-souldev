@@ -1,5 +1,6 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
+import CreatePostBox from '@/components/app/post/create-post-box';
 import ListPostsClient from '@/components/app/post/list-posts-client';
 import { getPosts } from '@/lib/actions/posts';
 import { Post, SearchParams } from '@/lib/definitions';
@@ -43,6 +44,8 @@ export default async function HomePage({
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
       <Heading title={t('M1')} />
+
+      <CreatePostBox user={session.user} />
 
       {/* Filter */}
 

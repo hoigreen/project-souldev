@@ -20,6 +20,7 @@ type PostFormProps = {
   postId?: string;
   className?: string;
   initialData?: string;
+  onPostCreated?: () => void;
 };
 
 export default function PostForm({
@@ -27,12 +28,12 @@ export default function PostForm({
   postId,
   className,
   initialData,
+  onPostCreated,
 }: PostFormProps): React.JSX.Element {
   const [files, setFiles] = React.useState<File[]>([]);
   const t = useTranslations('Post');
   const [isPending, startTransition] = React.useTransition();
   const router = useRouter();
-  const pathname = usePathname();
 
   const {
     setValue,
@@ -67,6 +68,10 @@ export default function PostForm({
       router.replace('/home');
       router.prefetch('/home');
     });
+
+    if (onPostCreated) {
+      onPostCreated();
+    }
   };
 
   return (

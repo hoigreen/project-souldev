@@ -187,7 +187,10 @@
     "M6": "Comment",
     "M7": "Share",
     "M8": "So long ago",
-    "M9": "Like"
+    "M9": "Like",
+    "M10": "What're you think ...?",
+    "M11": "Post",
+    "M12": "Post created successfully!"
   },
   "Post": {
     "M1": "Create post",
