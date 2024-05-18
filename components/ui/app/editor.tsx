@@ -5,7 +5,6 @@ import React, { forwardRef, useRef } from 'react';
 import ReactQuill from 'react-quill';
 import { twMerge } from 'tailwind-merge';
 import 'react-quill/dist/quill.snow.css';
-import 'quill-emoji/dist/quill-emoji.css';
 
 const toolbarOptions = [
   ['bold', 'italic', 'underline'],
