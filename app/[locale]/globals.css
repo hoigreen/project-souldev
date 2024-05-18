@@ -88,3 +88,29 @@ html {
     background: #7878a3;
   }
 }
+
+.quill {
+  @apply flex w-full flex-row-reverse items-start gap-6 border-0;
+
+  .ql-snow {
+    .ql-editor {
+      @apply max-w-full;
+    }
+
+    &.ql-toolbar {
+      @apply flex w-60 flex-col items-center gap-2 rounded-xl border border-white/60 bg-white shadow-xl;
+    }
+
+    &.ql-snow span.ql-formats {
+      @apply mr-0;
+    }
+
+    &.ql-container {
+      @apply w-full grow overflow-hidden border-0;
+    }
+
+    .ql-editor {
+      @apply min-h-[32rem] rounded-xl border bg-white p-6 dark:bg-neutral-800;
+    }
+  }
+}

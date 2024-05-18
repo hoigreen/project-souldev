@@ -1,6 +1,6 @@
-// import cookie from '@/lib/cookie';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
 
 export interface RequestService {
   get: (
@@ -58,6 +58,20 @@ instance.interceptors.request.use((config: any) => {
     return config;
   }
 });
+
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    const status = error.response?.status || 500;
+    if (status === 401) {
+      NextResponse.redirect('/auth/sign-in');
+    } else {
+      return Promise.reject(error); // Delegate error to calling side
+    }
+  },
+);
 
 const response = (response: AxiosResponse) => response.data;
 

@@ -9,6 +9,8 @@ import { useTranslations } from 'next-intl';
 import ReactPost from './react-post';
 import Carousel from '@/components/ui/app/carousel';
 import { ViewImageDialog } from '@/components/ui/dialogs/view-image-dialog';
+import { markdownToHTML } from '@/lib/markdown';
+import { Typography } from '@/components/ui/typography';
 // import DeleteThread from "../forms/DeleteThread";
 // import EditThread from "../atoms/EditThread";
 // import ReactThread from "../atoms/ReactThread";
@@ -22,7 +24,7 @@ export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
     name: string;
     image: string;
   } | null;
-  createdAt?: string;
+  created?: string;
   comments: {
     author: {
       image: string;
@@ -40,7 +42,7 @@ export default function PostCard({
   content,
   author,
   page,
-  createdAt,
+  created,
   comments,
   likes,
   isComment,
@@ -82,11 +84,11 @@ export default function PostCard({
                 </Link>
                 <span className="flex items-center gap-2 text-xs font-light italic">
                   <Clock className="size-3" variant="TwoTone" />
-                  {createdAt ? formatDateString(createdAt) : t('M8')}
+                  {created ? formatDateString(created) : t('M8')}
                 </span>
               </div>
 
-              <p className="mt-2 text-sm">{content}</p>
+              <Typography content={content} />
 
               {/* Images */}
               {images.length <= 1 ? (
@@ -288,7 +290,7 @@ export default function PostCard({
           className="mt-5 flex items-center"
         >
           <p className="text-subtle-medium text-gray-1">
-            {createdAt ? formatDateString(createdAt) : 'So long ago'}
+            {created ? formatDateString(created) : 'So long ago'}
             {page && ` - ${page.name} Community`}
           </p>
 

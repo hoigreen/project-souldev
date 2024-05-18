@@ -12,8 +12,13 @@ export async function getPosts(query?: Query): Promise<PostsResponse> {
   );
 }
 
-export async function createPost(body: FormData): Promise<void> {
-  return await requestService.post(endpoints.posts.add, body);
+export async function createPost(formData: FormData): Promise<void> {
+  return await requestService.post(endpoints.posts.add, formData, {
+    headers: {
+      'Content-Type':
+        'multipart/form-data; boundary=<calculated when request is sent>',
+    },
+  });
 }
 
 export async function likePost(params: Params): Promise<void> {

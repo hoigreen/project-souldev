@@ -220,6 +220,12 @@
     "M28": "Comment updated successfully!",
     "M29": "Comment deleted successfully!",
     "M30": "Post created successfully!",
-    "M31": "Comment created successfully!"
+    "M31": "Comment created successfully!",
+    "M32": "Content",
+    "M33": "Write something ...",
+    "M34": "Images"
+  },
+  "Upload": {
+    "M1": "Add photos"
   }
 }

@@ -1,45 +1,57 @@
 'use client';
 
+import { Editor } from '@/components/ui/app/editor';
 import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
 import { createPost } from '@/lib/actions/posts';
 import { ActionPost } from '@/lib/definitions';
+import { htmlToMarkdown, markdownToHTML } from '@/lib/markdown';
+import { cn } from '@/lib/utils';
 import { PostSchema, postSchema } from '@/lib/validations/post';
 import { usePathname, useRouter } from '@/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { UploadMultipleFiles } from '../../upload-multi-files';
 
 type PostFormProps = {
   action: ActionPost;
+  postId?: string;
+  className?: string;
+  initialData?: string;
 };
 
-export default function PostForm({ action }: PostFormProps): React.JSX.Element {
+export default function PostForm({
+  action,
+  postId,
+  className,
+  initialData,
+}: PostFormProps): React.JSX.Element {
   const [files, setFiles] = React.useState<File[]>([]);
   const t = useTranslations('Post');
+  const [isPending, startTransition] = React.useTransition();
   const router = useRouter();
   const pathname = usePathname();
 
-  const form = useForm<PostSchema>({
+  const {
+    setValue,
+    getValues,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<PostSchema>({
     resolver: zodResolver(postSchema),
     defaultValues: {
-      content: '',
+      content: initialData,
     },
   });
 
   const onSubmit = async (values: PostSchema) => {
     const formData = new FormData();
     formData.append('content', values.content);
-    formData.append('image', files[0]);
+    files.forEach((file) => {
+      formData.append('image', file);
+    });
 
     if (action === ActionPost.Create) {
       await createPost(formData);
@@ -51,36 +63,37 @@ export default function PostForm({ action }: PostFormProps): React.JSX.Element {
       // });
     }
 
-    router.push('/home');
+    startTransition(() => {
+      router.replace('/home');
+      router.prefetch('/home');
+    });
   };
 
   return (
-    <Form {...form}>
-      <form
-        className="mt-10 flex flex-col justify-start gap-10"
-        onSubmit={form.handleSubmit(onSubmit)}
-      >
-        <FormField
-          control={form.control}
-          name="content"
-          render={({ field }) => (
-            <FormItem className="flex w-full flex-col gap-3">
-              <FormLabel className="text-light-2 text-base font-semibold">
-                Content
-              </FormLabel>
-              <FormControl className="no-focus border-dark-4 bg-dark-3 text-light-1 border">
-                <Textarea rows={15} {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+    <form
+      className={cn('space-y-4', className)}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className="space-y-2">
+        <Label htmlFor="content">{t('M32')}</Label>
+        <Editor
+          placeholder="Write something..."
+          className=""
+          value={markdownToHTML(getValues('content'))}
+          onChange={(value) => {
+            setValue('content', htmlToMarkdown(value) || '');
+          }}
         />
+      </div>
 
-        <Button type="submit" className="">
-          Create
-          {/* {threadId ? "Edit" : "Create"} Thread */}
-        </Button>
-      </form>
-    </Form>
+      <div className="space-y-2">
+        <Label htmlFor="content">{t('M34')}</Label>
+        <UploadMultipleFiles files={files} setFiles={setFiles} />
+      </div>
+
+      <Button type="submit" size="lg" disabled={isPending || isSubmitting}>
+        {postId ? t('M16') : t('M11')}
+      </Button>
+    </form>
   );
 }
