@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import type { EmblaOptionsType } from 'embla-carousel';
+// import type { EmblaOptionsType } from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import { cn } from '@/lib/utils';
 
@@ -20,7 +20,7 @@ export default function Carousel({
     viewport?: string;
     container?: string;
   };
-  options?: EmblaOptionsType;
+  options?: any;
 }): React.JSX.Element {
   const [emblaRef] = useEmblaCarousel(options, [
     Autoplay({
