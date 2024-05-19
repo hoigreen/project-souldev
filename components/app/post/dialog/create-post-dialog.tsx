@@ -16,7 +16,7 @@ export function CreatePostDialog(): React.JSX.Element {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="w-screen max-w-3xl p-3">
+      <DialogContent className="p-3">
         <PostForm
           action={ActionPost.Create}
           onPostCreated={() => {

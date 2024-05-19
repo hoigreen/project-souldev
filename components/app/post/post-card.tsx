@@ -99,16 +99,17 @@ export default function PostCard({
               {images.length <= 1 ? (
                 images.map((image, index) => (
                   <div className="flex flex-1 rounded-xl" key={index}>
-                    <div className="relative aspect-square size-full">
+                    <div className="relative size-full min-h-[24rem]">
                       <ViewImageDialog
                         alt={String(author.last_name)}
                         src={image}
                       >
                         <Image
                           alt={String(author.last_name)}
-                          fill
                           priority
                           src={image}
+                          fill
+                          className="object-contain object-left"
                         />
                       </ViewImageDialog>
                     </div>
@@ -123,10 +124,10 @@ export default function PostCard({
                 >
                   {images.map((image, index) => (
                     <div
-                      className="flex flex-[0_0_90%] overflow-hidden rounded-xl md:flex-[0_0_75%] lg:flex-[0_0_70%] xl:flex-[0_0_60%]"
+                      className="flex flex-[0_0_90%] overflow-hidden md:flex-[0_0_75%] lg:flex-[0_0_70%] xl:flex-[0_0_60%]"
                       key={index}
                     >
-                      <div className="relative aspect-square size-full">
+                      <div className="relative size-full min-h-[24rem]">
                         <ViewImageDialog
                           alt={String(author.last_name)}
                           src={image}
@@ -135,6 +136,7 @@ export default function PostCard({
                             alt={String(author.last_name)}
                             fill
                             priority
+                            className="object-contain object-left"
                             src={image}
                           />
                         </ViewImageDialog>
@@ -158,8 +160,6 @@ export default function PostCard({
                   isLike={likes.some(
                     (like) => like.user_id._id === currentUserId,
                   )}
-                  userId={author._id}
-                  isComment={isComment}
                 />
 
                 {/* Comment Post */}

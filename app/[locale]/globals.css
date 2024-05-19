@@ -87,10 +87,23 @@ html {
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #7878a3;
   }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
 }
 
 .quill {
-  @apply flex w-full flex-row-reverse items-start gap-6 border-0;
+  @apply flex w-full flex-col items-start gap-6 border-0 lg:flex-row-reverse;
 
   .ql-snow {
     .ql-editor {
@@ -98,11 +111,11 @@ html {
     }
 
     &.ql-toolbar {
-      @apply flex w-60 flex-col items-center gap-2 rounded-xl border border-white/60 bg-white shadow-xl;
+      @apply flex flex-wrap items-center gap-2 rounded-xl border bg-white shadow-xl lg:w-60 lg:flex-col;
     }
 
     &.ql-snow span.ql-formats {
-      @apply mr-0;
+      @apply lg:mr-0;
     }
 
     &.ql-container {
@@ -110,7 +123,7 @@ html {
     }
 
     .ql-editor {
-      @apply min-h-[32rem] rounded-xl border bg-white p-6 dark:bg-neutral-800;
+      @apply min-h-[20rem] rounded-xl border bg-white p-6 dark:bg-neutral-800 lg:min-h-[32rem];
     }
   }
 }

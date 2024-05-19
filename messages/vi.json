@@ -178,20 +178,6 @@
     "M24": "Đã có lỗi xảy ra, vui lòng thử lại",
     "M25": "Cập nhật thông tin thành công!"
   },
-  "Home": {
-    "M1": "Trang chủ",
-    "M2": "Không tìm thấy bài đăng",
-    "M3": "Đang tải thêm ...",
-    "M4": "Không có gì để hiển thị",
-    "M5": "Không có gì để tải thêm",
-    "M6": "Bình luận",
-    "M7": "Chia sẻ",
-    "M8": "Cách đây đã lâu",
-    "M9": "Thích",
-    "M10": "Bạn đang nghĩ gì thế ...?",
-    "M11": "Đăng bài",
-    "M12": "Tạo bài viết thành công!"
-  },
   "Post": {
     "M1": "Create post",
     "M2": "Comment",
@@ -230,5 +216,20 @@
   },
   "Upload": {
     "M1": "Thêm"
+  },
+  "Home": {
+    "M1": "Trang chủ",
+    "M2": "Không tìm thấy bài đăng",
+    "M3": "Đang tải thêm ...",
+    "M4": "Không có gì để hiển thị",
+    "M5": "Không có gì để tải thêm",
+    "M6": "Bình luận",
+    "M7": "Chia sẻ",
+    "M8": "Cách đây đã lâu",
+    "M9": "Thích",
+    "M10": "Bạn đang nghĩ gì thế ...?",
+    "M11": "Đăng bài",
+    "M12": "Tạo bài viết thành công!",
+    "M13": "Không có bình luận nào"
   }
 }

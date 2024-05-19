@@ -76,7 +76,7 @@ export default function CommentForm({
 
   return (
     <form
-      className="flex items-start gap-3 rounded-full border px-3 py-4"
+      className="flex items-start gap-3 px-3 py-4"
       onSubmit={handleSubmit(onSubmit)}
     >
       <Avatar className="size-10 border">

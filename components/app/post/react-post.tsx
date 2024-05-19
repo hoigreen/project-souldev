@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { usePathname, useRouter } from '@/navigation';
-import Image from 'next/image';
+import { useRouter } from '@/navigation';
 import { Heart } from 'iconsax-react';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
@@ -11,11 +10,11 @@ import { likePost, unlikePost } from '@/lib/actions/posts';
 const ReactPost = ({
   postId,
   isLike = false,
+  onReactedSuccess,
 }: {
   postId: string;
   isLike?: boolean;
-  isComment?: boolean;
-  userId?: string | null;
+  onReactedSuccess?: () => void;
 }): React.JSX.Element => {
   const [isLiked, setIsLiked] = React.useState(isLike);
   const t = useTranslations('Home');
@@ -30,6 +29,7 @@ const ReactPost = ({
 
     setIsLiked(!isLiked);
     router.refresh();
+    onReactedSuccess && onReactedSuccess();
   };
 
   return (

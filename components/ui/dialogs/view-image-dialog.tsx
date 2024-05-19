@@ -27,7 +27,7 @@ export function ViewImageDialog({
     <Dialog {...props}>
       <DialogTrigger asChild>{children}</DialogTrigger>
 
-      <DialogContent className="min-h-[calc(90vh)] overflow-hidden bg-black sm:min-h-[calc(100vh-160px)]">
+      <DialogContent className="h-[calc(90vh)] overflow-hidden bg-black sm:h-[calc(100vh-160px)]">
         <Image fill alt={alt} className="object-contain px-5 py-10" src={src} />
       </DialogContent>
     </Dialog>

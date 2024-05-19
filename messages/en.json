@@ -178,20 +178,6 @@
     "M24": "Something went wrong, please try again.",
     "M25": "Update avatar successfully!"
   },
-  "Home": {
-    "M1": "Home",
-    "M2": "No posts found",
-    "M3": "Loading ...",
-    "M4": "Nothing to show",
-    "M5": "Nothing more to load",
-    "M6": "Comment",
-    "M7": "Share",
-    "M8": "So long ago",
-    "M9": "Like",
-    "M10": "What're you think ...?",
-    "M11": "Post",
-    "M12": "Post created successfully!"
-  },
   "Post": {
     "M1": "Create post",
     "M2": "Comment",
@@ -226,9 +212,25 @@
     "M31": "Comment created successfully!",
     "M32": "Content",
     "M33": "Write something ...",
-    "M34": "Images"
+    "M34": "Images",
+    "M35": "No comments yet"
   },
   "Upload": {
     "M1": "Add photos"
+  },
+  "Home": {
+    "M1": "Home",
+    "M2": "No posts found",
+    "M3": "Loading ...",
+    "M4": "Nothing to show",
+    "M5": "Nothing more to load",
+    "M6": "Comment",
+    "M7": "Share",
+    "M8": "So long ago",
+    "M9": "Like",
+    "M10": "What're you think ...?",
+    "M11": "Post",
+    "M12": "Post created successfully!",
+    "M13": "No comments yet"
   }
 }

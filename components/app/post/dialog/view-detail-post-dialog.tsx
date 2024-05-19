@@ -24,7 +24,6 @@ import ReactPost from '../react-post';
 import { useSession } from 'next-auth/react';
 import { MessageText1, Send } from 'iconsax-react';
 import CommentForm from '../form/comment-form';
-import { useRouter } from '@/navigation';
 
 export function ViewDetailPostDialog(): React.JSX.Element {
   const [postData, setPostData] =
@@ -76,10 +75,11 @@ export function ViewDetailPostDialog(): React.JSX.Element {
   return (
     <Dialog open={isOpen} onOpenChange={handleCloseDialog}>
       <DialogContent
-        className={cn(
-          'flex w-screen gap-10 bg-background p-3',
-          isHasImage ? 'max-w-7xl' : 'max-w-4xl',
-        )}
+        className={cn(isHasImage ? 'max-w-7xl' : 'max-w-4xl')}
+        classNames={{
+          children:
+            'flex flex-col gap-4 bg-background p-3 lg:flex-row lg:gap-10',
+        }}
       >
         <div
           className={cn(
@@ -96,6 +96,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
                     fill
                     priority
                     src={image as string}
+                    className="object-contain"
                   />
                 </div>
               </div>
@@ -113,6 +114,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
                             fill
                             priority
                             src={image}
+                            className="object-contain"
                           />
                         </CardContent>
                       </Card>
@@ -129,7 +131,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
         <div
           className={cn(
             'space-y-6 bg-background',
-            isHasImage ? 'w-lg' : 'w-full',
+            isHasImage ? 'w-full lg:max-w-lg' : 'w-full',
           )}
         >
           <div className="space-y-4 rounded-xl bg-neutral-100 p-4 dark:bg-neutral-700">
@@ -168,7 +170,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
                 isLike={postData.likes.some(
                   (like) => like.user_id._id === session?.user._id,
                 )}
-                userId={postData.user_id._id}
+                onReactedSuccess={() => setIsUpdateData(true)}
               />
             </div>
 
@@ -205,42 +207,43 @@ export function ViewDetailPostDialog(): React.JSX.Element {
 
           <hr className="h-px bg-neutral-200" />
 
-          <div className="h-full max-h-lvh space-y-4 overflow-auto">
-            {!comments ? (
-              <p className="text-center text-lg font-semibold">{t('M2')}</p>
-            ) : (
-              comments.map((comment, index) => (
-                <div className="space-y-2" key={index}>
-                  <div key={index} className="flex items-center gap-3">
-                    <Avatar className="size-10">
-                      <AvatarImage
-                        src={comment.user_id.image}
-                        alt={String(comment.user_id.last_name)}
-                      />
-                      <AvatarFallback>
-                        {comment.user_id.first_name.charAt(0)}
-                        {comment.user_id.last_name.charAt(0)}
-                      </AvatarFallback>
-                    </Avatar>
+          <div className="space-y-4 overflow-auto pb-10">
+            {comments &&
+              (comments.length === 0 ? (
+                <p className="text-center text-sm">{t('M13')}</p>
+              ) : (
+                comments.map((comment, index) => (
+                  <div className="space-y-2" key={index}>
+                    <div key={index} className="flex items-center gap-3">
+                      <Avatar className="size-10">
+                        <AvatarImage
+                          src={comment.user_id.image}
+                          alt={String(comment.user_id.last_name)}
+                        />
+                        <AvatarFallback>
+                          {comment.user_id.first_name.charAt(0)}
+                          {comment.user_id.last_name.charAt(0)}
+                        </AvatarFallback>
+                      </Avatar>
 
-                    <div className="flex grow items-center justify-between">
-                      <p className="text-base font-medium">
-                        {getFullName(
-                          comment.user_id.first_name,
-                          comment.user_id.last_name,
-                        )}
-                      </p>
+                      <div className="flex grow items-center justify-between">
+                        <p className="text-base font-medium">
+                          {getFullName(
+                            comment.user_id.first_name,
+                            comment.user_id.last_name,
+                          )}
+                        </p>
 
-                      <span className="text-sm italic">
-                        {formatDateString(comment.date)}
-                      </span>
+                        <span className="text-sm italic">
+                          {formatDateString(comment.date)}
+                        </span>
+                      </div>
                     </div>
-                  </div>
 
-                  <p className="text-sm">{comment.text}</p>
-                </div>
-              ))
-            )}
+                    <p className="text-sm">{comment.text}</p>
+                  </div>
+                ))
+              ))}
           </div>
         </div>
       </DialogContent>
