@@ -9,3 +9,13 @@ export const postSchema = z.object({
 });
 
 export type PostSchema = z.infer<typeof postSchema>;
+
+export const commentSchema = z.object({
+  content: z
+    .string({
+      required_error: 'Please enter comment.',
+    })
+    .min(1, 'Please enter comment.'),
+});
+
+export type CommentSchema = z.infer<typeof commentSchema>;

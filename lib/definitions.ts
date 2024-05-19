@@ -115,8 +115,28 @@ export interface ViewDetailPostData {
   postId: string;
 }
 
+export interface UserBasic {
+  _id: string;
+  first_name: string;
+  last_name: string;
+  image: string;
+}
+
+export interface Comment {
+  _id: string;
+  user_id: UserBasic;
+  post_id: string;
+  text?: string;
+  images: [];
+  date: string;
+}
 export interface PostDetailResponse {
   success: boolean;
   post_data: Post;
   comment_data: Comment[];
+}
+
+export interface AddCommentResponse {
+  success: boolean;
+  data: Comment;
 }

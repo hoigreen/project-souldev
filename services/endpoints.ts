@@ -43,4 +43,16 @@ export const endpoints = {
     // POST unlike post
     unlike: '/api/post/unlike/:postId',
   },
+
+  comment: {
+    getCommentsByPostId: '/api/comment/get-comments/:postId',
+
+    add: '/api/comment/add-comment/:postId',
+
+    // POST like comment
+    like: '/api/comment/like/:commentId',
+
+    // POST unlike comment
+    unlike: '/api/comment/unlike/:commentId',
+  },
 };
