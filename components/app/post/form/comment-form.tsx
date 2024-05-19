@@ -102,7 +102,7 @@ export default function CommentForm({
           </div>
 
           <Button
-            className="h-10 rounded-full"
+            className="hidden h-10 rounded-full md:block"
             size="lg"
             type="submit"
             disabled={isSubmitting}

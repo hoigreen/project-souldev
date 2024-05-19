@@ -1,11 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { cn, formatDateString, getFullName } from '@/lib/utils';
+import { cn, calculateTime, getFullName } from '@/lib/utils';
 import React from 'react';
-import { Like, UserProfile, ViewDetailPostData } from '@/lib/definitions';
+import {
+  Like,
+  Locale,
+  UserProfile,
+  ViewDetailPostData,
+} from '@/lib/definitions';
 import { Clock, MessageText1, Send } from 'iconsax-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import ReactPost from './react-post';
 import Carousel from '@/components/ui/app/carousel';
 import { ViewImageDialog } from '@/components/ui/dialogs/view-image-dialog';
@@ -55,6 +60,7 @@ export default function PostCard({
   const { onOpen: onOpenViewDetailPost } = useModalActions<ViewDetailPostData>(
     Modals.ViewDetailPost,
   );
+  const locale = useLocale();
 
   return (
     <div
@@ -89,7 +95,7 @@ export default function PostCard({
                 </Link>
                 <span className="flex items-center gap-2 text-xs font-light italic">
                   <Clock className="size-3" variant="TwoTone" />
-                  {created ? formatDateString(created) : t('M8')}
+                  {created ? calculateTime(created, locale as Locale) : t('M8')}
                 </span>
               </div>
 
@@ -283,7 +289,7 @@ export default function PostCard({
           className="mt-5 flex items-center"
         >
           <p className="text-subtle-medium text-gray-1">
-            {created ? formatDateString(created) : 'So long ago'}
+            {created ? calculateTime(created, locale as Locale) : 'So long ago'}
             {page && ` - ${page.name} Community`}
           </p>
 

@@ -2,9 +2,10 @@
 
 import pluralize from 'pluralize';
 import React, { forwardRef, useRef } from 'react';
-import ReactQuill from 'react-quill';
 import { twMerge } from 'tailwind-merge';
 import 'react-quill/dist/quill.snow.css';
+import { Loader2Icon } from 'lucide-react';
+import dynamic from 'next/dynamic';
 
 const toolbarOptions = [
   ['bold', 'italic', 'underline'],
@@ -21,9 +22,21 @@ const toolbarOptions = [
   ['clean'],
 ];
 
+const Quill = dynamic(() => import('react-quill'), {
+  loading: () => (
+    <div className="divide-y overflow-hidden rounded-t-md border">
+      <div className="flex h-[clamp(3rem,50vh,var(--ui-editor-max-height))] flex-col items-center justify-center gap-2">
+        <Loader2Icon className="animate-spin text-neutral-900" />
+        <p className="text-sm text-neutral-500">Loading...</p>
+      </div>
+    </div>
+  ),
+  ssr: false,
+});
+
 export const Editor = forwardRef<
-  React.ElementRef<typeof ReactQuill>,
-  React.ComponentPropsWithoutRef<typeof ReactQuill> & {
+  React.ElementRef<typeof Quill>,
+  React.ComponentPropsWithoutRef<typeof Quill> & {
     disabled?: boolean;
   }
 >(({ className, disabled, onChange, modules, ...props }, _) => {
@@ -43,7 +56,7 @@ export const Editor = forwardRef<
 
   return (
     <div className={twMerge(className)}>
-      <ReactQuill
+      <Quill
         modules={{
           clipboard: {
             matchVisual: false,

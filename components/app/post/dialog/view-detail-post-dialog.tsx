@@ -78,12 +78,12 @@ export function ViewDetailPostDialog(): React.JSX.Element {
         className={cn(isHasImage ? 'max-w-7xl' : 'max-w-4xl')}
         classNames={{
           children:
-            'flex flex-col gap-4 bg-background p-3 lg:flex-row lg:gap-10',
+            'flex flex-col gap-4 bg-background md:p-3 lg:flex-row lg:gap-10',
         }}
       >
         <div
           className={cn(
-            'flex grow items-center justify-center p-3',
+            'flex grow items-center justify-center md:p-3',
             !isHasImage && 'hidden',
           )}
         >

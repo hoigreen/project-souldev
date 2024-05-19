@@ -33,7 +33,7 @@ export default function CreatePostBox({
           className="h-14 grow border-none"
         />
 
-        <Button className="h-14 rounded-full" size="lg">
+        <Button className="hidden h-14 rounded-full md:block" size="lg">
           {t('M11')}
         </Button>
       </div>

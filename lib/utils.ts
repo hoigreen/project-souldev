@@ -1,5 +1,7 @@
 import { type ClassValue, clsx } from 'clsx';
+import { format, isToday } from 'date-fns';
 import { twMerge } from 'tailwind-merge';
+import { Locale } from './definitions';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -53,3 +55,42 @@ export function getFullName(
 ) {
   return [firstName, lastName].filter(Boolean).join(' ');
 }
+
+export const checkUndefined = (data: any): boolean => {
+  return data === 'undefined' || data.length === 0;
+};
+
+export function isFutureDate(date: string): boolean {
+  // Date is in ISO 8601 format
+  const currentDate = new Date();
+  const inputDate = new Date(date);
+
+  return inputDate > currentDate;
+}
+
+export const calculateTime = (datetime: string, locale?: Locale) => {
+  const date = new Date(datetime);
+  const localeString = locale || 'en';
+  if (isToday(date)) {
+    if (localeString === 'en') {
+      return `${format(date, 'HH:mm')} Today`;
+    }
+
+    return `${format(date, 'HH:mm')} Hôm nay`;
+  }
+
+  return format(date, 'HH:mm dd/LL');
+};
+
+export const getRelativeUnixDays = (
+  startUnixTime?: number,
+  endUnixTime?: number,
+) => {
+  if (!startUnixTime || !endUnixTime) {
+    return 0;
+  }
+
+  const timeDiff = endUnixTime - startUnixTime;
+
+  return Math.floor(timeDiff / (1000 * 3600 * 24));
+};

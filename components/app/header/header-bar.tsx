@@ -7,6 +7,9 @@ import LogoTextDarkSvg from '@/public/logo-text-dark.svg';
 import { UserMenu } from './user-menu';
 import { NotificationsMenu } from './notifications-menu';
 import { MenuMobile } from './menu-mobile';
+import { Input } from '@/components/ui/input';
+import { useTranslations } from 'next-intl';
+import { SearchNormal } from 'iconsax-react';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: Headerbar
@@ -20,6 +23,7 @@ export type HeaderbarProps = HTMLAttributes<HTMLElement> &
   VariantProps<typeof headerbarVariants>;
 
 export function Headerbar({ className, ...props }: HeaderbarProps) {
+  const t = useTranslations('Home');
   return (
     <nav {...props} className={headerbarVariants({ className })}>
       <div className="flex items-center gap-3">
@@ -43,6 +47,18 @@ export function Headerbar({ className, ...props }: HeaderbarProps) {
       </div>
 
       {/* Searchbar */}
+      <div className="relative hidden w-full max-w-md grow md:block">
+        <Input
+          placeholder={t('M14')}
+          type="search"
+          className="h-14 text-base font-medium"
+        />
+
+        <SearchNormal
+          className="absolute right-3 top-1/2 size-8 -translate-y-1/2"
+          variant="TwoTone"
+        />
+      </div>
 
       {/* Avatar dropdown */}
       <div className="flex items-center gap-2 md:gap-3">

@@ -96,7 +96,12 @@ export default function PostForm({
         <UploadMultipleFiles files={files} setFiles={setFiles} />
       </div>
 
-      <Button type="submit" size="lg" disabled={isPending || isSubmitting}>
+      <Button
+        type="submit"
+        size="lg"
+        disabled={isPending || isSubmitting}
+        className="w-full"
+      >
         {postId ? t('M16') : t('M11')}
       </Button>
     </form>

@@ -1,6 +1,7 @@
 import { Heading } from '@/components/app/heading';
 import PostForm from '@/components/app/post/form';
 import { ActionPost } from '@/lib/definitions';
+import { Metadata } from 'next';
 import {
   getTranslations,
   unstable_setRequestLocale as unstableSetRequestLocale,
@@ -22,3 +23,7 @@ export default async function Page({
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  title: 'Create Post',
+};
