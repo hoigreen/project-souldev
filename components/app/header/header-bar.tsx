@@ -6,6 +6,7 @@ import LogoTextSvg from '@/public/logo-text.svg';
 import LogoTextDarkSvg from '@/public/logo-text-dark.svg';
 import { UserMenu } from './user-menu';
 import { NotificationsMenu } from './notifications-menu';
+import { MenuMobile } from './menu-mobile';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: Headerbar
@@ -21,22 +22,25 @@ export type HeaderbarProps = HTMLAttributes<HTMLElement> &
 export function Headerbar({ className, ...props }: HeaderbarProps) {
   return (
     <nav {...props} className={headerbarVariants({ className })}>
-      <Link href="/" title="SoulDev">
-        <Image
-          src={LogoTextSvg}
-          className="dark:hidden max-md:h-10 max-md:w-auto"
-          width={200}
-          height={40}
-          alt="SoulDev"
-        />
-        <Image
-          src={LogoTextDarkSvg}
-          className="hidden dark:block max-md:h-10"
-          width={200}
-          height={40}
-          alt="SoulDev"
-        />
-      </Link>
+      <div className="flex items-center gap-3">
+        <MenuMobile />
+        <Link href="/" title="SoulDev">
+          <Image
+            src={LogoTextSvg}
+            className="dark:hidden max-md:h-10 max-md:w-auto"
+            width={200}
+            height={40}
+            alt="SoulDev"
+          />
+          <Image
+            src={LogoTextDarkSvg}
+            className="hidden dark:block max-md:h-10"
+            width={200}
+            height={40}
+            alt="SoulDev"
+          />
+        </Link>
+      </div>
 
       {/* Searchbar */}
 
