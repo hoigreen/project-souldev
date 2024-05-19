@@ -75,6 +75,10 @@ export interface UserProfile {
   github: string;
 }
 
+export interface Like {
+  user_id: UserProfile;
+}
+
 export type Post = {
   _id: string;
   tittle: string;
@@ -83,7 +87,7 @@ export type Post = {
   content: string;
   images: [];
   id_category: string;
-  likes: [];
+  likes: Like[];
   shares: [];
   created?: string;
   __v?: number;
@@ -98,10 +102,6 @@ export interface PostsResponse {
   items: Post[];
 }
 
-export interface Like {
-  user_id: UserProfile;
-}
-
 export interface PostBody {
   content: string;
 }
@@ -109,4 +109,14 @@ export interface PostBody {
 export enum ActionPost {
   Create = 'create',
   Update = 'update',
+}
+
+export interface ViewDetailPostData {
+  postId: string;
+}
+
+export interface PostDetailResponse {
+  success: boolean;
+  post_data: Post;
+  comment_data: Comment[];
 }

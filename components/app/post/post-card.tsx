@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { cn, formatDateString, getFullName } from '@/lib/utils';
 import React from 'react';
-import { Like, UserProfile } from '@/lib/definitions';
+import { Like, UserProfile, ViewDetailPostData } from '@/lib/definitions';
 import { Clock, MessageText1, Send } from 'iconsax-react';
 import { useTranslations } from 'next-intl';
 import ReactPost from './react-post';
@@ -11,6 +11,8 @@ import Carousel from '@/components/ui/app/carousel';
 import { ViewImageDialog } from '@/components/ui/dialogs/view-image-dialog';
 import { Typography } from '@/components/ui/typography';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useModalActions } from '@/hooks/use-modal';
+import { Modals } from '@/lib/constants';
 // import DeleteThread from "../forms/DeleteThread";
 // import EditThread from "../atoms/EditThread";
 // import ReactThread from "../atoms/ReactThread";
@@ -50,6 +52,9 @@ export default function PostCard({
   images,
 }: PostCardProps): React.JSX.Element {
   const t = useTranslations('Home');
+  const { onOpen: onOpenViewDetailPost } = useModalActions<ViewDetailPostData>(
+    Modals.ViewDetailPost,
+  );
 
   return (
     <div
@@ -122,12 +127,17 @@ export default function PostCard({
                       key={index}
                     >
                       <div className="relative aspect-square size-full">
-                        <Image
+                        <ViewImageDialog
                           alt={String(author.last_name)}
-                          fill
-                          priority
                           src={image}
-                        />
+                        >
+                          <Image
+                            alt={String(author.last_name)}
+                            fill
+                            priority
+                            src={image}
+                          />
+                        </ViewImageDialog>
                       </div>
                     </div>
                   ))}
@@ -153,18 +163,19 @@ export default function PostCard({
                 />
 
                 {/* Comment Post */}
-                <Link href={`/post/${id}`}>
-                  <div className="flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1 hover:bg-neutral-100 dark:bg-neutral-600">
-                    <MessageText1
-                      variant="TwoTone"
-                      size={20}
-                      className="text-foreground"
-                    />
-                    <p className="hidden text-xs font-medium sm:block md:text-sm">
-                      {t('M6')}
-                    </p>
-                  </div>
-                </Link>
+                <div
+                  className="flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1 hover:bg-neutral-100 dark:bg-neutral-600"
+                  onClick={() => onOpenViewDetailPost({ postId: id })}
+                >
+                  <MessageText1
+                    variant="TwoTone"
+                    size={20}
+                    className="text-foreground"
+                  />
+                  <p className="hidden text-xs font-medium sm:block md:text-sm">
+                    {t('M6')}
+                  </p>
+                </div>
 
                 {/* Share post */}
                 <div className="flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1 hover:bg-neutral-100 dark:bg-neutral-600">
@@ -207,21 +218,6 @@ export default function PostCard({
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="flex flex-row gap-2">
-          {/* <DeleteThread
-            threadId={JSON.stringify(id)}
-            currentUserId={currentUserId}
-            authorId={author.id}
-            parentId={parentId}
-            isComment={isComment}
-          />
-          <EditThread
-            threadId={JSON.stringify(id)}
-            currentUserId={currentUserId}
-            authorId={author.id}
-          /> */}
         </div>
       </div>
 

@@ -17,7 +17,6 @@ export default function CreatePostBox({
   user,
 }: CreatePostBoxProps): React.JSX.Element {
   const t = useTranslations('Home');
-
   const { onOpen } = useModalActions(Modals.CreatePost);
 
   return (

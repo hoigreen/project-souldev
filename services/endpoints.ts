@@ -31,6 +31,9 @@ export const endpoints = {
     // GET /api/posts
     getAll: '/api/post/get-posts',
 
+    // GET /api/post/:postId
+    getPostById: '/api/post/:postId',
+
     // POST create post
     add: '/api/post/add-post',
 

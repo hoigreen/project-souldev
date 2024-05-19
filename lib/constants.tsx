@@ -80,4 +80,5 @@ export const GITHUB_URL_REGEX = /^(https?:\/\/)?(?:www\.)?github\.com/;
 
 export enum Modals {
   CreatePost = 'CreatePost',
+  ViewDetailPost = 'ViewDetailPost',
 }
