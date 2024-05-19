@@ -113,7 +113,7 @@ export default function UserOnboarding() {
 
   useEffect(() => {
     setImageUrl(user.image);
-  }, []);
+  }, [user.image]);
 
   return (
     <SectionContainer className="w-full space-y-6 pb-8 md:max-w-3xl md:pb-0">
@@ -140,7 +140,7 @@ export default function UserOnboarding() {
             />
           ) : (
             <Profile
-              className="h-30 w-30 rounded-full border bg-neutral-50 text-neutral-400"
+              className="size-30 rounded-full border bg-neutral-50 text-neutral-400"
               variant="Bold"
             />
           )}

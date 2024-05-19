@@ -80,12 +80,12 @@ export default function Features({
           {items.map((item, index) => (
             <div
               key={index}
-              className="lg:spacey-4 space-y-2 md:mx-auto md:space-y-3 xl:space-x-6 2xl:space-y-8"
+              className="space-y-2 md:mx-auto md:space-y-3 lg:space-y-4 xl:space-x-6 2xl:space-y-8"
             >
               <div className="max-w-32 md:mx-auto md:max-w-40 lg:max-w-44 xl:max-w-48 2xl:max-w-52">
                 <Image
                   alt={item.title}
-                  className="aspect-square h-full w-full"
+                  className="aspect-square size-full"
                   src={item.icon}
                 />
               </div>

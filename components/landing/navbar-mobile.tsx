@@ -41,19 +41,19 @@ export default function NavbarMobile({
         </DrawerTrigger>
 
         <DrawerContent>
-          <div className="relative ml-auto h-screen w-full max-w-sm space-y-12 overflow-auto bg-background p-6 pt-[4.5rem] md:pt-[5.375rem] lg:pt-[6.5rem]">
+          <div className="relative ml-auto h-screen w-full max-w-sm space-y-12 overflow-auto bg-background p-6 pt-18 md:pt-[5.375rem] lg:pt-[6.5rem]">
             <div className="fixed inset-0 top-12 flex justify-between px-6 py-2">
               <Link href="/" title="SoulDev">
                 <Image
                   src={LogoTextSvg}
-                  className="dark:hidden max-md:h-[2.5rem] max-md:w-auto"
+                  className="dark:hidden max-md:h-10 max-md:w-auto"
                   width={200}
                   height={40}
                   alt="SoulDev"
                 />
                 <Image
                   src={LogoTextDarkSvg}
-                  className="hidden dark:block max-md:h-[2.5rem]"
+                  className="hidden dark:block max-md:h-10"
                   width={200}
                   height={40}
                   alt="SoulDev"

@@ -66,11 +66,10 @@ export default function ListPostsClient({
           id={item._id}
           content={item.content}
           author={item.user_id}
-          page={null}
           created={item.created}
-          comments={[]}
           currentUserId={currentUserId}
           images={item.images}
+          shares={item.shares}
         />
       ))}
 

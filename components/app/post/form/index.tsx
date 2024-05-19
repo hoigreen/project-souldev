@@ -8,7 +8,7 @@ import { ActionPost } from '@/lib/definitions';
 import { htmlToMarkdown, markdownToHTML } from '@/lib/markdown';
 import { cn } from '@/lib/utils';
 import { PostSchema, commentSchema } from '@/lib/validations/post';
-import { usePathname, useRouter } from '@/navigation';
+import { useRouter } from '@/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import React from 'react';

@@ -19,3 +19,9 @@ export const commentSchema = z.object({
 });
 
 export type CommentSchema = z.infer<typeof commentSchema>;
+
+export const sharePostSchema = z.object({
+  description: z.string().optional(),
+});
+
+export type SharePostSchema = z.infer<typeof sharePostSchema>;

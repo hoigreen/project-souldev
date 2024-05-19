@@ -59,7 +59,7 @@ export default function AboutUs({
 
         <Image
           alt="Hero Image"
-          className="aspect-square h-full w-full md:max-w-md lg:max-w-xl xl:max-w-3xl"
+          className="aspect-square size-full md:max-w-md lg:max-w-xl xl:max-w-3xl"
           priority
           src={HERO_IMAGE}
         />

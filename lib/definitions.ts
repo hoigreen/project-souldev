@@ -48,14 +48,14 @@ export type OnboardingRequestBody = {
 };
 
 export enum AuthType {
-  Local = 'local',
-  Google = 'google',
-  Github = 'github',
+  Local = 'local', // eslint-disable-line no-unused-vars
+  Google = 'google', // eslint-disable-line no-unused-vars
+  Github = 'github', // eslint-disable-line no-unused-vars
 }
 
 export enum IsVerifiedStatus {
-  Verified = 1,
-  NotVerified = 0,
+  Verified = 1, // eslint-disable-line no-unused-vars
+  NotVerified = 0, // eslint-disable-line no-unused-vars
 }
 
 export interface UserProfile {
@@ -79,6 +79,13 @@ export interface Like {
   user_id: UserProfile;
 }
 
+export interface Share {
+  user_id: string;
+  description: string;
+  _id: string;
+  createdAt?: string;
+}
+
 export type Post = {
   _id: string;
   tittle: string;
@@ -88,7 +95,7 @@ export type Post = {
   images: [];
   id_category: string;
   likes: Like[];
-  shares: [];
+  shares: Share[];
   created?: string;
   __v?: number;
   createdAt?: string;
@@ -107,8 +114,8 @@ export interface PostBody {
 }
 
 export enum ActionPost {
-  Create = 'create',
-  Update = 'update',
+  Create = 'create', // eslint-disable-line no-unused-vars
+  Update = 'update', // eslint-disable-line no-unused-vars
 }
 
 export interface ViewDetailPostData {
@@ -139,4 +146,17 @@ export interface PostDetailResponse {
 export interface AddCommentResponse {
   success: boolean;
   data: Comment;
+}
+
+export interface SharePostData {
+  postId: string;
+}
+
+export interface SharePostBody {
+  description?: string;
+}
+
+export interface SharePostResponse {
+  success: boolean;
+  data: any;
 }

@@ -79,6 +79,7 @@ export const TWITTER_URL_REGEX = /^(https?:\/\/)?(?:www\.)?twitter\.com/;
 export const GITHUB_URL_REGEX = /^(https?:\/\/)?(?:www\.)?github\.com/;
 
 export enum Modals {
-  CreatePost = 'CreatePost',
-  ViewDetailPost = 'ViewDetailPost',
+  CreatePost = 'CreatePost', // eslint-disable-line no-unused-vars
+  ViewDetailPost = 'ViewDetailPost', // eslint-disable-line no-unused-vars
+  SharePost = 'SharePost', // eslint-disable-line no-unused-vars
 }

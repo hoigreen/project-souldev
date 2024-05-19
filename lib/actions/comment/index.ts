@@ -1,7 +1,7 @@
 'use server';
 
 import { AddCommentResponse } from '@/lib/definitions';
-import { Params, Query } from '@/lib/url-builder';
+import { Params } from '@/lib/url-builder';
 import { endpoints } from '@/services/endpoints';
 import requestService from '@/services/request-service';
 import { getEndpoint } from '@/services/url';

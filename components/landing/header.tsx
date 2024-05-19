@@ -37,14 +37,14 @@ export default function Header({ className, routes, ...props }: HeaderProps) {
         <Link href="/" title="SoulDev">
           <Image
             src={LogoTextSvg}
-            className="dark:hidden max-md:h-[2.5rem] max-md:w-auto"
+            className="dark:hidden max-md:h-10 max-md:w-auto"
             width={200}
             height={40}
             alt="SoulDev"
           />
           <Image
             src={LogoTextDarkSvg}
-            className="hidden dark:block max-md:h-[2.5rem]"
+            className="hidden dark:block max-md:h-10"
             width={200}
             height={40}
             alt="SoulDev"

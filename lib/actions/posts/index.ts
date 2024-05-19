@@ -1,6 +1,11 @@
 'use server';
 
-import { PostBody, PostDetailResponse, PostsResponse } from '@/lib/definitions';
+import {
+  PostDetailResponse,
+  PostsResponse,
+  SharePostBody,
+  SharePostResponse,
+} from '@/lib/definitions';
 import { Params, Query } from '@/lib/url-builder';
 import { endpoints } from '@/services/endpoints';
 import requestService from '@/services/request-service';
@@ -36,6 +41,16 @@ export async function likePost(params: Params): Promise<void> {
 export async function unlikePost(params: Params): Promise<void> {
   return await requestService.post(
     getEndpoint({ path: endpoints.posts.unlike, params }),
+  );
+}
+
+export async function sharePost(
+  params: Params,
+  body: SharePostBody,
+): Promise<SharePostResponse> {
+  return await requestService.post(
+    getEndpoint({ path: endpoints.posts.sharePost, params }),
+    body,
   );
 }
 

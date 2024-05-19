@@ -28,7 +28,7 @@ export default function ButtonLink({
   ...props
 }: ButtonLinkProps) {
   return (
-    <Link href={link} {...props} className="item-center flex gap-2">
+    <Link href={link} {...props} className="flex items-center gap-2">
       {iconPosition === 'left' && icon}
       <Button
         variant={buttonVariant}

@@ -66,7 +66,7 @@ export function UploadMultipleFiles({
                   {({ getRootProps, getInputProps }) => (
                     <div
                       {...getRootProps()}
-                      className="bg-neutral hover:border-primary-500/80 flex size-30 cursor-pointer flex-col items-center justify-center rounded-xl border border-neutral-300"
+                      className="flex size-30 cursor-pointer flex-col items-center justify-center rounded-xl border border-neutral-300 bg-white hover:border-primary/80"
                     >
                       <input {...getInputProps()} />
                       <Add variant="TwoTone" />

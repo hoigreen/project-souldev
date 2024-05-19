@@ -91,11 +91,11 @@ export default function CommentForm({
               type="text"
               name="content"
               placeholder={t('M6')}
-              className="h-10 w-full border-none"
+              className="size-full border-none"
               onChange={(e) => setValue('content', e.target.value)}
             />
 
-            <Image
+            <Image // eslint-disable-line jsx-a11y/alt-text -- Image at here is icon
               className="absolute inset-y-1 right-2 size-8 rounded-full border bg-neutral-50 p-0.75"
               onClick={() => setShowAddImages(!showAddImages)}
             />

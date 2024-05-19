@@ -1,6 +1,6 @@
 'use client';
 
-import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,11 +10,9 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import signOut from '@/lib/sign-out';
-import { AvatarFallback } from '@radix-ui/react-avatar';
 import { cva, VariantProps } from 'class-variance-authority';
 import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
 import Link from 'next/link';
 import { FC, HTMLAttributes } from 'react';
 

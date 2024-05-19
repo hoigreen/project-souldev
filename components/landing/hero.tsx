@@ -25,7 +25,7 @@ export default function Hero({
       <Container className="flex w-full flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-0">
         <Image
           alt="Hero"
-          className="aspect-[4/3] h-full w-full md:max-w-md lg:max-w-2xl xl:max-w-4xl"
+          className="aspect-[4/3] size-full md:max-w-md lg:max-w-2xl xl:max-w-4xl"
           priority
           src={BANNER_IMAGE}
         />

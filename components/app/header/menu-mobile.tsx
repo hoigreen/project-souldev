@@ -2,12 +2,7 @@
 
 import { useState } from 'react';
 import { HambergerMenu } from 'iconsax-react';
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerTrigger,
-} from '@/components/ui/drawer';
+import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import { LeftSidebar } from '../left-sidebar';
 
 export function MenuMobile() {

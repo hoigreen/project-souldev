@@ -232,6 +232,10 @@
     "M11": "Post",
     "M12": "Post created successfully!",
     "M13": "No comments yet",
-    "M14": "Search ..."
+    "M14": "Search ...",
+    "M15": "Something went wrong, please try again.",
+    "M16": "Shared post successfully!",
+    "M17": "Share post with your thoughts",
+    "M18": "Loading ..."
   }
 }

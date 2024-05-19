@@ -30,6 +30,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
     React.useState<PostDetailResponse['post_data']>();
   const [comments, setComments] =
     React.useState<PostDetailResponse['comment_data']>();
+  const [isUpdateData, setIsUpdateData] = React.useState(false);
   const isOpen = useModalOpen(Modals.ViewDetailPost);
   const { onClose } = useModalActions(Modals.ViewDetailPost);
   const { postId } = useModalData<ViewDetailPostData>(Modals.ViewDetailPost, {
@@ -37,7 +38,6 @@ export function ViewDetailPostDialog(): React.JSX.Element {
   });
   const t = useTranslations('Home');
   const { data: session } = useSession();
-  const [isUpdateData, setIsUpdateData] = React.useState(false);
 
   async function getPostDetails() {
     const response = await getPostById({ postId });

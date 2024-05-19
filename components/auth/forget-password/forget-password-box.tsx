@@ -26,7 +26,7 @@ export function ForgetPasswordBox({
 
   return (
     <div {...props} className={forgetPasswordBoxVariants({ className })}>
-      <RefreshCcw className="h-12 w-12 text-primary" />
+      <RefreshCcw className="size-12 text-primary" />
 
       <div className="w-full space-y-4 text-center">
         <h1 className="text-lg font-bold text-primary lg:text-xl">

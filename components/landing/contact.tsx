@@ -9,7 +9,7 @@ import ContactForm from './contact-form';
  * ------------------------------------------------------------------------------------------------------------------ */
 
 const contactVariants = cva(
-  'bg-foreground py-6 md:py-[4rem] lg:py-[5rem] xl:py-[6rem] 2xl:py-[8rem]',
+  'bg-foreground py-6 md:py-16 lg:py-20 xl:py-24 2xl:py-32',
 );
 
 type ContactProps = React.HTMLAttributes<HTMLElement> &
