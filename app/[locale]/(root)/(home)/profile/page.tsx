@@ -1,3 +1,4 @@
+import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
 import { Card } from '@/components/ui/card';
 import { Loading } from '@/components/ui/loading';
@@ -32,6 +33,9 @@ export default async function ProfilePage({
   if (!user) return <Loading />;
 
   const userProfile = await getUserProfile();
+
+  if (!userProfile)
+    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
 
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">

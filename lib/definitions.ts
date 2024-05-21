@@ -160,3 +160,113 @@ export interface SharePostResponse {
   success: boolean;
   data: any;
 }
+
+export interface Follower {
+  user_id: UserBasic;
+}
+
+export interface Friend {
+  user_id: UserBasic;
+  date: string;
+}
+
+export interface Profile {
+  _id: string;
+  user_id: UserProfile;
+  company: string;
+  website: string;
+  address: any;
+  // address: [
+  //   {
+  //     user_id: {
+  //       type: Schema.Types.ObjectId,
+  //       ref: "users",
+  //       require: true,
+  //     },
+  //     city: {
+  //       type: String,
+  //     },
+  //     district: {
+  //       type: String,
+  //     },
+  //     ward: {
+  //       type: String,
+  //     },
+  //     location: {
+  //       type: String,
+  //     },
+  //   },
+  // ],
+  status: string;
+  skills: string[];
+  // skills: {
+  //   type: [String],
+  //   required: true,
+  // },
+  experience: any;
+  // experience: [
+  //   {
+  //     title: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     company: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     location: {
+  //       type: String,
+  //     },
+  //     from: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     to: {
+  //       type: String,
+  //     },
+  //     current: {
+  //       type: Boolean,
+  //       default: false,
+  //     },
+  //     description: {
+  //       type: String,
+  //     },
+  //   },
+  // ],
+  education: any;
+  // education: [
+  //   {
+  //     school: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     degree: {
+  //       type: String,
+  //       required: true,
+  //     },
+  //     from: {
+  //       type: Date,
+  //       required: true,
+  //     },
+  //     to: {
+  //       type: Date,
+  //     },
+  //     current: {
+  //       type: Boolean,
+  //       default: false,
+  //     },
+  //     description: {
+  //       type: String,
+  //     },
+  //   },
+  // ],
+  followings: Follower[];
+  followers: Follower[];
+  friends: Friend[];
+  friend_requests: Friend[];
+}
+
+export interface ProfileResponse {
+  success: boolean;
+  data: Profile;
+}

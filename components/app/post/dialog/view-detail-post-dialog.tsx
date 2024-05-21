@@ -8,7 +8,7 @@ import React, { useEffect } from 'react';
 import { PostDetailResponse, ViewDetailPostData } from '@/lib/definitions';
 import { getPostById } from '@/lib/actions/posts';
 import { ErrorStage, ErrorStageType } from '../../error-stage';
-import { cn, formatDateString, getFullName } from '@/lib/utils';
+import { calculateTime, cn, getFullName } from '@/lib/utils';
 import {
   Carousel,
   CarouselContent,
@@ -207,7 +207,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
 
           <hr className="h-px bg-neutral-200" />
 
-          <div className="space-y-4 overflow-auto pb-10">
+          <div className="mt-10 space-y-4 overflow-auto rounded-lg border p-3">
             {comments &&
               (comments.length === 0 ? (
                 <p className="text-center text-sm">{t('M13')}</p>
@@ -235,7 +235,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
                         </p>
 
                         <span className="text-sm italic">
-                          {formatDateString(comment.date)}
+                          {calculateTime(comment.date)}
                         </span>
                       </div>
                     </div>

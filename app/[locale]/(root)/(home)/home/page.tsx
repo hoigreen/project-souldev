@@ -40,7 +40,7 @@ export default async function HomePage({
   const posts: Post[] = result.items;
 
   if (posts.length === 0) {
-    return <p className="text-center text-lg font-semibold">{t('M2')}</p>;
+    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
   }
 
   return (

@@ -1,9 +1,10 @@
 'use server';
 
+import { ProfileResponse } from '@/lib/definitions';
 import { endpoints } from '@/services/endpoints';
 import requestService from '@/services/request-service';
 
-export async function getUserProfile() {
+export async function getUserProfile(): Promise<ProfileResponse> {
   return await requestService.get(endpoints.profile.getProfile);
 }
 
