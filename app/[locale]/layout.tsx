@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
@@ -25,6 +25,12 @@ export const metadata: Metadata = {
   },
   description: 'Social network for developers - Soulmate of Dev',
 } satisfies Metadata;
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+};
 
 export default async function LocaleLayout({
   children,

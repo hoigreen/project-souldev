@@ -92,7 +92,7 @@ export default function SharePostForm({
             placeholder={t('M17')}
             className="size-full border-none"
             onChange={(e) => setValue('description', e.target.value)}
-            rows={15}
+            rows={8}
           />
         </div>
 
