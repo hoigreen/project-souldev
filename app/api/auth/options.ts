@@ -141,14 +141,14 @@ export const authOptions: NextAuthOptions = {
           terms: true,
         };
 
-        const data = await authGoogle(signUpData);
+        const res = await authGoogle(signUpData);
 
-        cookie.set({
-          name: process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
-          value: data.data.token as string,
-          expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
-          path: '/',
-        });
+        if (res.data.token) {
+          cookie.set({
+            name: process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
+            value: res.data.token,
+          });
+        }
       }
 
       if (account?.provider === 'github' && profile) {
@@ -164,12 +164,14 @@ export const authOptions: NextAuthOptions = {
 
         const data = await authGitHub(signUpData);
 
-        cookie.set({
-          name: process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
-          value: data.data.token as string,
-          expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
-          path: '/',
-        });
+        if (data.data.token) {
+          cookie.set({
+            name: process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
+            value: data.data.token as string,
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+            path: '/',
+          });
+        }
       }
       return true;
     },

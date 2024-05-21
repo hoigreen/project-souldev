@@ -2,6 +2,7 @@ import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
 import CreatePostBox from '@/components/app/post/create-post-box';
 import ListPostsClient from '@/components/app/post/list-posts-client';
+import { RightSidebar } from '@/components/app/right-sidebar';
 import { getPosts } from '@/lib/actions/posts';
 import { Post, SearchParams } from '@/lib/definitions';
 import getSession from '@/lib/get-session';
@@ -10,6 +11,7 @@ import {
   getTranslations,
   unstable_setRequestLocale as unstableSetRequestLocale,
 } from 'next-intl/server';
+import { Fragment } from 'react';
 
 export const metadata: Metadata = {
   title: 'Feeds',
@@ -42,18 +44,22 @@ export default async function HomePage({
   }
 
   return (
-    <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
-      <Heading title={t('M1')} />
+    <Fragment>
+      <div className="mx-auto w-full max-w-3xl space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
+        <Heading title={t('M1')} />
 
-      <CreatePostBox user={session.user} />
+        <CreatePostBox user={session.user} />
 
-      {/* Filter */}
+        {/* Filter */}
 
-      <ListPostsClient
-        searchParams={searchParams}
-        data={result}
-        currentUserId={session.user._id}
-      />
-    </div>
+        <ListPostsClient
+          searchParams={searchParams}
+          data={result}
+          currentUserId={session.user._id}
+        />
+      </div>
+
+      <RightSidebar />
+    </Fragment>
   );
 }

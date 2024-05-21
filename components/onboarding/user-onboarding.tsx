@@ -30,6 +30,7 @@ import toast from 'react-hot-toast';
 import { Label } from '../ui/label';
 import { useRouter } from '@/navigation';
 import { completeOnboarding, updateAvatar } from '@/lib/actions/users';
+import { createProfile } from '@/lib/actions/profile';
 
 export default function UserOnboarding() {
   const [isHover, setIsHover] = useState(false);
@@ -69,6 +70,7 @@ export default function UserOnboarding() {
     if (!response.success) {
       return toast.error(t('M24'));
     } else {
+      await createProfile();
       await update({ isOnboardingCompleted: true });
       startTransition(() => {
         router.push('/home');

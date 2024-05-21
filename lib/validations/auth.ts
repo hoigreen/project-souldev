@@ -47,7 +47,7 @@ export const signupSchema = z.object({
       required_error: 'Please enter a valid email address',
     })
     .email('Please enter a valid email address'),
-  phone: z
+  mobile: z
     .string({
       required_error: 'Phone is required!',
     })

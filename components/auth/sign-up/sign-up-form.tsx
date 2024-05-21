@@ -41,7 +41,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
       first_name: '',
       last_name: '',
       password: '',
-      phone: '',
+      mobile: '',
     },
     mode: 'all',
     resolver: zodResolver(signupSchema),
@@ -124,7 +124,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
 
             <FormField
               control={form.control}
-              name="phone"
+              name="mobile"
               render={({ field, formState }) => (
                 <FormItem>
                   <FormLabel>{t('M26')}</FormLabel>

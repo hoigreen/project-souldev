@@ -57,4 +57,9 @@ export const endpoints = {
     // POST unlike comment
     unlike: '/api/comment/unlike/:commentId',
   },
+
+  profile: {
+    createProfile: '/api/profile/create-profile',
+    getProfile: '/api/profile/get-profile',
+  },
 };
