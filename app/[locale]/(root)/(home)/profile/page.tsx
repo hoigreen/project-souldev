@@ -1,10 +1,9 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
-import { Card } from '@/components/ui/card';
-import { Loading } from '@/components/ui/loading';
+import ProfileCard from '@/components/profile/profile-card';
+import { countMyPosts } from '@/lib/actions/posts';
 import { getUserProfile } from '@/lib/actions/profile';
 import { SearchParams } from '@/lib/definitions';
-import getSession from '@/lib/get-session';
 import { Metadata } from 'next';
 import {
   getTranslations,
@@ -12,8 +11,7 @@ import {
 } from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: 'Feeds',
-  description: 'Discover the latest news and stories',
+  title: 'Profile',
 };
 
 export default async function ProfilePage({
@@ -26,26 +24,26 @@ export default async function ProfilePage({
   unstableSetRequestLocale(locale);
   const t = await getTranslations('Home');
 
-  const session = await getSession();
+  const userProfileResponse = await getUserProfile();
+  const countPosts = await countMyPosts();
 
-  const user = session?.user;
+  if (!userProfileResponse)
+    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
 
-  if (!user) return <Loading />;
-
-  const userProfile = await getUserProfile();
-
-  if (!userProfile)
+  if (!countPosts)
     return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
 
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
       <Heading title={t('M19')} />
 
-      {/* <ProfileCard user={ } /> */}
+      {/* Profile info */}
+      <ProfileCard
+        profile={userProfileResponse.data}
+        countPosts={countPosts.data}
+      />
 
-      <Card className="flex items-center justify-between p-4 md:p-6">
-        <div></div>
-      </Card>
+      {/* Tabs */}
     </div>
   );
 }

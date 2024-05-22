@@ -270,3 +270,8 @@ export interface ProfileResponse {
   success: boolean;
   data: Profile;
 }
+
+export interface countMyPostsResponse {
+  success: boolean;
+  data: number;
+}

@@ -50,6 +50,8 @@ export default async function HomePage({
 
         <CreatePostBox user={session.user} />
 
+        {/* List friend recommend */}
+
         {/* Filter */}
 
         <ListPostsClient

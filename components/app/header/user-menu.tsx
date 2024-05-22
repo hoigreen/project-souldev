@@ -45,7 +45,12 @@ export const UserMenu: FC<UserMenuProps> = ({ className, ...props }) => {
             <DropdownMenuLabel>{t('M1')}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="/setting" className="text-base">
+              <Link href="/profile" className="text-base">
+                {t('M4')}
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/account-setting" className="text-base">
                 {t('M2')}
               </Link>
             </DropdownMenuItem>

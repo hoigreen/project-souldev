@@ -143,7 +143,8 @@
   "Account": {
     "M1": "Hồ sơ cá nhân",
     "M2": "Cài đặt",
-    "M3": "Đăng xuất"
+    "M3": "Đăng xuất",
+    "M4": "Thông tin cá nhân"
   },
   "Notifications": {
     "M1": "Thông báo",
@@ -230,6 +231,12 @@
     "M16": "Chia sẻ bài viết thành công!",
     "M17": "Chia sẻ bài viết cùng tâm trạng của bạn ...",
     "M18": "Đang tải ...",
-    "M19": "Hồ sơ cá nhân"
+    "M19": "Hồ sơ cá nhân",
+    "M20": "Chỉnh sửa hồ sơ",
+    "M21": "Tiểu sử",
+    "M22": "Bài viết",
+    "M23": "Người theo dõi",
+    "M24": "Đang theo dõi",
+    "M25": "Bạn bè"
   }
 }

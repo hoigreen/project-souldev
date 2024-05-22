@@ -5,6 +5,7 @@ import {
   PostsResponse,
   SharePostBody,
   SharePostResponse,
+  countMyPostsResponse,
 } from '@/lib/definitions';
 import { Params, Query } from '@/lib/url-builder';
 import { endpoints } from '@/services/endpoints';
@@ -15,6 +16,10 @@ export async function getPosts(query?: Query): Promise<PostsResponse> {
   return await requestService.get(
     getEndpoint({ path: endpoints.posts.getAll, query }),
   );
+}
+
+export async function countMyPosts(): Promise<countMyPostsResponse> {
+  return await requestService.get(endpoints.posts.countMyPosts);
 }
 
 export async function getPostById(params: Params): Promise<PostDetailResponse> {

@@ -143,7 +143,8 @@
   "Account": {
     "M1": "Profile",
     "M2": "Settings",
-    "M3": "Sign out"
+    "M3": "Sign out",
+    "M4": "General"
   },
   "Notifications": {
     "M1": "Notifications",
@@ -237,6 +238,12 @@
     "M16": "Shared post successfully!",
     "M17": "Share post with your thoughts",
     "M18": "Loading ...",
-    "M19": "Profile"
+    "M19": "Profile",
+    "M20": "Edit profile",
+    "M21": "Bio",
+    "M22": "Posts",
+    "M23": "Followers",
+    "M24": "Following",
+    "M25": "Friends"
   }
 }
