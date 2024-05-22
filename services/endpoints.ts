@@ -48,6 +48,8 @@ export const endpoints = {
     unlike: '/api/post/unlike/:postId',
 
     sharePost: '/api/post/share/:postId',
+
+    getMySharedPosts: '/api/post/my-posts-shared',
   },
 
   comment: {

@@ -23,6 +23,10 @@ export async function getMyPosts(): Promise<MyPostsResponse> {
   return await requestService.get(endpoints.posts.getMyPosts);
 }
 
+export async function getMySharedPosts(): Promise<MyPostsResponse> {
+  return await requestService.get(endpoints.posts.getMySharedPosts);
+}
+
 export async function countMyPosts(): Promise<countMyPostsResponse> {
   return await requestService.get(endpoints.posts.countMyPosts);
 }
