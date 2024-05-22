@@ -8,6 +8,7 @@ import { ResetPasswordForm } from './reset-password-form';
 import { Link } from '@/navigation';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { BackLink } from '@/components/app/back-link';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: ResetPasswordBox
@@ -31,6 +32,8 @@ export function ResetPasswordBox({
 
   return (
     <div {...props} className={resetPasswordBoxVariants({ className })}>
+      <BackLink href="/" label={t('M55')} />
+
       <h1 className="text-lg font-bold text-primary lg:text-xl">{t('M46')}</h1>
 
       {/* Form */}

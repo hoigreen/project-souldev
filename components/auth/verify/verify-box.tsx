@@ -1,7 +1,5 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Link } from '@/navigation';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
 import { useTranslations } from 'next-intl';
@@ -46,10 +44,6 @@ export function VerifyBox({ className, ...props }: VerifyBoxProps) {
       <p className="whitespace-normal text-center text-base lg:text-lg">
         {t('M31')}
       </p>
-
-      <Link href="/auth/sign-in">
-        <Button className="w-full">{t('M32')}</Button>
-      </Link>
     </div>
   );
 }

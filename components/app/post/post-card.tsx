@@ -22,7 +22,6 @@ import { useModalActions } from '@/hooks/use-modal';
 import { Modals } from '@/lib/constants';
 // import DeleteThread from "../forms/DeleteThread";
 // import EditThread from "../atoms/EditThread";
-// import ReactThread from "../atoms/ReactThread";
 
 export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   id: string;
@@ -46,6 +45,7 @@ export default function PostCard({
   images,
   shares,
 }: PostCardProps): React.JSX.Element {
+  const locale = useLocale();
   const t = useTranslations('Home');
   const { onOpen: onOpenViewDetailPost } = useModalActions<ViewDetailPostData>(
     Modals.ViewDetailPost,
@@ -54,8 +54,6 @@ export default function PostCard({
   const { onOpen: onOpenSharePost } = useModalActions<SharePostData>(
     Modals.SharePost,
   );
-
-  const locale = useLocale();
 
   return (
     <div
