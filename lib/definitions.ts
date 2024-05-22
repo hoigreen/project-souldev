@@ -275,3 +275,8 @@ export interface countMyPostsResponse {
   success: boolean;
   data: number;
 }
+
+export interface MyPostsResponse {
+  success: boolean;
+  data: Post[];
+}

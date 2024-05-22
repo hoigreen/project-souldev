@@ -1,6 +1,7 @@
 'use server';
 
 import {
+  MyPostsResponse,
   PostDetailResponse,
   PostsResponse,
   SharePostBody,
@@ -16,6 +17,10 @@ export async function getPosts(query?: Query): Promise<PostsResponse> {
   return await requestService.get(
     getEndpoint({ path: endpoints.posts.getAll, query }),
   );
+}
+
+export async function getMyPosts(): Promise<MyPostsResponse> {
+  return await requestService.get(endpoints.posts.getMyPosts);
 }
 
 export async function countMyPosts(): Promise<countMyPostsResponse> {

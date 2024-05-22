@@ -244,6 +244,10 @@
     "M22": "Posts",
     "M23": "Followers",
     "M24": "Following",
-    "M25": "Friends"
+    "M25": "Friends",
+    "M26": "Verified by",
+    "M27": "My posts",
+    "M28": "Shared",
+    "M29": "Saved"
   }
 }
