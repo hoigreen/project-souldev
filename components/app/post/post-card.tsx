@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
 import { cn, calculateTime, getFullName } from '@/lib/utils';
 import React from 'react';
 import {
@@ -32,6 +31,7 @@ export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   currentUserId: string;
   images: string[];
   shares: Share[];
+  onClickShare?: () => void;
 };
 
 export default function PostCard({
@@ -44,6 +44,7 @@ export default function PostCard({
   currentUserId,
   images,
   shares,
+  onClickShare,
 }: PostCardProps): React.JSX.Element {
   const locale = useLocale();
   const t = useTranslations('Home');
@@ -173,7 +174,11 @@ export default function PostCard({
                 {/* Share post */}
                 <div
                   className="flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1 hover:bg-neutral-100 dark:bg-neutral-600"
-                  onClick={() => onOpenSharePost({ postId: id })}
+                  onClick={() =>
+                    onClickShare
+                      ? onClickShare()
+                      : onOpenSharePost({ postId: id })
+                  }
                 >
                   <Send
                     variant="TwoTone"
