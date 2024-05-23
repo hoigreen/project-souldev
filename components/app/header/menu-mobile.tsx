@@ -15,7 +15,10 @@ export function MenuMobile() {
       </DrawerTrigger>
 
       <DrawerContent className="h-screen w-80">
-        <LeftSidebar className="top-0 max-xl:block" />
+        <LeftSidebar
+          className="top-0 max-xl:block"
+          onNavItemClick={() => setOpen(!open)}
+        />
       </DrawerContent>
     </Drawer>
   );

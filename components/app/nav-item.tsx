@@ -13,9 +13,15 @@ import { RoutesLink } from '@/lib/definitions';
 
 export type NavItemProps = React.HTMLAttributes<HTMLAnchorElement> & {
   link: RoutesLink;
+  onItemClicked?: () => void;
 };
 
-export function NavItem({ className, link, ...props }: NavItemProps) {
+export function NavItem({
+  className,
+  link,
+  onItemClicked,
+  ...props
+}: NavItemProps) {
   const t = useTranslations('SidebarLink');
   const pathname = usePathname();
 
@@ -33,10 +39,11 @@ export function NavItem({ className, link, ...props }: NavItemProps) {
         'rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-400',
         'text-neutral-800 hover:text-neutral-600 dark:text-neutral-200 dark:hover:text-neutral-800',
         isActive &&
-          'bg-neutral-900 text-white hover:bg-foreground hover:text-white dark:bg-neutral-200 dark:text-black dark:hover:text-neutral-800',
+          'bg-neutral-900 text-white hover:bg-foreground hover:text-white dark:bg-neutral-200 dark:text-black dark:hover:bg-neutral-200',
         className,
       )}
       {...props}
+      onClick={onItemClicked && onItemClicked}
     >
       {link.icon}
 

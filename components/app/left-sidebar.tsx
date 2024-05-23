@@ -15,9 +15,15 @@ import { NavItem } from './nav-item';
  * Component: LeftSidebar
  * ------------------------------------------------------------------------------------------------------------------ */
 
-export type LeftSidebarProps = HTMLAttributes<HTMLElement>;
+export type LeftSidebarProps = HTMLAttributes<HTMLElement> & {
+  onNavItemClick?: () => void;
+};
 
-export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
+export function LeftSidebar({
+  className,
+  onNavItemClick,
+  ...props
+}: LeftSidebarProps) {
   return (
     <aside
       {...props}
@@ -30,7 +36,11 @@ export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
       <div className="grow space-y-6">
         <div className="w-full space-y-2 px-6">
           {routesLink.map((link) => (
-            <NavItem key={link.label} link={link} />
+            <NavItem
+              key={link.label}
+              link={link}
+              onItemClicked={onNavItemClick}
+            />
           ))}
         </div>
 
@@ -38,7 +48,11 @@ export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
 
         <div className="px-6">
           {routesLink2.map((link) => (
-            <NavItem key={link.label} link={link} />
+            <NavItem
+              key={link.label}
+              link={link}
+              onItemClicked={onNavItemClick}
+            />
           ))}
         </div>
 
@@ -46,7 +60,11 @@ export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
 
         <div className="space-y-2 px-6">
           {routesLink3.map((link) => (
-            <NavItem key={link.label} link={link} />
+            <NavItem
+              key={link.label}
+              link={link}
+              onItemClicked={onNavItemClick}
+            />
           ))}
         </div>
       </div>
@@ -54,7 +72,11 @@ export function LeftSidebar({ className, ...props }: LeftSidebarProps) {
       {/* Action */}
       <div className="mt-10 space-y-2 px-6">
         {routesLink4.map((link) => (
-          <NavItem key={link.label} link={link} />
+          <NavItem
+            key={link.label}
+            link={link}
+            onItemClicked={onNavItemClick}
+          />
         ))}
 
         <SignOutButton className="w-full" />
