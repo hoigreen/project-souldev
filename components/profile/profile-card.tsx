@@ -69,7 +69,9 @@ export default function ProfileCard({
         </div>
 
         <div className="flex items-center justify-end gap-3 md:gap-4">
-          <Button size="lg">{t('M20')}</Button>
+          <Link href="/profile/edit">
+            <Button size="lg">{t('M20')}</Button>
+          </Link>
 
           <Link href="/account-setting">
             <Setting2 variant="TwoTone" size={26} />
