@@ -243,6 +243,21 @@
     "M27": "Bài viết của tôi",
     "M28": "Đã chia sẻ",
     "M29": "Đã lưu",
-    "M30": "Bạn đã share bài viết này rồi, không thể thực hiện lại"
+    "M30": "Bạn đã share bài viết này rồi, không thể thực hiện lại",
+    "M31": "Thông tin cơ bản",
+    "M32": "Lưu",
+    "M33": "Thoát",
+    "M34": "Tên thật",
+    "M35": "Vd. Harry",
+    "M36": "Họ",
+    "M37": "Vd. Potter",
+    "M38": "Liên kết facebook",
+    "M39": "Vd. https://facebook.com/harrypotter",
+    "M40": "Liên kết github",
+    "M41": "Vd. https://github.com/harrypotter",
+    "M42": "Số điện thoại",
+    "M43": "Vd. 0312345678",
+    "M44": "Tiểu sử",
+    "M45": "Vd. I'm a software developer"
   }
 }

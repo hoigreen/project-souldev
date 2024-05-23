@@ -11,6 +11,7 @@ import {
   UserAdd,
 } from 'iconsax-react';
 import { RoutesLink } from './definitions';
+import { z } from 'zod';
 
 export const routesLink: RoutesLink[] = [
   {
@@ -83,3 +84,16 @@ export enum Modals {
   ViewDetailPost = 'ViewDetailPost', // eslint-disable-line no-unused-vars
   SharePost = 'SharePost', // eslint-disable-line no-unused-vars
 }
+
+export const twitterUrlSchema = z
+  .string()
+  .regex(TWITTER_URL_REGEX, 'Please enter a valid Twitter URL')
+  .optional();
+export const facebookUrlSchema = z
+  .string()
+  .regex(FACEBOOK_URL_REGEX, 'Please enter a valid Facebook URL')
+  .optional();
+export const githubUrlSchema = z
+  .string()
+  .regex(GITHUB_URL_REGEX, 'Please enter a valid GitHub URL')
+  .optional();

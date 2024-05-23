@@ -250,6 +250,21 @@
     "M27": "My posts",
     "M28": "Shared",
     "M29": "Saved",
-    "M30": "You are shared this post, click to view"
+    "M30": "You are shared this post, click to view",
+    "M31": "Basic information",
+    "M32": "Save",
+    "M33": "Cancel",
+    "M34": "First name",
+    "M35": "Ex. Harry",
+    "M36": "Last name",
+    "M37": "Ex. Potter",
+    "M38": "Facebook link",
+    "M39": "Ex. https://facebook.com/harrypotter",
+    "M40": "Github",
+    "M41": "Ex. https://github.com/harrypotter",
+    "M42": "Phone number",
+    "M43": "Ex. 0312345678",
+    "M44": "Bio",
+    "M45": "Ex. I'm a software developer"
   }
 }

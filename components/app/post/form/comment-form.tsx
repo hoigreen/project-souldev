@@ -76,7 +76,7 @@ export default function CommentForm({
 
   return (
     <form
-      className="flex items-start gap-3 px-3 py-4"
+      className="flex items-start gap-1 px-3 py-4 md:gap-3"
       onSubmit={handleSubmit(onSubmit)}
     >
       <Avatar className="size-10 border">
@@ -91,12 +91,12 @@ export default function CommentForm({
               type="text"
               name="content"
               placeholder={t('M6')}
-              className="size-full border-none"
+              className="size-full border-none text-sm md:text-base"
               onChange={(e) => setValue('content', e.target.value)}
             />
 
             <Image // eslint-disable-line jsx-a11y/alt-text -- Image at here is icon
-              className="absolute inset-y-1 right-2 size-8 rounded-full border bg-neutral-50 p-0.75"
+              className="absolute inset-y-1 right-2 size-8 p-0.75"
               onClick={() => setShowAddImages(!showAddImages)}
             />
           </div>

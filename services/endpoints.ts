@@ -66,6 +66,9 @@ export const endpoints = {
 
   profile: {
     createProfile: '/api/profile/create-profile',
+
     getProfile: '/api/profile/get-profile',
+
+    getMySavedPosts: '/api/profile/my-posts-saved',
   },
 };

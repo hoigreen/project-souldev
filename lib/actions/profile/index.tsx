@@ -11,3 +11,7 @@ export async function getUserProfile(): Promise<ProfileResponse> {
 export async function createProfile() {
   return await requestService.post(endpoints.profile.createProfile);
 }
+
+export async function getMySavedPosts() {
+  return await requestService.get(endpoints.profile.getMySavedPosts);
+}

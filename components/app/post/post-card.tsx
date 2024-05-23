@@ -10,7 +10,7 @@ import {
   UserProfile,
   ViewDetailPostData,
 } from '@/lib/definitions';
-import { Clock, MessageText1, Send } from 'iconsax-react';
+import { ArchiveMinus, Clock, MessageText1, Send } from 'iconsax-react';
 import { useLocale, useTranslations } from 'next-intl';
 import ReactPost from './react-post';
 import Carousel from '@/components/ui/app/carousel';
@@ -19,8 +19,7 @@ import { Typography } from '@/components/ui/typography';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useModalActions } from '@/hooks/use-modal';
 import { Modals } from '@/lib/constants';
-// import DeleteThread from "../forms/DeleteThread";
-// import EditThread from "../atoms/EditThread";
+import AvatarUser from '@/components/ui/app/avatar-user';
 
 export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   id: string;
@@ -66,30 +65,36 @@ export default function PostCard({
       <div className="flex items-start justify-between">
         <div className="flex w-full flex-1 flex-row gap-4">
           <div className="flex flex-col items-center">
-            <Link href={`/people/${author._id}`} className="relative size-12">
-              <Image
+            <Link href={`/people/${author._id}`}>
+              <AvatarUser
                 src={author.image}
-                alt="Profile image"
-                fill
-                className="aspect-square cursor-pointer rounded-full border"
+                alt="Profile"
+                fallback={author.first_name}
+                className="aspect-square size-12 cursor-pointer rounded-full border"
               />
             </Link>
 
             <div className="relative mt-2 w-0.5 grow rounded-full bg-neutral-800 dark:bg-neutral-400" />
           </div>
 
-          <div className="min-h-24 flex-1 space-y-6">
-            <div className="grow space-y-3">
-              <div className="block space-y-0.5">
-                <Link href={`/people/${author._id}`} className="w-fit">
-                  <h4 className="cursor-pointer text-base font-semibold">
-                    {getFullName(author.first_name, author.last_name)}
-                  </h4>
-                </Link>
-                <span className="flex items-center gap-2 text-xs font-light italic">
-                  <Clock className="size-3" variant="TwoTone" />
-                  {created ? calculateTime(created, locale as Locale) : t('M8')}
-                </span>
+          <div className="flex-1 space-y-6">
+            <div className="space-y-3">
+              <div className="flex w-full justify-between">
+                <div className="block space-y-0.5">
+                  <Link href={`/people/${author._id}`} className="w-fit">
+                    <h4 className="cursor-pointer text-base font-semibold">
+                      {getFullName(author.first_name, author.last_name)}
+                    </h4>
+                  </Link>
+                  <span className="flex items-center gap-2 text-xs font-light italic">
+                    <Clock className="size-3" variant="TwoTone" />
+                    {created
+                      ? calculateTime(created, locale as Locale)
+                      : t('M8')}
+                  </span>
+                </div>
+
+                <ArchiveMinus size={24} variant="TwoTone" />
               </div>
 
               <Typography content={content} />
