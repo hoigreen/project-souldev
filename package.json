@@ -2,7 +2,7 @@
   "name": "project-souldev",
   "version": "1.0.0",
   "private": true,
-  "description": "Souldev project",
+  "description": "SoulDev - A platform for developers to share their mindset and knowledge",
   "scripts": {
     "build": "next build",
     "dev": "next dev",
