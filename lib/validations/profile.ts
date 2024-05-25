@@ -1,9 +1,5 @@
 import { z } from 'zod';
-import {
-  facebookUrlSchema,
-  githubUrlSchema,
-  twitterUrlSchema,
-} from '../constants';
+import { facebookUrlSchema, githubUrlSchema } from '../constants';
 
 export const profileBasicSchema = z.object({
   first_name: z.string().min(1, 'First name is required').max(128),

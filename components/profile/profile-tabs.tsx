@@ -39,7 +39,7 @@ export default function ProfileTabs({ className, ...props }: ProfileTabsProps) {
           key={tab.href}
           href={tab.href}
           className={cn(
-            'w-full grow border-b-2 px-5 py-2.75 text-center text-base transition-colors md:max-w-40 md:grow-0',
+            'w-full grow border-b-2 px-5 py-2.75 text-center text-sm transition-colors md:max-w-40 md:grow-0 md:text-base',
             pathname === tab.href
               ? 'border-primary font-bold'
               : 'border-transparent',

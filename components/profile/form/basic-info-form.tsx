@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { updateInfoBasic } from '@/lib/actions/users';
 import { UserProfile } from '@/lib/definitions';
 import { cn } from '@/lib/utils';
 import {
@@ -28,6 +29,7 @@ import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import React, { useCallback, useTransition } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 export function ProfileBasicInfoForm({
   className,
@@ -41,10 +43,6 @@ export function ProfileBasicInfoForm({
   const t = useTranslations('Home');
   const { data: session } = useSession();
   const user = session?.user as User;
-
-  if (!user) {
-    return <ErrorStage stage={ErrorStageType.Unauthorized} />;
-  }
 
   const form = useForm<ProfileBasicSchema>({
     defaultValues: {
@@ -60,137 +58,28 @@ export function ProfileBasicInfoForm({
 
   const handleSubmit = useCallback<SubmitHandler<ProfileBasicSchema>>(
     async (values): Promise<void> => {
-      // try {
-      //   if (values.attachment?.file) {
-      //     const formData = new FormData();
-      //     formData.append('file', values.attachment.file);
-      //     const { ok, body } = await uploadFile(formData, 'CV');
-      //     if (!ok) {
-      //       throw new ApiError(body.message, body.data);
-      //     }
-      //     values.attachment.file = undefined;
-      //     values.attachment.id = body.id;
-      //     values.attachment.name = body.name;
-      //     values.attachment.url = body.url;
-      //     form.setValue('attachment', values.attachment);
-      //   }
-      //   // Prepare data
-      //   const baseFormData: BaseCandidateBody = {
-      //     assigneeId: values.assigneeId || null,
-      //     attachmentId: values.attachment?.id || null,
-      //     avatar: null,
-      //     currentSalary: values.currentSalary,
-      //     educations:
-      //       values.educations.length === 0
-      //         ? []
-      //         : values.educations
-      //           .filter(({ institution, degree }) => institution || degree)
-      //           .map((education) => ({
-      //             degree: education.degree,
-      //             institution: education.institution,
-      //             toMonth: maybeNumber(education.to.month),
-      //             toYear: maybeNumber(education.to.year),
-      //           })),
-      //     email: values.email,
-      //     expectSalary: values.expectSalary,
-      //     firstName: values.firstName,
-      //     lastName: values.lastName,
-      //     linkedin: values.linkedInLink || null,
-      //     locationId: values.location || null,
-      //     noticeTime: values.noticeType
-      //       ? inverseCastNoticeTime(values.noticeTime)
-      //       : null,
-      //     phoneCode: values.phoneNumber.phoneNumber
-      //       ? values.phoneNumber.phoneCode
-      //       : null,
-      //     phoneNumber: values.phoneNumber.phoneNumber,
-      //     workExperiences:
-      //       values.workExperiences.length === 0
-      //         ? []
-      //         : values.workExperiences
-      //           .filter(
-      //             ({ companyName, position }) => companyName || position,
-      //           )
-      //           .map((workExperience) => ({
-      //             companyName: workExperience.companyName,
-      //             fromMonth: maybeNumber(workExperience.years.from.month),
-      //             fromYear: maybeNumber(workExperience.years.from.year),
-      //             position: workExperience.position,
-      //             toMonth: maybeNumber(workExperience.years.to.month),
-      //             toYear: maybeNumber(workExperience.years.to.year),
-      //           })),
-      //   };
-      //   /* API not accept value null/undefined/empty */
-      //   const skillsSanitized = values.skills.filter(({ skill }) => skill);
-      //   if (candidateId) {
-      //     // Update candidate
-      //     const formData: UpdateCandidateBody = {
-      //       ...baseFormData,
-      //       skills: [
-      //         ...skillsSanitized
-      //           .filter(({ skill }) => validate(skill))
-      //           .map(({ skill }) => ({
-      //             skillId: skill,
-      //           })),
-      //         ...skillsSanitized
-      //           .filter(({ skill }) => !validate(skill))
-      //           .map(({ skill }) => ({
-      //             newSkill: skill,
-      //           })),
-      //       ],
-      //     };
-      //     const { ok, body } = await updateCandidate(candidateId, formData);
-      //     if (!ok) {
-      //       throw new ApiError(body.message, body.data);
-      //     }
-      //     toast.success('Candidate updated', {
-      //       description: 'Candidate has been updated successfully',
-      //     });
-      //     startTransition(() => {
-      //       router.refresh();
-      //     });
-      //   } else {
-      //     // Create candidate
-      //     const formData: CreateCandidateBody = {
-      //       ...baseFormData,
-      //       skills: {
-      //         newSkills: skillsSanitized
-      //           .filter(({ skill }) => !validate(skill))
-      //           .map(({ skill }) => skill),
-      //         skillIds: skillsSanitized
-      //           .filter(({ skill }) => validate(skill))
-      //           .map(({ skill }) => skill),
-      //       },
-      //     };
-      //     const { ok, body } = await createCandidate([formData]);
-      //     if (!ok) {
-      //       throw new ApiError(body.message, body.data);
-      //     }
-      //     const reasons: Record<string, string>[] = [];
-      //     body.forEach((item) => {
-      //       if (item.status === 'rejected') {
-      //         reasons.push(item.reason);
-      //       }
-      //     });
-      //     if (reasons.length > 0) {
-      //       toast.error(`Candidate cannot be created: ${reasons.join(', ')}`);
-      //       return;
-      //     }
-      //     toast.success('Candidate has been created successfully');
-      //     form.reset();
-      //     startTransition(() => {
-      //       router.push(`/candidates`);
-      //       router.refresh();
-      //     });
-      //   }
-      // } catch (error) {
-      //   handleApiError(error, form, {
-      //     attachmentId: 'attachment',
-      //   });
-      // }
+      try {
+        const response = await updateInfoBasic(values);
+
+        if (!response.success) {
+          toast.error(t('M15'));
+          return;
+        }
+
+        startTransition(() => {
+          toast.success(t('M48'));
+          router.refresh();
+        });
+      } catch (error) {
+        toast.error(t('M15'));
+      }
     },
-    [form, router],
+    [t, form, router],
   );
+
+  if (!user) {
+    return <ErrorStage stage={ErrorStageType.Unauthorized} />;
+  }
 
   return (
     <Form {...form}>

@@ -26,6 +26,9 @@ export const endpoints = {
 
     // POST complete onboarding
     completeOnboarding: '/api/users/complete-onboarding/:_id',
+
+    // PUT update user
+    updateUserBasic: '/api/users/update-profile',
   },
   posts: {
     // GET /api/posts

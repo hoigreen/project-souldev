@@ -47,11 +47,11 @@ export default function ProfileCard({
                 profile.user_id.last_name,
               )}
             </h2>
-            <p className="flex items-center gap-2 text-sm md:text-base">
+            <p className="flex items-center gap-2 text-xs sm:text-sm md:text-base">
               <Mail className="size-4" />
               {profile.user_id.email}
             </p>
-            <p className="flex items-center gap-2 text-sm md:text-base">
+            <p className="flex items-center gap-2 text-xs sm:text-sm md:text-base">
               <PhoneCall className="size-4" />
               {profile.user_id.mobile}
             </p>
@@ -88,23 +88,23 @@ export default function ProfileCard({
         )}
 
         <div className="flex items-center gap-4 md:gap-6">
-          <p className="text-base">
+          <p className="text-xs sm:text-sm md:text-base">
             <span className="text-lg font-semibold">{countPosts}</span>{' '}
             {t('M22')}
           </p>
-          <p className="text-base">
+          <p className="text-xs sm:text-sm md:text-base">
             <span className="text-lg font-semibold">
               {profile.friends.length}
             </span>{' '}
             {t('M25')}
           </p>
-          <p className="text-base">
+          <p className="text-xs sm:text-sm md:text-base">
             <span className="text-lg font-semibold">
               {profile.followers.length}
             </span>{' '}
             {t('M23')}
           </p>
-          <p className="text-base">
+          <p className="text-xs sm:text-sm md:text-base">
             <span className="text-lg font-semibold">
               {profile.followings.length}
             </span>{' '}

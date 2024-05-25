@@ -1,6 +1,11 @@
 'use server';
 
-import { OnboardingRequestBody, SignupBody } from '@/lib/definitions';
+import {
+  OnboardingRequestBody,
+  SignupBody,
+  UpdateBasicInfoBody,
+  UpdateBasicInfoResponse,
+} from '@/lib/definitions';
 import { Params } from '@/lib/url-builder';
 import { endpoints } from '@/services/endpoints';
 import requestService from '@/services/request-service';
@@ -77,4 +82,10 @@ export async function completeOnboarding(
     getEndpoint({ path: endpoints.user.completeOnboarding, params }),
     body,
   );
+}
+
+export async function updateInfoBasic(
+  body: UpdateBasicInfoBody,
+): Promise<UpdateBasicInfoResponse> {
+  return requestService.put(endpoints.user.updateUserBasic, body);
 }

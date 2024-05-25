@@ -280,3 +280,18 @@ export interface MyPostsResponse {
   success: boolean;
   data: Post[];
 }
+
+export type UpdateBasicInfoBody = {
+  first_name: string;
+  last_name: string;
+  mobile: string;
+  twitter?: string;
+  facebook?: string;
+  github?: string;
+  bio?: string;
+};
+
+export type UpdateBasicInfoResponse = {
+  success: boolean;
+  data: UserBasic;
+};
