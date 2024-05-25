@@ -63,7 +63,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
     postData && postData?.images.length > 0;
 
   if (!postData) {
-    return <></>;
+    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
   }
 
   const handleCloseDialog = () => {
@@ -163,16 +163,15 @@ export function ViewDetailPostDialog(): React.JSX.Element {
           </div>
 
           <div className="flex gap-3.5">
-            <div className="flex items-center gap-0.5">
-              <p className="font-semibold">{postData.likes.length}</p>
-              <ReactPost
-                postId={postData._id}
-                isLike={postData.likes.some(
-                  (like) => like.user_id._id === session?.user._id,
-                )}
-                onReactedSuccess={() => setIsUpdateData(true)}
-              />
-            </div>
+            <ReactPost
+              postId={postData._id}
+              isLike={postData.likes.some(
+                (like) => like.user_id._id === session?.user._id,
+              )}
+              onReactedSuccess={() => setIsUpdateData(true)}
+              isInPost
+              totalLikes={postData.likes.length}
+            />
 
             <div className="flex items-center gap-1 rounded-lg bg-neutral-100 px-2 py-1 dark:bg-neutral-600">
               <MessageText1
@@ -192,7 +191,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
                 className="cursor-pointer text-foreground"
               />
               <p className="hidden text-xs font-medium sm:block md:text-sm">
-                {postData.shares.length}
+                {postData.shares.length ?? 0}
               </p>
             </div>
           </div>

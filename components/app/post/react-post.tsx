@@ -6,16 +6,21 @@ import { Heart } from 'iconsax-react';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import { likePost, unlikePost } from '@/lib/actions/posts';
+import { Button } from '@/components/ui/button';
 
-const ReactPost = ({
+export default function ReactPost({
   postId,
   isLike = false,
   onReactedSuccess,
+  totalLikes,
+  isInPost = false,
 }: {
   postId: string;
   isLike?: boolean;
   onReactedSuccess?: () => void;
-}): React.JSX.Element => {
+  totalLikes?: number;
+  isInPost?: boolean;
+}): React.JSX.Element {
   const [isLiked, setIsLiked] = React.useState(isLike);
   const t = useTranslations('Home');
   const router = useRouter();
@@ -33,8 +38,13 @@ const ReactPost = ({
   };
 
   return (
-    <div
-      className="flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1 hover:bg-neutral-100 dark:bg-neutral-600"
+    <Button
+      variant="ghost"
+      className={cn(
+        isInPost
+          ? 'gap-1 rounded-lg bg-neutral-100 px-2 py-1 dark:bg-neutral-600'
+          : 'grow gap-2 rounded px-4 py-3 hover:bg-neutral-100 dark:bg-neutral-600',
+      )}
       onClick={handleClick}
     >
       <Heart
@@ -45,17 +55,9 @@ const ReactPost = ({
           isLiked && 'text-red-500',
         )}
       />
-
-      <p
-        className={cn(
-          'hidden text-xs font-medium sm:block md:text-sm',
-          isLiked && 'text-red-500',
-        )}
-      >
-        {t('M9')}
+      <p className="text-xs font-medium md:text-sm">
+        {isInPost ? totalLikes ?? 0 : t('M9')}
       </p>
-    </div>
+    </Button>
   );
-};
-
-export default ReactPost;
+}

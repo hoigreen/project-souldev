@@ -1,6 +1,5 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { User } from 'next-auth';
 import React from 'react';
 import { useTranslations } from 'next-intl';

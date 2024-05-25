@@ -25,7 +25,7 @@ import { Heading } from '../app/heading';
 import { useTransition } from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from '@/navigation';
-import { completeOnboarding, updateAvatar } from '@/lib/actions/users';
+import { completeOnboarding } from '@/lib/actions/users';
 import { createProfile } from '@/lib/actions/profile';
 import { UploadAvatar } from '../app/upload-avatar';
 

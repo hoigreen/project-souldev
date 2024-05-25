@@ -16,10 +16,10 @@ import ReactPost from './react-post';
 import Carousel from '@/components/ui/app/carousel';
 import { ViewImageDialog } from '@/components/ui/dialogs/view-image-dialog';
 import { Typography } from '@/components/ui/typography';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useModalActions } from '@/hooks/use-modal';
 import { Modals } from '@/lib/constants';
 import AvatarUser from '@/components/ui/app/avatar-user';
+import { Button } from '@/components/ui/button';
 
 export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   id: string;
@@ -55,16 +55,30 @@ export default function PostCard({
     Modals.SharePost,
   );
 
+  const postActions = [
+    {
+      onClick: () => onOpenViewDetailPost({ postId: id }),
+      icon: MessageText1,
+      label: t('M6'),
+    },
+    {
+      onClick: () =>
+        onClickShare ? onClickShare() : onOpenSharePost({ postId: id }),
+      icon: Send,
+      label: t('M7'),
+    },
+  ];
+
   return (
     <div
       className={cn(
-        'flex w-full flex-col rounded-xl bg-white p-7 shadow-lg dark:bg-black',
+        'w-full rounded-xl bg-white p-7 shadow-lg dark:bg-black',
         className,
       )}
     >
-      <div className="flex items-start justify-between">
-        <div className="flex w-full flex-1 flex-row gap-4">
-          <div className="flex flex-col items-center">
+      <div className="space-y-3">
+        <div className="flex w-full justify-between">
+          <div className="flex gap-2">
             <Link href={`/people/${author._id}`}>
               <AvatarUser
                 src={author.image}
@@ -74,156 +88,119 @@ export default function PostCard({
               />
             </Link>
 
-            <div className="relative mt-2 w-0.5 grow rounded-full bg-neutral-800 dark:bg-neutral-400" />
-          </div>
-
-          <div className="flex-1 space-y-6">
-            <div className="space-y-3">
-              <div className="flex w-full justify-between">
-                <div className="block space-y-0.5">
-                  <Link href={`/people/${author._id}`} className="w-fit">
-                    <h4 className="cursor-pointer text-base font-semibold">
-                      {getFullName(author.first_name, author.last_name)}
-                    </h4>
-                  </Link>
-                  <span className="flex items-center gap-2 text-xs font-light italic">
-                    <Clock className="size-3" variant="TwoTone" />
-                    {created
-                      ? calculateTime(created, locale as Locale)
-                      : t('M8')}
-                  </span>
-                </div>
-
-                <ArchiveMinus size={24} variant="TwoTone" />
-              </div>
-
-              <Typography content={content} />
-
-              {/* Images */}
-              {images.length <= 1 ? (
-                images.map((image, index) => (
-                  <div className="flex flex-1 rounded-xl" key={index}>
-                    <div className="relative size-full min-h-96">
-                      <ViewImageDialog
-                        alt={String(author.last_name)}
-                        src={image}
-                      >
-                        <Image
-                          alt={String(author.last_name)}
-                          priority
-                          src={image}
-                          fill
-                          className="object-contain object-left"
-                        />
-                      </ViewImageDialog>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <Carousel
-                  classNames={{
-                    viewport: 'mx-auto',
-                    container: 'flex gap-3',
-                  }}
-                >
-                  {images.map((image, index) => (
-                    <div
-                      className="flex flex-[0_0_90%] overflow-hidden md:flex-[0_0_75%] lg:flex-[0_0_70%] xl:flex-[0_0_60%]"
-                      key={index}
-                    >
-                      <div className="relative size-full min-h-96">
-                        <ViewImageDialog
-                          alt={String(author.last_name)}
-                          src={image}
-                        >
-                          <Image
-                            alt={String(author.last_name)}
-                            fill
-                            priority
-                            className="object-contain object-left"
-                            src={image}
-                          />
-                        </ViewImageDialog>
-                      </div>
-                    </div>
-                  ))}
-                </Carousel>
-              )}
-            </div>
-
-            <div className="border-t border-neutral-200 pt-2 dark:border-neutral-700">
-              <div className="flex gap-3.5">
-                {/* React */}
-                <ReactPost
-                  postId={id}
-                  isLike={likes.some(
-                    (like) => like.user_id._id === currentUserId,
-                  )}
-                />
-
-                {/* Comment Post */}
-                <div
-                  className="flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1 hover:bg-neutral-100 dark:bg-neutral-600"
-                  onClick={() => onOpenViewDetailPost({ postId: id })}
-                >
-                  <MessageText1
-                    variant="TwoTone"
-                    size={20}
-                    className="text-foreground"
-                  />
-                  <p className="hidden text-xs font-medium sm:block md:text-sm">
-                    {t('M6')}
-                  </p>
-                </div>
-
-                {/* Share post */}
-                <div
-                  className="flex cursor-pointer items-center gap-1 rounded-lg px-2 py-1 hover:bg-neutral-100 dark:bg-neutral-600"
-                  onClick={() =>
-                    onClickShare
-                      ? onClickShare()
-                      : onOpenSharePost({ postId: id })
-                  }
-                >
-                  <Send
-                    variant="TwoTone"
-                    size={20}
-                    className="cursor-pointer text-foreground"
-                  />
-                  <p className="hidden text-xs font-medium sm:block md:text-sm">
-                    {t('M7')}
-                  </p>
-                </div>
-              </div>
+            <div className="block space-y-0.5">
+              <Link href={`/people/${author._id}`} className="w-fit">
+                <h4 className="cursor-pointer text-base font-semibold">
+                  {getFullName(author.first_name, author.last_name)}
+                </h4>
+              </Link>
+              <span className="flex items-center gap-2 text-xs font-light italic">
+                <Clock className="size-3" variant="TwoTone" />
+                {created ? calculateTime(created, locale as Locale) : t('M8')}
+              </span>
             </div>
           </div>
+
+          <ArchiveMinus size={24} variant="TwoTone" />
         </div>
+
+        <Typography content={content} />
+
+        {/* Images */}
+        {images.length <= 1 ? (
+          images.map((image, index) => (
+            <div className="flex flex-1 rounded-xl" key={index}>
+              <div className="relative size-full min-h-96">
+                <ViewImageDialog alt={String(author.last_name)} src={image}>
+                  <Image
+                    alt={String(author.last_name)}
+                    priority
+                    src={image}
+                    fill
+                    className="object-contain object-left"
+                  />
+                </ViewImageDialog>
+              </div>
+            </div>
+          ))
+        ) : (
+          <Carousel
+            classNames={{
+              viewport: 'mx-auto',
+              container: 'flex gap-3',
+            }}
+          >
+            {images.map((image, index) => (
+              <div
+                className="flex flex-[0_0_90%] overflow-hidden md:flex-[0_0_75%] lg:flex-[0_0_70%] xl:flex-[0_0_60%]"
+                key={index}
+              >
+                <div className="relative size-full min-h-96">
+                  <ViewImageDialog alt={String(author.last_name)} src={image}>
+                    <Image
+                      alt={String(author.last_name)}
+                      fill
+                      priority
+                      className="object-contain object-left"
+                      src={image}
+                    />
+                  </ViewImageDialog>
+                </div>
+              </div>
+            ))}
+          </Carousel>
+        )}
       </div>
 
-      <div className="flex items-center justify-between">
-        {likes.length > 0 && (
-          <div className="ml-1 mt-3 flex items-center gap-2">
-            {likes.slice(0, 2).map((like, index) => (
-              <AvatarUser
-                key={index}
-                src={like.user_id.image}
-                alt="Profile"
-                fallback={like.user_id.first_name}
-                className={cn('size-6', index !== 0 && '-ml-5')}
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          {likes.length > 0 && (
+            <div className="ml-1 mt-3 flex items-center gap-2">
+              {likes.slice(0, 2).map((like, index) => (
+                <AvatarUser
+                  key={index}
+                  src={like.user_id.image}
+                  alt="Profile"
+                  fallback={like.user_id.first_name}
+                  className={cn('size-6', index !== 0 && '-ml-5')}
+                />
+              ))}
+
+              <p className="mt-1 text-sm font-medium">
+                {likes.length} {likes.length > 1 ? 'likes' : 'like'}
+              </p>
+            </div>
+          )}
+
+          {shares.length > 0 && (
+            <div className="ml-1 mt-3 flex items-center gap-2 text-base">
+              {shares.length} {t('M7')}
+            </div>
+          )}
+        </div>
+
+        <div className="flex border-t border-neutral-200 pt-2 dark:border-neutral-700">
+          <ReactPost
+            postId={id}
+            isLike={likes.some((like) => like.user_id._id === currentUserId)}
+          />
+
+          {postActions.map((action, index) => (
+            <Button
+              key={index}
+              variant="ghost"
+              className="grow gap-2 rounded px-4 py-3 hover:bg-neutral-100 dark:bg-neutral-600"
+              onClick={action.onClick}
+            >
+              <action.icon
+                variant="TwoTone"
+                size={20}
+                className="text-foreground"
               />
-            ))}
-
-            <p className="mt-1 text-sm font-medium">
-              {likes.length} {likes.length > 1 ? 'likes' : 'like'}
-            </p>
-          </div>
-        )}
-
-        {shares.length > 0 && (
-          <div className="ml-1 mt-3 flex items-center gap-2 text-base">
-            {shares.length} {t('M7')}
-          </div>
-        )}
+              <p className="text-xs font-medium md:text-sm">{action.label}</p>
+            </Button>
+          ))}
+        </div>
       </div>
     </div>
   );

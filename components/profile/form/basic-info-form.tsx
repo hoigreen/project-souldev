@@ -74,7 +74,7 @@ export function ProfileBasicInfoForm({
         toast.error(t('M15'));
       }
     },
-    [t, form, router],
+    [t, router],
   );
 
   if (!user) {
