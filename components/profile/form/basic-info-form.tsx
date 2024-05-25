@@ -1,6 +1,8 @@
 'use client';
 
+import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
+import { UploadAvatar } from '@/components/app/upload-avatar';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -21,6 +23,8 @@ import {
 import { useRouter } from '@/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ProfileTick } from 'iconsax-react';
+import { User } from 'next-auth';
+import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import React, { useCallback, useTransition } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -35,6 +39,12 @@ export function ProfileBasicInfoForm({
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const t = useTranslations('Home');
+  const { data: session } = useSession();
+  const user = session?.user as User;
+
+  if (!user) {
+    return <ErrorStage stage={ErrorStageType.Unauthorized} />;
+  }
 
   const form = useForm<ProfileBasicSchema>({
     defaultValues: {
@@ -212,7 +222,9 @@ export function ProfileBasicInfoForm({
           </div>
         </div>
 
-        <div className="w-full gap-4 space-y-4 md:grid md:grid-cols-2">
+        <UploadAvatar user={user} />
+
+        <div className="w-full gap-4 space-y-3 md:grid md:grid-cols-2 md:space-y-0">
           {/* First name */}
           <FormField
             control={form.control}

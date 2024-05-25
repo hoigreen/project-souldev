@@ -24,7 +24,7 @@ export default async function Page({
   }
 
   return (
-    <div className="space-y-16">
+    <div className="w-full space-y-16">
       <ProfileBasicInfoForm initialData={profileResponse.data.user_id} />
 
       {/* <ProfileForm initialData={profileResponse.data} /> */}

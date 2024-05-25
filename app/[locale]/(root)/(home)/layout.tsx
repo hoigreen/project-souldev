@@ -21,7 +21,7 @@ export default function HomeLayout({
         <LeftSidebar />
 
         <div className="xl:px-80">
-          <div className="mx-auto min-h-[calc(100vh-4.125rem)] w-full max-w-6xl flex-1 p-2 px-4 md:px-0 md:py-4">
+          <div className="mx-auto min-h-[calc(100vh-4.125rem)] w-full max-w-6xl flex-1 p-2 px-4 md:px-4 md:py-4 lg:px-0 xl:pl-10">
             {children}
           </div>
         </div>

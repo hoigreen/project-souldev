@@ -22,19 +22,14 @@ import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import { Heading } from '../app/heading';
-import Image from 'next/image';
-import { Edit2, Profile } from 'iconsax-react';
-import { ChangeEvent, useEffect, useState, useTransition } from 'react';
-import { cn, isBase64Image } from '@/lib/utils';
+import { useTransition } from 'react';
 import toast from 'react-hot-toast';
-import { Label } from '../ui/label';
 import { useRouter } from '@/navigation';
 import { completeOnboarding, updateAvatar } from '@/lib/actions/users';
 import { createProfile } from '@/lib/actions/profile';
+import { UploadAvatar } from '../app/upload-avatar';
 
 export default function UserOnboarding() {
-  const [isHover, setIsHover] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
   const t = useTranslations('Onboarding');
   const { update } = useSession();
   const { data: session } = useSession();
@@ -78,98 +73,12 @@ export default function UserOnboarding() {
     }
   };
 
-  const handleImage = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const fileReader = new FileReader();
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-
-      if (!file.type.includes('image')) return;
-
-      fileReader.onload = () => {
-        const base64 = fileReader.result as string;
-        if (isBase64Image(base64)) {
-          setImageUrl(base64);
-        }
-        handleUploadImage(file);
-      };
-
-      fileReader.readAsDataURL(file);
-    }
-  };
-
-  const handleUploadImage = async (file: File) => {
-    const formData = new FormData();
-    formData.append('image', file);
-    const imgRes = await updateAvatar({ _id: user._id }, formData);
-
-    if (!imgRes.success) {
-      toast.error(t('M26'));
-      return;
-    }
-
-    toast.success(t('M25'));
-
-    await update({ image: imgRes.userData.image });
-  };
-
-  useEffect(() => {
-    setImageUrl(user.image);
-  }, [user.image]);
-
   return (
     <SectionContainer className="w-full space-y-6 pb-8 md:max-w-3xl md:pb-0">
       <Heading size={2} title={t('M7')} subtitle={t('M8')} />
 
       {/* Avatar */}
-      <div
-        className=" flex flex-col items-center justify-center gap-3"
-        onMouseOver={() => setIsHover(true)}
-        onMouseOut={() => setIsHover(false)}
-      >
-        <Label
-          htmlFor="image"
-          className="relative overflow-hidden rounded-full"
-        >
-          {imageUrl ? (
-            <Image
-              src={imageUrl}
-              alt="profile"
-              width={120}
-              height={120}
-              priority
-              className="aspect-square border object-fill"
-            />
-          ) : (
-            <Profile
-              className="size-30 rounded-full border bg-neutral-50 text-neutral-400"
-              variant="Bold"
-            />
-          )}
-          <div
-            className={cn(
-              'absolute bottom-0 z-10 flex w-full items-center justify-center gap-1 text-neutral-100',
-              'top-2/3',
-              isHover ? 'bg-neutral-800/70 opacity-100' : 'opacity-0',
-            )}
-          >
-            <Edit2 variant="TwoTone" size={16} />
-            {isHover && (
-              <span className="text-xs font-semibold text-background">
-                {t('M23')}
-              </span>
-            )}
-          </div>
-        </Label>
-
-        <Input
-          id="image"
-          type="file"
-          accept="image/*"
-          className="hidden"
-          onChange={(e) => handleImage(e)}
-        />
-      </div>
+      <UploadAvatar user={user} />
 
       {/* Form */}
       <Form {...form}>
