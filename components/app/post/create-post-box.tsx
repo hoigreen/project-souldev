@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useModalActions } from '@/hooks/use-modal';
 import { Modals } from '@/lib/constants';
+import AvatarUser from '@/components/ui/app/avatar-user';
 
 type CreatePostBoxProps = React.HTMLAttributes<HTMLDivElement> & {
   user: User;
@@ -21,10 +22,12 @@ export default function CreatePostBox({
 
   return (
     <div className="flex items-center gap-3 rounded-xl bg-white px-3 py-4 shadow-lg dark:bg-black">
-      <Avatar className="size-14 border">
-        <AvatarImage src={user.image} alt="Avatar" />
-        <AvatarFallback>{user.first_name}</AvatarFallback>
-      </Avatar>
+      <AvatarUser
+        src={user.image}
+        alt="Profile"
+        fallback={user.first_name}
+        className="size-14 border"
+      />
 
       <div className="flex grow items-center gap-2" onClick={() => onOpen()}>
         <Input

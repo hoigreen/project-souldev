@@ -204,13 +204,13 @@ export default function PostCard({
         {likes.length > 0 && (
           <div className="ml-1 mt-3 flex items-center gap-2">
             {likes.slice(0, 2).map((like, index) => (
-              <Avatar
-                className={cn('size-6', index !== 0 && '-ml-5')}
+              <AvatarUser
                 key={index}
-              >
-                <AvatarImage src={like.user_id.image} alt="Avatar" />
-                <AvatarFallback>{like.user_id.first_name}</AvatarFallback>
-              </Avatar>
+                src={like.user_id.image}
+                alt="Profile"
+                fallback={like.user_id.first_name}
+                className={cn('size-6', index !== 0 && '-ml-5')}
+              />
             ))}
 
             <p className="mt-1 text-sm font-medium">

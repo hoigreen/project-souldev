@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '../avatar';
 import { cn } from '@/lib/utils';
+import { getFirstInitials } from '@/lib/string';
 
 export default function AvatarUser({
   className,
@@ -14,9 +15,9 @@ export default function AvatarUser({
   fallback: string;
 }): React.JSX.Element {
   return (
-    <Avatar className={cn(className)}>
+    <Avatar className={cn('aspect-square', className)}>
       <AvatarImage src={src} alt={alt} />
-      <AvatarFallback>{fallback}</AvatarFallback>
+      <AvatarFallback>{getFirstInitials(fallback)}</AvatarFallback>
     </Avatar>
   );
 }
