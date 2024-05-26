@@ -1,6 +1,5 @@
 import { cn } from '@/lib/utils';
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
 
 export function Heading({
   children,
@@ -16,7 +15,7 @@ export function Heading({
   size?: 1 | 2 | 3;
 }): React.JSX.Element {
   return (
-    <div className={twMerge(className, subtitle && 'space-y-2')}>
+    <div className={cn(className, subtitle && 'space-y-2')}>
       <div className="flex items-baseline gap-2">
         <h1
           className={cn(

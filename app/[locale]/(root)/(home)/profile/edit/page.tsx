@@ -1,9 +1,14 @@
+import { BackLink } from '@/components/app/back-link';
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
+import { Heading } from '@/components/app/heading';
 // import { ProfileForm } from '@/components/profile/form';
 import { ProfileBasicInfoForm } from '@/components/profile/form/basic-info-form';
 import { getUserProfile } from '@/lib/actions/profile';
 import { Metadata } from 'next';
-import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
+import {
+  getTranslations,
+  unstable_setRequestLocale as unstableSetRequestLocale,
+} from 'next-intl/server';
 import React from 'react';
 
 export const metadata: Metadata = {
@@ -16,6 +21,7 @@ export default async function Page({
   params: { locale: string };
 }): Promise<React.JSX.Element> {
   unstableSetRequestLocale(locale);
+  const t = await getTranslations('Home');
 
   const profileResponse = await getUserProfile();
 
@@ -24,7 +30,13 @@ export default async function Page({
   }
 
   return (
-    <div className="w-full space-y-16">
+    <div className="w-full space-y-8">
+      <BackLink />
+
+      <div className="flex justify-center">
+        <Heading title={t('M20')} />
+      </div>
+
       <ProfileBasicInfoForm initialData={profileResponse.data.user_id} />
 
       {/* <ProfileForm initialData={profileResponse.data} /> */}

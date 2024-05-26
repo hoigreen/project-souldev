@@ -32,7 +32,7 @@ export function ResetPasswordBox({
 
   return (
     <div {...props} className={resetPasswordBoxVariants({ className })}>
-      <BackLink href="/" label={t('M55')} />
+      <BackLink label={t('M55')} />
 
       <h1 className="text-lg font-bold text-primary lg:text-xl">{t('M46')}</h1>
 

@@ -84,7 +84,10 @@ export function ProfileBasicInfoForm({
   return (
     <Form {...form}>
       <form
-        className={cn('space-y-8', className)}
+        className={cn(
+          'space-y-8 rounded-lg bg-white p-4 shadow-lg dark:bg-neutral-950',
+          className,
+        )}
         onSubmit={
           form.handleSubmit(
             handleSubmit,
