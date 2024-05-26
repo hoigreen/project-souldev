@@ -6,7 +6,7 @@ export function Heading({
   className,
   title,
   subtitle,
-  size = 1,
+  size = 2,
 }: {
   children?: React.ReactNode;
   className?: string;

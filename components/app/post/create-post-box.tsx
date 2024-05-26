@@ -1,7 +1,7 @@
 'use client';
 
-import { User } from 'next-auth';
 import React from 'react';
+import { User } from 'next-auth';
 import { useTranslations } from 'next-intl';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';

@@ -1,5 +1,6 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
+import RecommendPeoples from '@/components/app/people/list-posts-client';
 import CreatePostBox from '@/components/app/post/create-post-box';
 import ListPostsClient from '@/components/app/post/list-posts-client';
 import { RightSidebar } from '@/components/app/right-sidebar';
@@ -50,9 +51,13 @@ export default async function HomePage({
 
         <CreatePostBox user={session.user} />
 
-        {/* List friend recommend */}
-
-        {/* Filter */}
+        {/* Recommend peoples */}
+        <div className="space-y-2">
+          <Heading title={t('M51')} size={1} />
+          <RecommendPeoples
+            data={[posts[0].user_id, posts[1].user_id, posts[2].user_id]}
+          />
+        </div>
 
         <ListPostsClient
           searchParams={searchParams}
