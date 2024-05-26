@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
 import ProfileCard from '@/components/profile/profile-card';
@@ -9,6 +9,7 @@ import {
   getTranslations,
   unstable_setRequestLocale as unstableSetRequestLocale,
 } from 'next-intl/server';
+import { ProfileCardLoadingSkeleton } from '@/components/app/post/loading';
 
 export default async function ProfileLayout({
   params: { locale },
@@ -23,8 +24,8 @@ export default async function ProfileLayout({
   const countPosts = await countMyPosts();
   const userProfileResponse = await getUserProfile();
 
-  if (!userProfileResponse)
-    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
+  if (!userProfileResponse.success)
+    return <ErrorStage stage={ErrorStageType.ServerError} />;
 
   if (!countPosts)
     return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
@@ -34,10 +35,12 @@ export default async function ProfileLayout({
       <Heading title={t('M19')} />
 
       {/* Profile info */}
-      <ProfileCard
-        profile={userProfileResponse.data}
-        countPosts={countPosts.data}
-      />
+      <Suspense fallback={<ProfileCardLoadingSkeleton />}>
+        <ProfileCard
+          profile={userProfileResponse.data}
+          countPosts={countPosts.data}
+        />
+      </Suspense>
 
       {/* Tabs */}
       <ProfileTabs />
