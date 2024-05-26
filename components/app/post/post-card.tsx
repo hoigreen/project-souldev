@@ -72,7 +72,7 @@ export default function PostCard({
   return (
     <div
       className={cn(
-        'w-full rounded-xl bg-white p-7 shadow-lg dark:bg-black',
+        'w-full rounded-xl bg-white px-3 py-4 shadow-lg dark:bg-black md:p-7',
         className,
       )}
     >
@@ -179,7 +179,7 @@ export default function PostCard({
           )}
         </div>
 
-        <div className="flex border-t border-neutral-200 pt-2 dark:border-neutral-700">
+        <div className="flex divide-x border-t border-neutral-200 dark:border-neutral-700">
           <ReactPost
             postId={id}
             isLike={likes.some((like) => like.user_id._id === currentUserId)}
@@ -189,7 +189,7 @@ export default function PostCard({
             <Button
               key={index}
               variant="ghost"
-              className="grow gap-2 rounded px-4 py-3 hover:bg-neutral-100 dark:bg-neutral-600"
+              className="grow gap-2 rounded-none px-4 py-3 hover:bg-neutral-100 dark:bg-neutral-600"
               onClick={action.onClick}
             >
               <action.icon

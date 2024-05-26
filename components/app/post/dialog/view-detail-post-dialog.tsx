@@ -63,7 +63,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
     postData && postData?.images.length > 0;
 
   if (!postData) {
-    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
+    return <></>;
   }
 
   const handleCloseDialog = () => {
