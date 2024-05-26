@@ -18,12 +18,13 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { updateInfoAdvance } from '@/lib/actions/users';
 import {
   defaultEducation,
   defaultExperience,
   defaultSkill,
 } from '@/lib/constants';
-import { Profile } from '@/lib/definitions';
+import { Profile, ProfileAdvanceInfoBody } from '@/lib/definitions';
 import { cn } from '@/lib/utils';
 import { defaultAddress } from '@/lib/validations/address';
 import {
@@ -36,6 +37,7 @@ import { ArrowDown2, ProfileTick } from 'iconsax-react';
 import { useTranslations } from 'next-intl';
 import React, { useTransition } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 export function ProfileAdvanceInfoForm({
   className,
@@ -75,7 +77,6 @@ export function ProfileAdvanceInfoForm({
             description: item.description,
             from: item.from,
             to: item.to ?? undefined,
-            location: item.location,
             title: item.title,
           }))
         : [defaultExperience],
@@ -85,114 +86,50 @@ export function ProfileAdvanceInfoForm({
   const handleSubmit: SubmitHandler<ProfileAdvanceSchema> = async (
     formData,
   ): Promise<void> => {
-    // const advanceData: BaseCandidateBody = {
-    //   assigneeId: formData.assigneeId || null,
-    //   attachmentId: formData.attachment?.id || null,
-    //   avatar: null,
-    //   currentSalary: formData.currentSalary,
-    //   education:
-    //     formData.educations.length === 0
-    //       ? []
-    //       : formData.educations
-    //         .filter(({ institution, degree }) => institution || degree)
-    //         .map((education) => ({
-    //           degree: education.degree,
-    //           institution: education.institution,
-    //           toMonth: maybeNumber(education.to.month),
-    //           toYear: maybeNumber(education.to.year),
-    //         })),
-    //   email: formData.email,
-    //   expectSalary: formData.expectSalary,
-    //   firstName: formData.firstName,
-    //   lastName: formData.lastName,
-    //   linkedin: formData.linkedInLink || null,
-    //   locationId: formData.location || null,
-    //   noticeTime: formData.noticeType
-    //     ? inverseCastNoticeTime(formData.noticeTime)
-    //     : null,
-    //   phoneCode: formData.phoneNumber.phoneNumber
-    //     ? formData.phoneNumber.phoneCode
-    //     : null,
-    //   phoneNumber: formData.phoneNumber.phoneNumber,
-    //   workExperiences:
-    //     formData.workExperiences.length === 0
-    //       ? []
-    //       : formData.workExperiences
-    //         .filter(
-    //           ({ companyName, position }) => companyName || position,
-    //         )
-    //         .map((workExperience) => ({
-    //           companyName: workExperience.companyName,
-    //           fromMonth: maybeNumber(workExperience.years.from.month),
-    //           fromYear: maybeNumber(workExperience.years.from.year),
-    //           position: workExperience.position,
-    //           toMonth: maybeNumber(workExperience.years.to.month),
-    //           toYear: maybeNumber(workExperience.years.to.year),
-    //         })),
-    // };
-    // /* API not accept value null/undefined/empty */
-    // const skillsSanitized = formData.skills.filter(({ skill }) => skill);
-    // if (candidateId) {
-    //   // Update candidate
-    //   const formData: UpdateCandidateBody = {
-    //     ...baseFormData,
-    //     skills: [
-    //       ...skillsSanitized
-    //         .filter(({ skill }) => validate(skill))
-    //         .map(({ skill }) => ({
-    //           skillId: skill,
-    //         })),
-    //       ...skillsSanitized
-    //         .filter(({ skill }) => !validate(skill))
-    //         .map(({ skill }) => ({
-    //           newSkill: skill,
-    //         })),
-    //     ],
-    //   };
-    //   const { ok, body } = await updateCandidate(candidateId, formData);
-    //   if (!ok) {
-    //     throw new ApiError(body.message, body.data);
-    //   }
-    //   toast.success('Candidate updated', {
-    //     description: 'Candidate has been updated successfully',
-    //   });
-    //   startTransition(() => {
-    //     router.refresh();
-    //   });
-    // } else {
-    //   // Create candidate
-    //   const formData: CreateCandidateBody = {
-    //     ...baseFormData,
-    //     skills: {
-    //       newSkills: skillsSanitized
-    //         .filter(({ skill }) => !validate(skill))
-    //         .map(({ skill }) => skill),
-    //       skillIds: skillsSanitized
-    //         .filter(({ skill }) => validate(skill))
-    //         .map(({ skill }) => skill),
-    //     },
-    //   };
-    //   const { ok, body } = await createCandidate([formData]);
-    //   if (!ok) {
-    //     throw new ApiError(body.message, body.data);
-    //   }
-    //   const reasons: Record<string, string>[] = [];
-    //   body.forEach((item) => {
-    //     if (item.status === 'rejected') {
-    //       reasons.push(item.reason);
-    //     }
-    //   });
-    //   if (reasons.length > 0) {
-    //     toast.error(`Candidate cannot be created: ${reasons.join(', ')}`);
-    //     return;
-    //   }
-    //   toast.success('Candidate has been created successfully');
-    //   form.reset();
-    //   startTransition(() => {
-    //     router.push(`/candidates`);
-    //     router.refresh();
-    //   });
-    // }
+    try {
+      const advanceData: ProfileAdvanceInfoBody = {
+        address: formData.address,
+        website: formData.website,
+        linkedIn: formData.linkedIn,
+        skills: formData.skills.map(({ skill }) => skill),
+        education: initialData.education
+          ? initialData.education.map((item) => ({
+              school: item.school,
+              description: item.description,
+              from: item.from,
+              to: item.to,
+              current: item.current ?? true,
+              degree: item.degree,
+            }))
+          : [defaultEducation],
+        experience: initialData.experience
+          ? initialData.experience.map((item) => ({
+              company: item.company,
+              current: item.current ?? true,
+              description: item.description,
+              from: item.from,
+              to: item.to,
+              title: item.title,
+            }))
+          : [defaultExperience],
+      };
+
+      const { data, success } = await updateInfoAdvance(advanceData);
+
+      if (!data || !success) {
+        toast.error(t('M15'));
+
+        return;
+      }
+
+      toast.success(t('M95'));
+
+      startTransition(() => {
+        router.refresh();
+      });
+    } catch (error) {
+      toast.error(t('M15'));
+    }
   };
 
   return (
@@ -586,7 +523,7 @@ export function ProfileAdvanceInfoForm({
                     name={`experience.${index}.title`}
                     render={({ field, formState }) => (
                       <FormItem>
-                        <FormLabel>{t('90')}</FormLabel>
+                        <FormLabel>{t('M90')}</FormLabel>
                         <FormControl>
                           <Input
                             className="h-14 rounded-lg"
