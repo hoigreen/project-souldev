@@ -15,11 +15,11 @@ import { useLocale, useTranslations } from 'next-intl';
 import ReactPost from './react-post';
 import Carousel from '@/components/ui/app/carousel';
 import { ViewImageDialog } from '@/components/ui/dialogs/view-image-dialog';
-import { Typography } from '@/components/ui/typography';
 import { useModalActions } from '@/hooks/use-modal';
 import { Modals } from '@/lib/constants';
 import AvatarUser from '@/components/ui/app/avatar-user';
 import { Button } from '@/components/ui/button';
+import { Truncate } from '@/components/ui/truncate';
 
 export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   id: string;
@@ -104,7 +104,7 @@ export default function PostCard({
           <ArchiveMinus size={24} variant="TwoTone" />
         </div>
 
-        <Typography content={content} />
+        <Truncate text={content ?? ''} isHtml />
 
         {/* Images */}
         {images.length <= 1 ? (

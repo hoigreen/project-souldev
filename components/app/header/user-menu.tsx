@@ -1,6 +1,6 @@
 'use client';
 
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import AvatarUser from '@/components/ui/app/avatar-user';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -36,11 +36,13 @@ export const UserMenu: FC<UserMenuProps> = ({ className, ...props }) => {
       {user && (
         <DropdownMenu>
           <DropdownMenuTrigger className="data-state-open:bg-neutral-300 relative flex items-center gap-4 rounded-full p-1 transition hover:bg-neutral-300">
-            <Avatar>
-              <AvatarImage src={user.image} alt="Avatar" />
-              <AvatarFallback>{user.first_name}</AvatarFallback>
-            </Avatar>
+            <AvatarUser
+              src={user.image}
+              alt="Avatar"
+              fallback={user.first_name}
+            />
           </DropdownMenuTrigger>
+
           <DropdownMenuContent align="end" className="min-w-60">
             <DropdownMenuLabel>{t('M1')}</DropdownMenuLabel>
             <DropdownMenuSeparator />

@@ -3,9 +3,13 @@
 import { Modals } from '@/lib/constants';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useModalActions, useModalData, useModalOpen } from '@/hooks/use-modal';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import React, { useEffect } from 'react';
-import { PostDetailResponse, ViewDetailPostData } from '@/lib/definitions';
+import {
+  Locale,
+  PostDetailResponse,
+  ViewDetailPostData,
+} from '@/lib/definitions';
 import { getPostById } from '@/lib/actions/posts';
 import { ErrorStage, ErrorStageType } from '../../error-stage';
 import { calculateTime, cn, getFullName } from '@/lib/utils';
@@ -19,11 +23,11 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Typography } from '@/components/ui/typography';
 import ReactPost from '../react-post';
 import { useSession } from 'next-auth/react';
 import { MessageText1, Send } from 'iconsax-react';
 import CommentForm from '../form/comment-form';
+import { Truncate } from '@/components/ui/truncate';
 
 export function ViewDetailPostDialog(): React.JSX.Element {
   const [postData, setPostData] =
@@ -37,6 +41,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
     postId: '',
   });
   const t = useTranslations('Home');
+  const locale = useLocale();
   const { data: session } = useSession();
 
   async function getPostDetails() {
@@ -159,7 +164,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
               </div>
             </div>
 
-            <Typography content={postData.content} />
+            <Truncate text={postData.content} isHtml />
           </div>
 
           <div className="flex gap-3.5">
@@ -234,7 +239,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
                         </p>
 
                         <span className="text-sm italic">
-                          {calculateTime(comment.date)}
+                          {calculateTime(comment.date, locale as Locale)}
                         </span>
                       </div>
                     </div>

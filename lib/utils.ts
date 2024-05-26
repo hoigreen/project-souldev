@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
-import { format, isToday } from 'date-fns';
+import { format, formatDistanceToNow, isToday } from 'date-fns';
+import { enUS, vi } from 'date-fns/locale';
 import { twMerge } from 'tailwind-merge';
 import { Locale } from './definitions';
 
@@ -71,12 +72,11 @@ export function isFutureDate(date: string): boolean {
 export const calculateTime = (datetime: string, locale?: Locale) => {
   const date = new Date(datetime);
   const localeString = locale || 'en';
-  if (isToday(date)) {
-    if (localeString === 'en') {
-      return `${format(date, 'HH:mm')} Today`;
-    }
 
-    return `${format(date, 'HH:mm')} Hôm nay`;
+  if (isToday(date)) {
+    const localeObj = localeString === 'vi' ? vi : enUS;
+
+    return formatDistanceToNow(date, { addSuffix: true, locale: localeObj });
   }
 
   return format(date, 'HH:mm dd/LL');

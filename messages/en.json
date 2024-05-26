@@ -131,14 +131,13 @@
   "SidebarLink": {
     "M1": "Home",
     "M2": "Search",
-    "M3": "Friends",
+    "M3": "Friends & Peoples",
     "M4": "Groups",
     "M5": "Pages",
     "M6": "Messages",
     "M7": "Profile",
     "M8": "Account Settings",
     "M9": "Notifications",
-    "M10": "Explore",
     "M11": "Create"
   },
   "Account": {
@@ -273,6 +272,8 @@
     "M50": "View more peoples",
     "M51": "Peoples you may know",
     "M52": "Follow",
-    "M53": "Add friend"
+    "M53": "Add friend",
+    "M54": "... Show more",
+    "M55": "Show less"
   }
 }

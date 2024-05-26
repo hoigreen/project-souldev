@@ -1,6 +1,5 @@
 import {
   AddSquare,
-  Bezier,
   Flag,
   Home2,
   Messages2,
@@ -23,11 +22,6 @@ export const routesLink: RoutesLink[] = [
     icon: <SearchNormal1 variant="TwoTone" size={24} />,
     route: '/search',
     label: 'M2',
-  },
-  {
-    icon: <Bezier variant="TwoTone" size={24} />,
-    route: '/explore',
-    label: 'M10',
   },
   {
     icon: <UserAdd variant="TwoTone" size={24} />,

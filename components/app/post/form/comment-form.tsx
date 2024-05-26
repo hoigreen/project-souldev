@@ -76,7 +76,7 @@ export default function CommentForm({
 
   return (
     <form
-      className="flex items-start gap-1 px-3 py-4 md:gap-3"
+      className="flex items-start gap-1 py-4 md:gap-3"
       onSubmit={handleSubmit(onSubmit)}
     >
       <Avatar className="size-10 border">
@@ -91,7 +91,7 @@ export default function CommentForm({
               type="text"
               name="content"
               placeholder={t('M6')}
-              className="size-full border-none text-sm md:text-base"
+              className="size-full border-none pr-12 text-sm md:text-base"
               onChange={(e) => setValue('content', e.target.value)}
             />
 
@@ -102,8 +102,7 @@ export default function CommentForm({
           </div>
 
           <Button
-            className="hidden h-10 rounded-full md:block"
-            size="lg"
+            className="rounded-full"
             type="submit"
             disabled={isSubmitting}
           >

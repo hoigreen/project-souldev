@@ -5,7 +5,7 @@ import PostCard from './post-card';
 import AvatarUser from '@/components/ui/app/avatar-user';
 import { useSession } from 'next-auth/react';
 import { ErrorStage, ErrorStageType } from '../error-stage';
-import { calculateTime, getFullName } from '@/lib/utils';
+import { calculateTime, cn, getFullName } from '@/lib/utils';
 import { Clock } from 'iconsax-react';
 import toast from 'react-hot-toast';
 
@@ -46,7 +46,12 @@ export default function ShardPostCard({
   };
 
   return (
-    <div className="clear-start space-y-3 rounded-lg bg-white px-3 py-4 dark:bg-black">
+    <div
+      className={cn(
+        'clear-start space-y-3 rounded-lg bg-white px-3 py-4 dark:bg-black',
+        className,
+      )}
+    >
       <div className="flex gap-2">
         <AvatarUser
           src={user.image}
