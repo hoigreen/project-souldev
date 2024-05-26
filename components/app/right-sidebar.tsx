@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import { VariantProps, cva } from 'class-variance-authority';
+import { getTranslations } from 'next-intl/server';
 import { HTMLAttributes } from 'react';
 // import { getTranslations } from 'next-intl/server';
 
@@ -13,6 +14,7 @@ export type RightSidebarProps = HTMLAttributes<HTMLElement> &
   VariantProps<typeof rightSidebarVariants>;
 
 export async function RightSidebar({ className, ...props }: RightSidebarProps) {
+  const t = await getTranslations('Home');
   // const t = await getTranslations('SidebarLink');
 
   // const user = await currentUser();
@@ -36,7 +38,7 @@ export async function RightSidebar({ className, ...props }: RightSidebarProps) {
     >
       <div className="flex grow flex-col justify-start">
         <h3 className="font-semibold text-neutral-800 dark:text-neutral-200 lg:text-lg">
-          Suggested Communities
+          {t('M56')}
         </h3>
 
         <div className="mt-7 flex w-[350px] flex-col gap-9">
@@ -62,7 +64,7 @@ export async function RightSidebar({ className, ...props }: RightSidebarProps) {
       </div>
       <div className="flex flex-1 flex-col justify-start">
         <h3 className="font-semibold text-neutral-800 dark:text-neutral-200 lg:text-lg">
-          Similar Minds
+          {t('M57')}
         </h3>
         <div className="mt-7 flex w-[350px] flex-col gap-10">
           {/* {similarMinds.users.length > 0 ? (

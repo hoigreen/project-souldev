@@ -32,7 +32,7 @@ export default function RecommendPeoples({
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex flex-[0_0_40%] flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_28%]"
+            className="flex flex-[0_0_40%] flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_25%]"
           >
             <AvatarUser
               src={item.image}
@@ -40,14 +40,12 @@ export default function RecommendPeoples({
               className="size-28"
             />
 
-            <div className="flex flex-col items-center gap-3">
-              <p className="text-base font-medium md:text-lg">
+            <div className="flex w-full flex-col items-center gap-3">
+              <p className="h-12 text-center text-base font-medium md:text-lg">
                 {getFullName(item.first_name, item.last_name)}
               </p>
-              <div className="flex gap-2">
-                <Button>{t('M53')}</Button>
-                <Button variant="outline">{t('M52')}</Button>
-              </div>
+
+              <Button className="w-full">{t('M53')}</Button>
             </div>
           </div>
         ))}

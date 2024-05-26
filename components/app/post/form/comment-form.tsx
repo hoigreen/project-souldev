@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { UploadMultipleFiles } from '../../upload-multi-files';
-import { Image } from 'iconsax-react';
+import { Image, MessageText1 } from 'iconsax-react';
 import { addComment } from '@/lib/actions/comment';
 import toast from 'react-hot-toast';
 import { useRouter } from '@/navigation';
@@ -55,6 +55,7 @@ export default function CommentForm({
 
     if (!response.success) {
       toast.error(t('M25'));
+
       return;
     }
 
@@ -102,11 +103,12 @@ export default function CommentForm({
           </div>
 
           <Button
-            className="rounded-full"
+            className="gap-1 rounded-full"
             type="submit"
             disabled={isSubmitting}
           >
-            {t('M7')}
+            <MessageText1 size={16} />
+            <span className="max-sm:hidden">{t('M7')}</span>
           </Button>
         </div>
 
