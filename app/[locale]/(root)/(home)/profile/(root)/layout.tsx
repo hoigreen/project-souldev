@@ -2,7 +2,6 @@ import { ReactNode, Suspense } from 'react';
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
 import ProfileCard from '@/components/profile/profile-card';
-import ProfileTabs from '@/components/profile/profile-tabs';
 import { countMyPosts } from '@/lib/actions/posts';
 import { getUserProfile } from '@/lib/actions/profile';
 import {
@@ -10,6 +9,7 @@ import {
   unstable_setRequestLocale as unstableSetRequestLocale,
 } from 'next-intl/server';
 import { ProfileCardLoadingSkeleton } from '@/components/app/post/loading';
+import Tabs, { ITabs } from '@/components/ui/app/tabs';
 
 export default async function ProfileLayout({
   params: { locale },
@@ -30,6 +30,21 @@ export default async function ProfileLayout({
   if (!countPosts)
     return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
 
+  const tabs: ITabs[] = [
+    {
+      href: '/profile',
+      label: t('M27'),
+    },
+    {
+      href: '/profile/shared',
+      label: t('M28'),
+    },
+    {
+      href: '/profile/saved',
+      label: t('M29'),
+    },
+  ];
+
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
       <Heading title={t('M19')} />
@@ -43,7 +58,7 @@ export default async function ProfileLayout({
       </Suspense>
 
       {/* Tabs */}
-      <ProfileTabs />
+      <Tabs tabs={tabs} />
 
       {children}
     </div>

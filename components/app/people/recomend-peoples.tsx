@@ -6,8 +6,9 @@ import { Button, buttonVariants } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { UserBasic } from '@/lib/definitions';
 import { cn, getFullName } from '@/lib/utils';
-import { Link } from '@/navigation';
+import { Link, usePathname } from '@/navigation';
 import { useTranslations } from 'next-intl';
+import path from 'path';
 import React from 'react';
 
 type RecommendPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -19,6 +20,7 @@ export default function RecommendPeoples({
   data,
 }: RecommendPeoplesProps) {
   const t = useTranslations('Home');
+  const pathname = usePathname();
 
   return (
     <Card className={cn('space-y-2', className)}>
@@ -51,11 +53,13 @@ export default function RecommendPeoples({
         ))}
       </Carousel>
 
-      <div className="flex justify-center border-t">
-        <Link href="/peoples" className={buttonVariants({ variant: 'link' })}>
-          {t('M50')}
-        </Link>
-      </div>
+      {pathname !== '/peoples' && (
+        <div className="flex justify-center border-t">
+          <Link href="/peoples" className={buttonVariants({ variant: 'link' })}>
+            {t('M50')}
+          </Link>
+        </div>
+      )}
     </Card>
   );
 }
