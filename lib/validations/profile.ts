@@ -1,5 +1,13 @@
 import { z } from 'zod';
-import { facebookUrlSchema, githubUrlSchema } from '../constants';
+import {
+  facebookUrlSchema,
+  githubUrlSchema,
+  linkedInUrlSchema,
+  websiteUrlSchema,
+} from '../constants';
+import { educationSchema } from './education';
+import { experienceSchema } from './experience';
+import { addressSchema } from './address';
 
 export const profileBasicSchema = z.object({
   first_name: z.string().min(1, 'First name is required').max(128),
@@ -12,6 +20,13 @@ export const profileBasicSchema = z.object({
 
 export type ProfileBasicSchema = z.infer<typeof profileBasicSchema>;
 
-export const profileSchema = z.object({});
+export const profileAdvanceSchema = z.object({
+  skills: z.array(z.object({ skill: z.string() })),
+  linkedIn: linkedInUrlSchema,
+  website: websiteUrlSchema,
+  address: z.array(addressSchema),
+  education: z.array(educationSchema),
+  experience: z.array(experienceSchema),
+});
 
-export type ProfileSchema = z.infer<typeof profileSchema>;
+export type ProfileAdvanceSchema = z.infer<typeof profileAdvanceSchema>;

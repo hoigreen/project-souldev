@@ -95,7 +95,7 @@ export function ProfileBasicInfoForm({
         }
       >
         <div className="flex items-center justify-between">
-          <Heading title={t('M31')} />
+          <Heading size={1} title={t('M31')} />
 
           <div className="flex items-center gap-2">
             <Button type="submit" className="flex items-center">

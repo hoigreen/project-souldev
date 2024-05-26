@@ -11,6 +11,9 @@ import {
 } from 'iconsax-react';
 import { RoutesLink } from './definitions';
 import { z } from 'zod';
+import { ProfileAdvanceSchema } from './validations/profile';
+import { EducationSchema } from './validations/education';
+import { ExperienceSchema } from './validations/experience';
 
 export const routesLink: RoutesLink[] = [
   {
@@ -72,6 +75,10 @@ export const routesLink4: RoutesLink[] = [
 export const FACEBOOK_URL_REGEX = /^(https?:\/\/)?(?:www\.)?facebook\.com/;
 export const TWITTER_URL_REGEX = /^(https?:\/\/)?(?:www\.)?twitter\.com/;
 export const GITHUB_URL_REGEX = /^(https?:\/\/)?(?:www\.)?github\.com/;
+export const LINKEDIN_URL_REGEX =
+  /^(?<protocol>https?:\/\/)?(?<subdomain>www\.)?linkedin\.com\/(?<path>in|profile|pub)(?<additional>\/[a-zA-Z0-9%_-]+)*\/?$/;
+export const WEBSITE_URL_REGEX =
+  /^(?<protocol>https?:\/\/)?(?<domain>[\da-z.-]+)\.(?<tld>[a-z.]{2,6})(?<path>[/\w .-]*)*\/?$/;
 
 export enum Modals {
   CreatePost = 'CreatePost', // eslint-disable-line no-unused-vars
@@ -91,3 +98,34 @@ export const githubUrlSchema = z
   .string()
   .regex(GITHUB_URL_REGEX, 'Please enter a valid GitHub URL')
   .optional();
+export const linkedInUrlSchema = z
+  .string()
+  .regex(LINKEDIN_URL_REGEX, 'Please enter a valid LinkedIn URL')
+  .optional();
+export const websiteUrlSchema = z
+  .string()
+  .regex(WEBSITE_URL_REGEX, 'Please enter a valid Website URL')
+  .optional();
+
+export const defaultSkill: ProfileAdvanceSchema['skills'][number] = {
+  skill: '',
+};
+
+export const defaultEducation: EducationSchema = {
+  school: '',
+  degree: '',
+  from: '',
+  to: '',
+  current: false,
+  description: '',
+};
+
+export const defaultExperience: ExperienceSchema = {
+  title: '',
+  company: '',
+  location: null,
+  from: '',
+  to: '',
+  current: false,
+  description: '',
+};

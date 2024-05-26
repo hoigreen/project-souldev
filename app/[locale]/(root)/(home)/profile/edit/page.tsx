@@ -1,7 +1,7 @@
 import { BackLink } from '@/components/app/back-link';
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
-// import { ProfileForm } from '@/components/profile/form';
+import { ProfileAdvanceInfoForm } from '@/components/profile/form/advance-info-form';
 import { ProfileBasicInfoForm } from '@/components/profile/form/basic-info-form';
 import { getUserProfile } from '@/lib/actions/profile';
 import { Metadata } from 'next';
@@ -39,7 +39,7 @@ export default async function Page({
 
       <ProfileBasicInfoForm initialData={profileResponse.data.user_id} />
 
-      {/* <ProfileForm initialData={profileResponse.data} /> */}
+      <ProfileAdvanceInfoForm initialData={profileResponse.data} />
     </div>
   );
 }

@@ -170,96 +170,43 @@ export interface Friend {
   date: string;
 }
 
+export interface Experience {
+  title: string;
+  company: string;
+  location?: string;
+  from: string;
+  to?: string;
+  current: boolean;
+  description?: string;
+}
+
+export interface Education {
+  school: string;
+  degree: string;
+  from: string;
+  to?: string;
+  current: boolean;
+  description?: string;
+}
+
+export interface Address {
+  city: string;
+  district: string;
+  ward: string;
+  location: string;
+}
+
 export interface Profile {
   _id: string;
   user_id: UserProfile;
+  address: Address[];
   company: string;
   website: string;
-  address: any;
-  // address: [
-  //   {
-  //     user_id: {
-  //       type: Schema.Types.ObjectId,
-  //       ref: "users",
-  //       require: true,
-  //     },
-  //     city: {
-  //       type: String,
-  //     },
-  //     district: {
-  //       type: String,
-  //     },
-  //     ward: {
-  //       type: String,
-  //     },
-  //     location: {
-  //       type: String,
-  //     },
-  //   },
-  // ],
+  linkedIn: string;
   status: string;
   skills: string[];
-  // skills: {
-  //   type: [String],
-  //   required: true,
-  // },
-  experience: any;
-  // experience: [
-  //   {
-  //     title: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     company: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     location: {
-  //       type: String,
-  //     },
-  //     from: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     to: {
-  //       type: String,
-  //     },
-  //     current: {
-  //       type: Boolean,
-  //       default: false,
-  //     },
-  //     description: {
-  //       type: String,
-  //     },
-  //   },
-  // ],
-  education: any;
-  // education: [
-  //   {
-  //     school: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     degree: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //     from: {
-  //       type: Date,
-  //       required: true,
-  //     },
-  //     to: {
-  //       type: Date,
-  //     },
-  //     current: {
-  //       type: Boolean,
-  //       default: false,
-  //     },
-  //     description: {
-  //       type: String,
-  //     },
-  //   },
-  // ],
+  experience: Experience[];
+  education: Education[];
   followings: Follower[];
   followers: Follower[];
   friends: Friend[];

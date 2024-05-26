@@ -8,7 +8,6 @@ import { UserBasic } from '@/lib/definitions';
 import { cn, getFullName } from '@/lib/utils';
 import { Link, usePathname } from '@/navigation';
 import { useTranslations } from 'next-intl';
-import path from 'path';
 import React from 'react';
 
 type RecommendPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
