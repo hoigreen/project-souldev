@@ -123,7 +123,6 @@ export const defaultEducation: EducationSchema = {
 export const defaultExperience: ExperienceSchema = {
   title: '',
   company: '',
-  location: null,
   from: '',
   to: '',
   current: false,

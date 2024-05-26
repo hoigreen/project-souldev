@@ -2,6 +2,8 @@
 
 import {
   OnboardingRequestBody,
+  ProfileAdvanceInfoBody,
+  ProfileAdvanceInfoResponse,
   SignupBody,
   UpdateBasicInfoBody,
   UpdateBasicInfoResponse,
@@ -88,4 +90,10 @@ export async function updateInfoBasic(
   body: UpdateBasicInfoBody,
 ): Promise<UpdateBasicInfoResponse> {
   return requestService.put(endpoints.user.updateUserBasic, body);
+}
+
+export async function updateInfoAdvance(
+  body: ProfileAdvanceInfoBody,
+): Promise<ProfileAdvanceInfoResponse> {
+  return requestService.post(endpoints.profile.updateProfile, body);
 }

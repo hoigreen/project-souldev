@@ -173,7 +173,6 @@ export interface Friend {
 export interface Experience {
   title: string;
   company: string;
-  location?: string;
   from: string;
   to?: string;
   current: boolean;
@@ -241,4 +240,18 @@ export type UpdateBasicInfoBody = {
 export type UpdateBasicInfoResponse = {
   success: boolean;
   data: UserBasic;
+};
+
+export type ProfileAdvanceInfoBody = {
+  skills?: string[];
+  linkedIn?: string;
+  website?: string;
+  address?: Address[];
+  education?: Education[];
+  experience?: Experience[];
+};
+
+export type ProfileAdvanceInfoResponse = {
+  success: boolean;
+  data: Profile;
 };
