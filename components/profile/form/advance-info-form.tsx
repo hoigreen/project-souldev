@@ -92,26 +92,22 @@ export function ProfileAdvanceInfoForm({
         website: formData.website,
         linkedIn: formData.linkedIn,
         skills: formData.skills.map(({ skill }) => skill),
-        education: initialData.education
-          ? initialData.education.map((item) => ({
-              school: item.school,
-              description: item.description,
-              from: item.from,
-              to: item.to,
-              current: item.current ?? true,
-              degree: item.degree,
-            }))
-          : [defaultEducation],
-        experience: initialData.experience
-          ? initialData.experience.map((item) => ({
-              company: item.company,
-              current: item.current ?? true,
-              description: item.description,
-              from: item.from,
-              to: item.to,
-              title: item.title,
-            }))
-          : [defaultExperience],
+        education: formData.education.map((item) => ({
+          school: item.school,
+          description: item.description,
+          from: item.from,
+          to: item.to,
+          current: item.current ?? true,
+          degree: item.degree,
+        })),
+        experience: formData.experience.map((item) => ({
+          company: item.company,
+          current: item.current ?? true,
+          description: item.description,
+          from: item.from,
+          to: item.to,
+          title: item.title,
+        })),
       };
 
       const { data, success } = await updateInfoAdvance(advanceData);
