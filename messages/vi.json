@@ -307,6 +307,11 @@
     "M92": "Công ty",
     "M93": "VD. ABC Company",
     "M94": "VD. Develop and maintain software applications, ...",
-    "M95": "Cập nhật thành công!"
+    "M95": "Cập nhật thành công!",
+    "M96": "Bạn bè của tôi",
+    "M97": "Xóa bạn",
+    "M98": "Bạn có chắc muốn xóa {name} ra khỏi danh sách bạn bè không?",
+    "M99": "Có",
+    "M100": "Xóa bạn thành công!"
   }
 }

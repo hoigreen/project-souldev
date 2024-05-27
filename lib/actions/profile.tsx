@@ -34,3 +34,7 @@ export async function getRecommendPeoples(
 export async function getMyFriendsList(): Promise<MyFriendsResponse> {
   return await requestService.get(endpoints.profile.getMyFriendsList);
 }
+
+export async function removeFriend(user_id: string) {
+  return await requestService.post(endpoints.profile.removeFriend, { user_id });
+}

@@ -20,7 +20,7 @@ export default function Tabs({ className, tabs, ...props }: TabsProps) {
   return (
     <div
       className={cn(
-        'flex items-center justify-center gap-2 border-b',
+        'flex items-center justify-center border-b md:gap-2',
         className,
       )}
       {...props}
@@ -30,14 +30,14 @@ export default function Tabs({ className, tabs, ...props }: TabsProps) {
           key={tab.href}
           href={tab.href}
           className={cn(
-            'flex w-full grow items-center justify-center gap-2 border-b-2 px-5 py-2.75 text-center text-sm transition-colors md:grow-0 md:text-base',
+            'flex w-full grow items-center justify-center gap-1 border-b-2 px-2 py-1 text-center text-xs transition-colors sm:text-sm md:grow-0 md:gap-2 md:px-5 md:py-2.75 md:text-base',
             pathname === tab.href
               ? 'border-primary font-bold'
               : 'border-transparent',
           )}
         >
           {tab.label}
-          {tab.icon && tab.icon}
+          <span className="max-sm:hidden"> {tab.icon && tab.icon}</span>
         </Link>
       ))}
     </div>

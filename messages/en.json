@@ -316,6 +316,9 @@
     "M94": "Ex. Develop and maintain software applications, ...",
     "M95": "Update advance information successfully!",
     "M96": "My friends",
-    "M97": "Delete friend"
+    "M97": "Delete friend",
+    "M98": "Are you sure you want to delete {name} from your friends list?",
+    "M99": "Yes",
+    "M100": "Delete friend successfully!"
   }
 }

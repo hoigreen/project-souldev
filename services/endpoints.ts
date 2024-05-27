@@ -79,5 +79,7 @@ export const endpoints = {
     getRecommendedPeoples: '/api/profile/get-recommend-friends',
 
     getMyFriendsList: '/api/profile/get-all-friends',
+
+    removeFriend: '/api/profile/remove-friend',
   },
 };
