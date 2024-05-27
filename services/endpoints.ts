@@ -77,5 +77,7 @@ export const endpoints = {
     getMySavedPosts: '/api/profile/my-posts-saved',
 
     getRecommendedPeoples: '/api/profile/get-recommend-friends',
+
+    getMyFriendsList: '/api/profile/get-all-friends',
   },
 };

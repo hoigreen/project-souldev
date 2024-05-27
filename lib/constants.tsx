@@ -84,6 +84,7 @@ export enum Modals {
   CreatePost = 'CreatePost', // eslint-disable-line no-unused-vars
   ViewDetailPost = 'ViewDetailPost', // eslint-disable-line no-unused-vars
   SharePost = 'SharePost', // eslint-disable-line no-unused-vars
+  RemoveFriend = 'RemoveFriend', // eslint-disable-line no-unused-vars
 }
 
 export const twitterUrlSchema = z

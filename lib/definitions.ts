@@ -268,3 +268,19 @@ export type ListPeoplesWithPaginationResponse = {
   pageSize: number;
   items: UsersResponse[];
 };
+
+export type MyFriendsResponse = {
+  success: boolean;
+  listFriend: Friend[];
+};
+
+export interface RemoveFriendData {
+  user?: UserBasic;
+}
+
+export enum FriendActions {
+  Remove = 'remove', // eslint-disable-line no-unused-vars
+  Accept = 'accept', // eslint-disable-line no-unused-vars
+  Cancel = 'cancel', // eslint-disable-line no-unused-vars
+  UnFollow = 'unfollow', // eslint-disable-line no-unused-vars
+}

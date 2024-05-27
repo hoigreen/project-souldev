@@ -2,6 +2,7 @@
 
 import {
   ListPeoplesWithPaginationResponse,
+  MyFriendsResponse,
   ProfileResponse,
 } from '@/lib/definitions';
 import { endpoints } from '@/services/endpoints';
@@ -27,4 +28,9 @@ export async function getRecommendPeoples(
   return await requestService.get(
     getEndpoint({ path: endpoints.profile.getRecommendedPeoples, query }),
   );
+}
+
+// Peoples & Friend
+export async function getMyFriendsList(): Promise<MyFriendsResponse> {
+  return await requestService.get(endpoints.profile.getMyFriendsList);
 }
