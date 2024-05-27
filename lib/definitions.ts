@@ -255,3 +255,16 @@ export type ProfileAdvanceInfoResponse = {
   success: boolean;
   data: Profile;
 };
+
+export type UsersResponse = {
+  _id: string;
+  user_id: UserProfile;
+};
+
+export type ListPeoplesWithPaginationResponse = {
+  success?: boolean;
+  totalPage: number;
+  page: number;
+  pageSize: number;
+  items: UsersResponse[];
+};

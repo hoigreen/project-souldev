@@ -5,7 +5,8 @@ import CreatePostBox from '@/components/app/post/create-post-box';
 import ListPostsClient from '@/components/app/post/list-posts-client';
 import { RightSidebar } from '@/components/app/right-sidebar';
 import { getPosts } from '@/lib/actions/posts';
-import { Post, SearchParams } from '@/lib/definitions';
+import { getRecommendPeoples } from '@/lib/actions/profile';
+import { Post, SearchParams, UserBasic } from '@/lib/definitions';
 import getSession from '@/lib/get-session';
 import { Metadata } from 'next';
 import {
@@ -32,13 +33,20 @@ export default async function HomePage({
 
   if (!session) return null;
 
-  const result = await getPosts();
+  const [getPostsResponse, getRecommendedPeoplesResponse] = await Promise.all([
+    getPosts(),
+    getRecommendPeoples(),
+  ]);
 
-  if (!result) {
+  if (!getPostsResponse) {
     return <ErrorStage stage={ErrorStageType.ServerError} />;
   }
 
-  const posts: Post[] = result.items;
+  if (!getRecommendedPeoplesResponse) {
+    return <ErrorStage stage={ErrorStageType.ServerError} />;
+  }
+
+  const posts: Post[] = getPostsResponse.items;
 
   if (posts.length === 0) {
     return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
@@ -54,14 +62,12 @@ export default async function HomePage({
         {/* Recommend peoples */}
         <div className="space-y-2">
           <Heading title={t('M51')} size={1} />
-          <RecommendPeoples
-            data={[posts[0].user_id, posts[1].user_id, posts[2].user_id]}
-          />
+          <RecommendPeoples data={getRecommendedPeoplesResponse.items} />
         </div>
 
         <ListPostsClient
           searchParams={searchParams}
-          data={result}
+          data={getPostsResponse}
           currentUserId={session.user._id}
         />
       </div>

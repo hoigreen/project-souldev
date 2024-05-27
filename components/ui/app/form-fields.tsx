@@ -83,6 +83,7 @@ export function FormFields<
                 ))}
               </div>
               <Button
+                type="button"
                 className="gap-0.5"
                 variant="ghost"
                 disabled={disabled || formState.isSubmitting}

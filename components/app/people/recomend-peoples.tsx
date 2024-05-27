@@ -4,14 +4,15 @@ import AvatarUser from '@/components/ui/app/avatar-user';
 import Carousel from '@/components/ui/app/carousel';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { UserBasic } from '@/lib/definitions';
+import { UsersResponse } from '@/lib/definitions';
 import { cn, getFullName } from '@/lib/utils';
 import { Link, usePathname } from '@/navigation';
 import { useTranslations } from 'next-intl';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { RecommendPeoplesLoadingSkeleton } from './loading';
 
 type RecommendPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
-  data: UserBasic[];
+  data: UsersResponse[];
 };
 
 export default function RecommendPeoples({
@@ -20,6 +21,13 @@ export default function RecommendPeoples({
 }: RecommendPeoplesProps) {
   const t = useTranslations('Home');
   const pathname = usePathname();
+  const [sanitizedData, setSanitizedData] = React.useState<UsersResponse[]>();
+
+  useEffect(() => {
+    const sanitizedData = data.filter((item) => item.user_id);
+
+    setSanitizedData(sanitizedData);
+  }, [data]);
 
   return (
     <Card className={cn('space-y-2', className)}>
@@ -30,26 +38,30 @@ export default function RecommendPeoples({
           container: 'flex gap-3',
         }}
       >
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-[0_0_40%] flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_25%]"
-          >
-            <AvatarUser
-              src={item.image}
-              fallback={item.first_name}
-              className="size-28"
-            />
+        {!sanitizedData ? (
+          <RecommendPeoplesLoadingSkeleton />
+        ) : (
+          sanitizedData.map((item, index) => (
+            <div
+              key={index}
+              className="flex flex-[0_0_40%] flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_25%]"
+            >
+              <AvatarUser
+                src={item.user_id.image}
+                fallback={item.user_id.first_name}
+                className="size-28"
+              />
 
-            <div className="flex w-full flex-col items-center gap-3">
-              <p className="h-12 text-center text-base font-medium md:text-lg">
-                {getFullName(item.first_name, item.last_name)}
-              </p>
+              <div className="flex w-full flex-col items-center gap-3">
+                <p className="h-12 text-center text-base font-medium md:text-lg">
+                  {getFullName(item.user_id.first_name, item.user_id.last_name)}
+                </p>
 
-              <Button className="w-full">{t('M53')}</Button>
+                <Button className="w-full">{t('M53')}</Button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </Carousel>
 
       {pathname !== '/peoples' && (

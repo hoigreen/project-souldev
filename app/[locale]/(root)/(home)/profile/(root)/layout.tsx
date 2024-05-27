@@ -3,13 +3,13 @@ import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
 import ProfileCard from '@/components/profile/profile-card';
 import { countMyPosts } from '@/lib/actions/posts';
-import { getUserProfile } from '@/lib/actions/profile';
 import {
   getTranslations,
   unstable_setRequestLocale as unstableSetRequestLocale,
 } from 'next-intl/server';
 import { ProfileCardLoadingSkeleton } from '@/components/app/post/loading';
 import Tabs, { ITabs } from '@/components/ui/app/tabs';
+import { getUserProfile } from '@/lib/actions/profile';
 
 export default async function ProfileLayout({
   params: { locale },

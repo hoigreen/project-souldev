@@ -1,6 +1,9 @@
 'use server';
 
-import { ProfileResponse } from '@/lib/definitions';
+import {
+  ListPeoplesWithPaginationResponse,
+  ProfileResponse,
+} from '@/lib/definitions';
 import { endpoints } from '@/services/endpoints';
 import requestService from '@/services/request-service';
 
@@ -14,4 +17,8 @@ export async function createProfile() {
 
 export async function getMySavedPosts() {
   return await requestService.get(endpoints.profile.getMySavedPosts);
+}
+
+export async function getRecommendPeoples(): Promise<ListPeoplesWithPaginationResponse> {
+  return await requestService.get(endpoints.profile.getRecommendedPeoples);
 }
