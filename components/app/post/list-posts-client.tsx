@@ -1,6 +1,6 @@
 'use client';
 
-import { PostsResponse, SearchParams } from '@/lib/definitions';
+import { PostsResponse } from '@/lib/definitions';
 import React, { useEffect, useMemo } from 'react';
 import PostCard from './post-card';
 import useInfiniteQueryPosts from '@/hooks/use-infinity-query-posts';
@@ -10,7 +10,6 @@ import { cn } from '@/lib/utils';
 import { Spinner } from '../spinner';
 
 type ListPostsClientProps = React.HTMLAttributes<HTMLDivElement> & {
-  searchParams: SearchParams;
   data: PostsResponse;
   currentUserId: string;
 };
@@ -19,7 +18,6 @@ export default function ListPostsClient({
   className,
   currentUserId,
   data,
-  // searchParams,
 }: ListPostsClientProps) {
   const { ref, inView } = useInView();
   const t = useTranslations('Home');

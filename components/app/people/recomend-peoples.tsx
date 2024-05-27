@@ -44,18 +44,25 @@ export default function RecommendPeoples({
           sanitizedData.map((item, index) => (
             <div
               key={index}
-              className="flex flex-[0_0_40%] flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_25%]"
+              className="flex max-w-52 flex-[0_0_40%] select-none flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_25%]"
             >
-              <AvatarUser
-                src={item.user_id.image}
-                fallback={item.user_id.first_name}
-                className="size-28"
-              />
+              <Link href={`/people/${item.user_id._id}`} className="block">
+                <AvatarUser
+                  src={item.user_id.image}
+                  fallback={item.user_id.first_name}
+                  className="size-28"
+                />
+              </Link>
 
               <div className="flex w-full flex-col items-center gap-3">
-                <p className="h-12 text-center text-base font-medium md:text-lg">
-                  {getFullName(item.user_id.first_name, item.user_id.last_name)}
-                </p>
+                <Link href={`/people/${item.user_id._id}`} className="block">
+                  <p className="h-12 text-center text-base font-medium md:text-lg">
+                    {getFullName(
+                      item.user_id.first_name,
+                      item.user_id.last_name,
+                    )}
+                  </p>
+                </Link>
 
                 <Button className="w-full">{t('M53')}</Button>
               </div>

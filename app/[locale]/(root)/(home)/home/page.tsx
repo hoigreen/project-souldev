@@ -6,7 +6,7 @@ import ListPostsClient from '@/components/app/post/list-posts-client';
 import { RightSidebar } from '@/components/app/right-sidebar';
 import { getPosts } from '@/lib/actions/posts';
 import { getRecommendPeoples } from '@/lib/actions/profile';
-import { Post, SearchParams, UserBasic } from '@/lib/definitions';
+import { Post, SearchParams } from '@/lib/definitions';
 import getSession from '@/lib/get-session';
 import { Metadata } from 'next';
 import {
@@ -66,7 +66,6 @@ export default async function HomePage({
         </div>
 
         <ListPostsClient
-          searchParams={searchParams}
           data={getPostsResponse}
           currentUserId={session.user._id}
         />
