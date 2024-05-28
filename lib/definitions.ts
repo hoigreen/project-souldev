@@ -283,6 +283,7 @@ export enum FriendActions {
   Accept = 'accept', // eslint-disable-line no-unused-vars
   Cancel = 'cancel', // eslint-disable-line no-unused-vars
   UnFollow = 'unfollow', // eslint-disable-line no-unused-vars
+  CancelRequest = 'cancelRequest', // eslint-disable-line no-unused-vars
 }
 
 export type MyFollowerResponse = {

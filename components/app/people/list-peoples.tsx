@@ -9,7 +9,10 @@ import React, { useMemo } from 'react';
 import RemoveFriendButton from './actions/remove-friend-button';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
-import { acceptFriendRequest } from '@/lib/actions/profile';
+import {
+  acceptFriendRequest,
+  cancelFriendRequest,
+} from '@/lib/actions/profile';
 import toast from 'react-hot-toast';
 
 type ListPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -36,6 +39,19 @@ export default function ListPeoples({
     }
 
     toast.success(t('M105'));
+    router.refresh();
+  };
+
+  const handleCancel = async (userId: string) => {
+    const response = await cancelFriendRequest(userId);
+
+    if (!response.success) {
+      toast.error(t('M15'));
+
+      return;
+    }
+
+    toast.success(t('M103'));
     router.refresh();
   };
 
@@ -68,6 +84,16 @@ export default function ListPeoples({
             {action && action === FriendActions.Accept && (
               <Button className="w-fit" onClick={() => handleAccept(item._id)}>
                 {t('M104')}
+              </Button>
+            )}
+
+            {action && action === FriendActions.CancelRequest && (
+              <Button
+                className="w-fit"
+                variant="outline"
+                onClick={() => handleCancel(item._id)}
+              >
+                {t('M101')}
               </Button>
             )}
           </div>

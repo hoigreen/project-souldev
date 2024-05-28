@@ -2,7 +2,7 @@ import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
 import ListPeoples from '@/components/app/people/list-peoples';
 import { ListPeoplesLoading } from '@/components/app/people/loading';
-import { getMyFriendsList } from '@/lib/actions/profile';
+import { getMyFollowings } from '@/lib/actions/profile';
 import { FriendActions } from '@/lib/definitions';
 import { Metadata } from 'next';
 import {
@@ -23,13 +23,15 @@ export default async function Page({
   unstableSetRequestLocale(locale);
   const t = await getTranslations('Home');
 
-  const response = await getMyFriendsList();
+  const response = await getMyFollowings();
 
   if (!response) {
     return <ErrorStage stage={ErrorStageType.ServerError} />;
   }
 
-  const friendsListData = response.listFriend.map((item) => item.user_id);
+  const friendsListData = response.listFollowingUser.map(
+    (item) => item.user_id,
+  );
 
   if (friendsListData.length === 0) {
     return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
@@ -37,9 +39,12 @@ export default async function Page({
 
   return (
     <div className="space-y-4">
-      <Heading title={t('M96')} size={1} />
+      <Heading title={t('M24')} size={1} />
       <Suspense fallback={<ListPeoplesLoading />}>
-        <ListPeoples data={friendsListData} action={FriendActions.Remove} />
+        <ListPeoples
+          data={friendsListData}
+          action={FriendActions.CancelRequest}
+        />
       </Suspense>
     </div>
   );
