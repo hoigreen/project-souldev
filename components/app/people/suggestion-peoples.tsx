@@ -4,10 +4,7 @@ import AvatarUser from '@/components/ui/app/avatar-user';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import useInfiniteQueryPeoples from '@/hooks/use-infinity-query-peoples';
-import {
-  ListPeoplesWithPaginationResponse,
-  UserBasic,
-} from '@/lib/definitions';
+import { UserBasic } from '@/lib/definitions';
 import { cn, getFullName } from '@/lib/utils';
 import { Link, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
@@ -18,13 +15,11 @@ import { addFriend, cancelFriendRequest } from '@/lib/actions/profile';
 import toast from 'react-hot-toast';
 
 type SuggestionPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
-  data: ListPeoplesWithPaginationResponse;
   myFollowings: UserBasic[];
 };
 
 export default function SuggestionPeoples({
   className,
-  data,
   myFollowings,
 }: SuggestionPeoplesProps) {
   const t = useTranslations('Home');
@@ -35,12 +30,7 @@ export default function SuggestionPeoples({
     data: peoplesResponse,
     fetchNextPage,
     isFetchingNextPage,
-  } = useInfiniteQueryPeoples({
-    initialData: {
-      pages: [data],
-      pageParams: [1],
-    },
-  });
+  } = useInfiniteQueryPeoples({});
 
   const loadMoreContent = useMemo(() => {
     if (isFetchingNextPage) {

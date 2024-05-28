@@ -51,10 +51,7 @@ export default async function HomePage({
       <div className="space-y-3">
         <Heading title={t('M56')} size={1} />
         <Suspense fallback={<ListPeoplesLoading />}>
-          <SuggestionPeoples
-            data={getRecommendedPeoplesResponse}
-            myFollowings={myFollowings}
-          />
+          <SuggestionPeoples myFollowings={myFollowings} />
         </Suspense>
       </div>
     </>
