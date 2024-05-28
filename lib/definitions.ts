@@ -284,3 +284,14 @@ export enum FriendActions {
   Cancel = 'cancel', // eslint-disable-line no-unused-vars
   UnFollow = 'unfollow', // eslint-disable-line no-unused-vars
 }
+
+export type MyFollowerResponse = {
+  success: boolean;
+  listFollowerUser: UserBasic[];
+};
+
+export type AddFriendResponse = {
+  success: boolean;
+  toUser: Profile;
+  fromUser: Profile;
+};

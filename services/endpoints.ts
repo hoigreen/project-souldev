@@ -80,6 +80,10 @@ export const endpoints = {
 
     getMyFriendsList: '/api/profile/get-all-friends',
 
+    getMyFriendRequest: '/api/profile/get-friends-requests',
+
+    addFriend: '/api/profile/add-friend',
+
     removeFriend: '/api/profile/remove-friend',
   },
 };

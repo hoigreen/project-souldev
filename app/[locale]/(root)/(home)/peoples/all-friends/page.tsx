@@ -1,6 +1,5 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
-import RemoveFriendButton from '@/components/app/people/actions/remove-friend-button';
 import ListPeoples from '@/components/app/people/list-peoples';
 import { ListPeoplesLoading } from '@/components/app/people/loading';
 import { getMyFriendsList } from '@/lib/actions/profile';

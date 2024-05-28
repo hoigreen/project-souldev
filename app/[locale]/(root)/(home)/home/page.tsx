@@ -5,8 +5,11 @@ import CreatePostBox from '@/components/app/post/create-post-box';
 import ListPostsClient from '@/components/app/post/list-posts-client';
 import { RightSidebar } from '@/components/app/right-sidebar';
 import { getPosts } from '@/lib/actions/posts';
-import { getRecommendPeoples } from '@/lib/actions/profile';
-import { Post, SearchParams } from '@/lib/definitions';
+import {
+  getMyFriendsRequest,
+  getRecommendPeoples,
+} from '@/lib/actions/profile';
+import { Post } from '@/lib/definitions';
 import getSession from '@/lib/get-session';
 import { Metadata } from 'next';
 import {
@@ -22,10 +25,8 @@ export const metadata: Metadata = {
 
 export default async function HomePage({
   params: { locale },
-  searchParams,
 }: {
   params: { locale: string };
-  searchParams: SearchParams;
 }) {
   unstableSetRequestLocale(locale);
   const t = await getTranslations('Home');
@@ -33,9 +34,14 @@ export default async function HomePage({
 
   if (!session) return null;
 
-  const [getPostsResponse, getRecommendedPeoplesResponse] = await Promise.all([
+  const [
+    getPostsResponse,
+    getRecommendedPeoplesResponse,
+    getMyFriendRequestsResponse,
+  ] = await Promise.all([
     getPosts(),
     getRecommendPeoples(),
+    getMyFriendsRequest(),
   ]);
 
   if (!getPostsResponse) {
@@ -46,11 +52,17 @@ export default async function HomePage({
     return <ErrorStage stage={ErrorStageType.ServerError} />;
   }
 
+  if (!getMyFriendRequestsResponse) {
+    return <ErrorStage stage={ErrorStageType.ServerError} />;
+  }
+
   const posts: Post[] = getPostsResponse.items;
 
   if (posts.length === 0) {
     return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
   }
+
+  console.log(getMyFriendRequestsResponse);
 
   return (
     <Fragment>
@@ -62,7 +74,10 @@ export default async function HomePage({
         {/* Recommend peoples */}
         <div className="space-y-2">
           <Heading title={t('M51')} size={1} />
-          <RecommendPeoples data={getRecommendedPeoplesResponse.items} />
+          <RecommendPeoples
+            data={getRecommendedPeoplesResponse.items}
+            myFriendsRequest={getMyFriendRequestsResponse.listFollowerUser}
+          />
         </div>
 
         <ListPostsClient

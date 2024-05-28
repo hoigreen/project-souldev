@@ -1,7 +1,9 @@
 'use server';
 
 import {
+  AddFriendResponse,
   ListPeoplesWithPaginationResponse,
+  MyFollowerResponse,
   MyFriendsResponse,
   ProfileResponse,
 } from '@/lib/definitions';
@@ -22,6 +24,8 @@ export async function getMySavedPosts() {
   return await requestService.get(endpoints.profile.getMySavedPosts);
 }
 
+// Peoples & Friend
+
 export async function getRecommendPeoples(
   query?: Query,
 ): Promise<ListPeoplesWithPaginationResponse> {
@@ -30,11 +34,22 @@ export async function getRecommendPeoples(
   );
 }
 
-// Peoples & Friend
 export async function getMyFriendsList(): Promise<MyFriendsResponse> {
   return await requestService.get(endpoints.profile.getMyFriendsList);
 }
 
-export async function removeFriend(user_id: string) {
-  return await requestService.post(endpoints.profile.removeFriend, { user_id });
+export async function getMyFriendsRequest(): Promise<MyFollowerResponse> {
+  return await requestService.get(endpoints.profile.getMyFriendRequest);
+}
+
+export async function addFriend(toUserId: string): Promise<AddFriendResponse> {
+  return await requestService.post(endpoints.profile.addFriend, {
+    toUser_id: toUserId,
+  });
+}
+
+export async function removeFriend(toUserId: string) {
+  return await requestService.post(endpoints.profile.removeFriend, {
+    toUser_id: toUserId,
+  });
 }

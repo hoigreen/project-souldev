@@ -4,30 +4,48 @@ import AvatarUser from '@/components/ui/app/avatar-user';
 import Carousel from '@/components/ui/app/carousel';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { UsersResponse } from '@/lib/definitions';
+import { UserBasic, UsersResponse } from '@/lib/definitions';
 import { cn, getFullName } from '@/lib/utils';
-import { Link, usePathname } from '@/navigation';
+import { Link, usePathname, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import React, { useEffect } from 'react';
 import { RecommendPeoplesLoadingSkeleton } from './loading';
+import { addFriend } from '@/lib/actions/profile';
+import toast from 'react-hot-toast';
 
 type RecommendPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
   data: UsersResponse[];
+  myFriendsRequest: UserBasic[];
 };
 
 export default function RecommendPeoples({
   className,
   data,
+  myFriendsRequest: myFollowers,
 }: RecommendPeoplesProps) {
   const t = useTranslations('Home');
   const pathname = usePathname();
   const [sanitizedData, setSanitizedData] = React.useState<UsersResponse[]>();
+  const router = useRouter();
 
   useEffect(() => {
     const sanitizedData = data.filter((item) => item.user_id);
 
     setSanitizedData(sanitizedData);
   }, [data]);
+
+  const handleAddFriend = async (toUserId: string) => {
+    const response = await addFriend(toUserId);
+
+    if (!response.success) {
+      toast.error(t('M15'));
+
+      return;
+    }
+
+    toast.success(t('M102'));
+    router.refresh();
+  };
 
   return (
     <Card className={cn('space-y-2', className)}>
@@ -64,7 +82,20 @@ export default function RecommendPeoples({
                   </p>
                 </Link>
 
-                <Button className="w-full">{t('M53')}</Button>
+                {myFollowers.find(
+                  (follower) => follower._id === item.user_id._id,
+                ) ? (
+                  <Button className="w-full" variant="outline">
+                    {t('M101')}
+                  </Button>
+                ) : (
+                  <Button
+                    className="w-full"
+                    onClick={() => handleAddFriend(item.user_id._id)}
+                  >
+                    {t('M53')}
+                  </Button>
+                )}
               </div>
             </div>
           ))

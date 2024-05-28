@@ -3,7 +3,10 @@ import { Heading } from '@/components/app/heading';
 import { ListPeoplesLoading } from '@/components/app/people/loading';
 import RecommendPeoples from '@/components/app/people/recomend-peoples';
 import SuggestionPeoples from '@/components/app/people/suggestion-peoples';
-import { getRecommendPeoples } from '@/lib/actions/profile';
+import {
+  getMyFriendsRequest,
+  getRecommendPeoples,
+} from '@/lib/actions/profile';
 import { Metadata } from 'next';
 import {
   getTranslations,
@@ -23,22 +26,31 @@ export default async function HomePage({
   unstableSetRequestLocale(locale);
   const t = await getTranslations('Home');
 
-  const response = await getRecommendPeoples();
+  const [getRecommendedPeoplesResponse, getMyFriendsRequestResponse] =
+    await Promise.all([getRecommendPeoples(), getMyFriendsRequest()]);
 
-  if (!response) {
+  if (!getRecommendedPeoplesResponse) {
     return <ErrorStage stage={ErrorStageType.ServerError} />;
   }
+
+  if (!getMyFriendsRequestResponse) {
+    return <ErrorStage stage={ErrorStageType.ServerError} />;
+  }
+
   return (
     <>
       <div className="space-y-3">
         <Heading title={t('M51')} size={1} />
-        <RecommendPeoples data={response.items} />
+        <RecommendPeoples
+          data={getRecommendedPeoplesResponse.items}
+          myFriendsRequest={getMyFriendsRequestResponse.listFollowerUser}
+        />
       </div>
 
       <div className="space-y-3">
         <Heading title={t('M56')} size={1} />
         <Suspense fallback={<ListPeoplesLoading />}>
-          <SuggestionPeoples data={response} />
+          <SuggestionPeoples data={getRecommendedPeoplesResponse} />
         </Suspense>
       </div>
     </>

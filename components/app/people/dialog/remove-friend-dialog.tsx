@@ -42,7 +42,7 @@ export function RemoveFriendDialog() {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-lg p-4">
         <div className="space-y-6">
-          <div className="spacey-3">
+          <div className="space-y-3">
             <h2 className="block text-base font-bold">{t('M97')}</h2>
             <p className="block text-sm">
               {t('M98', {

@@ -319,6 +319,8 @@
     "M97": "Delete friend",
     "M98": "Are you sure you want to delete {name} from your friends list?",
     "M99": "Yes",
-    "M100": "Delete friend successfully!"
+    "M100": "Delete friend successfully!",
+    "M101": "Cancel request",
+    "M102": "Send request successfully!"
   }
 }

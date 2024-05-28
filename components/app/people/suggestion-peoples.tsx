@@ -38,7 +38,7 @@ export default function SuggestionPeoples({
     if (isFetchingNextPage) {
       return <ListPeoplesLoading />;
     }
-  }, [t, isFetchingNextPage]);
+  }, [isFetchingNextPage]);
 
   const peoples = useMemo(
     () => peoplesResponse?.pages.map((page) => page.items).flat() ?? [],
