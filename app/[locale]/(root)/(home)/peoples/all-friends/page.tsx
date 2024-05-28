@@ -31,6 +31,10 @@ export default async function HomePage({
 
   const friendsListData = response.listFriend.map((item) => item.user_id);
 
+  if (friendsListData.length === 0) {
+    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
+  }
+
   return (
     <div className="space-y-4">
       <Heading title={t('M96')} size={1} />

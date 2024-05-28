@@ -62,6 +62,14 @@ export async function cancelFriendRequest(
   });
 }
 
+export async function acceptFriendRequest(
+  requestUserId: string,
+): Promise<AddFriendResponse> {
+  return await requestService.post(endpoints.profile.acceptFriendRequest, {
+    requestUser_id: requestUserId,
+  });
+}
+
 export async function removeFriend(toUserId: string) {
   return await requestService.post(endpoints.profile.removeFriend, {
     toUser_id: toUserId,

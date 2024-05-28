@@ -287,7 +287,10 @@ export enum FriendActions {
 
 export type MyFollowerResponse = {
   success: boolean;
-  listFollowerUser: UserBasic[];
+  listFollowerUser: {
+    _id: string;
+    user_id: UserBasic;
+  }[];
 };
 
 export type AddFriendResponse = {

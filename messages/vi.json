@@ -315,6 +315,8 @@
     "M100": "Xóa bạn thành công!",
     "M101": "Hủy lời mời",
     "M102": "Gửi lời mời kết bạn thành công!",
-    "M103": "Đã hủy lời mời!"
+    "M103": "Đã hủy lời mời!",
+    "M104": "Chấp nhận lời mời",
+    "M105": "Đã chấp nhận"
   }
 }
