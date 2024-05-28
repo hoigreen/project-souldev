@@ -321,6 +321,7 @@
     "M99": "Yes",
     "M100": "Delete friend successfully!",
     "M101": "Cancel request",
-    "M102": "Send request successfully!"
+    "M102": "Send request successfully!",
+    "M103": "Cancel request successfully!"
   }
 }

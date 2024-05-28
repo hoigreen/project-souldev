@@ -2,8 +2,10 @@
 
 import {
   AddFriendResponse,
+  CancelFriendRequestResponse,
   ListPeoplesWithPaginationResponse,
   MyFollowerResponse,
+  MyFollowingsResponse,
   MyFriendsResponse,
   ProfileResponse,
 } from '@/lib/definitions';
@@ -38,6 +40,10 @@ export async function getMyFriendsList(): Promise<MyFriendsResponse> {
   return await requestService.get(endpoints.profile.getMyFriendsList);
 }
 
+export async function getMyFollowings(): Promise<MyFollowingsResponse> {
+  return await requestService.get(endpoints.profile.getMyFollowings);
+}
+
 export async function getMyFriendsRequest(): Promise<MyFollowerResponse> {
   return await requestService.get(endpoints.profile.getMyFriendRequest);
 }
@@ -45,6 +51,14 @@ export async function getMyFriendsRequest(): Promise<MyFollowerResponse> {
 export async function addFriend(toUserId: string): Promise<AddFriendResponse> {
   return await requestService.post(endpoints.profile.addFriend, {
     toUser_id: toUserId,
+  });
+}
+
+export async function cancelFriendRequest(
+  requestUserId: string,
+): Promise<CancelFriendRequestResponse> {
+  return await requestService.post(endpoints.profile.removeFriendRequest, {
+    requestUser_id: requestUserId,
   });
 }
 

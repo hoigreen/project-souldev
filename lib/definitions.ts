@@ -295,3 +295,16 @@ export type AddFriendResponse = {
   toUser: Profile;
   fromUser: Profile;
 };
+
+export type MyFollowingsResponse = {
+  success: boolean;
+  listFollowingUser: {
+    _id: string;
+    user_id: UserBasic;
+  }[];
+};
+
+export type CancelFriendRequestResponse = {
+  success: boolean;
+  msg: string;
+};

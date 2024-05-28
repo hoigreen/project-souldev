@@ -10,18 +10,18 @@ import { Link, usePathname, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import React, { useEffect } from 'react';
 import { RecommendPeoplesLoadingSkeleton } from './loading';
-import { addFriend } from '@/lib/actions/profile';
+import { addFriend, cancelFriendRequest } from '@/lib/actions/profile';
 import toast from 'react-hot-toast';
 
 type RecommendPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
   data: UsersResponse[];
-  myFriendsRequest: UserBasic[];
+  myFollowings: UserBasic[];
 };
 
 export default function RecommendPeoples({
   className,
   data,
-  myFriendsRequest: myFollowers,
+  myFollowings,
 }: RecommendPeoplesProps) {
   const t = useTranslations('Home');
   const pathname = usePathname();
@@ -44,6 +44,19 @@ export default function RecommendPeoples({
     }
 
     toast.success(t('M102'));
+    router.refresh();
+  };
+
+  const handleCancelRequest = async (requestUserId: string) => {
+    const response = await cancelFriendRequest(requestUserId);
+
+    if (!response.success) {
+      toast.error(t('M15'));
+
+      return;
+    }
+
+    toast.success(t('M103'));
     router.refresh();
   };
 
@@ -82,10 +95,12 @@ export default function RecommendPeoples({
                   </p>
                 </Link>
 
-                {myFollowers.find(
-                  (follower) => follower._id === item.user_id._id,
-                ) ? (
-                  <Button className="w-full" variant="outline">
+                {myFollowings.find((user) => user._id === item.user_id._id) ? (
+                  <Button
+                    className="w-full"
+                    variant="outline"
+                    onClick={() => handleCancelRequest(item.user_id._id)}
+                  >
                     {t('M101')}
                   </Button>
                 ) : (

@@ -43,7 +43,7 @@ export default async function HomePage({
         <Heading title={t('M51')} size={1} />
         <RecommendPeoples
           data={getRecommendedPeoplesResponse.items}
-          myFriendsRequest={getMyFriendsRequestResponse.listFollowerUser}
+          myFollowings={getMyFriendsRequestResponse.listFollowerUser}
         />
       </div>
 
