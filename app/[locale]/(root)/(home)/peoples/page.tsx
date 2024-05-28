@@ -3,10 +3,8 @@ import { Heading } from '@/components/app/heading';
 import { ListPeoplesLoading } from '@/components/app/people/loading';
 import RecommendPeoples from '@/components/app/people/recomend-peoples';
 import SuggestionPeoples from '@/components/app/people/suggestion-peoples';
-import {
-  getMyFriendsRequest,
-  getRecommendPeoples,
-} from '@/lib/actions/profile';
+import { getMyFollowings, getRecommendPeoples } from '@/lib/actions/profile';
+import { UserBasic } from '@/lib/definitions';
 import { Metadata } from 'next';
 import {
   getTranslations,
@@ -26,16 +24,19 @@ export default async function HomePage({
   unstableSetRequestLocale(locale);
   const t = await getTranslations('Home');
 
-  const [getRecommendedPeoplesResponse, getMyFriendsRequestResponse] =
-    await Promise.all([getRecommendPeoples(), getMyFriendsRequest()]);
+  const [getRecommendedPeoplesResponse, getMyFollowingsResponse] =
+    await Promise.all([getRecommendPeoples(), getMyFollowings()]);
 
   if (!getRecommendedPeoplesResponse) {
     return <ErrorStage stage={ErrorStageType.ServerError} />;
   }
 
-  if (!getMyFriendsRequestResponse) {
+  if (!getMyFollowingsResponse) {
     return <ErrorStage stage={ErrorStageType.ServerError} />;
   }
+
+  const myFollowings: UserBasic[] =
+    getMyFollowingsResponse.listFollowingUser.map((item) => item.user_id);
 
   return (
     <>
@@ -43,14 +44,17 @@ export default async function HomePage({
         <Heading title={t('M51')} size={1} />
         <RecommendPeoples
           data={getRecommendedPeoplesResponse.items}
-          myFollowings={getMyFriendsRequestResponse.listFollowerUser}
+          myFollowings={myFollowings}
         />
       </div>
 
       <div className="space-y-3">
         <Heading title={t('M56')} size={1} />
         <Suspense fallback={<ListPeoplesLoading />}>
-          <SuggestionPeoples data={getRecommendedPeoplesResponse} />
+          <SuggestionPeoples
+            data={getRecommendedPeoplesResponse}
+            myFollowings={myFollowings}
+          />
         </Suspense>
       </div>
     </>

@@ -4,24 +4,32 @@ import AvatarUser from '@/components/ui/app/avatar-user';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import useInfiniteQueryPeoples from '@/hooks/use-infinity-query-peoples';
-import { ListPeoplesWithPaginationResponse } from '@/lib/definitions';
+import {
+  ListPeoplesWithPaginationResponse,
+  UserBasic,
+} from '@/lib/definitions';
 import { cn, getFullName } from '@/lib/utils';
-import { Link } from '@/navigation';
+import { Link, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import React, { useEffect, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { ListPeoplesLoading } from './loading';
+import { addFriend, cancelFriendRequest } from '@/lib/actions/profile';
+import toast from 'react-hot-toast';
 
 type SuggestionPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
   data: ListPeoplesWithPaginationResponse;
+  myFollowings: UserBasic[];
 };
 
 export default function SuggestionPeoples({
   className,
   data,
+  myFollowings,
 }: SuggestionPeoplesProps) {
   const t = useTranslations('Home');
   const { ref, inView } = useInView();
+  const router = useRouter();
 
   const {
     data: peoplesResponse,
@@ -55,6 +63,32 @@ export default function SuggestionPeoples({
     }
   }, [fetchNextPage, inView]);
 
+  const handleAddFriend = async (toUserId: string) => {
+    const response = await addFriend(toUserId);
+
+    if (!response.success) {
+      toast.error(t('M15'));
+
+      return;
+    }
+
+    toast.success(t('M102'));
+    router.refresh();
+  };
+
+  const handleCancelRequest = async (requestUserId: string) => {
+    const response = await cancelFriendRequest(requestUserId);
+
+    if (!response.success) {
+      toast.error(t('M15'));
+
+      return;
+    }
+
+    toast.success(t('M103'));
+    router.refresh();
+  };
+
   return (
     <div className={cn('space-y-2', className)}>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
@@ -78,7 +112,22 @@ export default function SuggestionPeoples({
                 </p>
               </Link>
 
-              <Button className="w-fit">{t('M53')}</Button>
+              {myFollowings.find((user) => user._id === item.user_id._id) ? (
+                <Button
+                  className="w-fit"
+                  variant="outline"
+                  onClick={() => handleCancelRequest(item.user_id._id)}
+                >
+                  {t('M101')}
+                </Button>
+              ) : (
+                <Button
+                  className="w-fit"
+                  onClick={() => handleAddFriend(item.user_id._id)}
+                >
+                  {t('M53')}
+                </Button>
+              )}
             </div>
           </Card>
         ))}
