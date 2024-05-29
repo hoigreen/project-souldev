@@ -4,12 +4,20 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useModalActions, useModalData, useModalOpen } from '@/hooks/use-modal';
 import { Modals } from '@/lib/constants';
 import {
+  MyFollowersResponse,
+  MyFollowingsResponse,
+  MyFriendsResponse,
+  UserBasic,
   ViewDetailPeoplesData,
   ViewDetailsActionPeoples,
 } from '@/lib/definitions';
 import { cn } from '@/lib/utils';
 import { PeoplesHeading } from '../peoples-heading';
 import React from 'react';
+import ListPeoples from '../list-peoples';
+import { ListPeoplesLoading } from '../loading';
+import { ErrorStage, ErrorStageType } from '../../error-stage';
+import useQueryPeoplesUser from '@/hooks/use-query-peoples-user';
 
 export function ViewDetailsPeoples({
   className,
@@ -25,16 +33,65 @@ export function ViewDetailsPeoples({
     },
   );
 
+  console.log(viewAction);
+
+  // Get my friends list
+  const { data: response, isLoading } = useQueryPeoplesUser(viewAction);
+
+  if (isLoading) {
+    return (
+      <Dialog open={isOpen} onOpenChange={onClose}>
+        <DialogContent className={cn(className)}>
+          <div className="space-y-6">
+            <PeoplesHeading viewAction={viewAction} />
+            <ListPeoplesLoading className="md:grid-cols-1" />
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
+  if (!response?.success) {
+    return <ErrorStage stage={ErrorStageType.ServerError} />;
+  }
+
+  let data: UserBasic[] = [];
+
+  if (viewAction === ViewDetailsActionPeoples.viewFriends) {
+    data = (response as MyFriendsResponse).listFriend.map(
+      (item) => item.user_id,
+    );
+  } else if (viewAction === ViewDetailsActionPeoples.viewFollowers) {
+    data = (response as MyFollowersResponse).listFollowerUser.map(
+      (item) => item.user_id,
+    );
+  } else {
+    data = (response as MyFollowingsResponse).listFollowingUser.map(
+      (item) => item.user_id,
+    );
+  }
+
+  if (data.length === 0) {
+    return (
+      <Dialog open={isOpen} onOpenChange={onClose}>
+        <DialogContent className={cn(className)}>
+          <div className="space-y-6">
+            <PeoplesHeading viewAction={viewAction} />
+            <ErrorStage stage={ErrorStageType.ResourceNotFound} />
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent
-        className={cn(className)}
-        classNames={{
-          children:
-            'flex flex-col gap-4 bg-background md:p-3 lg:flex-row lg:gap-10',
-        }}
-      >
-        <PeoplesHeading viewAction={viewAction} />
+      <DialogContent className={cn(className)}>
+        <div className="space-y-6">
+          <PeoplesHeading viewAction={viewAction} />
+
+          <ListPeoples data={data} className="md:grid-cols-1" />
+        </div>
       </DialogContent>
     </Dialog>
   );

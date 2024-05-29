@@ -322,3 +322,11 @@ export enum ViewDetailsActionPeoples {
 export interface ViewDetailPeoplesData {
   viewAction: ViewDetailsActionPeoples;
 }
+
+export type MyFollowersResponse = {
+  success: boolean;
+  listFollowerUser: {
+    _id: string;
+    user_id: UserBasic;
+  }[];
+};

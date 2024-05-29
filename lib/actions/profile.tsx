@@ -8,6 +8,7 @@ import {
   MyFollowingsResponse,
   MyFriendsResponse,
   ProfileResponse,
+  MyFollowersResponse,
 } from '@/lib/definitions';
 import { endpoints } from '@/services/endpoints';
 import requestService from '@/services/request-service';
@@ -38,6 +39,10 @@ export async function getRecommendPeoples(
 
 export async function getMyFriendsList(): Promise<MyFriendsResponse> {
   return await requestService.get(endpoints.profile.getMyFriendsList);
+}
+
+export async function getMyFollowers(): Promise<MyFollowersResponse> {
+  return await requestService.get(endpoints.profile.getMyFollowers);
 }
 
 export async function getMyFollowings(): Promise<MyFollowingsResponse> {

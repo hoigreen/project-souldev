@@ -9,12 +9,9 @@ import React, { useMemo } from 'react';
 import RemoveFriendButton from './actions/remove-friend-button';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
-import {
-  acceptFriendRequest,
-  cancelFriendRequest,
-  unfollow,
-} from '@/lib/actions/profile';
+import { acceptFriendRequest, unfollow } from '@/lib/actions/profile';
 import toast from 'react-hot-toast';
+import { ErrorStage, ErrorStageType } from '../error-stage';
 
 type ListPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
   data: UserBasic[];
@@ -55,6 +52,10 @@ export default function ListPeoples({
     toast.success(t('M107'));
     router.refresh();
   };
+
+  if (!sanitizedData.length) {
+    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
+  }
 
   return (
     <div className={cn('grid grid-cols-1 gap-2 md:grid-cols-2', className)}>

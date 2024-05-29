@@ -1,12 +1,20 @@
 import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 import React from 'react';
 
-export function RecommendPeoplesLoadingSkeleton() {
+export function RecommendPeoplesLoadingSkeleton({
+  className,
+}: {
+  className?: string;
+}) {
   return Array.from({ length: 5 }).map((_, index) => (
     <div
       key={index}
-      className="flex max-w-52 flex-[0_0_54%] select-none flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_25%]"
+      className={cn(
+        'flex max-w-52 flex-[0_0_54%] select-none flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_25%]',
+        className,
+      )}
     >
       <Skeleton className="size-20 rounded-full sm:size-28" />
 
@@ -19,9 +27,9 @@ export function RecommendPeoplesLoadingSkeleton() {
   ));
 }
 
-export function ListPeoplesLoading() {
+export function ListPeoplesLoading({ className }: { className?: string }) {
   return (
-    <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+    <div className={cn('grid grid-cols-1 gap-2 md:grid-cols-2', className)}>
       {Array.from({ length: 6 }).map((_, index) => (
         <Card
           key={index}

@@ -80,6 +80,8 @@ export const endpoints = {
 
     getMyFriendsList: '/api/profile/get-all-friends',
 
+    getMyFollowers: '/api/profile/get-followers',
+
     getMyFollowings: '/api/profile/get-followings',
 
     getMyFriendRequest: '/api/profile/get-friends-requests',

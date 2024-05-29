@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 export function PeoplesHeading({
   viewAction,
 }: {
-  viewAction: ViewDetailsActionPeoples;
+  viewAction?: ViewDetailsActionPeoples;
 }): React.JSX.Element {
   const t = useTranslations('Home');
 
@@ -15,7 +15,7 @@ export function PeoplesHeading({
       case ViewDetailsActionPeoples.viewFriends:
         return t('M96');
       case ViewDetailsActionPeoples.viewFollowers:
-        return t('M96');
+        return t('M23');
       case ViewDetailsActionPeoples.viewFollowings:
         return t('M24');
       default:
