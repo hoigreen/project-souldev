@@ -68,9 +68,9 @@ export default function ProfileCard({
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-3 md:gap-4">
+        <div className="flex items-center justify-end gap-3 text-sm md:gap-4 md:text-base">
           <Link href="/profile/edit">
-            <Button size="lg">{t('M20')}</Button>
+            <Button>{t('M20')}</Button>
           </Link>
 
           <Link href="/account-setting">
@@ -87,25 +87,27 @@ export default function ProfileCard({
           </div>
         )}
 
-        <div className="flex items-center gap-4 md:gap-6">
+        <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
           <p className="text-xs sm:text-sm md:text-base">
-            <span className="text-lg font-semibold">{countPosts}</span>{' '}
+            <span className="text-base font-semibold sm:text-lg">
+              {countPosts}
+            </span>{' '}
             {t('M22')}
           </p>
           <p className="text-xs sm:text-sm md:text-base">
-            <span className="text-lg font-semibold">
+            <span className="text-base font-semibold sm:text-lg">
               {profile.friends.length}
             </span>{' '}
             {t('M25')}
           </p>
           <p className="text-xs sm:text-sm md:text-base">
-            <span className="text-lg font-semibold">
+            <span className="text-base font-semibold sm:text-lg">
               {profile.followers.length}
             </span>{' '}
             {t('M23')}
           </p>
           <p className="text-xs sm:text-sm md:text-base">
-            <span className="text-lg font-semibold">
+            <span className="text-base font-semibold sm:text-lg">
               {profile.followings.length}
             </span>{' '}
             {t('M24')}
