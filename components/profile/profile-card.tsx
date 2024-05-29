@@ -1,3 +1,5 @@
+'use client';
+
 import { AuthType, Profile, ViewDetailsActionPeoples } from '@/lib/definitions';
 import React from 'react';
 import { Card } from '../ui/card';
