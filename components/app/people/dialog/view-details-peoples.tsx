@@ -33,8 +33,6 @@ export function ViewDetailsPeoples({
     },
   );
 
-  console.log(viewAction);
-
   // Get my friends list
   const { data: response, isLoading } = useQueryPeoplesUser(viewAction);
 

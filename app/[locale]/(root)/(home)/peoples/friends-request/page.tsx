@@ -2,7 +2,7 @@ import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
 import ListPeoples from '@/components/app/people/list-peoples';
 import { ListPeoplesLoading } from '@/components/app/people/loading';
-import { getMyFriendsList, getMyFriendsRequest } from '@/lib/actions/profile';
+import { getMyFriendsRequest } from '@/lib/actions/profile';
 import { FriendActions } from '@/lib/definitions';
 import { Metadata } from 'next';
 import {
