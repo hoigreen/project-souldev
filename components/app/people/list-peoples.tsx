@@ -12,6 +12,7 @@ import { useTranslations } from 'next-intl';
 import {
   acceptFriendRequest,
   cancelFriendRequest,
+  unfollow,
 } from '@/lib/actions/profile';
 import toast from 'react-hot-toast';
 
@@ -42,8 +43,8 @@ export default function ListPeoples({
     router.refresh();
   };
 
-  const handleCancel = async (userId: string) => {
-    const response = await cancelFriendRequest(userId);
+  const handleUnfollow = async (userId: string) => {
+    const response = await unfollow(userId);
 
     if (!response.success) {
       toast.error(t('M15'));
@@ -51,7 +52,7 @@ export default function ListPeoples({
       return;
     }
 
-    toast.success(t('M103'));
+    toast.success(t('M107'));
     router.refresh();
   };
 
@@ -90,13 +91,13 @@ export default function ListPeoples({
               </Button>
             )}
 
-            {action && action === FriendActions.CancelRequest && (
+            {action && action === FriendActions.UnFollow && (
               <Button
                 className="w-fit text-xs sm:text-sm"
                 variant="outline"
-                onClick={() => handleCancel(item._id)}
+                onClick={() => handleUnfollow(item._id)}
               >
-                {t('M101')}
+                {t('M108')}
               </Button>
             )}
           </div>

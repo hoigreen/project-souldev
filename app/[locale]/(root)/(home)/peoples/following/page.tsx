@@ -41,10 +41,7 @@ export default async function Page({
     <div className="space-y-4">
       <Heading title={t('M24')} size={1} />
       <Suspense fallback={<ListPeoplesLoading />}>
-        <ListPeoples
-          data={friendsListData}
-          action={FriendActions.CancelRequest}
-        />
+        <ListPeoples data={friendsListData} action={FriendActions.UnFollow} />
       </Suspense>
     </div>
   );

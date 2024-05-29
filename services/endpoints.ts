@@ -86,6 +86,8 @@ export const endpoints = {
 
     addFriend: '/api/profile/add-friend',
 
+    unfollow: '/api/profile/unfollow',
+
     acceptFriendRequest: '/api/profile/accept-friend-request',
 
     removeFriendRequest: '/api/profile/remove-friend-request',

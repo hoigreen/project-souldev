@@ -39,7 +39,7 @@ export default async function Page({
 
   return (
     <div className="space-y-4">
-      <Heading title={t('M96')} size={1} />
+      <Heading title={t('M60')} size={1} />
       <Suspense fallback={<ListPeoplesLoading />}>
         <ListPeoples
           data={friendRequestsListData}

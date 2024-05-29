@@ -75,3 +75,11 @@ export async function removeFriend(toUserId: string) {
     toUser_id: toUserId,
   });
 }
+
+export async function unfollow(
+  toUserId: string,
+): Promise<CancelFriendRequestResponse> {
+  return await requestService.post(endpoints.profile.unfollow, {
+    toUser_id: toUserId,
+  });
+}
