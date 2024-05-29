@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
@@ -75,17 +75,28 @@ instance.interceptors.response.use(
 
 const response = (response: AxiosResponse) => response.data;
 
+const error = (error: AxiosError) => {
+  if (error.response) {
+    return error.response.data;
+  } else {
+    return error;
+  }
+};
+
 const requestService: RequestService = {
-  get: (url, config) => instance.get(url, config).then(response),
+  get: (url, config) => instance.get(url, config).then(response).catch(error),
 
-  post: (url, body, config) => instance.post(url, body, config).then(response),
+  post: (url, body, config) =>
+    instance.post(url, body, config).then(response).catch(error),
 
-  put: (url, body, config) => instance.put(url, body, config).then(response),
+  put: (url, body, config) =>
+    instance.put(url, body, config).then(response).catch(error),
 
   patch: (url, body, config) =>
-    instance.patch(url, body, config).then(response),
+    instance.patch(url, body, config).then(response).catch(error),
 
-  delete: (url, config) => instance.delete(url, config).then(response),
+  delete: (url, config) =>
+    instance.delete(url, config).then(response).catch(error),
 };
 
 export default requestService;

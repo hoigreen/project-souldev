@@ -6,9 +6,9 @@ export function RecommendPeoplesLoadingSkeleton() {
   return Array.from({ length: 5 }).map((_, index) => (
     <div
       key={index}
-      className="flex max-w-52 flex-[0_0_40%] select-none flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_25%]"
+      className="max-w-54 flex flex-[0_0_40%] select-none flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_25%]"
     >
-      <Skeleton className="size-28 rounded-full" />
+      <Skeleton className="size-20 rounded-full sm:size-28" />
 
       <div className="flex w-full flex-col items-center gap-3">
         <Skeleton className="h-10 w-24" />
@@ -22,7 +22,7 @@ export function RecommendPeoplesLoadingSkeleton() {
 export function ListPeoplesLoading() {
   return (
     <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-      {Array.from({ length: 6 }).map((item, index) => (
+      {Array.from({ length: 6 }).map((_, index) => (
         <Card
           key={index}
           className="flex items-center gap-3 rounded-lg border p-3"

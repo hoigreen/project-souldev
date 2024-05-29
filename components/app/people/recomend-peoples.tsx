@@ -71,23 +71,27 @@ export default function RecommendPeoples({
       >
         {!sanitizedData ? (
           <RecommendPeoplesLoadingSkeleton />
+        ) : sanitizedData.length === 0 ? (
+          <div className="mx-auto flex min-h-60 items-center text-center">
+            <p>{t('M106')}</p>
+          </div>
         ) : (
           sanitizedData.map((item, index) => (
             <div
               key={index}
-              className="flex max-w-52 flex-[0_0_40%] select-none flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_25%]"
+              className="flex max-w-52 flex-[0_0_54%] select-none flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_25%]"
             >
               <Link href={`/people/${item.user_id._id}`} className="block">
                 <AvatarUser
                   src={item.user_id.image}
                   fallback={item.user_id.first_name}
-                  className="size-28"
+                  className="size-20 sm:size-28"
                 />
               </Link>
 
               <div className="flex w-full flex-col items-center gap-3">
                 <Link href={`/people/${item.user_id._id}`} className="block">
-                  <p className="h-12 text-center text-base font-medium md:text-lg">
+                  <p className="h-12 text-center text-sm font-medium sm:text-base md:text-lg">
                     {getFullName(
                       item.user_id.first_name,
                       item.user_id.last_name,
@@ -97,7 +101,7 @@ export default function RecommendPeoples({
 
                 {myFollowings.find((user) => user._id === item.user_id._id) ? (
                   <Button
-                    className="w-full"
+                    className="w-full text-xs sm:text-base"
                     variant="outline"
                     onClick={() => handleCancelRequest(item.user_id._id)}
                   >
@@ -105,7 +109,7 @@ export default function RecommendPeoples({
                   </Button>
                 ) : (
                   <Button
-                    className="w-full"
+                    className="w-full text-xs sm:text-base"
                     onClick={() => handleAddFriend(item.user_id._id)}
                   >
                     {t('M53')}

@@ -91,20 +91,20 @@ export default function SuggestionPeoples({
               <AvatarUser
                 src={item.user_id.image}
                 fallback={item.user_id.first_name}
-                className="size-16"
+                className="size-12 sm:size-16"
               />
             </Link>
 
             <div className="flex grow items-center justify-between gap-2">
               <Link href={`/people/${item.user_id._id}`} className="grow">
-                <p className="h-12 text-base font-medium md:text-lg">
+                <p className="h-12 text-sm font-medium sm:text-base md:text-lg">
                   {getFullName(item.user_id.first_name, item.user_id.last_name)}
                 </p>
               </Link>
 
               {myFollowings.find((user) => user._id === item.user_id._id) ? (
                 <Button
-                  className="w-fit"
+                  className="w-fit text-xs sm:text-sm"
                   variant="outline"
                   onClick={() => handleCancelRequest(item.user_id._id)}
                 >
@@ -112,7 +112,7 @@ export default function SuggestionPeoples({
                 </Button>
               ) : (
                 <Button
-                  className="w-fit"
+                  className="w-fit text-xs sm:text-sm"
                   onClick={() => handleAddFriend(item.user_id._id)}
                 >
                   {t('M53')}

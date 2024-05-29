@@ -72,7 +72,7 @@ export const endpoints = {
 
     updateProfile: '/api/profile/update-profile',
 
-    getProfile: '/api/profile/get-profile',
+    getProfile: '/api/profile/get-profile-auth',
 
     getMySavedPosts: '/api/profile/my-posts-saved',
 

@@ -189,7 +189,7 @@ export default function PostCard({
             <Button
               key={index}
               variant="ghost"
-              className="grow gap-2 rounded-none px-4 py-3 hover:bg-neutral-100 dark:bg-neutral-600"
+              className="grow gap-2 rounded-none bg-transparent px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-600"
               onClick={action.onClick}
             >
               <action.icon

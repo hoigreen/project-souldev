@@ -66,13 +66,13 @@ export default function ListPeoples({
             <AvatarUser
               src={item.image}
               fallback={item.first_name}
-              className="size-16"
+              className="size-9 md:size-16"
             />
           </Link>
 
           <div className="flex grow items-center justify-between gap-2">
             <Link href={`/people/${item._id}`} className="grow">
-              <p className="h-12 text-base font-medium md:text-lg">
+              <p className="h-12 text-sm font-medium sm:text-base md:text-lg">
                 {getFullName(item.first_name, item.last_name)}
               </p>
             </Link>
@@ -82,14 +82,17 @@ export default function ListPeoples({
             )}
 
             {action && action === FriendActions.Accept && (
-              <Button className="w-fit" onClick={() => handleAccept(item._id)}>
+              <Button
+                className="w-fit text-xs sm:text-sm"
+                onClick={() => handleAccept(item._id)}
+              >
                 {t('M104')}
               </Button>
             )}
 
             {action && action === FriendActions.CancelRequest && (
               <Button
-                className="w-fit"
+                className="w-fit text-xs sm:text-sm"
                 variant="outline"
                 onClick={() => handleCancel(item._id)}
               >

@@ -324,6 +324,7 @@
     "M102": "Send request successfully!",
     "M103": "Cancel request successfully!",
     "M104": "Accept request",
-    "M105": "Accept request successfully!"
+    "M105": "Accept request successfully!",
+    "M106": "No peoples found"
   }
 }

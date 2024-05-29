@@ -43,7 +43,7 @@ export default function ReactPost({
       className={cn(
         isInPost
           ? 'gap-1 rounded-lg bg-neutral-100 px-2 py-1 dark:bg-neutral-600'
-          : 'grow gap-2 rounded-none px-4 py-3 hover:bg-neutral-100 dark:bg-neutral-600',
+          : 'grow gap-2 rounded-none bg-transparent px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-600',
       )}
       onClick={handleClick}
     >

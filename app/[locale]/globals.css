@@ -111,7 +111,7 @@ html {
     }
 
     &.ql-toolbar {
-      @apply flex flex-wrap items-center gap-2 rounded-xl border bg-white shadow-xl lg:w-60 lg:flex-col;
+      @apply flex flex-wrap items-center gap-2 rounded-xl border bg-white shadow-xl dark:border-none dark:bg-black lg:w-60 lg:flex-col;
     }
 
     &.ql-snow span.ql-formats {
@@ -123,7 +123,7 @@ html {
     }
 
     .ql-editor {
-      @apply min-h-[20rem] rounded-xl border bg-white p-6 dark:bg-neutral-800 lg:min-h-[32rem];
+      @apply min-h-[12rem] rounded-xl border bg-white p-6 dark:bg-neutral-900 dark:text-neutral-200 lg:min-h-[32rem];
     }
   }
 }
