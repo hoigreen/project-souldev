@@ -29,7 +29,7 @@ export default async function Page({
     return <ErrorStage stage={ErrorStageType.ServerError} />;
   }
 
-  const friendRequestsListData = response.listFollowerUser.map(
+  const friendRequestsListData = response.listFriendRequest.map(
     (item) => item.user_id,
   );
 

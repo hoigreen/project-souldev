@@ -4,7 +4,7 @@ import {
   AddFriendResponse,
   CancelFriendRequestResponse,
   ListPeoplesWithPaginationResponse,
-  MyFollowerResponse,
+  MyFriendRequestsResponse,
   MyFollowingsResponse,
   MyFriendsResponse,
   ProfileResponse,
@@ -44,7 +44,7 @@ export async function getMyFollowings(): Promise<MyFollowingsResponse> {
   return await requestService.get(endpoints.profile.getMyFollowings);
 }
 
-export async function getMyFriendsRequest(): Promise<MyFollowerResponse> {
+export async function getMyFriendsRequest(): Promise<MyFriendRequestsResponse> {
   return await requestService.get(endpoints.profile.getMyFriendRequest);
 }
 

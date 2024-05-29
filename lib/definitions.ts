@@ -286,9 +286,9 @@ export enum FriendActions {
   CancelRequest = 'cancelRequest', // eslint-disable-line no-unused-vars
 }
 
-export type MyFollowerResponse = {
+export type MyFriendRequestsResponse = {
   success: boolean;
-  listFollowerUser: {
+  listFriendRequest: {
     _id: string;
     user_id: UserBasic;
   }[];
