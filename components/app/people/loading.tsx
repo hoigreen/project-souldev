@@ -6,7 +6,7 @@ export function RecommendPeoplesLoadingSkeleton() {
   return Array.from({ length: 5 }).map((_, index) => (
     <div
       key={index}
-      className="max-w-54 flex flex-[0_0_54%] select-none flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_25%]"
+      className="flex max-w-52 flex-[0_0_54%] select-none flex-col items-center gap-8 overflow-hidden rounded-lg border px-2 py-3 sm:flex-[0_0_33%] md:flex-[0_0_30%] lg:flex-[0_0_25%]"
     >
       <Skeleton className="size-20 rounded-full sm:size-28" />
 

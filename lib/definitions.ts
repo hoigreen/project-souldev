@@ -312,3 +312,13 @@ export type CancelFriendRequestResponse = {
   success: boolean;
   msg: string;
 };
+
+export enum ViewDetailsActionPeoples {
+  viewFriends = 'viewFriends', // eslint-disable-line no-unused-vars -- View friends
+  viewFollowers = 'viewFollowers', // eslint-disable-line no-unused-vars -- View followers
+  viewFollowings = 'viewFollowings', // eslint-disable-line no-unused-vars -- View followings
+}
+
+export interface ViewDetailPeoplesData {
+  viewAction: ViewDetailsActionPeoples;
+}

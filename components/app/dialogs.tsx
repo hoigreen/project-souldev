@@ -5,6 +5,7 @@ import { CreatePostDialog } from './post/dialog/create-post-dialog';
 import { ViewDetailPostDialog } from './post/dialog/view-detail-post-dialog';
 import { SharePostDialog } from './post/dialog/share-post-dialog';
 import { RemoveFriendDialog } from './people/dialog/remove-friend-dialog';
+import { ViewDetailsPeoples } from './people/dialog/view-details-peoples';
 
 export default function Dialogs(): React.JSX.Element {
   return (
@@ -13,6 +14,7 @@ export default function Dialogs(): React.JSX.Element {
       <ViewDetailPostDialog />
       <SharePostDialog />
       <RemoveFriendDialog />
+      <ViewDetailsPeoples />
     </>
   );
 }

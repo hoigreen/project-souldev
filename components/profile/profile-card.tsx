@@ -1,4 +1,4 @@
-import { AuthType, Profile } from '@/lib/definitions';
+import { AuthType, Profile, ViewDetailsActionPeoples } from '@/lib/definitions';
 import React from 'react';
 import { Card } from '../ui/card';
 import { cn, getFullName } from '@/lib/utils';
@@ -10,6 +10,8 @@ import { Button } from '../ui/button';
 import { useTranslations } from 'next-intl';
 import { Label } from '../ui/label';
 import { Badge } from '../ui/badge';
+import { useModalActions } from '@/hooks/use-modal';
+import { Modals } from '@/lib/constants';
 
 type ProfileCardProps = React.HTMLAttributes<HTMLDivElement> & {
   profile: Profile;
@@ -23,6 +25,7 @@ export default function ProfileCard({
   ...props
 }: ProfileCardProps) {
   const t = useTranslations('Home');
+  const { onOpen } = useModalActions(Modals.ViewDetailsPeoples);
 
   return (
     <Card className={cn('space-y-6 p-4 md:p-6', className)} {...props}>
@@ -88,30 +91,51 @@ export default function ProfileCard({
         )}
 
         <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
-          <p className="text-xs sm:text-sm md:text-base">
+          <Button
+            variant="ghost"
+            className="flex items-baseline gap-1 p-0.5 text-xs font-normal sm:p-1 sm:text-sm md:text-base"
+          >
             <span className="text-base font-semibold sm:text-lg">
               {countPosts}
             </span>{' '}
             {t('M22')}
-          </p>
-          <p className="text-xs sm:text-sm md:text-base">
+          </Button>
+          <Button
+            variant="ghost"
+            className="flex items-baseline gap-1 p-0.5 text-xs font-normal sm:p-1 sm:text-sm md:text-base"
+            onClick={() =>
+              onOpen({ viewAction: ViewDetailsActionPeoples.viewFriends })
+            }
+          >
             <span className="text-base font-semibold sm:text-lg">
               {profile.friends.length}
             </span>{' '}
             {t('M25')}
-          </p>
-          <p className="text-xs sm:text-sm md:text-base">
+          </Button>
+          <Button
+            variant="ghost"
+            className="flex items-baseline gap-1 p-0.5 text-xs font-normal sm:p-1 sm:text-sm md:text-base"
+            onClick={() =>
+              onOpen({ viewAction: ViewDetailsActionPeoples.viewFollowers })
+            }
+          >
             <span className="text-base font-semibold sm:text-lg">
               {profile.followers.length}
             </span>{' '}
             {t('M23')}
-          </p>
-          <p className="text-xs sm:text-sm md:text-base">
+          </Button>
+          <Button
+            variant="ghost"
+            className="flex items-baseline gap-1 p-0.5 text-xs font-normal sm:p-1 sm:text-sm md:text-base"
+            onClick={() =>
+              onOpen({ viewAction: ViewDetailsActionPeoples.viewFollowings })
+            }
+          >
             <span className="text-base font-semibold sm:text-lg">
               {profile.followings.length}
             </span>{' '}
             {t('M24')}
-          </p>
+          </Button>
         </div>
       </div>
     </Card>
