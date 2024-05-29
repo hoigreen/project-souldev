@@ -30,7 +30,7 @@ export default function Tabs({ className, tabs, ...props }: TabsProps) {
           key={tab.href}
           href={tab.href}
           className={cn(
-            'flex w-full grow items-center justify-center gap-1 border-b-2 px-2 py-1 text-center text-xs transition-colors sm:text-sm md:grow-0 md:gap-2 md:px-5 md:py-2.75 md:text-base',
+            'flex w-full grow items-center justify-center gap-1 border-b-2 p-1 text-center text-[10px] transition-colors sm:px-2 sm:py-1 sm:text-sm md:grow-0 md:gap-2 md:px-5 md:py-2.75 md:text-base',
             pathname === tab.href
               ? 'border-primary font-bold'
               : 'border-transparent',
