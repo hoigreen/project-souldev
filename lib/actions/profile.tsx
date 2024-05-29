@@ -12,11 +12,18 @@ import {
 } from '@/lib/definitions';
 import { endpoints } from '@/services/endpoints';
 import requestService from '@/services/request-service';
-import { Query } from '../url-builder';
+import { Params, Query } from '../url-builder';
 import { getEndpoint } from '@/services/url';
 
+// Profile
 export async function getUserProfile(): Promise<ProfileResponse> {
   return await requestService.get(endpoints.profile.getProfile);
+}
+
+export async function getProfileById(params: Params): Promise<ProfileResponse> {
+  return await requestService.get(
+    getEndpoint({ path: endpoints.profile.getProfileById, params }),
+  );
 }
 
 export async function createProfile() {
@@ -28,7 +35,6 @@ export async function getMySavedPosts() {
 }
 
 // Peoples & Friend
-
 export async function getRecommendPeoples(
   query?: Query,
 ): Promise<ListPeoplesWithPaginationResponse> {

@@ -1,6 +1,6 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
-import RecommendPeoples from '@/components/app/people/recomend-peoples';
+import RecommendPeoples from '@/components/app/peoples/recomend-peoples';
 import CreatePostBox from '@/components/app/post/create-post-box';
 import ListPostsClient from '@/components/app/post/list-posts-client';
 import { RightSidebar } from '@/components/app/right-sidebar';

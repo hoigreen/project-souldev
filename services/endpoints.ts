@@ -74,6 +74,8 @@ export const endpoints = {
 
     getProfile: '/api/profile/get-profile-auth',
 
+    getProfileById: '/api/profile/get-profile-by-userId/:userId',
+
     getMySavedPosts: '/api/profile/my-posts-saved',
 
     getRecommendedPeoples: '/api/profile/get-recommend-friends',
