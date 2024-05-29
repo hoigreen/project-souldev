@@ -30,6 +30,7 @@ export default function SuggestionPeoples({
   const {
     data: peoplesResponse,
     fetchNextPage,
+    isLoading,
     isFetchingNextPage,
   } = useInfiniteQueryPeoples({});
 
@@ -53,6 +54,10 @@ export default function SuggestionPeoples({
       fetchNextPage();
     }
   }, [fetchNextPage, inView]);
+
+  if (isLoading) {
+    return <ListPeoplesLoading />;
+  }
 
   const handleAddFriend = async (toUserId: string) => {
     const response = await addFriend(toUserId);
