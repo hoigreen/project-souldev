@@ -13,6 +13,7 @@ import { useInView } from 'react-intersection-observer';
 import { ListPeoplesLoading } from './loading';
 import { addFriend, cancelFriendRequest } from '@/lib/actions/profile';
 import toast from 'react-hot-toast';
+import { ErrorStage, ErrorStageType } from '../error-stage';
 
 type SuggestionPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
   myFollowings: UserBasic[];
@@ -78,6 +79,10 @@ export default function SuggestionPeoples({
     toast.success(t('M103'));
     router.refresh();
   };
+
+  if (sanitizedData.length === 0) {
+    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
+  }
 
   return (
     <div className={cn('space-y-2', className)}>
