@@ -69,10 +69,10 @@ export interface UserProfile {
   createdAt: string;
   updatedAt: string;
   __v: number;
-  image: string;
+  image?: string;
   bio: string;
-  facebook: string;
-  github: string;
+  facebook?: string;
+  github?: string;
 }
 
 export interface Like {
@@ -201,7 +201,7 @@ export interface Profile {
   address: Address[];
   company: string;
   website: string;
-  linkedIn: string;
+  linkedIn?: string;
   status: string;
   skills: string[];
   experience: Experience[];

@@ -55,7 +55,6 @@ export default function UserOnboarding() {
         last_name: formData.last_name.trim(),
         mobile: formData.mobile.trim(),
         bio: formData.bio,
-        twitter: formData.twitter,
         facebook: formData.facebook,
         github: formData.github,
         isOnboardingCompleted: true,
@@ -138,20 +137,6 @@ export default function UserOnboarding() {
                 <FormLabel>{t('M15')}</FormLabel>
                 <FormControl>
                   <Textarea rows={10} placeholder={t('M16')} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="twitter"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t('M17')}</FormLabel>
-                <FormControl>
-                  <Input type="text" placeholder={t('M18')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

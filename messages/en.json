@@ -327,6 +327,7 @@
     "M105": "Accept request successfully!",
     "M106": "No peoples found",
     "M107": "Unfollow successfully!",
-    "M108": "Unfollow"
+    "M108": "Unfollow",
+    "M109": "No content"
   }
 }
