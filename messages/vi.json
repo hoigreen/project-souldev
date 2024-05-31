@@ -324,6 +324,9 @@
     "M109": "Không có tiểu sử",
     "M110": "Thông báo của tôi",
     "M111": "Đánh đấu tất cả là đã đọc",
-    "M112": "Đánh dẫu là đã đọc"
+    "M112": "Đánh dẫu là đã đọc",
+    "M113": "Đánh dấu đã đọc thành công!",
+    "M114": "Bạn có một thông báo mới. Hãy kiểm tra ngay!",
+    "M115": "Tải thêm thông báo ..."
   }
 }

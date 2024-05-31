@@ -39,9 +39,9 @@ export function NotificationCard({
     <div
       id={id}
       className={cn(
-        'bg-neutral item-center relative flex w-full cursor-pointer items-center rounded-xl p-3 text-sm',
+        'bg-neutral item-center relative flex w-full cursor-pointer items-center rounded-lg border p-3 text-sm md:p-4',
         {
-          'bg-neutral-200': !seen || isHovered,
+          'bg-neutral-50': !seen || isHovered,
         },
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -59,16 +59,14 @@ export function NotificationCard({
             )}
           />
 
-          <div className="flex grow flex-col gap-2">
-            <p className="text-base font-bold text-neutral-800 md:text-lg">
-              {title}
-            </p>
+          <div className="flex grow flex-col">
+            <p className="text-base font-medium text-neutral-800">{title}</p>
             <Typography content={description} />
           </div>
         </div>
       </div>
 
-      <div className="flex items-center gap-0.5">
+      <div className="flex items-center gap-1">
         <div className="whitespace-nowrap text-xs font-light italic text-neutral-600">
           {calculateTime(createdAt)}
         </div>
@@ -79,14 +77,12 @@ export function NotificationCard({
       {!seen && isHovered && (
         <div className="absolute inset-y-0 right-4 z-10 flex items-center transition">
           <Popover>
-            <PopoverTrigger>
-              <div className="flex size-10 items-center justify-center rounded-full bg-white text-neutral-800">
-                <More variant="TwoTone" />
-              </div>
+            <PopoverTrigger className="flex size-10 items-center justify-center rounded-full border bg-white dark:bg-black">
+              <More variant="TwoTone" />
             </PopoverTrigger>
-            <PopoverContent>
+            <PopoverContent align="end" className="max-w-40">
               <div
-                className="cursor-pointer px-5 py-3 hover:bg-neutral-200"
+                className="cursor-pointer text-xs"
                 onClick={() => {
                   markAsRead(id);
                 }}

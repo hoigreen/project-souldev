@@ -30,7 +30,7 @@ export const NotificationsMenu: FC<NotificationsMenuProps> = ({
         subscriberId={user._id}
         applicationIdentifier={NOVU_APPLICATION_IDENTIFIER}
         initialFetchingStrategy={{
-          fetchUnseenCount: false,
+          fetchUnseenCount: true,
           fetchNotifications: true,
           fetchUserPreferences: false,
         }}

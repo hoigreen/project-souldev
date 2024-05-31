@@ -1,6 +1,8 @@
-import { useNotifications } from '@novu/notification-center';
+'use client';
+
+import { useNotifications, useSocket } from '@novu/notification-center';
 import { useTranslations } from 'next-intl';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Drawer,
   DrawerContent,
@@ -11,32 +13,55 @@ import {
 import { BellRing } from 'lucide-react';
 import { Button } from '../ui/button';
 import { NotificationsList } from './notifications-list';
+import toast from 'react-hot-toast';
 
 export function NotificationsCenter(): React.JSX.Element {
   const t = useTranslations('Home');
   const [isOpen, setIsOpen] = useState(false);
   const { unseenCount, markAllNotificationsAsSeen } = useNotifications();
+  const { socket } = useSocket();
+
+  useEffect(() => {
+    if (!socket) {
+      return;
+    }
+
+    socket.on('notification_received', () => {
+      toast.success(t('M114'));
+    });
+
+    return () => {
+      socket?.off('notification_received');
+    };
+  }, [socket, t]);
+
+  const handleMarkALlAsSeen = () => {
+    markAllNotificationsAsSeen();
+
+    toast.success(t('M113'));
+  };
 
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen} direction="right">
       <DrawerTrigger>
-        <div className="data-state-open:bg-neutral-300 relative flex size-10 items-center gap-4 rounded-full border-neutral-300 transition hover:bg-neutral-300">
-          <BellRing size={20} className="m-auto rotate-12" />
-          {/* {unseenCount && (
-            <div className="absolute right-2 top-2 size-4 rounded-full bg-red-500" />
-          )} */}
+        <div className="data-state-open:bg-neutral-300 relative flex items-center p-1 transition">
+          <BellRing size={20} className="inset-0 m-auto rotate-12" />
+
+          <div className="absolute top-0 size-4 rounded-full bg-red-500 text-xs font-bold text-white">
+            {unseenCount && unseenCount}
+          </div>
         </div>
       </DrawerTrigger>
 
       <DrawerContent className="ml-auto h-screen w-4/5 border-none md:w-full md:max-w-[40rem]">
         <DrawerHeader className="flex items-baseline justify-between">
           <DrawerTitle>{t('M110')}</DrawerTitle>
-          <Button onSelect={markAllNotificationsAsSeen} variant="ghost">
+          <Button onClick={handleMarkALlAsSeen} variant="ghost">
             {t('M111')}
           </Button>
         </DrawerHeader>
 
-        <div className="p-4">
+        <div className="overflow-auto p-4">
           <NotificationsList onClose={setIsOpen} />
         </div>
       </DrawerContent>

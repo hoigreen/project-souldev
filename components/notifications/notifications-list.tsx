@@ -7,6 +7,7 @@ import { Button } from '../ui/button';
 import { NotificationCard } from './notification-card';
 import { Notification } from '@/lib/definitions';
 import { NotificationType } from '@/lib/constants';
+import { useMemo } from 'react';
 
 interface NotificationsListProps {
   onClose?: (value: boolean) => void;
@@ -28,13 +29,18 @@ export function NotificationsList({ onClose }: NotificationsListProps) {
       ({
         id: item._id as string,
         seen: item.seen,
+        createdAt: item.createdAt,
         payload: {
           title: item.payload.title,
           description: item.payload.description,
           type: item.payload.type,
         },
-        createdAt: item.createdAt,
       }) as Notification,
+  );
+
+  const notificationsFlatted = useMemo(
+    () => notifications.filter((item) => item.payload.title),
+    [notifications],
   );
 
   const handleClick = (notification: Notification) => {
@@ -43,15 +49,15 @@ export function NotificationsList({ onClose }: NotificationsListProps) {
   };
 
   return (
-    <div className="divide-y">
+    <div className="space-y-2 divide-y">
       {!isLoading ? (
-        <div className="flex grow flex-col items-center gap-3 overflow-y-auto">
+        <div className="flex grow flex-col items-center gap-3">
           {isFetching && <Loading />}
 
-          {notifications.length === 0 ? (
+          {notificationsFlatted.length === 0 ? (
             <p className="pt-20 text-center text-lg font-bold">{t('M110')}</p>
           ) : (
-            notifications.map((item) => (
+            notificationsFlatted.map((item) => (
               <NotificationCard
                 key={item.id}
                 id={item.id}
@@ -70,7 +76,13 @@ export function NotificationsList({ onClose }: NotificationsListProps) {
         <Loading />
       )}
 
-      {hasNextPage && <Button onClick={fetchNextPage}>Load more</Button>}
+      <div className="flex w-full justify-center">
+        {hasNextPage && (
+          <Button className="mx-auto" variant="link" onClick={fetchNextPage}>
+            {t('M115')}
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

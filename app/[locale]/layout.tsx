@@ -65,11 +65,11 @@ export default async function LocaleLayout({
               <ToasterProvider
                 toastOptions={{
                   success: {
-                    className: '!max-w-lg',
+                    className: '!max-w-lg !p-3',
                   },
                   error: {
                     className:
-                      '!bg-red-50 !text-red-900 !border !border-red-100 !max-w-lg',
+                      '!bg-red-50 !text-red-900 !border !border-red-100 !max-w-lg !p-3',
                   },
                 }}
               />

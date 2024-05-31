@@ -331,6 +331,9 @@
     "M109": "No content",
     "M110": "My notifications",
     "M111": "Mark all as read",
-    "M112": "Mark as read"
+    "M112": "Mark as read",
+    "M113": "Mark all as read successfully!",
+    "M114": "You have a new notification. Check it out!",
+    "M115": "Load more"
   }
 }
