@@ -39,7 +39,7 @@ export function NotificationCard({
     <div
       id={id}
       className={cn(
-        'bg-neutral item-center relative flex w-full cursor-pointer rounded-xl p-2 text-sm',
+        'bg-neutral item-center relative flex w-full cursor-pointer items-center rounded-xl p-3 text-sm',
         {
           'bg-neutral-200': !seen || isHovered,
         },
@@ -58,14 +58,17 @@ export function NotificationCard({
                 : 'text-red-500',
             )}
           />
+
           <div className="space-y-2">
-            <p className="font-bold text-neutral-800">{title}</p>
+            <p className="text-base font-bold text-neutral-800 md:text-lg">
+              {title}
+            </p>
             <Typography content={description} />
           </div>
         </div>
       </div>
 
-      <div className="whitespace-nowrap text-xs text-neutral-600">
+      <div className="whitespace-nowrap text-xs font-light italic text-neutral-600">
         {calculateTime(createdAt)}
       </div>
 

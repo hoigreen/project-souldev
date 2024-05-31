@@ -49,10 +49,7 @@ export function NotificationsList({ onClose }: NotificationsListProps) {
           {isFetching && <Loading />}
 
           {notifications.length === 0 ? (
-            <div className="flex flex-col space-y-4 pt-20 text-center">
-              <p className="text-lg font-bold">{t('T_0943')}</p>
-              <span className="text-sm text-neutral-600">{t('M3')}</span>
-            </div>
+            <p className="pt-20 text-center text-lg font-bold">{t('M110')}</p>
           ) : (
             notifications.map((item) => (
               <NotificationCard
