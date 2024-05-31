@@ -16,7 +16,7 @@ import { EducationSchema } from './validations/education';
 import { ExperienceSchema } from './validations/experience';
 
 export const NOVU_APPLICATION_IDENTIFIER = process.env
-  .NEXT_PUBLIC_NOVU_APPLICATION_IDENTIFIER as string;
+  .NOVU_APPLICATION_IDENTIFIER as string;
 
 export enum NotificationType {
   Success = 'success',
