@@ -7,7 +7,7 @@
     "prettier"
   ],
   "rules": {
-    "no-unused-vars": "warn",
+    "no-unused-vars": 0,
     "no-empty-pattern": "off"
   }
 }

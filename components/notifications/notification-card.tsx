@@ -59,7 +59,7 @@ export function NotificationCard({
             )}
           />
 
-          <div className="space-y-2">
+          <div className="flex grow flex-col gap-2">
             <p className="text-base font-bold text-neutral-800 md:text-lg">
               {title}
             </p>
@@ -68,21 +68,19 @@ export function NotificationCard({
         </div>
       </div>
 
-      <div className="whitespace-nowrap text-xs font-light italic text-neutral-600">
-        {calculateTime(createdAt)}
-      </div>
-
-      {!seen && (
-        <div className="absolute inset-y-0 right-4 z-[5] flex items-center transition">
-          <div className="h-3 w-3 rounded-full bg-blue-400" />
+      <div className="flex items-center gap-0.5">
+        <div className="whitespace-nowrap text-xs font-light italic text-neutral-600">
+          {calculateTime(createdAt)}
         </div>
-      )}
+
+        {!seen && <div className="size-3 rounded-full bg-blue-600" />}
+      </div>
 
       {!seen && isHovered && (
         <div className="absolute inset-y-0 right-4 z-10 flex items-center transition">
           <Popover>
             <PopoverTrigger>
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-neutral-800">
+              <div className="flex size-10 items-center justify-center rounded-full bg-white text-neutral-800">
                 <More variant="TwoTone" />
               </div>
             </PopoverTrigger>
