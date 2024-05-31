@@ -10,9 +10,18 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { cva, VariantProps } from 'class-variance-authority';
 import { BellRing } from 'lucide-react';
+import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { FC, HTMLAttributes } from 'react';
+import { ErrorStage, ErrorStageType } from '../error-stage';
+import {
+  NotificationBell,
+  NovuProvider,
+  PopoverNotificationCenter,
+} from '@novu/notification-center';
+import { NotificationsCenter } from '@/components/notifications/notifications-center';
+import { NOVU_APPLICATION_IDENTIFIER } from '@/lib/notifications';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: NotificationsMenu
@@ -28,21 +37,27 @@ export const NotificationsMenu: FC<NotificationsMenuProps> = ({
   ...props
 }) => {
   const t = useTranslations('Notifications');
+  const { data: session } = useSession();
+
+  if (!session) return <ErrorStage stage={ErrorStageType.Unauthorized} />;
+
+  const user = session.user;
+
+  console.log(user);
 
   return (
     <div className={notificationsMenuVariants({ className })} {...props}>
-      <DropdownMenu>
-        <DropdownMenuTrigger className="data-state-open:bg-neutral-300 flex size-10 items-center gap-4 rounded-full border border-neutral-300 transition hover:bg-neutral-300">
-          <BellRing size={16} className="m-auto rotate-12 text-foreground" />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>{t('M1')}</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <Link href={''}>{t('M2')}</Link>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <NovuProvider
+        subscriberId={user._id}
+        applicationIdentifier={NOVU_APPLICATION_IDENTIFIER}
+        initialFetchingStrategy={{
+          fetchNotifications: true,
+          fetchUserPreferences: false,
+          fetchUnseenCount: false,
+        }}
+      >
+        <NotificationsCenter />
+      </NovuProvider>
     </div>
   );
 };
