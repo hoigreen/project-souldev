@@ -1,4 +1,12 @@
 import React from 'react';
+import { IMessage } from '@novu/notification-center';
+
+export interface Notification {
+  id: string;
+  seen: boolean;
+  createdAt: IMessage['createdAt'];
+  payload: IMessage['payload'];
+}
 
 export type SignupBody = {
   email: string;

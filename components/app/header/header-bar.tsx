@@ -1,5 +1,4 @@
 import { Link } from '@/navigation';
-import { VariantProps, cva } from 'class-variance-authority';
 import Image from 'next/image';
 import { HTMLAttributes } from 'react';
 import LogoTextSvg from '@/public/logo-text.svg';
@@ -10,22 +9,25 @@ import { MenuMobile } from './menu-mobile';
 import { Input } from '@/components/ui/input';
 import { useTranslations } from 'next-intl';
 import { SearchNormal } from 'iconsax-react';
+import { cn } from '@/lib/utils';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: Headerbar
  * ------------------------------------------------------------------------------------------------------------------ */
 
-const headerbarVariants = cva(
-  'pointer-events-auto sticky top-0 z-50 flex items-center justify-between border-b bg-background p-2 md:px-4',
-);
-
-export type HeaderbarProps = HTMLAttributes<HTMLElement> &
-  VariantProps<typeof headerbarVariants>;
+export type HeaderbarProps = HTMLAttributes<HTMLElement>;
 
 export function Headerbar({ className, ...props }: HeaderbarProps) {
   const t = useTranslations('Home');
+
   return (
-    <nav {...props} className={headerbarVariants({ className })}>
+    <nav
+      {...props}
+      className={cn(
+        'pointer-events-auto sticky top-0 z-50 flex items-center justify-between border-b bg-background p-2 md:px-4',
+        className,
+      )}
+    >
       <div className="flex items-center gap-3">
         <MenuMobile />
         <Link href="/" title="SoulDev">

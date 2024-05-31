@@ -330,6 +330,7 @@
     "M108": "Unfollow",
     "M109": "No content",
     "M110": "My notifications",
-    "M111": "Mark all as read"
+    "M111": "Mark all as read",
+    "M112": "Mark as read"
   }
 }

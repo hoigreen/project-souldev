@@ -1,12 +1,12 @@
 'use client';
 
-import { useRouter } from '@/navigation';
 import { useNotifications } from '@novu/notification-center';
 import { useTranslations } from 'next-intl';
 import { Loading } from '../ui/loading';
 import { Button } from '../ui/button';
-import { Notification } from '@/lib/notifications';
 import { NotificationCard } from './notification-card';
+import { Notification } from '@/lib/definitions';
+import { NotificationType } from '@/lib/constants';
 
 interface NotificationsListProps {
   onClose?: (value: boolean) => void;
@@ -14,7 +14,6 @@ interface NotificationsListProps {
 
 export function NotificationsList({ onClose }: NotificationsListProps) {
   const t = useTranslations('Home');
-  const router = useRouter();
   const {
     notifications: novuNotifications,
     fetchNextPage,
@@ -24,22 +23,17 @@ export function NotificationsList({ onClose }: NotificationsListProps) {
     markNotificationAsSeen,
   } = useNotifications();
 
-  console.log(novuNotifications);
-
   const notifications = (novuNotifications || []).map(
     (item) =>
       ({
         id: item._id as string,
-        content: item.content as string,
         seen: item.seen,
         payload: {
           title: item.payload.title,
           description: item.payload.description,
           type: item.payload.type,
-          senderName: item.payload.senderName,
         },
         createdAt: item.createdAt,
-        templateIdentifier: item.templateIdentifier,
       }) as Notification,
   );
 
@@ -64,10 +58,11 @@ export function NotificationsList({ onClose }: NotificationsListProps) {
               <NotificationCard
                 key={item.id}
                 id={item.id}
-                content={item.content}
-                seen={item.seen}
-                title={item?.payload?.title as string}
+                title={item.payload.title as string}
+                description={item.payload.description as string}
+                type={item.payload.type as NotificationType}
                 createdAt={item.createdAt}
+                seen={item.seen}
                 markAsRead={markNotificationAsSeen}
                 onClick={() => handleClick(item)}
               />

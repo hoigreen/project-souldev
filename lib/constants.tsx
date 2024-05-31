@@ -15,6 +15,14 @@ import { ProfileAdvanceSchema } from './validations/profile';
 import { EducationSchema } from './validations/education';
 import { ExperienceSchema } from './validations/experience';
 
+export const NOVU_APPLICATION_IDENTIFIER = process.env
+  .NEXT_PUBLIC_NOVU_APPLICATION_IDENTIFIER as string;
+
+export enum NotificationType {
+  Success = 'success',
+  Error = 'error',
+}
+
 export const routesLink: RoutesLink[] = [
   {
     icon: <Home2 variant="TwoTone" size={24} />,

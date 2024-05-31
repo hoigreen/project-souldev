@@ -1,40 +1,44 @@
+'use client';
+
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { cx } from 'class-variance-authority';
 import { useTranslations } from 'next-intl';
-import { HTMLAttributes, useState } from 'react';
+import React, { HTMLAttributes, useState } from 'react';
 import { InfoCircle, More } from 'iconsax-react';
 import { Typography } from '../ui/typography';
-import { calculateTime } from '@/lib/utils';
+import { calculateTime, cn } from '@/lib/utils';
+import { NotificationType } from '@/lib/constants';
 
 interface NotificationCardProps extends HTMLAttributes<HTMLDivElement> {
-  content: string;
-  createdAt: string;
   id: string;
-  markAsRead: (id: string) => void;
-  seen?: boolean;
   title: string;
+  description: string;
+  type: NotificationType;
+  createdAt: string;
+  seen?: boolean;
+  markAsRead: (id: string) => void;
 }
 
 export function NotificationCard({
   id,
-  seen,
   title,
-  content,
+  description,
+  type = NotificationType.Success,
+  seen,
   createdAt,
   markAsRead,
   onClick,
-}: NotificationCardProps) {
-  const t = useTranslations('Index');
+}: NotificationCardProps): React.JSX.Element {
+  const t = useTranslations('Home');
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
       id={id}
-      className={cx(
+      className={cn(
         'bg-neutral item-center relative flex w-full cursor-pointer rounded-xl p-2 text-sm',
         {
           'bg-neutral-200': !seen || isHovered,
@@ -45,10 +49,18 @@ export function NotificationCard({
     >
       <div className="grow" onClick={onClick}>
         <div className="flex items-center gap-3">
-          <InfoCircle variant="Bold" size={28} className="text-green-500" />
+          <InfoCircle
+            variant="Bold"
+            size={28}
+            className={cn(
+              type === NotificationType.Success
+                ? 'text-green-500'
+                : 'text-red-500',
+            )}
+          />
           <div className="space-y-2">
             <p className="font-bold text-neutral-800">{title}</p>
-            <Typography content={content as string} />
+            <Typography content={description} />
           </div>
         </div>
       </div>
@@ -78,7 +90,7 @@ export function NotificationCard({
                   markAsRead(id);
                 }}
               >
-                {t('T_0522')}
+                {t('M112')}
               </div>
             </PopoverContent>
           </Popover>
