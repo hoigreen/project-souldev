@@ -120,7 +120,9 @@
     "M52": "Submit",
     "M53": "Reset password successfully! You are redirected to the login page in 5 seconds.",
     "M54": "Sign out",
-    "M55": "Back"
+    "M55": "Back",
+    "M56": "Login successfully!",
+    "M57": "Sign out successfully!"
   },
   "404": {
     "M1": "404",

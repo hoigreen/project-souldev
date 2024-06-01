@@ -65,6 +65,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
     );
 
     await signInWithCredential(formData);
+    toast.success(t('M56'));
   };
 
   return (

@@ -42,7 +42,7 @@ export function NotificationCard({
     <div
       id={id}
       className={cn(
-        'bg-neutral item-center relative flex w-full cursor-pointer items-center rounded-lg border px-3 py-2 text-xs md:p-4 md:text-sm',
+        'bg-neutral item-center relative flex w-full cursor-pointer items-center rounded-lg border px-1 py-3 text-xs md:p-4 md:text-sm',
         {
           'bg-neutral-50': !seen || isHovered,
         },
@@ -72,7 +72,7 @@ export function NotificationCard({
           )}
 
           <div className="flex grow flex-col">
-            <p className="whitespace-normal text-sm leading-none text-neutral-800 md:text-base">
+            <p className="whitespace-normal text-xs leading-none text-neutral-800 sm:text-sm md:text-base">
               {title}
             </p>
             <Typography content={description} />

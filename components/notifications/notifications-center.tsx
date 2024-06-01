@@ -53,7 +53,7 @@ export function NotificationsCenter(): React.JSX.Element {
         </div>
       </DrawerTrigger>
 
-      <DrawerContent className="ml-auto h-screen w-[90%] border-none md:w-full md:max-w-[40rem]">
+      <DrawerContent className="ml-auto h-screen w-[96%] border-none md:w-full md:max-w-[40rem]">
         <DrawerHeader className="flex items-baseline justify-between border-b p-2 md:p-4">
           <DrawerTitle className="text-sm md:text-base lg:text-lg">
             {t('M110')}
@@ -67,7 +67,7 @@ export function NotificationsCenter(): React.JSX.Element {
           </Button>
         </DrawerHeader>
 
-        <div className="overflow-auto p-2 md:p-4">
+        <div className="overflow-auto px-1.5 pt-2 md:p-4">
           <NotificationsList onClose={setIsOpen} />
         </div>
       </DrawerContent>
