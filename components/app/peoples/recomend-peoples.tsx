@@ -29,7 +29,7 @@ export default function RecommendPeoples({
   const router = useRouter();
 
   useEffect(() => {
-    const sanitizedData = data.filter((item) => item.user_id);
+    const sanitizedData = (data ?? []).filter((item) => item.user_id);
 
     setSanitizedData(sanitizedData);
   }, [data]);

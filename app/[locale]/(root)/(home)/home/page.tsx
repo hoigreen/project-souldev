@@ -55,8 +55,9 @@ export default async function HomePage({
     return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
   }
 
-  const myFollowings: UserBasic[] =
-    getMyFollowingsResponse.listFollowingUser.map((item) => item.user_id);
+  const myFollowings: UserBasic[] = (
+    getMyFollowingsResponse.listFollowingUser ?? []
+  ).map((item) => item.user_id);
 
   return (
     <Fragment>

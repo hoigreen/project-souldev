@@ -11,9 +11,11 @@ import { InfoCircle, More } from 'iconsax-react';
 import { Typography } from '../ui/typography';
 import { calculateTime, cn } from '@/lib/utils';
 import { NotificationType } from '@/lib/constants';
+import AvatarUser from '../ui/app/avatar-user';
 
 interface NotificationCardProps extends HTMLAttributes<HTMLDivElement> {
   id: string;
+  image?: string;
   title: string;
   description: string;
   type: NotificationType;
@@ -24,6 +26,7 @@ interface NotificationCardProps extends HTMLAttributes<HTMLDivElement> {
 
 export function NotificationCard({
   id,
+  image,
   title,
   description,
   type = NotificationType.Success,
@@ -39,7 +42,7 @@ export function NotificationCard({
     <div
       id={id}
       className={cn(
-        'bg-neutral item-center relative flex w-full cursor-pointer items-center rounded-lg border p-3 text-sm md:p-4',
+        'bg-neutral item-center relative flex w-full cursor-pointer items-center rounded-lg border px-3 py-2 text-xs md:p-4 md:text-sm',
         {
           'bg-neutral-50': !seen || isHovered,
         },
@@ -48,36 +51,47 @@ export function NotificationCard({
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="grow" onClick={onClick}>
-        <div className="flex items-center gap-3">
-          <InfoCircle
-            variant="Bold"
-            size={28}
-            className={cn(
-              type === NotificationType.Success
-                ? 'text-green-500'
-                : 'text-red-500',
-            )}
-          />
+        <div className="flex items-center gap-2 md:gap-3">
+          {image ? (
+            <AvatarUser
+              src={image}
+              fallback={image}
+              alt="notification"
+              className="size-8 md:size-10"
+            />
+          ) : (
+            <InfoCircle
+              variant="Bold"
+              className={cn(
+                'size-8 md:size-10',
+                type === NotificationType.Success
+                  ? 'text-green-500'
+                  : 'text-red-500',
+              )}
+            />
+          )}
 
           <div className="flex grow flex-col">
-            <p className="text-base font-medium text-neutral-800">{title}</p>
+            <p className="whitespace-normal text-sm leading-none text-neutral-800 md:text-base">
+              {title}
+            </p>
             <Typography content={description} />
           </div>
         </div>
       </div>
 
       <div className="flex items-center gap-1">
-        <div className="whitespace-nowrap text-xs font-light italic text-neutral-600">
+        <div className="whitespace-nowrap text-[8px] font-light italic text-neutral-600 sm:text-xs md:text-sm">
           {calculateTime(createdAt)}
         </div>
 
-        {!seen && <div className="size-3 rounded-full bg-blue-600" />}
+        {!seen && <div className="size-2 rounded-full bg-blue-600 md:size-3" />}
       </div>
 
       {!seen && isHovered && (
         <div className="absolute inset-y-0 right-4 z-10 flex items-center transition">
           <Popover>
-            <PopoverTrigger className="flex size-10 items-center justify-center rounded-full border bg-white dark:bg-black">
+            <PopoverTrigger className="flex size-5 items-center justify-center rounded-full border bg-white dark:bg-black md:size-10">
               <More variant="TwoTone" />
             </PopoverTrigger>
             <PopoverContent align="end" className="max-w-40">

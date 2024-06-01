@@ -334,6 +334,7 @@
     "M112": "Mark as read",
     "M113": "Mark all as read successfully!",
     "M114": "You have a new notification. Check it out!",
-    "M115": "Load more"
+    "M115": "Load more",
+    "M116": "No notifications yet"
   }
 }
