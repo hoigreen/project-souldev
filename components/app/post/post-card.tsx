@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn, calculateTime, getFullName } from '@/lib/utils';
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   Like,
   Locale,
@@ -26,6 +26,7 @@ export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   content?: string;
   author: UserProfile;
   created?: string;
+  countComments?: number;
   likes: Like[];
   currentUserId: string;
   images: string[];
@@ -41,16 +42,19 @@ export default function PostCard({
   created,
   likes,
   currentUserId,
+  countComments,
   images,
   shares,
   onClickShare,
 }: PostCardProps): React.JSX.Element {
   const locale = useLocale();
   const t = useTranslations('Home');
+  const { onOpen: onOpenViewLikesPost } = useModalActions<UserProfile[]>(
+    Modals.ViewLikesPost,
+  );
   const { onOpen: onOpenViewDetailPost } = useModalActions<ViewDetailPostData>(
     Modals.ViewDetailPost,
   );
-
   const { onOpen: onOpenSharePost } = useModalActions<SharePostData>(
     Modals.SharePost,
   );
@@ -68,6 +72,11 @@ export default function PostCard({
       label: t('M7'),
     },
   ];
+
+  const santinizedLikesData = useMemo(
+    () => likes.map((like) => like.user_id),
+    [likes],
+  );
 
   return (
     <div
@@ -153,30 +162,44 @@ export default function PostCard({
       </div>
 
       <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          {likes.length > 0 && (
-            <div className="ml-1 mt-3 flex items-center gap-2">
-              {likes.slice(0, 2).map((like, index) => (
-                <AvatarUser
-                  key={index}
-                  src={like.user_id.image}
-                  alt="Profile"
-                  fallback={like.user_id.first_name}
-                  className={cn('size-6', index !== 0 && '-ml-5')}
-                />
-              ))}
+        <div className="mt-3 flex items-center justify-between">
+          <div
+            className="flex cursor-pointer items-center gap-2 hover:opacity-90"
+            onClick={() => onOpenViewLikesPost(santinizedLikesData)}
+          >
+            {santinizedLikesData.length > 0 && (
+              <>
+                {santinizedLikesData.slice(0, 2).map((like, index) => (
+                  <AvatarUser
+                    key={index}
+                    src={like.image}
+                    alt="Profile"
+                    fallback={like.first_name}
+                    className={cn('size-6', index !== 0 && '-ml-5')}
+                  />
+                ))}
 
-              <p className="mt-1 text-sm font-medium">
-                {likes.length} {likes.length > 1 ? 'likes' : 'like'}
-              </p>
-            </div>
-          )}
+                <p className="mt-1 text-sm font-medium">
+                  {santinizedLikesData.length}{' '}
+                  {santinizedLikesData.length > 1 ? 'likes' : 'like'}
+                </p>
+              </>
+            )}
+          </div>
 
-          {shares.length > 0 && (
-            <div className="ml-1 mt-3 flex items-center gap-2 text-base">
-              {shares.length} {t('M7')}
-            </div>
-          )}
+          <div className="flex items-center gap-2 text-xs sm:text-sm">
+            {countComments !== 0 && (
+              <span>
+                {countComments} {t('M6')}
+              </span>
+            )}
+
+            {shares.length > 0 && (
+              <span>
+                {shares.length} {t('M7')}
+              </span>
+            )}
+          </div>
         </div>
 
         <div className="flex divide-x border-t border-neutral-200 dark:border-neutral-700">

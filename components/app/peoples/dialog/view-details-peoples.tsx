@@ -19,11 +19,7 @@ import { ListPeoplesLoading } from '../loading';
 import { ErrorStage, ErrorStageType } from '../../error-stage';
 import useQueryPeoplesUser from '@/hooks/use-query-peoples-user';
 
-export function ViewDetailsPeoples({
-  className,
-}: {
-  className?: string;
-}): React.JSX.Element {
+export function ViewDetailsPeoplesDialog(): React.JSX.Element {
   const isOpen = useModalOpen(Modals.ViewDetailsPeoples);
   const { onClose } = useModalActions(Modals.ViewDetailsPeoples);
   const { viewAction } = useModalData<ViewDetailPeoplesData>(
@@ -39,7 +35,7 @@ export function ViewDetailsPeoples({
   if (isLoading) {
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className={cn(className)}>
+        <DialogContent>
           <div className="space-y-6">
             <PeoplesHeading viewAction={viewAction} />
             <ListPeoplesLoading className="md:grid-cols-1" />
@@ -72,7 +68,7 @@ export function ViewDetailsPeoples({
   if (data.length === 0) {
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className={cn(className)}>
+        <DialogContent>
           <div className="space-y-6">
             <PeoplesHeading viewAction={viewAction} />
             <ErrorStage stage={ErrorStageType.ResourceNotFound} />
@@ -84,7 +80,7 @@ export function ViewDetailsPeoples({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className={cn(className)}>
+      <DialogContent>
         <div className="space-y-6">
           <PeoplesHeading viewAction={viewAction} />
 

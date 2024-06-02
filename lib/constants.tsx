@@ -89,11 +89,12 @@ export const WEBSITE_URL_REGEX =
   /^(?<protocol>https?:\/\/)?(?<domain>[\da-z.-]+)\.(?<tld>[a-z.]{2,6})(?<path>[/\w .-]*)*\/?$/;
 
 export enum Modals {
-  CreatePost = 'CreatePost', // eslint-disable-line no-unused-vars
-  ViewDetailPost = 'ViewDetailPost', // eslint-disable-line no-unused-vars
-  SharePost = 'SharePost', // eslint-disable-line no-unused-vars
-  RemoveFriend = 'RemoveFriend', // eslint-disable-line no-unused-vars,
-  ViewDetailsPeoples = 'ViewDetailsPeoples', // eslint-disable-line no-unused-vars
+  CreatePost = 'CreatePost',
+  ViewDetailPost = 'ViewDetailPost',
+  SharePost = 'SharePost',
+  RemoveFriend = 'RemoveFriend',
+  ViewDetailsPeoples = 'ViewDetailsPeoples',
+  ViewLikesPost = 'ViewLikesPost',
 }
 
 export const twitterUrlSchema = z

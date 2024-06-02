@@ -105,6 +105,7 @@ export type Post = {
   likes: Like[];
   shares: Share[];
   created?: string;
+  commentsCount?: number;
   __v?: number;
   createdAt?: string;
   updatedAt?: string;
