@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn, calculateTime, getFullName } from '@/lib/utils';
@@ -32,10 +34,17 @@ export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   images: string[];
   shares: Share[];
   onClickShare?: () => void;
+  classNames?: {
+    imageContainer?: string;
+    image?: string;
+    images?: string;
+  };
+  isDisabledComment?: boolean;
 };
 
 export default function PostCard({
   className,
+  classNames,
   id,
   content,
   author,
@@ -46,6 +55,7 @@ export default function PostCard({
   images,
   shares,
   onClickShare,
+  isDisabledComment,
 }: PostCardProps): React.JSX.Element {
   const locale = useLocale();
   const t = useTranslations('Home');
@@ -103,10 +113,13 @@ export default function PostCard({
                   {getFullName(author.first_name, author.last_name)}
                 </h4>
               </Link>
-              <span className="flex items-center gap-2 text-xs font-light italic">
+              <Link
+                className="flex items-center gap-2 text-xs font-light italic"
+                href={`/post/${id}`}
+              >
                 <Clock className="size-3" variant="TwoTone" />
                 {created ? calculateTime(created, locale as Locale) : t('M8')}
-              </span>
+              </Link>
             </div>
           </div>
 
@@ -119,14 +132,22 @@ export default function PostCard({
         {images.length <= 1 ? (
           images.map((image, index) => (
             <div className="flex flex-1 rounded-xl" key={index}>
-              <div className="relative size-full min-h-96">
+              <div
+                className={cn(
+                  'relative size-full min-h-96',
+                  classNames?.imageContainer,
+                )}
+              >
                 <ViewImageDialog alt={String(author.last_name)} src={image}>
                   <Image
                     alt={String(author.last_name)}
                     priority
                     src={image}
                     fill
-                    className="object-contain object-left"
+                    className={cn(
+                      'object-contain object-left',
+                      classNames?.image,
+                    )}
                   />
                 </ViewImageDialog>
               </div>
@@ -144,13 +165,21 @@ export default function PostCard({
                 className="flex flex-[0_0_90%] overflow-hidden md:flex-[0_0_75%] lg:flex-[0_0_70%] xl:flex-[0_0_60%]"
                 key={index}
               >
-                <div className="relative size-full min-h-96">
+                <div
+                  className={cn(
+                    'relative size-full min-h-96',
+                    classNames?.imageContainer,
+                  )}
+                >
                   <ViewImageDialog alt={String(author.last_name)} src={image}>
                     <Image
                       alt={String(author.last_name)}
+                      className={cn(
+                        'object-contain object-left',
+                        classNames?.images,
+                      )}
                       fill
                       priority
-                      className="object-contain object-left"
                       src={image}
                     />
                   </ViewImageDialog>
@@ -212,7 +241,10 @@ export default function PostCard({
             <Button
               key={index}
               variant="ghost"
-              className="grow gap-2 rounded-none bg-transparent px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-600"
+              className={cn(
+                'grow gap-2 rounded-none bg-transparent px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-600',
+                isDisabledComment && index === 0 && 'hidden',
+              )}
               onClick={action.onClick}
             >
               <action.icon

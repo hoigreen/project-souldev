@@ -8,6 +8,7 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import remarkStringify from 'remark-stringify';
 import { unified } from 'unified';
+import removeMarkdown from 'markdown-to-text';
 
 const convertMarkdownToHtmlProcess = unified()
   .use(remarkParse)
@@ -45,4 +46,8 @@ export function markdownToHTML(markdown: string): string {
 
 export function htmlToMarkdown(html: string): string {
   return processConversion(convertHtmlToMarkdownProcess, html);
+}
+
+export function markdownToText(markdown: string): string {
+  return removeMarkdown(markdown);
 }

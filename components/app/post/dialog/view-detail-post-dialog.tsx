@@ -3,16 +3,11 @@
 import { Modals } from '@/lib/constants';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useModalActions, useModalData, useModalOpen } from '@/hooks/use-modal';
-import { useLocale, useTranslations } from 'next-intl';
 import React, { useEffect } from 'react';
-import {
-  Locale,
-  PostDetailResponse,
-  ViewDetailPostData,
-} from '@/lib/definitions';
+import { PostDetailResponse, ViewDetailPostData } from '@/lib/definitions';
 import { getPostById } from '@/lib/actions/posts';
 import { ErrorStage, ErrorStageType } from '../../error-stage';
-import { calculateTime, cn, getFullName } from '@/lib/utils';
+import { cn, getFullName } from '@/lib/utils';
 import {
   Carousel,
   CarouselContent,
@@ -28,6 +23,7 @@ import { useSession } from 'next-auth/react';
 import { MessageText1, Send } from 'iconsax-react';
 import CommentForm from '../form/comment-form';
 import { Truncate } from '@/components/ui/truncate';
+import ListComments from '../list-comments';
 
 export function ViewDetailPostDialog(): React.JSX.Element {
   const [postData, setPostData] =
@@ -40,8 +36,6 @@ export function ViewDetailPostDialog(): React.JSX.Element {
   const { postId } = useModalData<ViewDetailPostData>(Modals.ViewDetailPost, {
     postId: '',
   });
-  const t = useTranslations('Home');
-  const locale = useLocale();
   const { data: session } = useSession();
 
   async function getPostDetails() {
@@ -211,44 +205,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
 
           <hr className="h-px bg-neutral-200" />
 
-          <div className="mt-10 space-y-4 overflow-auto rounded-lg border p-3">
-            {comments &&
-              (comments.length === 0 ? (
-                <p className="text-center text-sm">{t('M13')}</p>
-              ) : (
-                comments.map((comment, index) => (
-                  <div className="space-y-2" key={index}>
-                    <div key={index} className="flex items-center gap-3">
-                      <Avatar className="size-10">
-                        <AvatarImage
-                          src={comment.user_id.image}
-                          alt={String(comment.user_id.last_name)}
-                        />
-                        <AvatarFallback>
-                          {comment.user_id.first_name.charAt(0)}
-                          {comment.user_id.last_name.charAt(0)}
-                        </AvatarFallback>
-                      </Avatar>
-
-                      <div className="flex grow items-center justify-between">
-                        <p className="text-base font-medium">
-                          {getFullName(
-                            comment.user_id.first_name,
-                            comment.user_id.last_name,
-                          )}
-                        </p>
-
-                        <span className="text-sm italic">
-                          {calculateTime(comment.date, locale as Locale)}
-                        </span>
-                      </div>
-                    </div>
-
-                    <p className="text-sm">{comment.text}</p>
-                  </div>
-                ))
-              ))}
-          </div>
+          <ListComments comments={comments} />
         </div>
       </DialogContent>
     </Dialog>
