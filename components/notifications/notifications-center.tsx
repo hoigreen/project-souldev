@@ -14,6 +14,7 @@ import { BellRing } from 'lucide-react';
 import { Button } from '../ui/button';
 import { NotificationsList } from './notifications-list';
 import toast from 'react-hot-toast';
+import { cn } from '@/lib/utils';
 
 export function NotificationsCenter(): React.JSX.Element {
   const t = useTranslations('Home');
@@ -47,7 +48,12 @@ export function NotificationsCenter(): React.JSX.Element {
         <div className="data-state-open:bg-neutral-300 relative flex items-center p-1 transition">
           <BellRing size={20} className="inset-0 m-auto rotate-12" />
 
-          <div className="absolute top-0 size-4 rounded-full bg-red-500 text-xs font-bold text-white">
+          <div
+            className={cn(
+              'absolute top-0 size-4 rounded-full bg-red-500 text-xs font-bold text-white',
+              unseenCount === 0 && 'hidden',
+            )}
+          >
             {unseenCount && unseenCount}
           </div>
         </div>

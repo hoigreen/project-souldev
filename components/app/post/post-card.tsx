@@ -145,7 +145,7 @@ export default function PostCard({
                     src={image}
                     fill
                     className={cn(
-                      'object-contain object-left',
+                      'bg-gradient-to-tr from-green-100/80 via-blue-300/80 to-teal-200/80 object-contain object-center',
                       classNames?.image,
                     )}
                   />
