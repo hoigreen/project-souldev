@@ -91,11 +91,11 @@ export default function PostCard({
   return (
     <div
       className={cn(
-        'w-full rounded-xl bg-white px-3 py-4 shadow-lg dark:bg-black md:p-7',
+        'flex w-full flex-col rounded-xl bg-white px-3 py-4 shadow-lg dark:bg-black md:p-7',
         className,
       )}
     >
-      <div className="space-y-3">
+      <div className="flex size-full grow flex-col gap-3">
         <div className="flex w-full justify-between">
           <div className="flex gap-2">
             <Link href={`/people/${author._id}`}>
@@ -126,7 +126,9 @@ export default function PostCard({
           <ArchiveMinus size={24} variant="TwoTone" />
         </div>
 
-        <Truncate text={content ?? ''} isHtml />
+        <div className="h-full min-h-max grow">
+          <Truncate text={content ?? ''} isHtml />
+        </div>
 
         {/* Images */}
         {images.length <= 1 ? (

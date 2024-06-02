@@ -23,6 +23,14 @@ export async function getMyPosts(): Promise<MyPostsResponse> {
   return await requestService.get(endpoints.posts.getMyPosts);
 }
 
+export async function getPostsByUserId(
+  params: Params,
+): Promise<MyPostsResponse> {
+  return await requestService.get(
+    getEndpoint({ path: endpoints.posts.getPostsByUserId, params }),
+  );
+}
+
 export async function getMySharedPosts(): Promise<MyPostsResponse> {
   return await requestService.get(endpoints.posts.getMySharedPosts);
 }

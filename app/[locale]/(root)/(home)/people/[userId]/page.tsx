@@ -5,6 +5,8 @@ import EducationCard from '@/components/app/people/education-card';
 import ExperienceCard from '@/components/app/people/experience-card';
 import SkillCard from '@/components/app/people/skills-card';
 import { ProfileCardLoadingSkeleton } from '@/components/app/post/loading';
+import PeoplesPost from '@/components/app/post/people-posts';
+import { getPostsByUserId } from '@/lib/actions/posts';
 import { getProfileById } from '@/lib/actions/profile';
 import getSession from '@/lib/get-session';
 import { getFullName } from '@/lib/utils';
@@ -29,11 +31,20 @@ export default async function Page({ params: { locale, userId } }: PageProps) {
     return redirect('/auth/sign-in');
   }
 
-  const profileResponse = await getProfileById({ userId });
+  const [profileResponse, postsResponse] = await Promise.all([
+    getProfileById({ userId }),
+    getPostsByUserId({ userId }),
+  ]);
 
   if (!profileResponse.success) {
     return <ErrorStage stage={ErrorStageType.PageNotFound} />;
   }
+
+  if (!postsResponse.success) {
+    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
+  }
+
+  const posts = postsResponse.data;
 
   if (session.user._id === profileResponse.data.user_id._id) {
     return redirect('/profile');
@@ -57,6 +68,7 @@ export default async function Page({ params: { locale, userId } }: PageProps) {
         <ExperienceCard experience={profileResponse.data.experience} />
 
         {/* Posts */}
+        <PeoplesPost posts={posts} currentUserId={session.user._id} />
       </Suspense>
     </div>
   );
