@@ -11,7 +11,6 @@ import {
   ViewDetailPeoplesData,
   ViewDetailsActionPeoples,
 } from '@/lib/definitions';
-import { cn } from '@/lib/utils';
 import { PeoplesHeading } from '../peoples-heading';
 import React from 'react';
 import ListPeoples from '../list-peoples';

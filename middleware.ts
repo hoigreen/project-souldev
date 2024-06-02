@@ -21,13 +21,13 @@ const nextAuthMiddleware = () =>
 
         if (
           locale !== localeFromPath &&
-          locales.includes(localeFromPath as any)
+          locales.includes(localeFromPath as 'en' | 'vi')
         ) {
           locale = localeFromPath;
         }
 
         if (!token.isOnboardingCompleted) {
-          return NextResponse.redirect(
+          return NextResponse.rewrite(
             new URL(`/${locale}/auth/onboarding`, req.url),
           );
         } else {

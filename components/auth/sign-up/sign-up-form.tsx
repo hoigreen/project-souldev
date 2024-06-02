@@ -130,7 +130,6 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
                   <FormLabel>{t('M26')}</FormLabel>
                   <FormControl>
                     <Input
-                      type="number"
                       placeholder={t('M27')}
                       {...field}
                       disabled={formState.isSubmitting}
