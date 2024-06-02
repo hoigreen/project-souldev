@@ -87,6 +87,8 @@ export const LINKEDIN_URL_REGEX =
   /^(?<protocol>https?:\/\/)?(?<subdomain>www\.)?linkedin\.com\/(?<path>in|profile|pub)(?<additional>\/[a-zA-Z0-9%_-]+)*\/?$/;
 export const WEBSITE_URL_REGEX =
   /^(?<protocol>https?:\/\/)?(?<domain>[\da-z.-]+)\.(?<tld>[a-z.]{2,6})(?<path>[/\w .-]*)*\/?$/;
+export const MONTH_YEAR_REGEX =
+  /^(0[1-9]|1[0-2])\/(199[0-9]|20[01][0-9]|202[0-4])$/;
 
 export enum Modals {
   CreatePost = 'CreatePost',

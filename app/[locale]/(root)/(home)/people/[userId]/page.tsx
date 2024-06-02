@@ -1,6 +1,8 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import BasicInfoCard from '@/components/app/people/basic-info-card';
 import BioCard from '@/components/app/people/bio-card';
+import EducationCard from '@/components/app/people/education-card';
+import ExperienceCard from '@/components/app/people/experience-card';
 import SkillCard from '@/components/app/people/skills-card';
 import { ProfileCardLoadingSkeleton } from '@/components/app/post/loading';
 import { getProfileById } from '@/lib/actions/profile';
@@ -27,30 +29,32 @@ export default async function Page({ params: { locale, userId } }: PageProps) {
     return redirect('/auth/sign-in');
   }
 
-  const response = await getProfileById({ userId });
+  const profileResponse = await getProfileById({ userId });
 
-  if (!response.success) {
+  if (!profileResponse.success) {
     return <ErrorStage stage={ErrorStageType.PageNotFound} />;
   }
 
-  if (session.user._id === response.data.user_id._id) {
+  if (session.user._id === profileResponse.data.user_id._id) {
     return redirect('/profile');
   }
 
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8">
       <Suspense fallback={<ProfileCardLoadingSkeleton />}>
-        <BasicInfoCard profile={response.data} />
+        <BasicInfoCard profile={profileResponse.data} />
 
         {/* Bio & Skill */}
         <div className="space-y-4 md:flex md:justify-between md:gap-4 md:space-y-0">
-          <BioCard bio={response.data.user_id.bio} />
-          <SkillCard skills={response.data.skills} />
+          <BioCard bio={profileResponse.data.user_id.bio} />
+          <SkillCard skills={profileResponse.data.skills} />
         </div>
 
         {/* Education */}
+        <EducationCard education={profileResponse.data.education} />
 
         {/* Experience */}
+        <ExperienceCard experience={profileResponse.data.experience} />
 
         {/* Posts */}
       </Suspense>
