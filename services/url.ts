@@ -9,10 +9,7 @@ export const getEndpoint = ({
   params?: Params;
   query?: Query;
 }) => {
-  return buildQuery(
-    buildParams(`${process.env.NEXT_PUBLIC_ENDPOINT}${path}`, params),
-    query,
-  );
+  return buildQuery(buildParams(path, params), query);
 };
 
 export const getPathname = ({

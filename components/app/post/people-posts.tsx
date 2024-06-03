@@ -21,10 +21,6 @@ export default function PeoplesPost({
 }: PeoplesPostProps) {
   const t = useTranslations('Home');
 
-  if (posts.length === 0) {
-    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
-  }
-
   return (
     <Card className={cn('space-y-6 p-4 md:p-6', className)}>
       <div className="flex items-center justify-between">
@@ -42,24 +38,28 @@ export default function PeoplesPost({
           posts.length === 1 && 'lg:grid-cols-1',
         )}
       >
-        {posts.map((item, index) => (
-          <PostCard
-            className={cn(
-              posts.length % 2 === 1 &&
-                index === posts.length - 1 &&
-                'lg:col-span-2',
-            )}
-            key={index}
-            likes={item.likes}
-            currentUserId={currentUserId}
-            id={item._id}
-            content={item.content}
-            author={item.user_id}
-            created={item.created}
-            images={item.images}
-            shares={item.shares}
-          />
-        ))}
+        {posts.length === 0 ? (
+          <ErrorStage stage={ErrorStageType.ResourceNotFound} />
+        ) : (
+          posts.map((item, index) => (
+            <PostCard
+              className={cn(
+                posts.length % 2 === 1 &&
+                  index === posts.length - 1 &&
+                  'lg:col-span-2',
+              )}
+              key={index}
+              likes={item.likes}
+              currentUserId={currentUserId}
+              id={item._id}
+              content={item.content}
+              author={item.user_id}
+              created={item.created}
+              images={item.images}
+              shares={item.shares}
+            />
+          ))
+        )}
       </div>
     </Card>
   );
