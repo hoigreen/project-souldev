@@ -6,7 +6,7 @@ import ExperienceCard from '@/components/app/people/experience-card';
 import SkillCard from '@/components/app/people/skills-card';
 import { ProfileCardLoadingSkeleton } from '@/components/app/post/loading';
 import PeoplesPost from '@/components/app/post/people-posts';
-import { getPostsByUserId } from '@/lib/actions/posts';
+import { getPostsByUserId } from '@/lib/actions/post';
 import { getMyFollowings, getProfileById } from '@/lib/actions/profile';
 import { UserBasic } from '@/lib/definitions';
 import getSession from '@/lib/get-session';

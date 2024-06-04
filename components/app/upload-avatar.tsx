@@ -6,7 +6,7 @@ import React, { ChangeEvent, useEffect } from 'react';
 import { Label } from '../ui/label';
 import { cn, isBase64Image } from '@/lib/utils';
 import { Input } from '../ui/input';
-import { updateAvatar } from '@/lib/actions/users';
+import { updateAvatar } from '@/lib/actions/user';
 import { User } from 'next-auth';
 import toast from 'react-hot-toast';
 import { useSession } from 'next-auth/react';

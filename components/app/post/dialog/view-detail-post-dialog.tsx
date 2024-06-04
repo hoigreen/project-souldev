@@ -5,7 +5,7 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useModalActions, useModalData, useModalOpen } from '@/hooks/use-modal';
 import React, { useEffect } from 'react';
 import { PostDetailResponse, ViewDetailPostData } from '@/lib/definitions';
-import { getPostById } from '@/lib/actions/posts';
+import { getPostById } from '@/lib/actions/post';
 import { ErrorStage, ErrorStageType } from '../../error-stage';
 import { cn, getFullName } from '@/lib/utils';
 import {

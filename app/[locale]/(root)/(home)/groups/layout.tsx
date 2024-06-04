@@ -25,14 +25,14 @@ export default async function GroupsLayout({
       icon: <Compass size={16} />,
     },
     {
-      href: '/groups/create',
-      label: t('M124'),
-      icon: <Add variant="TwoTone" size={16} />,
-    },
-    {
       href: '/groups/my-groups',
       label: t('M125'),
       icon: <UsersRound size={16} />,
+    },
+    {
+      href: '/groups/create',
+      label: t('M124'),
+      icon: <Add variant="TwoTone" size={16} />,
     },
   ];
 

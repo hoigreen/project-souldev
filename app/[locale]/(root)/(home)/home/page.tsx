@@ -4,7 +4,7 @@ import RecommendPeoples from '@/components/app/peoples/recomend-peoples';
 import CreatePostBox from '@/components/app/post/create-post-box';
 import ListPostsClient from '@/components/app/post/list-posts-client';
 import { RightSidebar } from '@/components/app/right-sidebar';
-import { getPosts } from '@/lib/actions/posts';
+import { getPosts } from '@/lib/actions/post';
 import { getMyFollowings, getRecommendPeoples } from '@/lib/actions/profile';
 import { Post, UserBasic } from '@/lib/definitions';
 import getSession from '@/lib/get-session';

@@ -3,7 +3,7 @@
 import { Editor } from '@/components/ui/app/editor';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { createPost } from '@/lib/actions/posts';
+import { createPost } from '@/lib/actions/post';
 import { ActionPost } from '@/lib/definitions';
 import { htmlToMarkdown, markdownToHTML } from '@/lib/markdown';
 import { cn } from '@/lib/utils';

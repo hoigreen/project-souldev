@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { updateInfoBasic } from '@/lib/actions/users';
+import { updateInfoBasic } from '@/lib/actions/user';
 import { UserProfile } from '@/lib/definitions';
 import { cn } from '@/lib/utils';
 import {

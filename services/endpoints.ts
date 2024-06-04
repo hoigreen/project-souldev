@@ -100,4 +100,21 @@ export const endpoints = {
 
     removeFriend: '/api/profile/remove-friend',
   },
+
+  group: {
+    getList: '/api/groupMedia',
+    getDetails: '/api/groupMedia/:groupId',
+    create: '/api/groupMedia/create-group',
+    update: '/api/groupMedia/update-group/:groupId',
+    joinByLink: '/api/groupMedia/join-group-by-link/:userId/:groupId',
+    join: '/api/groupMedia/join-group/:groupId',
+    deteleGroup: '/api/groupMedia/delete-group/:groupId',
+    leaveGroup: '/api/groupMedia/leave-group/:groupId',
+    acceptRequestJoin: '/api/groupMedia/accept-request-join-group/:groupId',
+    getListMember: '/api/groupMedia/get-list-member/:groupId',
+    addMember: '/api/groupMedia/add-member/:groupId',
+    removeMember: '/api/groupMedia/remove-member/:groupId',
+    addManager: '/api/groupMedia/add-manager/:groupId',
+    removeManager: '/api/groupMedia/remove-manager/:groupId',
+  },
 };

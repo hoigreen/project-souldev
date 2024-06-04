@@ -2,7 +2,7 @@ import { ReactNode, Suspense } from 'react';
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
 import ProfileCard from '@/components/profile/profile-card';
-import { countMyPosts } from '@/lib/actions/posts';
+import { countMyPosts } from '@/lib/actions/post';
 import {
   getTranslations,
   unstable_setRequestLocale as unstableSetRequestLocale,

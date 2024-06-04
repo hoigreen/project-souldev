@@ -1,4 +1,4 @@
-import { getPostById } from '@/lib/actions/posts';
+import { getPostById } from '@/lib/actions/post';
 import { useQuery } from '@tanstack/react-query';
 
 export default function useQueryPost({ postId }: { postId: string }) {

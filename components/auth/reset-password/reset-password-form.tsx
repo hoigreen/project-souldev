@@ -21,7 +21,7 @@ import {
   resetPasswordSchema,
 } from '@/lib/validations/auth';
 import { useRouter } from '@/navigation';
-import { resetPassWord } from '@/lib/actions/users';
+import { resetPassWord } from '@/lib/actions/user';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: ResetPasswordForm

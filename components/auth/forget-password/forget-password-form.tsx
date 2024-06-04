@@ -20,7 +20,7 @@ import {
   forgetPasswordSchema,
 } from '@/lib/validations/auth';
 import toast from 'react-hot-toast';
-import { forgetPassWord } from '@/lib/actions/users';
+import { forgetPassWord } from '@/lib/actions/user';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: ForgetPasswordForm

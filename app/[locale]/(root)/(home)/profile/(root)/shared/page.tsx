@@ -1,6 +1,6 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import MySharedPostsClient from '@/components/app/post/my-shared-posts-client';
-import { getMySharedPosts } from '@/lib/actions/posts';
+import { getMySharedPosts } from '@/lib/actions/post';
 import getSession from '@/lib/get-session';
 import { Metadata } from 'next';
 import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';

@@ -1,4 +1,4 @@
-import { getPosts } from '@/lib/actions/posts';
+import { getPosts } from '@/lib/actions/post';
 import { PostsResponse } from '@/lib/definitions';
 import type { InfiniteData } from '@tanstack/react-query';
 import { useInfiniteQuery } from '@tanstack/react-query';

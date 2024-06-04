@@ -9,7 +9,7 @@ import {
   authGoogle,
   getCurrentUser,
   login,
-} from '@/lib/actions/users';
+} from '@/lib/actions/user';
 
 export const authOptions: NextAuthOptions = {
   jwt: {

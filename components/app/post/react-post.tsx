@@ -5,7 +5,7 @@ import { useRouter } from '@/navigation';
 import { Heart } from 'iconsax-react';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
-import { likePost, unlikePost } from '@/lib/actions/posts';
+import { likePost, unlikePost } from '@/lib/actions/post';
 import { Button } from '@/components/ui/button';
 
 export default function ReactPost({

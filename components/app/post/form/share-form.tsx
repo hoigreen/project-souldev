@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useRouter } from '@/navigation';
 import { useSession } from 'next-auth/react';
-import { sharePost } from '@/lib/actions/posts';
+import { sharePost } from '@/lib/actions/post';
 import { Textarea } from '@/components/ui/textarea';
 import { getFullName } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
