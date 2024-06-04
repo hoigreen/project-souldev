@@ -1,6 +1,6 @@
 'use client';
 
-import { AuthType, Profile } from '@/lib/definitions';
+import { AuthType, Profile, UserBasic } from '@/lib/definitions';
 import React from 'react';
 import { cn, getFullName } from '@/lib/utils';
 import {
@@ -19,17 +19,23 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ViewImageDialog } from '@/components/ui/dialogs/view-image-dialog';
+import toast from 'react-hot-toast';
+import { useRouter } from '@/navigation';
+import { handleAddFriend, handleCancelRequest } from '@/services/people';
 
 type BasicInfoCardProps = React.HTMLAttributes<HTMLDivElement> & {
   profile: Profile;
+  myFollowings: UserBasic[];
 };
 
 export default function BasicInfoCard({
   className,
+  myFollowings,
   profile,
   ...props
 }: BasicInfoCardProps) {
   const t = useTranslations('Home');
+  const router = useRouter();
 
   const basicInfo = [
     {
@@ -42,7 +48,7 @@ export default function BasicInfoCard({
     },
     {
       icon: MapPin,
-      text: 'Ho Chi Minh',
+      text: 'Ho Chi Minh City, Vietnam',
     },
     {
       icon: Globe,
@@ -99,6 +105,27 @@ export default function BasicInfoCard({
         </h2>
       </div>
 
+      <div className="flex items-center justify-center gap-2 sm:gap-4 md:gap-6">
+        <Button
+          variant="ghost"
+          className="flex items-baseline gap-1 p-0.5 text-xs font-normal sm:p-1 sm:text-sm md:text-base"
+        >
+          <span className="text-base font-semibold sm:text-lg">
+            {profile.friends.length}
+          </span>{' '}
+          {t('M25')}
+        </Button>
+        <Button
+          variant="ghost"
+          className="flex items-baseline gap-1 p-0.5 text-xs font-normal sm:p-1 sm:text-sm md:text-base"
+        >
+          <span className="text-base font-semibold sm:text-lg">
+            {profile.followers.length}
+          </span>{' '}
+          {t('M23')}
+        </Button>
+      </div>
+
       <div className="space-y-2">
         <Label className="md:hidden">{t('M31')}</Label>
         <div className="mx-auto w-full space-y-1 md:grid md:max-w-lg md:grid-cols-2 md:place-items-center md:gap-2 md:space-y-0 lg:max-w-3xl">
@@ -118,10 +145,40 @@ export default function BasicInfoCard({
       </div>
 
       <div className="flex items-center justify-between gap-1 md:mx-auto md:max-w-md md:gap-2">
-        <Button className="w-full">{t('M53')}</Button>
-        <Button className="w-full" variant="outline">
-          {t('M52')}
-        </Button>
+        {myFollowings.find((user) => user._id === profile.user_id._id) ? (
+          <Button
+            className="w-full text-xs sm:text-base"
+            variant="outline"
+            onClick={() =>
+              handleCancelRequest({
+                requestUserId: profile.user_id._id,
+                onError: () => toast.error(t('M15')),
+                onSuccess: () => {
+                  toast.success(t('M103'));
+                  router.refresh();
+                },
+              })
+            }
+          >
+            {t('M101')}
+          </Button>
+        ) : (
+          <Button
+            className="w-full text-xs sm:text-base"
+            onClick={() =>
+              handleAddFriend({
+                toUserId: profile.user_id._id,
+                onError: () => toast.error(t('M15')),
+                onSuccess: () => {
+                  toast.success(t('M102'));
+                  router.refresh();
+                },
+              })
+            }
+          >
+            {t('M53')}
+          </Button>
+        )}
       </div>
     </Card>
   );

@@ -32,16 +32,17 @@ export default function PeoplesPost({
         </span>
       </div>
 
-      <div
-        className={cn(
-          'grid w-full gap-4 lg:grid-cols-2',
-          posts.length === 1 && 'lg:grid-cols-1',
-        )}
-      >
-        {posts.length === 0 ? (
-          <ErrorStage stage={ErrorStageType.ResourceNotFound} />
-        ) : (
-          posts.map((item, index) => (
+      {posts.length === 0 ? (
+        <ErrorStage stage={ErrorStageType.ResourceNotFound} />
+      ) : (
+        posts.map((item, index) => (
+          <div
+            key={item.name}
+            className={cn(
+              'grid w-full gap-4 lg:grid-cols-2',
+              posts.length === 1 && 'lg:grid-cols-1',
+            )}
+          >
             <PostCard
               className={cn(
                 posts.length % 2 === 1 &&
@@ -58,9 +59,9 @@ export default function PeoplesPost({
               images={item.images}
               shares={item.shares}
             />
-          ))
-        )}
-      </div>
+          </div>
+        ))
+      )}
     </Card>
   );
 }

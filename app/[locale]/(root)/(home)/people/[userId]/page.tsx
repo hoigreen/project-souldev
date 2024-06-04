@@ -7,7 +7,8 @@ import SkillCard from '@/components/app/people/skills-card';
 import { ProfileCardLoadingSkeleton } from '@/components/app/post/loading';
 import PeoplesPost from '@/components/app/post/people-posts';
 import { getPostsByUserId } from '@/lib/actions/posts';
-import { getProfileById } from '@/lib/actions/profile';
+import { getMyFollowings, getProfileById } from '@/lib/actions/profile';
+import { UserBasic } from '@/lib/definitions';
 import getSession from '@/lib/get-session';
 import { getFullName } from '@/lib/utils';
 import { redirect } from '@/navigation';
@@ -31,10 +32,12 @@ export default async function Page({ params: { locale, userId } }: PageProps) {
     return redirect('/auth/sign-in');
   }
 
-  const [profileResponse, postsResponse] = await Promise.all([
-    getProfileById({ userId }),
-    getPostsByUserId({ userId }),
-  ]);
+  const [profileResponse, postsResponse, myFollowingsResponse] =
+    await Promise.all([
+      getProfileById({ userId }),
+      getPostsByUserId({ userId }),
+      getMyFollowings(),
+    ]);
 
   if (!profileResponse.success) {
     return <ErrorStage stage={ErrorStageType.PageNotFound} />;
@@ -43,6 +46,14 @@ export default async function Page({ params: { locale, userId } }: PageProps) {
   if (!postsResponse.success) {
     return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
   }
+
+  if (!myFollowingsResponse) {
+    return <ErrorStage stage={ErrorStageType.ServerError} />;
+  }
+
+  const myFollowings: UserBasic[] = myFollowingsResponse.listFollowingUser.map(
+    (item) => item.user_id,
+  );
 
   const posts = postsResponse.data;
 
@@ -53,7 +64,10 @@ export default async function Page({ params: { locale, userId } }: PageProps) {
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8">
       <Suspense fallback={<ProfileCardLoadingSkeleton />}>
-        <BasicInfoCard profile={profileResponse.data} />
+        <BasicInfoCard
+          profile={profileResponse.data}
+          myFollowings={myFollowings}
+        />
 
         {/* Bio & Skill */}
         <div className="space-y-4 md:flex md:justify-between md:gap-4 md:space-y-0">

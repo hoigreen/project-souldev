@@ -1,3 +1,5 @@
+import { Address } from './definitions';
+
 function removeEmoji(text: string): string {
   return text.replace(/\p{Emoji}/gu, '');
 }
@@ -19,4 +21,8 @@ export const getFirstInitials = (
     .slice(0, 2)
     .map((word) => word.charAt(0).toUpperCase())
     .join('');
+};
+
+export const getFullAddress = (address: Address): string => {
+  return `${address.location}, ${address.ward}, ${address.district}, ${address.city}`;
 };

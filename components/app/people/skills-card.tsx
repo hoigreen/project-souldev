@@ -26,14 +26,18 @@ export default function SkillCard({
       <Label>{t('M67')}</Label>
 
       <div className="flex flex-wrap items-center gap-2">
-        {skills.map((skill, index) => (
-          <span
-            key={index}
-            className="rounded-lg border bg-neutral-100 px-3 py-1 text-sm"
-          >
-            {skill}
-          </span>
-        ))}
+        {skills.length === 0 ? (
+          <p className="text-sm">{t('M122')}</p>
+        ) : (
+          skills.map((skill, index) => (
+            <span
+              key={index}
+              className="rounded-lg border bg-neutral-100 px-3 py-1 text-sm"
+            >
+              {skill}
+            </span>
+          ))
+        )}
       </div>
     </Card>
   );
