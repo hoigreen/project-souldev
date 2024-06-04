@@ -20,24 +20,29 @@ export default function Tabs({ className, tabs, ...props }: TabsProps) {
   return (
     <div
       className={cn(
-        'flex items-center justify-center border-b md:gap-2',
+        'grid place-items-center gap-2 border-b sm:flex sm:items-center sm:justify-center',
+        tabs.length === 1 && 'max-sm:flex',
+        tabs.length >= 2 && 'max-sm:grid-cols-2',
         className,
       )}
       {...props}
     >
-      {tabs.map((tab) => (
+      {tabs.map((tab, i) => (
         <Link
           key={tab.href}
           href={tab.href}
           className={cn(
-            'flex w-full grow items-center justify-center gap-1 border-b-2 p-1 text-center text-[10px] transition-colors sm:px-2 sm:py-1 sm:text-sm md:grow-0 md:gap-2 md:px-5 md:py-2.75 md:text-base',
+            'flex w-full grow items-center justify-center gap-2 border-b-2 px-2 py-1 text-center text-sm transition-colors md:grow-0 md:gap-2 md:px-5 md:py-2.75 md:text-base',
+            i === tabs.length - 1 &&
+              tabs.length % 2 === 1 &&
+              'max-sm:col-span-2',
             pathname === tab.href
               ? 'border-primary font-bold'
               : 'border-transparent',
           )}
         >
           {tab.label}
-          <span className="max-sm:hidden"> {tab.icon && tab.icon}</span>
+          {tab.icon && tab.icon}
         </Link>
       ))}
     </div>

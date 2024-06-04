@@ -343,6 +343,10 @@
     "M119": "No experiences",
     "M120": "Activities",
     "M121": "{count} posts",
-    "M122": "No skills"
+    "M122": "No skills",
+    "M123": "Groups",
+    "M124": "Create groups",
+    "M125": "My groups",
+    "M126": "Suggestion groups"
   }
 }
