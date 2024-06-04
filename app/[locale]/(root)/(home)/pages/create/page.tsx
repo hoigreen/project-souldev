@@ -6,10 +6,10 @@ import {
 } from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: 'My groups',
+  title: 'Create page',
 };
 
-export default async function HomePage({
+export default async function Page({
   params: { locale },
 }: {
   params: { locale: string };
@@ -18,14 +18,8 @@ export default async function HomePage({
   const t = await getTranslations('Home');
 
   return (
-    <>
-      <div className="space-y-3">
-        <Heading title={t('M125')} size={1} />
-      </div>
-
-      <div className="space-y-3">
-        <Heading title={t('M128')} size={1} />
-      </div>
-    </>
+    <div className="space-y-3">
+      <Heading title={t('M131')} size={1} />
+    </div>
   );
 }

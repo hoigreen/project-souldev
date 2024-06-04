@@ -2,7 +2,6 @@
 
 import { useSession } from 'next-auth/react';
 import { FC, HTMLAttributes } from 'react';
-import { ErrorStage, ErrorStageType } from '../error-stage';
 import { NovuProvider } from '@novu/notification-center';
 import { NotificationsCenter } from '@/components/notifications/notifications-center';
 import { cn } from '@/lib/utils';
@@ -20,7 +19,7 @@ export const NotificationsMenu: FC<NotificationsMenuProps> = ({
 }) => {
   const { data: session } = useSession();
 
-  if (!session) return <ErrorStage stage={ErrorStageType.Unauthorized} />;
+  if (!session) return null;
 
   const user = session.user;
 
