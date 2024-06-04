@@ -141,3 +141,8 @@ export const defaultExperience: ExperienceSchema = {
   current: false,
   description: '',
 };
+
+export enum GroupRole {
+  SuperAdmin = 'admin',
+  Admin = 'mod',
+}

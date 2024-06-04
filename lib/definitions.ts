@@ -1,5 +1,6 @@
 import React from 'react';
 import { IMessage } from '@novu/notification-center';
+import { GroupRole } from './constants';
 
 export interface Notification {
   id: string;
@@ -338,4 +339,47 @@ export type MyFollowersResponse = {
     _id: string;
     user_id: UserBasic;
   }[];
+};
+
+export type Manager = {
+  user_id: UserBasic;
+  role: GroupRole;
+};
+
+export type Group = {
+  _id: string;
+  name: string;
+  image_group: string[];
+  code: string;
+  description: string;
+  managers: Manager[];
+  members: {
+    user_id: UserBasic;
+    date: string;
+  }[];
+  member_requests: {
+    user_id: UserBasic;
+    date: string;
+  }[];
+  creator_id: UserBasic;
+  created: {
+    time: string;
+  };
+  modified: {
+    user_id: UserBasic;
+    time: Date;
+  };
+};
+
+export type GroupsResponse = {
+  success: boolean;
+  data: Group[];
+  page: number;
+  pageSize: number;
+  totalPage: number;
+};
+
+export type GroupDetailResponse = {
+  success: boolean;
+  data: Group;
 };
