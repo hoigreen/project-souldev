@@ -365,6 +365,8 @@
     "M139": "Terms of Service",
     "M140": "Click to view",
     "M141": "Change password",
-    "M142": "Change"
+    "M142": "Change",
+    "M143": "{totalMembers} members",
+    "M144": "Request join group is sent"
   }
 }

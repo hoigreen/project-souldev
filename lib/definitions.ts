@@ -377,7 +377,7 @@ export type Group = {
 
 export type GroupsResponse = {
   success: boolean;
-  data: Group[];
+  items: Group[];
   page: number;
   pageSize: number;
   totalPage: number;

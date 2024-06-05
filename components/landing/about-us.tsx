@@ -28,10 +28,10 @@ export default function AboutUs({
       <Container className="flex w-full flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-0">
         <div className="w-full flex-1 space-y-6 md:max-w-md md:space-y-9 lg:max-w-lg lg:space-y-12 xl:max-w-2xl 2xl:max-w-3xl">
           <div className="w-full space-y-3 md:space-y-4">
-            <h1 className="xs:text-3xl text-center text-xl font-bold leading-snug md:text-left md:text-4xl md:leading-snug lg:text-5xl lg:leading-snug xl:text-6xl xl:leading-snug">
+            <h1 className="text-center text-xl font-bold leading-snug xs:text-3xl md:text-left md:text-4xl md:leading-snug lg:text-5xl lg:leading-snug xl:text-6xl xl:leading-snug">
               {t('M13')}
             </h1>
-            <p className="xs:text-base text-center text-xs md:text-justify md:text-lg lg:text-xl">
+            <p className="text-center text-xs xs:text-base md:text-justify md:text-lg lg:text-xl">
               {t.rich('M14', {
                 emphasize: EmphasizedTextBold,
               })}
