@@ -13,7 +13,7 @@ import { useInView } from 'react-intersection-observer';
 import { ListPeoplesLoading } from './loading';
 import { addFriend, cancelFriendRequest } from '@/lib/actions/profile';
 import toast from 'react-hot-toast';
-import { ErrorStage, ErrorStageType } from '../error-stage';
+import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 
 type SuggestionPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
   myFollowings: UserBasic[];

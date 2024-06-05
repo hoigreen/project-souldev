@@ -3,7 +3,7 @@
 import React from 'react';
 import { Post } from '@/lib/definitions';
 import PostCard from './post-card';
-import { ErrorStage, ErrorStageType } from '../error-stage';
+import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
 import { useTranslations } from 'next-intl';

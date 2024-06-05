@@ -1,23 +1,22 @@
 'use client';
 
 import React from 'react';
-import { Post } from '@/lib/definitions';
+import { MyPostsResponse } from '@/lib/definitions';
+import PostCard from './post-card';
 import { cn } from '@/lib/utils';
-import { ErrorStage, ErrorStageType } from '../error-stage';
-import ShardPostCard from './shared-post-card';
+import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 
-type MySharedPostsClientProps = React.HTMLAttributes<HTMLDivElement> & {
-  data: Post[];
+type MyPostsClientProps = React.HTMLAttributes<HTMLDivElement> & {
+  data: MyPostsResponse;
   currentUserId: string;
 };
 
-export default function MySharedPostsClient({
+export default function MyPostsClient({
   className,
   currentUserId,
   data,
-  ...props
-}: MySharedPostsClientProps) {
-  if (data.length === 0) {
+}: MyPostsClientProps) {
+  if (data.data.length === 0) {
     return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
   }
 
@@ -27,10 +26,9 @@ export default function MySharedPostsClient({
         'mx-auto mt-9 flex w-full max-w-3xl flex-col gap-10',
         className,
       )}
-      {...props}
     >
-      {data.map((item, index) => (
-        <ShardPostCard
+      {data.data.map((item, index) => (
+        <PostCard
           key={index}
           likes={item.likes}
           currentUserId={currentUserId}

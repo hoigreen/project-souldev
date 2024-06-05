@@ -1,5 +1,5 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
-import MySharedPostsClient from '@/components/app/post/my-shared-posts-client';
+import MySharedPostsClient from '@/components/post/my-shared-posts-client';
 import { getMySharedPosts } from '@/lib/actions/post';
 import getSession from '@/lib/get-session';
 import { Metadata } from 'next';

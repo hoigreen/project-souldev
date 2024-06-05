@@ -9,11 +9,11 @@ import { User } from 'next-auth';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { UploadMultipleFiles } from '../../upload-multi-files';
 import { Image, MessageText1 } from 'iconsax-react';
 import { addComment } from '@/lib/actions/comment';
 import toast from 'react-hot-toast';
 import { useRouter } from '@/navigation';
+import { UploadMultipleFiles } from '@/components/app/upload-multi-files';
 
 type CommentFormProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
   user?: User;

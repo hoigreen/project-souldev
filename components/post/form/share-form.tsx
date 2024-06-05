@@ -15,7 +15,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { getFullName } from '@/lib/utils';
 import { Card } from '@/components/ui/card';
 import PostCard from '../post-card';
-import { ErrorStage, ErrorStageType } from '../../error-stage';
+import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import useQueryPost from '@/hooks/use-query-post';
 import { Loading } from '@/components/ui/loading';
 

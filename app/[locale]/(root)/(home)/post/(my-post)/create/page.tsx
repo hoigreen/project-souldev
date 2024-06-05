@@ -1,5 +1,5 @@
 import { Heading } from '@/components/app/heading';
-import PostForm from '@/components/app/post/form';
+import PostForm from '@/components/post/form';
 import { ActionPost } from '@/lib/definitions';
 import { Metadata } from 'next';
 import {

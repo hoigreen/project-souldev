@@ -7,9 +7,9 @@ import {
   getTranslations,
   unstable_setRequestLocale as unstableSetRequestLocale,
 } from 'next-intl/server';
-import { ProfileCardLoadingSkeleton } from '@/components/app/post/loading';
 import Tabs, { ITabs } from '@/components/ui/app/tabs';
 import { getUserProfile } from '@/lib/actions/profile';
+import { ProfileCardLoadingSkeleton } from '@/components/post/loading';
 
 export default async function ProfileLayout({
   params: { locale },

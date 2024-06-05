@@ -7,7 +7,7 @@ import useInfiniteQueryPosts from '@/hooks/use-infinity-query-posts';
 import { useInView } from 'react-intersection-observer';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
-import { Spinner } from '../spinner';
+import { Spinner } from '../app/spinner';
 
 type ListPostsClientProps = React.HTMLAttributes<HTMLDivElement> & {
   data: PostsResponse;

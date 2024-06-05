@@ -1,5 +1,5 @@
-import SuggestionGroups from '@/components/app/groups/suggestion-groups';
 import { Heading } from '@/components/app/heading';
+import SuggestionGroups from '@/components/groups/suggestion-groups';
 import { Metadata } from 'next';
 import {
   getTranslations,

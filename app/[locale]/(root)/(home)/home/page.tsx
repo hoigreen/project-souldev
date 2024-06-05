@@ -1,9 +1,9 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
-import RecommendPeoples from '@/components/app/peoples/recomend-peoples';
-import CreatePostBox from '@/components/app/post/create-post-box';
-import ListPostsClient from '@/components/app/post/list-posts-client';
 import { RightSidebar } from '@/components/app/right-sidebar';
+import RecommendPeoples from '@/components/peoples/recomend-peoples';
+import CreatePostBox from '@/components/post/create-post-box';
+import ListPostsClient from '@/components/post/list-posts-client';
 import { getPosts } from '@/lib/actions/post';
 import { getMyFollowings, getRecommendPeoples } from '@/lib/actions/profile';
 import { Post, UserBasic } from '@/lib/definitions';

@@ -1,8 +1,8 @@
 import { BackLink } from '@/components/app/back-link';
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
-import CommentForm from '@/components/app/post/form/comment-form';
-import ListComments from '@/components/app/post/list-comments';
-import PostCard from '@/components/app/post/post-card';
+import CommentForm from '@/components/post/form/comment-form';
+import ListComments from '@/components/post/list-comments';
+import PostCard from '@/components/post/post-card';
 import { getPostById } from '@/lib/actions/post';
 import getSession from '@/lib/get-session';
 import { markdownToText } from '@/lib/markdown';

@@ -1,8 +1,8 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
-import { ListPeoplesLoading } from '@/components/app/peoples/loading';
-import RecommendPeoples from '@/components/app/peoples/recomend-peoples';
-import SuggestionPeoples from '@/components/app/peoples/suggestion-peoples';
+import { ListPeoplesLoading } from '@/components/peoples/loading';
+import RecommendPeoples from '@/components/peoples/recomend-peoples';
+import SuggestionPeoples from '@/components/peoples/suggestion-peoples';
 import { getMyFollowings, getRecommendPeoples } from '@/lib/actions/profile';
 import { UserBasic } from '@/lib/definitions';
 import { Metadata } from 'next';

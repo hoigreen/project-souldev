@@ -6,7 +6,6 @@ import { useModalActions, useModalData, useModalOpen } from '@/hooks/use-modal';
 import React, { useEffect } from 'react';
 import { PostDetailResponse, ViewDetailPostData } from '@/lib/definitions';
 import { getPostById } from '@/lib/actions/post';
-import { ErrorStage, ErrorStageType } from '../../error-stage';
 import { cn, getFullName } from '@/lib/utils';
 import {
   Carousel,
@@ -24,6 +23,7 @@ import { MessageText1, Send } from 'iconsax-react';
 import CommentForm from '../form/comment-form';
 import { Truncate } from '@/components/ui/truncate';
 import ListComments from '../list-comments';
+import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 
 export function ViewDetailPostDialog(): React.JSX.Element {
   const [postData, setPostData] =

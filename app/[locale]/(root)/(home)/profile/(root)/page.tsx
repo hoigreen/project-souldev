@@ -1,5 +1,5 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
-import MyPostsClient from '@/components/app/post/my-posts-client';
+import MyPostsClient from '@/components/post/my-posts-client';
 import { getMyPosts } from '@/lib/actions/post';
 import getSession from '@/lib/get-session';
 import { Metadata } from 'next';

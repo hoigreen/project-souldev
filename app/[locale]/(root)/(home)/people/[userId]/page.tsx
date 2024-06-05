@@ -1,11 +1,11 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
-import BasicInfoCard from '@/components/app/people/basic-info-card';
-import BioCard from '@/components/app/people/bio-card';
-import EducationCard from '@/components/app/people/education-card';
-import ExperienceCard from '@/components/app/people/experience-card';
-import SkillCard from '@/components/app/people/skills-card';
-import { ProfileCardLoadingSkeleton } from '@/components/app/post/loading';
-import PeoplesPost from '@/components/app/post/people-posts';
+import BasicInfoCard from '@/components/people/basic-info-card';
+import BioCard from '@/components/people/bio-card';
+import EducationCard from '@/components/people/education-card';
+import ExperienceCard from '@/components/people/experience-card';
+import SkillCard from '@/components/people/skills-card';
+import { ProfileCardLoadingSkeleton } from '@/components/post/loading';
+import PeoplesPost from '@/components/post/people-posts';
 import { getPostsByUserId } from '@/lib/actions/post';
 import { getMyFollowings, getProfileById } from '@/lib/actions/profile';
 import { UserBasic } from '@/lib/definitions';

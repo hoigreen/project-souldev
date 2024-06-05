@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 import { acceptFriendRequest, unfollow } from '@/lib/actions/profile';
 import toast from 'react-hot-toast';
-import { ErrorStage, ErrorStageType } from '../error-stage';
+import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 
 type ListPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
   data: UserBasic[];

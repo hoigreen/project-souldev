@@ -6,11 +6,11 @@ import { Link, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import React, { useEffect, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { ErrorStage, ErrorStageType } from '../error-stage';
 import useInfiniteQueryGroups from '@/hooks/use-infinity-query-groups';
 import Image from 'next/image';
 import { User } from 'iconsax-react';
 import { Button } from '@/components/ui/button';
+import { ErrorStage, ErrorStageType } from '../app/error-stage';
 
 type SuggestionPeoplesProps = React.HTMLAttributes<HTMLDivElement>;
 

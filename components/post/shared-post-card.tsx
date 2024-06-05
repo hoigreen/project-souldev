@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import PostCard from './post-card';
 import AvatarUser from '@/components/ui/app/avatar-user';
 import { useSession } from 'next-auth/react';
-import { ErrorStage, ErrorStageType } from '../error-stage';
+import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { calculateTime, cn, getFullName } from '@/lib/utils';
 import { Clock } from 'iconsax-react';
 import toast from 'react-hot-toast';

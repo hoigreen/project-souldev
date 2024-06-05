@@ -4,11 +4,11 @@ import { useModalActions, useModalData, useModalOpen } from '@/hooks/use-modal';
 import { Modals } from '@/lib/constants';
 import { UserBasic, UserProfile } from '@/lib/definitions';
 import { useTranslations } from 'next-intl';
-import { ErrorStage, ErrorStageType } from '../../error-stage';
+import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import ListPeoples from '../../peoples/list-peoples';
-import { Heading } from '../../heading';
 import React from 'react';
+import { Heading } from '@/components/app/heading';
+import ListPeoples from '@/components/peoples/list-peoples';
 
 export function ViewLikesPostDialog(): React.JSX.Element {
   const t = useTranslations('Home');

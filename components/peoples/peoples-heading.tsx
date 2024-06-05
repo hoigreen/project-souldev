@@ -1,7 +1,7 @@
 import { ViewDetailsActionPeoples } from '@/lib/definitions';
 import React from 'react';
-import { Heading } from '../heading';
 import { useTranslations } from 'next-intl';
+import { Heading } from '../app/heading';
 
 export function PeoplesHeading({
   viewAction,

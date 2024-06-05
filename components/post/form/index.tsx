@@ -1,5 +1,6 @@
 'use client';
 
+import { UploadMultipleFiles } from '@/components/app/upload-multi-files';
 import { Editor } from '@/components/ui/app/editor';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -13,7 +14,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { UploadMultipleFiles } from '../../upload-multi-files';
 
 type PostFormProps = {
   action: ActionPost;

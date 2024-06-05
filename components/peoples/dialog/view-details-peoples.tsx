@@ -15,7 +15,7 @@ import { PeoplesHeading } from '../peoples-heading';
 import React from 'react';
 import ListPeoples from '../list-peoples';
 import { ListPeoplesLoading } from '../loading';
-import { ErrorStage, ErrorStageType } from '../../error-stage';
+import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import useQueryPeoplesUser from '@/hooks/use-query-peoples-user';
 
 export function ViewDetailsPeoplesDialog(): React.JSX.Element {

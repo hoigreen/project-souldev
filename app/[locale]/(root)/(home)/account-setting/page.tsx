@@ -1,4 +1,4 @@
-import SettingsBox from '@/components/app/account-setting/setting-box';
+import SettingsBox from '@/components/account-setting/setting-box';
 import { Heading } from '@/components/app/heading';
 import { Metadata } from 'next';
 import {
