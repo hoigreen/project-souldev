@@ -104,3 +104,32 @@ export const resetPasswordSchema = z
     path: ['confirm_password'],
   });
 export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>;
+
+/* -----------------------------------------------------------------------------
+ * Change password Schema
+ * -------------------------------------------------------------------------- */
+
+export const changePasswordSchema = z
+  .object({
+    current_password: z
+      .string({
+        required_error: 'Please enter your password.',
+      })
+      .min(1, 'Please enter your password.'),
+    new_password: z
+      .string({
+        required_error: 'Please enter your password.',
+      })
+      .min(1, 'Please enter your password.'),
+    confirm_password: z
+      .string({
+        required_error: 'Please confirm your password.',
+      })
+      .min(1, 'Please confirm your password.'),
+  })
+  .refine((data) => data.new_password === data.confirm_password, {
+    message: 'Passwords do not match',
+    path: ['confirm_password'],
+  });
+
+export type ChangePasswordSchema = z.infer<typeof changePasswordSchema>;

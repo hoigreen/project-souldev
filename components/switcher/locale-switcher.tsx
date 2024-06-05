@@ -15,17 +15,16 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
 import { Button } from '../ui/button';
-import { VariantProps, cva } from 'class-variance-authority';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
+import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
+import { Label } from '../ui/label';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: LocaleSwitcher
  * ------------------------------------------------------------------------------------------------------------------ */
 
-const localesVariants = cva('');
-
-export type LocaleSwitcherProps = HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof localesVariants>;
+export type LocaleSwitcherProps = HTMLAttributes<HTMLDivElement>;
 
 export function LocaleSwitcher({ className, ...props }: LocaleSwitcherProps) {
   const locale = useLocale();
@@ -44,7 +43,7 @@ export function LocaleSwitcher({ className, ...props }: LocaleSwitcherProps) {
   };
 
   return (
-    <div className={localesVariants({ className })} {...props}>
+    <div className={cn({ className })} {...props}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="gap-3 p-1 !font-medium lg:p-0">
@@ -102,6 +101,70 @@ export function LocaleSwitcher({ className, ...props }: LocaleSwitcherProps) {
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
+    </div>
+  );
+}
+
+export function LocaleSwitcherRadioGroup({
+  className,
+  ...props
+}: LocaleSwitcherProps) {
+  const locale = useLocale();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const t = useTranslations('Locale');
+  const router = useRouter();
+
+  const handleSwitch = (locale: string) => {
+    router.push(
+      queryString.stringifyUrl({
+        url: `/${locale}/${pathname}`,
+        query: queryString.parse(searchParams.toString()),
+      }),
+    );
+  };
+
+  return (
+    <div className={cn({ className })} {...props}>
+      <RadioGroup
+        defaultValue={locale}
+        className="flex flex-col gap-3 lg:flex-row lg:gap-12"
+        onValueChange={(value) => handleSwitch(value)}
+      >
+        <div className="flex items-center gap-3">
+          <RadioGroupItem value="en" id="r1" />
+          <Label
+            htmlFor="r1"
+            className="flex items-center gap-1 text-sm font-normal md:text-base "
+          >
+            <Image
+              src={UkFlag}
+              alt="flag"
+              width={20}
+              height={20}
+              className="hidden md:block"
+            />
+            <span>{t('M1')}</span>
+          </Label>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <RadioGroupItem value="vi" id="r2" />
+          <Label
+            htmlFor="r2"
+            className="flex items-center gap-1 text-sm font-normal md:text-base"
+          >
+            <Image
+              src={VietnamFlag}
+              alt="flag"
+              width={20}
+              height={20}
+              className="hidden md:block"
+            />
+            <span>{t('M2')}</span>
+          </Label>
+        </div>
+      </RadioGroup>
     </div>
   );
 }

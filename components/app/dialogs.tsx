@@ -7,6 +7,7 @@ import { SharePostDialog } from './post/dialog/share-post-dialog';
 import { RemoveFriendDialog } from './peoples/dialog/remove-friend-dialog';
 import { ViewDetailsPeoplesDialog } from './peoples/dialog/view-details-peoples';
 import { ViewLikesPostDialog } from './post/dialog/view-likes-post-dialog';
+import ChangePasswordDialog from '../auth/change-password/change-password-dialog';
 
 export default function Dialogs(): React.JSX.Element {
   return (
@@ -17,6 +18,7 @@ export default function Dialogs(): React.JSX.Element {
       <RemoveFriendDialog />
       <ViewLikesPostDialog />
       <ViewDetailsPeoplesDialog />
+      <ChangePasswordDialog />
     </>
   );
 }

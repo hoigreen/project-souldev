@@ -1,25 +1,34 @@
+import SettingsBox from '@/components/app/account-setting/setting-box';
 import { Heading } from '@/components/app/heading';
-import { SearchParams } from '@/lib/definitions';
 import { Metadata } from 'next';
-import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
+import {
+  getTranslations,
+  unstable_setRequestLocale as unstableSetRequestLocale,
+} from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: 'Feeds',
-  description: 'Discover the latest news and stories',
+  title: 'Settings',
 };
 
 export default async function HomePage({
   params: { locale },
-  searchParams,
 }: {
   params: { locale: string };
-  searchParams: SearchParams;
 }) {
   unstableSetRequestLocale(locale);
+  const t = await getTranslations('Home');
 
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
-      <Heading title="Message" />
+      <div className="space-y-3">
+        <Heading title={t('M135')} />
+        <p className="text-xs font-light sm:text-sm md:text-base">
+          {t('M136')}
+        </p>
+        <hr />
+
+        <SettingsBox />
+      </div>
     </div>
   );
 }
