@@ -22,6 +22,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { updatePassword } from '@/lib/actions/user';
+import { useModalActions } from '@/hooks/use-modal';
+import { Modals } from '@/lib/constants';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: LoginForm
@@ -34,6 +37,7 @@ export function ChangePasswordForm({
   ...props
 }: ChangePasswordFormProps) {
   const t = useTranslations('Auth');
+  const { onClose } = useModalActions(Modals.ChangePassword);
 
   const form = useForm<ChangePasswordSchema>({
     resolver: zodResolver(changePasswordSchema),
@@ -45,7 +49,17 @@ export function ChangePasswordForm({
   });
 
   const onSubmit: SubmitHandler<ChangePasswordSchema> = async (formData) => {
-    toast.success(t('M56'));
+    const response = await updatePassword({ password: formData.new_password });
+
+    if (!response.success) {
+      toast.error(t('M58'));
+
+      return;
+    }
+
+    toast.success(t('M59'));
+
+    onClose();
   };
 
   return (

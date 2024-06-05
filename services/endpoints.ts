@@ -29,6 +29,7 @@ export const endpoints = {
 
     // PUT update user
     updateUserBasic: '/api/users/update-profile',
+    changePassword: '/api/users/update-password',
   },
   posts: {
     getAll: '/api/post/get-posts',

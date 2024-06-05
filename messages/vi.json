@@ -122,7 +122,9 @@
     "M54": "Đăng xuất",
     "M55": "Trở lại",
     "M56": "Đăng nhập thành công!",
-    "M57": "Đăng xuất thành công!"
+    "M57": "Đăng xuất thành công!",
+    "M58": "Đã xảy ra lỗi, vui lòng thử lại sau.",
+    "M59": "Thay đổi mật khẩu thành công!"
   },
   "404": {
     "M1": "404",

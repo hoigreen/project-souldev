@@ -2,6 +2,10 @@ import React from 'react';
 import { IMessage } from '@novu/notification-center';
 import { GroupRole } from './constants';
 
+export type Response = {
+  success: boolean;
+};
+
 export interface Notification {
   id: string;
   seen: boolean;

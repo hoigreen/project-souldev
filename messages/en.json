@@ -122,7 +122,9 @@
     "M54": "Sign out",
     "M55": "Back",
     "M56": "Login successfully!",
-    "M57": "Sign out successfully!"
+    "M57": "Sign out successfully!",
+    "M58": "Something went wrong, please try again.",
+    "M59": "Change password successfully!"
   },
   "404": {
     "M1": "404",
