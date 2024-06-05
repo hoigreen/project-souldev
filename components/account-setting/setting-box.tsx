@@ -33,9 +33,7 @@ export default function SettingsBox({ className, ...props }: SettingsBoxProps) {
       <hr />
 
       <SettingsItem title={t('M141')}>
-        <Button variant="ghost" className="px-0" onClick={onOpen}>
-          {t('M142')}
-        </Button>
+        <Button onClick={onOpen}>{t('M142')}</Button>
       </SettingsItem>
 
       <hr />

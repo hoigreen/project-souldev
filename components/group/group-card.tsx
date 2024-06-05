@@ -9,7 +9,13 @@ import { Button } from '@/components/ui/button';
 import { Users } from 'lucide-react';
 
 type GroupCardProps = React.HTMLAttributes<HTMLDivElement> & {
-  groupId: string;
+  classNames?: {
+    card?: string;
+    avatar?: string;
+    name?: string;
+    totalMembers?: string;
+    button?: string;
+  };
   avatar?: string | null;
   name: string;
   totalMembers: number;
@@ -18,9 +24,11 @@ type GroupCardProps = React.HTMLAttributes<HTMLDivElement> & {
 
 export default function GroupCard({
   className,
+  classNames,
   avatar,
   name,
   totalMembers,
+  title,
   onClick,
 }: GroupCardProps) {
   const t = useTranslations('Home');
@@ -47,8 +55,11 @@ export default function GroupCard({
         <p className="text-xs md:text-sm">{t('M143', { totalMembers })}</p>
       </div>
 
-      <Button className="w-full text-xs sm:text-sm" onClick={onClick}>
-        {t('M127')}
+      <Button
+        className={cn('w-full text-xs sm:text-sm', classNames?.button)}
+        onClick={onClick}
+      >
+        {title ?? t('M127')}
       </Button>
     </Card>
   );

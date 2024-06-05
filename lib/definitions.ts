@@ -383,6 +383,11 @@ export type GroupsResponse = {
   totalPage: number;
 };
 
+export type GroupsResponseNoPagination = {
+  success: boolean;
+  data: Group[];
+};
+
 export type GroupDetailResponse = {
   success: boolean;
   data: Group;

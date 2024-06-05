@@ -1,7 +1,12 @@
 'use server';
 
 import requestService from '@/services/request-service';
-import { GroupDetailResponse, GroupsResponse, Response } from '../definitions';
+import {
+  GroupDetailResponse,
+  GroupsResponse,
+  GroupsResponseNoPagination,
+  Response,
+} from '../definitions';
 import { Params, Query } from '../url-builder';
 import { getEndpoint } from '@/services/url';
 import { endpoints } from '@/services/endpoints';
@@ -19,6 +24,24 @@ export async function getGroupDetails(
     getEndpoint({ path: endpoints.group.getDetails, params }),
   );
 }
+
+export async function getMyGroups(): Promise<GroupsResponseNoPagination> {
+  return requestService.get(endpoints.group.getMyGroups);
+}
+
+export async function getGroupsJoined(): Promise<GroupsResponseNoPagination> {
+  return requestService.get(endpoints.group.getGroupsJoined);
+}
+
+export async function getGroupsRequestedToJoin(): Promise<GroupsResponseNoPagination> {
+  return requestService.get(endpoints.group.getGroupsRequestedToJoin);
+}
+
+// export async function leaveGroup(params: Params): Promise<Response> {
+//   return requestService.delete(
+//     getEndpoint({ path: endpoints.group.leave, params }),
+//   );
+// }
 
 export async function createGroup(body: {
   groupName: string;

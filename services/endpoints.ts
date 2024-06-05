@@ -71,6 +71,9 @@ export const endpoints = {
 
   group: {
     getList: '/api/group-media',
+    getMyGroups: '/api/group-media/my-groups',
+    getGroupsJoined: '/api/group-media/joined',
+    getGroupsRequestedToJoin: '/api/group-media/requested',
     getDetails: '/api/group-media/:groupId',
     create: '/api/group-media/create-group',
     update: '/api/group-media/update-group/:groupId',

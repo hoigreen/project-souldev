@@ -355,7 +355,7 @@
     "M125": "My groups",
     "M126": "Suggestion groups",
     "M127": "Join group",
-    "M128": "Groups sent request",
+    "M128": "You request to join groups",
     "M129": "Pages",
     "M130": "My pages",
     "M131": "Create",
@@ -371,6 +371,12 @@
     "M141": "Change password",
     "M142": "Change",
     "M143": "{totalMembers} members",
-    "M144": "Request join group is sent"
+    "M144": "Request join group is sent",
+    "M145": "Groups joined",
+    "M146": "Group name",
+    "M147": "Ex. Software Developer Group",
+    "M148": "View group",
+    "M149": "Leave group",
+    "M150": "Cancel request"
   }
 }

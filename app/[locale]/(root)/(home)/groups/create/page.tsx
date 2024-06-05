@@ -1,4 +1,6 @@
 import { Heading } from '@/components/app/heading';
+import { GroupEditor } from '@/components/group/editor/group-editor';
+import { GroupEditorPreview } from '@/components/group/editor/group-preview';
 import { Metadata } from 'next';
 import {
   getTranslations,
@@ -20,6 +22,7 @@ export default async function HomePage({
   return (
     <div className="space-y-3">
       <Heading title={t('M124')} size={1} />
+      <GroupEditor preview={<GroupEditorPreview />} />
     </div>
   );
 }
