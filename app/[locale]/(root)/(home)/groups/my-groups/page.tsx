@@ -1,9 +1,11 @@
 import { Heading } from '@/components/app/heading';
+import SuggestionGroups from '@/components/groups/suggestion-groups';
 import { Metadata } from 'next';
 import {
   getTranslations,
   unstable_setRequestLocale as unstableSetRequestLocale,
 } from 'next-intl/server';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'My groups',
@@ -21,10 +23,16 @@ export default async function HomePage({
     <>
       <div className="space-y-3">
         <Heading title={t('M125')} size={1} />
+        <Suspense fallback={<div>Loading ...</div>}>
+          <SuggestionGroups />
+        </Suspense>
       </div>
 
       <div className="space-y-3">
         <Heading title={t('M128')} size={1} />
+        <Suspense fallback={<div>Loading ...</div>}>
+          <SuggestionGroups />
+        </Suspense>
       </div>
     </>
   );

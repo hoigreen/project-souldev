@@ -98,6 +98,7 @@ export enum Modals {
   ViewDetailsPeoples = 'ViewDetailsPeoples',
   ViewLikesPost = 'ViewLikesPost',
   ChangePassword = 'ChangePassword',
+  SignOut = 'SignOut',
 }
 
 export const twitterUrlSchema = z

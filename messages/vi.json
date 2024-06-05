@@ -124,7 +124,11 @@
     "M56": "Đăng nhập thành công!",
     "M57": "Đăng xuất thành công!",
     "M58": "Đã xảy ra lỗi, vui lòng thử lại sau.",
-    "M59": "Thay đổi mật khẩu thành công!"
+    "M59": "Thay đổi mật khẩu thành công!",
+    "M60": "Xác nhận",
+    "M61": "Bạn có chắc muốn đăng xuất không?",
+    "M62": "Sau khi đăng xuất, bạn sẽ phải đăng nhập và xác thực lại để truy cập vào tài khoản",
+    "M63": "Hủy"
   },
   "404": {
     "M1": "404",

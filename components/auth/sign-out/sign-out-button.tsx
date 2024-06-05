@@ -6,6 +6,8 @@ import { LogoutCurve } from 'iconsax-react';
 import { Button } from '@/components/ui/button';
 import signOut from '@/lib/sign-out';
 import { cn } from '@/lib/utils';
+import { useModalActions } from '@/hooks/use-modal';
+import { Modals } from '@/lib/constants';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: SignOutButton
@@ -15,6 +17,7 @@ export type SignOutButtonProps = HTMLAttributes<HTMLDivElement>;
 
 export function SignOutButton({ className, ...props }: SignOutButtonProps) {
   const t = useTranslations('Auth');
+  const { onOpen } = useModalActions(Modals.SignOut);
 
   return (
     <div {...props}>
@@ -23,7 +26,7 @@ export function SignOutButton({ className, ...props }: SignOutButtonProps) {
           'flex items-center justify-center gap-2 text-sm font-bold',
           className,
         )}
-        onClick={() => signOut()}
+        onClick={onOpen}
       >
         <LogoutCurve variant="TwoTone" size={16} />
         {t('M54')}

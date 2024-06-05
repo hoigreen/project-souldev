@@ -124,7 +124,11 @@
     "M56": "Login successfully!",
     "M57": "Sign out successfully!",
     "M58": "Something went wrong, please try again.",
-    "M59": "Change password successfully!"
+    "M59": "Change password successfully!",
+    "M60": "Confirm",
+    "M61": "Are you sure you want to sign out?",
+    "M62": "After signing out, you will need to sign in again to use your account.",
+    "M63": "Cancel"
   },
   "404": {
     "M1": "404",
