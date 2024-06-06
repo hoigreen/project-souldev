@@ -89,6 +89,7 @@ export const WEBSITE_URL_REGEX =
   /^(?<protocol>https?:\/\/)?(?<domain>[\da-z.-]+)\.(?<tld>[a-z.]{2,6})(?<path>[/\w .-]*)*\/?$/;
 export const MONTH_YEAR_REGEX =
   /^(0[1-9]|1[0-2])\/(199[0-9]|20[01][0-9]|202[0-4])$/;
+const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
 
 export enum Modals {
   CreatePost = 'CreatePost',
@@ -100,6 +101,13 @@ export enum Modals {
   ChangePassword = 'ChangePassword',
   SignOut = 'SignOut',
 }
+
+export const fileSchema = z
+  .instanceof(File)
+  .optional()
+  .refine((file) => {
+    return !file || file.size <= MAX_UPLOAD_SIZE;
+  }, 'File size must be less than 3MB');
 
 export const twitterUrlSchema = z
   .string()

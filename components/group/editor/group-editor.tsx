@@ -33,6 +33,8 @@ export function GroupEditor({
     defaultValues: {
       name: '',
     },
+    mode: 'all',
+
     resolver: zodResolver(createGroupSchema),
   });
 
@@ -81,6 +83,26 @@ export function GroupEditor({
               )}
             />
 
+            {/* <FormField
+              control={form.control}
+              name="image"
+              render={({ field, formState }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel>{t('M146')}</FormLabel>
+                  <FormControl>
+                    <Input
+                      type='file'
+                      className="h-12"
+                      {...field}
+                      disabled={formState.isSubmitting}
+                      value={field.value}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            /> */}
+
             <Button
               className="w-full"
               disabled={form.formState.isSubmitting}
@@ -91,9 +113,7 @@ export function GroupEditor({
           </form>
         </Card>
 
-        <Card className="p-3 md:p-4">
-          <div className="rounded-lg border bg-neutral-50">{preview}</div>
-        </Card>
+        <Card className="p-3 md:p-4">{preview}</Card>
       </div>
     </Form>
   );
