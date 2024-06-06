@@ -34,7 +34,6 @@ export default function GroupsJoined({ className, groups }: GroupsJoinedProps) {
             button: buttonVariants({ variant: 'outline' }),
           }}
           key={index}
-          groupId={item._id}
           avatar={item.image_group[0] ?? null}
           name={item.name}
           totalMembers={item.members.length}

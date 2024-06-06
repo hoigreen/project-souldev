@@ -59,7 +59,6 @@ export default function SuggestionGroups({
         {sanitizedData.map((item, index) => (
           <GroupCard
             key={index}
-            groupId={item._id}
             avatar={item.image_group[0] ?? null}
             name={item.name}
             totalMembers={item.members.length}
