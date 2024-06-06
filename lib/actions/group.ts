@@ -43,11 +43,12 @@ export async function getGroupsRequestedToJoin(): Promise<GroupsResponseNoPagina
 //   );
 // }
 
-export async function createGroup(body: {
-  groupName: string;
-  groupCode: string;
-}): Promise<GroupDetailResponse> {
-  return requestService.post(endpoints.group.create, body);
+export async function createGroup(formData: FormData): Promise<Response> {
+  return requestService.post(endpoints.group.create, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 }
 
 export async function updateGroup(

@@ -7,7 +7,8 @@ export const createGroupSchema = z.object({
       required_error: 'Please enter the group name.',
     })
     .min(1, 'Please enter the group name.'),
-  image: fileSchema,
+  image: z.string().nullable(),
+  file: fileSchema,
 });
 
 export type CreateGroupSchema = z.infer<typeof createGroupSchema>;

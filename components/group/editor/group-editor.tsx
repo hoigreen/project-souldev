@@ -11,6 +11,8 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { createGroup } from '@/lib/actions/group';
 import { cn } from '@/lib/utils';
 import { CreateGroupSchema, createGroupSchema } from '@/lib/validations/group';
 import { useRouter } from '@/navigation';
@@ -18,6 +20,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 export function GroupEditor({
   className,
@@ -32,34 +35,67 @@ export function GroupEditor({
   const form = useForm<CreateGroupSchema>({
     defaultValues: {
       name: '',
+      image: null,
+      file: undefined,
     },
     mode: 'all',
 
     resolver: zodResolver(createGroupSchema),
   });
 
+  const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) {
+      return;
+    }
+
+    form.setValue('file', file);
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const image = e.target?.result;
+
+      if (image && typeof image === 'string') {
+        form.setValue('image', image);
+      }
+    };
+
+    reader.readAsDataURL(file);
+  };
+
   const handleSubmit: SubmitHandler<CreateGroupSchema> = async (values) => {
-    //   const { data, error } = await createJob(input);
-    //   if (error) {
-    //     console.log(error);
-    //     toast.error(t('T_0418'));
-    //     return;
-    //   }
-    //   toast.success(t('T_1068'));
-    //   push(
-    //     queryString.stringifyUrl({
-    //       url: '/company',
-    //       query: {
-    //         jobId: data?.createJob?.id,
-    //       },
-    // }),
-    // );
+    const formData = new FormData();
+
+    formData.append('name', values.name);
+    values.file && formData.append('image', values.file);
+
+    const response = await createGroup(formData);
+
+    if (!response.success) {
+      toast.error(t('M15'));
+
+      return;
+    }
+
+    toast.success(t('M153'));
+    router.refresh();
+    form.reset();
   };
 
   return (
     <Form {...form}>
       <div className={cn('space-y-8', className)}>
         <Card className="mx-auto w-full max-w-lg p-3 md:p-4">
+          <div className="space-y-2">
+            <Label>{t('M152')}</Label>
+            <Input
+              type="file"
+              className="h-12"
+              disabled={form.formState.isSubmitting}
+              onChange={handleChangeImage}
+            />
+          </div>
+
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
             className="space-y-2 md:space-y-4"
@@ -82,26 +118,6 @@ export function GroupEditor({
                 </FormItem>
               )}
             />
-
-            {/* <FormField
-              control={form.control}
-              name="image"
-              render={({ field, formState }) => (
-                <FormItem className="space-y-2">
-                  <FormLabel>{t('M146')}</FormLabel>
-                  <FormControl>
-                    <Input
-                      type='file'
-                      className="h-12"
-                      {...field}
-                      disabled={formState.isSubmitting}
-                      value={field.value}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
 
             <Button
               className="w-full"
