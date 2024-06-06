@@ -18,9 +18,9 @@ export default function HomeLayout({
       <main className="min-h-[calc(100vh-4.125rem)] bg-gray-100 dark:bg-neutral-900">
         <Headerbar />
 
-        <LeftSidebar />
+        <LeftSidebar className="pt-14 md:pt-20" />
 
-        <div className="xl:px-80">
+        <div className="py-14 md:py-20 xl:px-80">
           <div className="mx-auto min-h-[calc(100vh-4.125rem)] w-full max-w-6xl flex-1 p-2 px-4 pb-10 md:p-4 lg:px-0 xl:pl-10">
             {children}
           </div>

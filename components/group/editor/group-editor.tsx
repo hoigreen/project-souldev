@@ -12,7 +12,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { createGroup } from '@/lib/actions/group';
+import { createGroup, updateGroup } from '@/lib/actions/group';
+import { Group } from '@/lib/definitions';
 import { cn } from '@/lib/utils';
 import { CreateGroupSchema, createGroupSchema } from '@/lib/validations/group';
 import { useRouter } from '@/navigation';
@@ -24,9 +25,11 @@ import toast from 'react-hot-toast';
 
 export function GroupEditor({
   className,
+  initialData,
   preview,
 }: {
   className?: string;
+  initialData?: Group;
   preview?: React.ReactNode;
 }): React.JSX.Element {
   const t = useTranslations('Home');
@@ -34,12 +37,10 @@ export function GroupEditor({
 
   const form = useForm<CreateGroupSchema>({
     defaultValues: {
-      name: '',
-      image: null,
+      name: initialData?.name ?? '',
+      image: (initialData?.image_group && initialData?.image_group[0]) ?? '',
       file: undefined,
     },
-    mode: 'all',
-
     resolver: zodResolver(createGroupSchema),
   });
 
@@ -69,17 +70,33 @@ export function GroupEditor({
     formData.append('name', values.name);
     values.file && formData.append('image', values.file);
 
-    const response = await createGroup(formData);
+    if (Boolean(initialData)) {
+      const response = await updateGroup(
+        { groupId: initialData?._id },
+        formData,
+      );
 
-    if (!response.success) {
-      toast.error(t('M15'));
+      if (!response.success) {
+        toast.error(t('M15'));
 
-      return;
+        return;
+      }
+
+      toast.success(t('M159'));
+    } else {
+      const response = await createGroup(formData);
+
+      if (!response.success) {
+        toast.error(t('M15'));
+
+        return;
+      }
+
+      toast.success(t('M153'));
     }
 
-    toast.success(t('M153'));
-    router.refresh();
     form.reset();
+    router.refresh();
   };
 
   return (

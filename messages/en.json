@@ -351,7 +351,7 @@
     "M121": "{count} posts",
     "M122": "No skills",
     "M123": "Groups",
-    "M124": "Create groups",
+    "M124": "Create group",
     "M125": "My groups",
     "M126": "Suggestion groups",
     "M127": "Join group",
@@ -383,6 +383,9 @@
     "M153": "Create group successfully!",
     "M154": "Feeds",
     "M155": "Members",
-    "M156": "Request join"
+    "M156": "Request join",
+    "M157": "Update group information",
+    "M158": "Group details",
+    "M159": "Update group information successfully!"
   }
 }

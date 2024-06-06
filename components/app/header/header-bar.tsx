@@ -24,7 +24,7 @@ export function Headerbar({ className, ...props }: HeaderbarProps) {
     <nav
       {...props}
       className={cn(
-        'pointer-events-auto sticky top-0 z-50 flex items-center justify-between border-b bg-background p-2 md:px-4',
+        'pointer-events-auto fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b bg-background p-2 md:h-20 md:px-4',
         className,
       )}
     >

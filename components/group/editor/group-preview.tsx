@@ -1,6 +1,7 @@
 'use client';
 
 import { Heading } from '@/components/app/heading';
+import { Group } from '@/lib/definitions';
 import { cn } from '@/lib/utils';
 import { ImagePlus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -8,9 +9,14 @@ import Image from 'next/image';
 import React from 'react';
 import { useWatch } from 'react-hook-form';
 
-type GroupEditorPreviewProps = React.HTMLAttributes<HTMLDivElement>;
+type GroupEditorPreviewProps = React.HTMLAttributes<HTMLDivElement> & {
+  initialData?: Group;
+};
 
-export function GroupEditorPreview({ className }: GroupEditorPreviewProps) {
+export function GroupEditorPreview({
+  className,
+  initialData,
+}: GroupEditorPreviewProps) {
   const t = useTranslations('Home');
   const groupPreview = useWatch();
 
@@ -49,7 +55,7 @@ export function GroupEditorPreview({ className }: GroupEditorPreviewProps) {
 
           <p className="text-sm">
             {t('M143', {
-              totalMembers: 1,
+              totalMembers: initialData?.members?.length ?? 1,
             })}
           </p>
         </div>

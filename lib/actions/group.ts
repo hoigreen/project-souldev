@@ -53,11 +53,16 @@ export async function createGroup(formData: FormData): Promise<Response> {
 
 export async function updateGroup(
   params: Params,
-  body: { groupName: string; groupCode: string },
+  body: FormData,
 ): Promise<GroupDetailResponse> {
-  return requestService.put(
+  return requestService.post(
     getEndpoint({ path: endpoints.group.update, params }),
     body,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    },
   );
 }
 
