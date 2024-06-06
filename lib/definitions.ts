@@ -358,14 +358,14 @@ export type Group = {
   description: string;
   managers: Manager[];
   members: {
-    user_id: UserBasic;
+    user_id: string | UserBasic;
     date: string;
   }[];
   member_requests: {
     user_id: UserBasic;
     date: string;
   }[];
-  creator_id: UserBasic;
+  creator_id: string;
   created: {
     time: string;
   };

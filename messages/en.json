@@ -380,6 +380,9 @@
     "M150": "Cancel request",
     "M151": "Preview group",
     "M152": "Group image",
-    "M153": "Create group successfully!"
+    "M153": "Create group successfully!",
+    "M154": "Feeds",
+    "M155": "Members",
+    "M156": "Request join"
   }
 }

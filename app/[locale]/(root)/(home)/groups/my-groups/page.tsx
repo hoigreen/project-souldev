@@ -65,7 +65,7 @@ export default async function HomePage({
       <div className="space-y-3">
         <Heading title={t('M128')} size={1} />
         <Suspense fallback={<div>Loading ...</div>}>
-          <GroupsRequestedToJoin groups={groupsJoinedResponse.data} />
+          <GroupsRequestedToJoin groups={groupRequestedToJoinResponse.data} />
         </Suspense>
       </div>
     </>

@@ -27,6 +27,7 @@ export default function MyGroups({ className, groups }: MyGroupsProps) {
           key={index}
           avatar={item.image_group[0] ?? null}
           name={item.name}
+          groupId={item._id}
           totalMembers={item.members.length}
           title={t('M148')}
           onClick={() => router.push(`/group/${item._id}`)}

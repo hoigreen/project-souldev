@@ -1,5 +1,4 @@
 import { Heading } from '@/components/app/heading';
-import { SearchParams } from '@/lib/definitions';
 import { Metadata } from 'next';
 import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 
@@ -10,10 +9,8 @@ export const metadata: Metadata = {
 
 export default async function HomePage({
   params: { locale },
-  searchParams,
 }: {
   params: { locale: string };
-  searchParams: SearchParams;
 }) {
   unstableSetRequestLocale(locale);
 

@@ -35,6 +35,7 @@ export default function GroupsJoined({ className, groups }: GroupsJoinedProps) {
           }}
           key={index}
           avatar={item.image_group[0] ?? null}
+          groupId={item._id}
           name={item.name}
           totalMembers={item.members.length}
           title={t('M148')}

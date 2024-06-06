@@ -6,7 +6,8 @@ import { useTranslations } from 'next-intl';
 import React from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Users } from 'lucide-react';
+import { ImagePlus } from 'lucide-react';
+import Link from 'next/link';
 
 type GroupCardProps = React.HTMLAttributes<HTMLDivElement> & {
   classNames?: {
@@ -17,6 +18,7 @@ type GroupCardProps = React.HTMLAttributes<HTMLDivElement> & {
     button?: string;
   };
   avatar?: string | null;
+  groupId: string;
   name: string;
   totalMembers: number;
   onClick?: () => void;
@@ -25,6 +27,7 @@ type GroupCardProps = React.HTMLAttributes<HTMLDivElement> & {
 export default function GroupCard({
   className,
   classNames,
+  groupId,
   avatar,
   name,
   totalMembers,
@@ -36,21 +39,27 @@ export default function GroupCard({
   return (
     <Card className={cn('flex w-full flex-col gap-4 p-4 md:p-6', className)}>
       <div className="grow">
-        <div className="relative aspect-video size-full overflow-hidden rounded-lg border object-contain">
+        <Link
+          href={`/group/${groupId}`}
+          className="relative block aspect-video size-full overflow-hidden rounded-lg border object-contain"
+        >
           {avatar ? (
             <Image src={avatar} alt={name} fill className="" />
           ) : (
             <div className="flex size-full items-center justify-center overflow-hidden rounded-lg">
-              <Users size={24} className="text-background" />
+              <ImagePlus size={24} className="text-background" />
             </div>
           )}
-        </div>
+        </Link>
       </div>
 
       <div className="space-y-2">
-        <h3 className="h-16 truncate whitespace-normal text-sm font-medium sm:text-base md:text-lg">
+        <Link
+          href={`/group/${groupId}`}
+          className="h-16 truncate whitespace-normal text-sm font-medium sm:text-base md:text-lg"
+        >
           {name}
-        </h3>
+        </Link>
 
         <p className="text-xs md:text-sm">{t('M143', { totalMembers })}</p>
       </div>

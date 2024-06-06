@@ -35,6 +35,7 @@ export default function GroupsRequestedToJoin({
           key={index}
           avatar={item.image_group[0] ?? null}
           name={item.name}
+          groupId={item._id}
           totalMembers={item.members.length}
           title={t('M150')}
           onClick={() => handleCancelRequest(item._id)}

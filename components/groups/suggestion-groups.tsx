@@ -60,6 +60,7 @@ export default function SuggestionGroups({
           <GroupCard
             key={index}
             avatar={item.image_group[0] ?? null}
+            groupId={item._id}
             name={item.name}
             totalMembers={item.members.length}
             onClick={() => handleSendRequest(item._id)}
