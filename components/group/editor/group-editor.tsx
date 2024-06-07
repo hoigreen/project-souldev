@@ -71,7 +71,7 @@ export function GroupEditor({
     values.image && formData.append('image', values.image);
     values.file && formData.append('image', values.file);
 
-    if (Boolean(initialData)) {
+    if (initialData) {
       const response = await updateGroup(
         { groupId: initialData?._id },
         formData,

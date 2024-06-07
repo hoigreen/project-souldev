@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage({
-  params: { locale, groupId: groupId },
+  params: { locale, groupId },
 }: {
   params: { locale: string; groupId: string };
 }) {
