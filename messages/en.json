@@ -386,6 +386,7 @@
     "M156": "Request join",
     "M157": "Update group information",
     "M158": "Group details",
-    "M159": "Update group information successfully!"
+    "M159": "Update group information successfully!",
+    "M160": "Managers"
   }
 }

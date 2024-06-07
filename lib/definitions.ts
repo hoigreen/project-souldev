@@ -392,3 +392,9 @@ export type GroupDetailResponse = {
   success: boolean;
   data: Group;
 };
+
+export type MembersOfGroupsResponse = {
+  success: boolean;
+  users: UserBasic[];
+  managers: UserBasic[];
+};

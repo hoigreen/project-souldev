@@ -156,3 +156,8 @@ export enum GroupRole {
   SuperAdmin = 'admin',
   Admin = 'mod',
 }
+
+export enum MemberType {
+  Member = 'member',
+  Manager = 'manager',
+}

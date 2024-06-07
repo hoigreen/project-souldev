@@ -5,6 +5,7 @@ import {
   GroupDetailResponse,
   GroupsResponse,
   GroupsResponseNoPagination,
+  MembersOfGroupsResponse,
   Response,
 } from '../definitions';
 import { Params, Query } from '../url-builder';
@@ -35,6 +36,14 @@ export async function getGroupsJoined(): Promise<GroupsResponseNoPagination> {
 
 export async function getGroupsRequestedToJoin(): Promise<GroupsResponseNoPagination> {
   return requestService.get(endpoints.group.getGroupsRequestedToJoin);
+}
+
+export async function getMembersOfGroup(
+  params: Params,
+): Promise<MembersOfGroupsResponse> {
+  return requestService.get(
+    getEndpoint({ path: endpoints.group.getListMember, params }),
+  );
 }
 
 // export async function leaveGroup(params: Params): Promise<Response> {

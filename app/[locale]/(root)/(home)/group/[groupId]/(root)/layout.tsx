@@ -1,4 +1,3 @@
-import { BackLink } from '@/components/app/back-link';
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import GroupDetailsSection from '@/components/group/group-details-section';
 import Tabs, { ITabs } from '@/components/ui/app/tabs';
@@ -87,8 +86,6 @@ export default async function Page({
 
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
-      <BackLink />
-
       <Suspense fallback={<div>Loading...</div>}>
         <GroupDetailsSection data={group} />
       </Suspense>
