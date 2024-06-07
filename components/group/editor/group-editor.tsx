@@ -68,6 +68,7 @@ export function GroupEditor({
     const formData = new FormData();
 
     formData.append('name', values.name);
+    values.image && formData.append('image', values.image);
     values.file && formData.append('image', values.file);
 
     if (Boolean(initialData)) {
