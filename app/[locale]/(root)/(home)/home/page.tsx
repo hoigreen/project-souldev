@@ -76,6 +76,7 @@ export default async function HomePage({
         </div>
 
         <ListPostsClient
+          queryFunction={getPosts}
           data={getPostsResponse}
           currentUserId={session.user._id}
         />

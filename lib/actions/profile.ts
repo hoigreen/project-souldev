@@ -10,28 +10,28 @@ import {
   ProfileResponse,
   MyFollowersResponse,
 } from '@/lib/definitions';
-import { endpoints } from '@/services/endpoints';
+import { endpoint } from '@/services/endpoint';
 import requestService from '@/services/request-service';
 import { Params, Query } from '../url-builder';
-import { getEndpoint } from '@/services/url';
+import { getPathname } from '@/services/url';
 
 // Profile
 export async function getUserProfile(): Promise<ProfileResponse> {
-  return await requestService.get(endpoints.profile.getProfile);
+  return await requestService.get(endpoint.profile.getProfile);
 }
 
 export async function getProfileById(params: Params): Promise<ProfileResponse> {
   return await requestService.get(
-    getEndpoint({ path: endpoints.profile.getProfileById, params }),
+    getPathname({ path: endpoint.profile.getProfileById, params }),
   );
 }
 
 export async function createProfile() {
-  return await requestService.post(endpoints.profile.createProfile);
+  return await requestService.post(endpoint.profile.createProfile);
 }
 
 export async function getMySavedPosts() {
-  return await requestService.get(endpoints.profile.getMySavedPosts);
+  return await requestService.get(endpoint.profile.getMySavedPosts);
 }
 
 // Peoples & Friend
@@ -39,28 +39,28 @@ export async function getRecommendPeoples(
   query?: Query,
 ): Promise<ListPeoplesWithPaginationResponse> {
   return await requestService.get(
-    getEndpoint({ path: endpoints.profile.getRecommendedPeoples, query }),
+    getPathname({ path: endpoint.profile.getRecommendedPeoples, query }),
   );
 }
 
 export async function getMyFriendsList(): Promise<MyFriendsResponse> {
-  return await requestService.get(endpoints.profile.getMyFriendsList);
+  return await requestService.get(endpoint.profile.getMyFriendsList);
 }
 
 export async function getMyFollowers(): Promise<MyFollowersResponse> {
-  return await requestService.get(endpoints.profile.getMyFollowers);
+  return await requestService.get(endpoint.profile.getMyFollowers);
 }
 
 export async function getMyFollowings(): Promise<MyFollowingsResponse> {
-  return await requestService.get(endpoints.profile.getMyFollowings);
+  return await requestService.get(endpoint.profile.getMyFollowings);
 }
 
 export async function getMyFriendsRequest(): Promise<MyFriendRequestsResponse> {
-  return await requestService.get(endpoints.profile.getMyFriendRequest);
+  return await requestService.get(endpoint.profile.getMyFriendRequest);
 }
 
 export async function addFriend(toUserId: string): Promise<AddFriendResponse> {
-  return await requestService.post(endpoints.profile.addFriend, {
+  return await requestService.post(endpoint.profile.addFriend, {
     toUser_id: toUserId,
   });
 }
@@ -68,7 +68,7 @@ export async function addFriend(toUserId: string): Promise<AddFriendResponse> {
 export async function cancelFriendRequest(
   requestUserId: string,
 ): Promise<CancelFriendRequestResponse> {
-  return await requestService.post(endpoints.profile.removeFriendRequest, {
+  return await requestService.post(endpoint.profile.removeFriendRequest, {
     requestUser_id: requestUserId,
   });
 }
@@ -76,13 +76,13 @@ export async function cancelFriendRequest(
 export async function acceptFriendRequest(
   requestUserId: string,
 ): Promise<AddFriendResponse> {
-  return await requestService.post(endpoints.profile.acceptFriendRequest, {
+  return await requestService.post(endpoint.profile.acceptFriendRequest, {
     requestUser_id: requestUserId,
   });
 }
 
 export async function removeFriend(toUserId: string) {
-  return await requestService.post(endpoints.profile.removeFriend, {
+  return await requestService.post(endpoint.profile.removeFriend, {
     toUser_id: toUserId,
   });
 }
@@ -90,7 +90,7 @@ export async function removeFriend(toUserId: string) {
 export async function unfollow(
   toUserId: string,
 ): Promise<CancelFriendRequestResponse> {
-  return await requestService.post(endpoints.profile.unfollow, {
+  return await requestService.post(endpoint.profile.unfollow, {
     toUser_id: toUserId,
   });
 }

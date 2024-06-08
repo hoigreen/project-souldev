@@ -8,16 +8,19 @@ import { useInView } from 'react-intersection-observer';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { Spinner } from '../app/spinner';
+import { Query } from '@/lib/url-builder';
 
 type ListPostsClientProps = React.HTMLAttributes<HTMLDivElement> & {
   data: PostsResponse;
   currentUserId: string;
+  queryFunction: (query?: Query) => Promise<PostsResponse>;
 };
 
 export default function ListPostsClient({
   className,
   currentUserId,
   data,
+  queryFunction,
 }: ListPostsClientProps) {
   const { ref, inView } = useInView();
   const t = useTranslations('Home');
@@ -32,6 +35,7 @@ export default function ListPostsClient({
       pages: [data],
       pageParams: [1],
     },
+    queryFunction,
   });
 
   const loadMoreContent = useMemo(() => {

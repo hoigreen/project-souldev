@@ -1,5 +1,6 @@
+import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
-import { getGroupDetails } from '@/lib/actions/group';
+import { getGroupDetails, getPostInGroup } from '@/lib/actions/group';
 import { Metadata } from 'next';
 import {
   getTranslations,
@@ -15,11 +16,12 @@ export default async function Page({ params: { locale, groupId } }: PageProps) {
   unstableSetRequestLocale(locale);
   const t = await getTranslations('Home');
 
-  // const response = await getGroupDetails({ groupId });
+  const response = await getPostInGroup({ groupId });
+  console.log(response);
 
-  // if (!response.success) {
-  //   return <ErrorStage stage={ErrorStageType.ServerError} />;
-  // }
+  if (!response.success) {
+    return <ErrorStage stage={ErrorStageType.ServerError} />;
+  }
 
   // const group = response.data;
 

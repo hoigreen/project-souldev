@@ -9,44 +9,44 @@ import {
   countMyPostsResponse,
 } from '@/lib/definitions';
 import { Params, Query } from '@/lib/url-builder';
-import { endpoints } from '@/services/endpoints';
+import { endpoint } from '@/services/endpoint';
 import requestService from '@/services/request-service';
-import { getEndpoint } from '@/services/url';
+import { getPathname } from '@/services/url';
 
 export async function getPosts(query?: Query): Promise<PostsResponse> {
   return await requestService.get(
-    getEndpoint({ path: endpoints.posts.getAll, query }),
+    getPathname({ path: endpoint.posts.getAll, query }),
   );
 }
 
 export async function getMyPosts(): Promise<MyPostsResponse> {
-  return await requestService.get(endpoints.posts.getMyPosts);
+  return await requestService.get(endpoint.posts.getMyPosts);
 }
 
 export async function getPostsByUserId(
   params: Params,
 ): Promise<MyPostsResponse> {
   return await requestService.get(
-    getEndpoint({ path: endpoints.posts.getPostsByUserId, params }),
+    getPathname({ path: endpoint.posts.getPostsByUserId, params }),
   );
 }
 
 export async function getMySharedPosts(): Promise<MyPostsResponse> {
-  return await requestService.get(endpoints.posts.getMySharedPosts);
+  return await requestService.get(endpoint.posts.getMySharedPosts);
 }
 
 export async function countMyPosts(): Promise<countMyPostsResponse> {
-  return await requestService.get(endpoints.posts.countMyPosts);
+  return await requestService.get(endpoint.posts.countMyPosts);
 }
 
 export async function getPostById(params: Params): Promise<PostDetailResponse> {
   return await requestService.get(
-    getEndpoint({ path: endpoints.posts.getPostById, params }),
+    getPathname({ path: endpoint.posts.getPostById, params }),
   );
 }
 
 export async function createPost(formData: FormData): Promise<void> {
-  return await requestService.post(endpoints.posts.add, formData, {
+  return await requestService.post(endpoint.posts.add, formData, {
     headers: {
       'Content-Type':
         'multipart/form-data; boundary=<calculated when request is sent>',
@@ -56,13 +56,13 @@ export async function createPost(formData: FormData): Promise<void> {
 
 export async function likePost(params: Params): Promise<void> {
   return await requestService.post(
-    getEndpoint({ path: endpoints.posts.like, params }),
+    getPathname({ path: endpoint.posts.like, params }),
   );
 }
 
 export async function unlikePost(params: Params): Promise<void> {
   return await requestService.post(
-    getEndpoint({ path: endpoints.posts.unlike, params }),
+    getPathname({ path: endpoint.posts.unlike, params }),
   );
 }
 
@@ -71,7 +71,7 @@ export async function sharePost(
   body: SharePostBody,
 ): Promise<SharePostResponse> {
   return await requestService.post(
-    getEndpoint({ path: endpoints.posts.sharePost, params }),
+    getPathname({ path: endpoint.posts.sharePost, params }),
     body,
   );
 }
