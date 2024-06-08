@@ -121,6 +121,36 @@ export interface Share {
   createdAt?: string;
 }
 
+export type Manager = {
+  user_id: string;
+  role: GroupRole;
+};
+
+export type Group = {
+  _id: string;
+  name: string;
+  image_group: string[];
+  code: string;
+  description: string;
+  managers: Manager[];
+  members: {
+    user_id: string | UserBasic;
+    date: string;
+  }[];
+  member_requests: {
+    user_id: UserBasic;
+    date: string;
+  }[];
+  creator_id: string;
+  created: {
+    time: string;
+  };
+  modified: {
+    user_id: UserBasic;
+    time: Date;
+  };
+};
+
 export type Post = {
   _id: string;
   tittle: string;
@@ -130,6 +160,7 @@ export type Post = {
   images: [];
   id_category: string;
   likes: Like[];
+  group_id?: Group;
   shares: Share[];
   created?: string;
   commentsCount?: number;
@@ -359,41 +390,10 @@ export type MyFollowersResponse = {
   }[];
 };
 
-export type Manager = {
-  user_id: string;
-  role: GroupRole;
-};
-
 export type ManagerDetail = {
   user_id: UserBasic;
   role: GroupRole;
 };
-
-export type Group = {
-  _id: string;
-  name: string;
-  image_group: string[];
-  code: string;
-  description: string;
-  managers: Manager[];
-  members: {
-    user_id: string | UserBasic;
-    date: string;
-  }[];
-  member_requests: {
-    user_id: UserBasic;
-    date: string;
-  }[];
-  creator_id: string;
-  created: {
-    time: string;
-  };
-  modified: {
-    user_id: UserBasic;
-    time: Date;
-  };
-};
-
 export type GroupsResponse = {
   success: boolean;
   items: Group[];

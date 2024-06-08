@@ -111,6 +111,6 @@ export async function getPostInGroup({
   query?: Query;
 }): Promise<PostsResponse> {
   return requestService.get(
-    getPathname({ path: endpoint.group.getPostsInGroup, params }),
+    getPathname({ path: endpoint.group.getPostsInGroup, params, query }),
   );
 }

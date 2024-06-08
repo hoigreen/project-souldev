@@ -4,9 +4,11 @@ import type { InfiniteData } from '@tanstack/react-query';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 export default function useInfiniteQueryPosts({
+  params,
   initialData,
   queryFunction,
 }: {
+  params?: Params;
   initialData?: InfiniteData<PostsResponse, number>;
   queryFunction: ({
     params,
@@ -27,7 +29,10 @@ export default function useInfiniteQueryPosts({
     initialData,
     initialPageParam: 1,
     queryFn: async ({ pageParam }) => {
-      const response = await queryFunction({ query: { page: pageParam } });
+      const response = await queryFunction({
+        params,
+        query: { page: pageParam },
+      });
 
       if (!response) {
         throw new Error('No response');

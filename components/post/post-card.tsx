@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { cn, calculateTime, getFullName } from '@/lib/utils';
 import React, { useMemo } from 'react';
 import {
+  Group,
   Like,
   Locale,
   Share,
@@ -22,6 +23,7 @@ import { Modals } from '@/lib/constants';
 import AvatarUser from '@/components/ui/app/avatar-user';
 import { Button } from '@/components/ui/button';
 import { Truncate } from '@/components/ui/truncate';
+import AvatarGroup from '../ui/app/avatar-group';
 
 export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   id: string;
@@ -39,6 +41,7 @@ export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
     image?: string;
     images?: string;
   };
+  group?: Group;
   isDisabledComment?: boolean;
 };
 
@@ -56,6 +59,7 @@ export default function PostCard({
   shares,
   onClickShare,
   isDisabledComment,
+  group,
 }: PostCardProps): React.JSX.Element {
   const locale = useLocale();
   const t = useTranslations('Home');
@@ -97,29 +101,74 @@ export default function PostCard({
     >
       <div className="flex size-full grow flex-col gap-3">
         <div className="flex w-full justify-between">
-          <div className="flex gap-2">
-            <Link href={`/people/${author._id}`}>
-              <AvatarUser
-                src={author.image}
-                alt="Profile"
-                fallback={author.first_name}
-                className="aspect-square size-12 cursor-pointer rounded-full border"
-              />
-            </Link>
+          <div className={cn('flex items-start gap-2', group && 'gap-4')}>
+            {group ? (
+              <div className="relative rounded border">
+                <Link
+                  href={`/group/${group._id}`}
+                  className="relative block size-12"
+                >
+                  <AvatarGroup
+                    groupName={group.name}
+                    groupImage={
+                      group.image_group && group.image_group.length > 0
+                        ? group.image_group[0]
+                        : undefined
+                    }
+                  />
+                </Link>
 
-            <div className="block space-y-0.5">
-              <Link href={`/people/${author._id}`} className="w-fit">
-                <h4 className="cursor-pointer text-base font-semibold">
-                  {getFullName(author.first_name, author.last_name)}
-                </h4>
+                <Link
+                  href={`/people/${author._id}`}
+                  className="absolute -bottom-1 -right-3 block"
+                >
+                  <AvatarUser
+                    src={author.image}
+                    alt="Profile"
+                    fallback={author.first_name}
+                    className="aspect-square size-8 cursor-pointer rounded-full border"
+                  />
+                </Link>
+              </div>
+            ) : (
+              <Link href={`/people/${author._id}`}>
+                <AvatarUser
+                  src={author.image}
+                  alt="Profile"
+                  fallback={author.first_name}
+                  className="aspect-square size-12 cursor-pointer rounded-full border"
+                />
               </Link>
-              <Link
-                className="flex items-center gap-2 text-xs font-light italic"
-                href={`/post/${id}`}
+            )}
+
+            <div className={cn('block space-y-0.5', group && 'space-y-2')}>
+              {group && (
+                <Link href={`/group/${group._id}`} className="w-fit">
+                  <h4 className="cursor-pointer text-lg font-bold leading-none">
+                    {group.name}
+                  </h4>
+                </Link>
+              )}
+
+              <div
+                className={cn(
+                  'space-y-0.5',
+                  group && 'flex items-baseline gap-2 space-y-0',
+                )}
               >
-                <Clock className="size-3" variant="TwoTone" />
-                {created ? calculateTime(created, locale as Locale) : t('M8')}
-              </Link>
+                <Link href={`/people/${author._id}`} className="w-fit">
+                  <h4 className="cursor-pointer text-base font-semibold leading-none">
+                    {getFullName(author.first_name, author.last_name)}
+                  </h4>
+                </Link>
+                <Link
+                  className="flex items-center gap-1 text-xs font-light italic leading-none"
+                  href={`/post/${id}`}
+                >
+                  <Clock className="size-3" variant="TwoTone" />
+                  {created ? calculateTime(created, locale as Locale) : t('M8')}
+                </Link>
+              </div>
             </div>
           </div>
 

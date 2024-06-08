@@ -11,6 +11,7 @@ import { Spinner } from '../app/spinner';
 import { Params, Query } from '@/lib/url-builder';
 
 type ListPostsClientProps = React.HTMLAttributes<HTMLDivElement> & {
+  params?: Params;
   data: PostsResponse;
   currentUserId: string;
   queryFunction: ({
@@ -26,6 +27,7 @@ export default function ListPostsClient({
   className,
   currentUserId,
   data,
+  params,
   queryFunction,
 }: ListPostsClientProps) {
   const { ref, inView } = useInView();
@@ -37,6 +39,7 @@ export default function ListPostsClient({
     hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQueryPosts({
+    params,
     initialData: {
       pages: [data],
       pageParams: [1],
@@ -70,6 +73,7 @@ export default function ListPostsClient({
       {posts.map((item, index) => (
         <PostCard
           key={index}
+          group={item.group_id}
           likes={item.likes}
           id={item._id}
           content={item.content}

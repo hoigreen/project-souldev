@@ -26,6 +26,10 @@ export default async function Page({ params: { locale, groupId } }: PageProps) {
     return <ErrorStage stage={ErrorStageType.Unauthorized} />;
   }
 
+  if (!groupId) {
+    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
+  }
+
   const response = await getPostInGroup({ params: { groupId } });
 
   if (!response) {
@@ -46,6 +50,7 @@ export default async function Page({ params: { locale, groupId } }: PageProps) {
         ) : (
           <div className="space-y-2">
             <ListPostsClient
+              params={{ groupId }}
               queryFunction={getPostInGroup}
               data={response}
               currentUserId={session.user._id}
