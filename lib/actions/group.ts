@@ -86,3 +86,9 @@ export async function joinGroup(params: Params): Promise<Response> {
     getEndpoint({ path: endpoints.group.join, params }),
   );
 }
+
+// export async function cancelRequestToJoinGroup(params: Params): Promise<Response> {
+//   return requestService.delete(
+//     getEndpoint({ path: endpoints.group., params }),
+//   );
+// }

@@ -346,6 +346,11 @@ export type MyFollowersResponse = {
 };
 
 export type Manager = {
+  user_id: string;
+  role: GroupRole;
+};
+
+export type ManagerDetail = {
   user_id: UserBasic;
   role: GroupRole;
 };

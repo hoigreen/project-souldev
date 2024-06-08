@@ -21,7 +21,7 @@ export default function GroupDetailsSection({
   return (
     <Card
       className={cn(
-        'space-y-3 rounded-lg border bg-neutral-50 p-3 md:p-4 lg:p-6',
+        'space-y-3 rounded-lg border bg-neutral-50 p-3 dark:bg-neutral-700 md:p-4 lg:p-6',
         className,
       )}
     >

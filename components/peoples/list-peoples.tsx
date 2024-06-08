@@ -16,10 +16,13 @@ import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 type ListPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
   data: UserBasic[];
   action?: FriendActions;
+  handleAction?: (userId: string) => void;
 };
 
 export default function ListPeoples({
   action,
+  title,
+  handleAction,
   className,
   data,
 }: ListPeoplesProps) {
@@ -99,6 +102,16 @@ export default function ListPeoples({
                 onClick={() => handleUnfollow(item._id)}
               >
                 {t('M108')}
+              </Button>
+            )}
+
+            {handleAction && (
+              <Button
+                className="w-fit text-xs sm:text-sm"
+                variant="outline"
+                onClick={() => handleAction(item._id)}
+              >
+                {title}
               </Button>
             )}
           </div>
