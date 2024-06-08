@@ -32,7 +32,7 @@ export default async function GroupsLayout({
     {
       href: '/groups/create',
       label: t('M124'),
-      icon: <Add variant="TwoTone" size={16} />,
+      icon: <Add size={16} />,
     },
   ];
 

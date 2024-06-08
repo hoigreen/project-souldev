@@ -66,11 +66,13 @@ export function UploadMultipleFiles({
                   {({ getRootProps, getInputProps }) => (
                     <div
                       {...getRootProps()}
-                      className="flex size-30 cursor-pointer flex-col items-center justify-center rounded-xl border border-neutral-300 bg-white hover:border-primary/80"
+                      className="flex size-30 cursor-pointer flex-col items-center justify-center rounded-xl border bg-white dark:bg-neutral-800"
                     >
                       <input {...getInputProps()} />
-                      <Add variant="TwoTone" />
-                      <p className="mt-2 text-xs text-neutral-600">{t('M1')}</p>
+                      <Add />
+                      <p className="mt-2 text-xs text-neutral-600 dark:text-neutral-200">
+                        {t('M1')}
+                      </p>
                     </div>
                   )}
                 </Dropzone>

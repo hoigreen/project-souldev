@@ -28,8 +28,8 @@ export function GroupEditorPreview({
   return (
     <div className={cn('min-h-full space-y-6', className)}>
       <Heading title={t('M151')} size={1} />
-      <div className="space-y-3 rounded-lg border bg-neutral-50 p-3 md:p-4 lg:p-6">
-        <div className="relative flex aspect-[24/9] w-full items-center justify-center overflow-hidden rounded-lg bg-neutral-200 dark:bg-neutral-600">
+      <div className="space-y-3 rounded-lg border bg-neutral-50 p-3 dark:bg-neutral-800 md:p-4 lg:p-6">
+        <div className="relative flex aspect-[24/9] w-full items-center justify-center overflow-hidden rounded-lg bg-neutral-200 dark:bg-neutral-700">
           {preview.image ? (
             <Image
               src={preview.image}

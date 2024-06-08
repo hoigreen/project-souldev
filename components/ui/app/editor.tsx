@@ -25,8 +25,8 @@ const toolbarOptions = [
 const Quill = dynamic(() => import('react-quill'), {
   loading: () => (
     <div className="divide-y overflow-hidden rounded-t-md border">
-      <div className="flex h-[clamp(3rem,50vh,var(--ui-editor-max-height))] flex-col items-center justify-center gap-2">
-        <Loader2Icon className="animate-spin text-neutral-900" />
+      <div className="flex h-[clamp(3rem,50vh,var(--ui-editor-max-height))] flex-col items-center justify-center gap-2 py-3">
+        <Loader2Icon className="animate-spin text-neutral-900 dark:text-neutral-600" />
         <p className="text-sm text-neutral-500">Loading...</p>
       </div>
     </div>
@@ -75,7 +75,6 @@ export const Editor = forwardRef<
           updateWordCount(args[3].getLength() - 1);
         }}
         readOnly={disabled}
-        theme="snow"
         {...props}
       />
 
