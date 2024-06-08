@@ -36,7 +36,7 @@ export default async function Page({
   const group = response.data;
 
   const isJoined = group.members.some(
-    (member) => member.user_id === session.user._id,
+    (member) => member.user_id._id === session.user._id,
   );
 
   if (!isJoined) {
@@ -89,7 +89,7 @@ export default async function Page({
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
       <Suspense fallback={<div>Loading...</div>}>
-        <GroupDetailsSection data={group} />
+        <GroupDetailsSection isManager={isManager} data={group} />
       </Suspense>
 
       <Tabs tabs={tabs} />

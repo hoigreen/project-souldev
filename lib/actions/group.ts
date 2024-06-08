@@ -7,6 +7,7 @@ import {
   GroupsResponseNoPagination,
   MembersOfGroupsResponse,
   PostsResponse,
+  Response,
 } from '../definitions';
 import { Params, Query } from '../url-builder';
 import { getPathname } from '@/services/url';
@@ -75,7 +76,7 @@ export async function updateGroup(
   );
 }
 
-export async function deleteGroup(params: Params) {
+export async function deleteGroup(params: Params): Promise<Response> {
   return requestService.delete(
     getPathname({ path: endpoint.group.deteleGroup, params }),
   );
@@ -114,3 +115,13 @@ export async function getPostInGroup({
     getPathname({ path: endpoint.group.getPostsInGroup, params, query }),
   );
 }
+
+// export async function leaveGroup({
+//   query,
+// }: {
+//   query?: Query;
+// }): Promise<PostsResponse> {
+//   return requestService.get(
+//     getPathname({ path: endpoint.group.getPostsInMyGroups, query }),
+//   );
+// }

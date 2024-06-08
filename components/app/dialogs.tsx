@@ -9,6 +9,8 @@ import { RemoveFriendDialog } from '../peoples/dialog/remove-friend-dialog';
 import { ViewLikesPostDialog } from '../post/dialog/view-likes-post-dialog';
 import { ViewDetailsPeoplesDialog } from '../peoples/dialog/view-details-peoples';
 import { SignOutDialog } from '../auth/sign-out/dialog/sign-out-dialog';
+import { ConfirmLeaveGroupDialog } from '../group/dialog/comfirm-leave-group-dialog';
+import { ConfirmDeleteGroupDialog } from '../group/dialog/comfirm-delete-group-dialog';
 
 export default function Dialogs(): React.JSX.Element {
   return (
@@ -21,6 +23,8 @@ export default function Dialogs(): React.JSX.Element {
       <ViewLikesPostDialog />
       <ViewDetailsPeoplesDialog />
       <ChangePasswordDialog />
+      <ConfirmLeaveGroupDialog />
+      <ConfirmDeleteGroupDialog />
     </>
   );
 }

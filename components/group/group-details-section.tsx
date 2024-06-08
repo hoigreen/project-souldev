@@ -7,21 +7,32 @@ import React from 'react';
 import Image from 'next/image';
 import { ImagePlus } from 'lucide-react';
 import { Group } from '@/lib/definitions';
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import { Button } from '../ui/button';
+import { Add, MoreCircle } from 'iconsax-react';
+import { Modals } from '@/lib/constants';
+import { useModalActions } from '@/hooks/use-modal';
 
 type GroupDetailsSectionProps = React.HTMLAttributes<HTMLDivElement> & {
   data: Group;
+  isManager?: boolean;
 };
 
 export default function GroupDetailsSection({
   className,
   data,
+  isManager,
 }: GroupDetailsSectionProps) {
   const t = useTranslations('Home');
+  const { onOpen: onOpenDialogLeaveGroup } = useModalActions(Modals.LeaveGroup);
+  const { onOpen: onOpenDialogDeleteGroup } = useModalActions(
+    Modals.DeleteGroup,
+  );
 
   return (
     <Card
       className={cn(
-        'space-y-3 rounded-lg border bg-neutral-50 p-3 dark:bg-neutral-700 md:p-4 lg:p-6',
+        'space-y-3 rounded-lg border bg-neutral-50 p-3 dark:bg-neutral-700 md:space-y-6 md:p-4 lg:p-6',
         className,
       )}
     >
@@ -37,6 +48,7 @@ export default function GroupDetailsSection({
           <ImagePlus size={48} />
         )}
       </div>
+
       <div className="space-y-3">
         <h2 className="text-xl font-bold text-neutral-900 dark:text-neutral-100 md:text-2xl lg:text-3xl">
           {data.name}
@@ -44,9 +56,56 @@ export default function GroupDetailsSection({
 
         <p className="text-sm lg:text-base">
           {t('M143', {
-            totalMembers: 1,
+            totalMembers: data.members.length,
           })}
         </p>
+      </div>
+
+      <div className="mt-3 flex items-center gap-3 md:gap-4">
+        {isManager && (
+          <>
+            <Button className="flex items-center gap-2 text-sm md:text-base">
+              <Add size={16} />
+              <span>{t('M163')}</span>
+            </Button>
+
+            <Button className="flex items-center gap-2 text-sm md:text-base">
+              <Add size={16} />
+              <span>{t('M168')}</span>
+            </Button>
+          </>
+        )}
+
+        <Popover>
+          <PopoverTrigger asChild>
+            <MoreCircle
+              size={24}
+              variant="TwoTone"
+              className="cursor-pointer"
+            />
+          </PopoverTrigger>
+          <PopoverContent className="w-80" align="start">
+            <div className="grid gap-4">
+              <div className="space-y-2">
+                <h4 className="font-medium leading-none">{t('M164')}</h4>
+                <p className="text-sm text-muted-foreground">{t('M165')}</p>
+              </div>
+
+              <div className="grid gap-2 divide-y">
+                <Button
+                  variant="destructive"
+                  onClick={
+                    !isManager
+                      ? onOpenDialogLeaveGroup
+                      : () => onOpenDialogDeleteGroup({ groupId: data._id })
+                  }
+                >
+                  {isManager ? t('M166') : t('M167')}
+                </Button>
+              </div>
+            </div>
+          </PopoverContent>
+        </Popover>
       </div>
     </Card>
   );

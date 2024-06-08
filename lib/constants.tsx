@@ -92,14 +92,23 @@ export const MONTH_YEAR_REGEX =
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 3; // 3MB
 
 export enum Modals {
+  // Auth
+  SignOut = 'SignOut',
+  ChangePassword = 'ChangePassword',
+
+  // Post
   CreatePost = 'CreatePost',
   ViewDetailPost = 'ViewDetailPost',
   SharePost = 'SharePost',
+
+  // Profile
   RemoveFriend = 'RemoveFriend',
   ViewDetailsPeoples = 'ViewDetailsPeoples',
   ViewLikesPost = 'ViewLikesPost',
-  ChangePassword = 'ChangePassword',
-  SignOut = 'SignOut',
+
+  // Group
+  LeaveGroup = 'LeaveGroup',
+  DeleteGroup = 'DeleteGroup',
 }
 
 export const fileSchema = z

@@ -134,7 +134,7 @@ export type Group = {
   description: string;
   managers: Manager[];
   members: {
-    user_id: string | UserBasic;
+    user_id: UserBasic;
     date: string;
   }[];
   member_requests: {
@@ -420,4 +420,7 @@ export type MembersOfGroupsResponse = {
 
 export type CreatePostData = {
   groupId?: string;
+};
+export type GroupDataModal = {
+  groupId: string;
 };

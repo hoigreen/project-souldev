@@ -389,6 +389,16 @@
     "M159": "Update group information successfully!",
     "M160": "Managers",
     "M161": "Requests join group",
-    "M162": "Cancel request join group successfully"
+    "M162": "Cancel request join group successfully",
+    "M163": "Add members",
+    "M164": "Actions",
+    "M165": "You can make an action with this group",
+    "M166": "Delete group",
+    "M167": "Leave group",
+    "M168": "Add managers",
+    "M169": "Confirm leave group!",
+    "M170": "Are you sure you want to leave this group?",
+    "M171": "Leave group successfully!",
+    "M172": "Delete group successfully!"
   }
 }

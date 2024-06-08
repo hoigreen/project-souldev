@@ -36,7 +36,7 @@ export default async function Page({ params: { locale, groupId } }: PageProps) {
     return <ErrorStage stage={ErrorStageType.ServerError} />;
   }
 
-  const posts: Post[] = response.items;
+  const posts: Post[] = response.items.map((item) => item);
 
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
