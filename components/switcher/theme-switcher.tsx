@@ -67,8 +67,8 @@ export function ThemeSwitcherRadio({
     <div className={themeSwitcherVariants({ className })} {...props}>
       <RadioGroup
         defaultValue={theme}
-        className="flex flex-col gap-3 lg:flex-row lg:gap-12"
-        onValueChange={(value) => setTheme(value)}
+        className="flex gap-0 max-lg:justify-between lg:grid lg:max-w-lg lg:grid-cols-3 lg:gap-12"
+        onValueChange={(value: string) => setTheme(value)}
       >
         <div className="flex items-center gap-3">
           <RadioGroupItem value="light" id="r1" />

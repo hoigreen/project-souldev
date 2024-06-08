@@ -128,7 +128,7 @@ export function LocaleSwitcherRadioGroup({
     <div className={cn({ className })} {...props}>
       <RadioGroup
         defaultValue={locale}
-        className="flex flex-col gap-3 lg:flex-row lg:gap-12"
+        className="flex gap-0 max-lg:justify-around lg:grid lg:max-w-lg lg:grid-cols-3 lg:gap-12"
         onValueChange={(value) => handleSwitch(value)}
       >
         <div className="flex items-center gap-3">
