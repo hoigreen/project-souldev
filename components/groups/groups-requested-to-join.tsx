@@ -6,6 +6,9 @@ import React from 'react';
 import GroupCard from '../group/group-card';
 import { Group } from '@/lib/definitions';
 import { ErrorStage, ErrorStageType } from '../app/error-stage';
+import { cancelRequestToJoinGroup } from '@/lib/actions/group';
+import { useRouter } from '@/navigation';
+import toast from 'react-hot-toast';
 
 type GroupsRequestedToJoinProps = React.HTMLAttributes<HTMLDivElement> & {
   groups: Group[];
@@ -16,16 +19,23 @@ export default function GroupsRequestedToJoin({
   groups,
 }: GroupsRequestedToJoinProps) {
   const t = useTranslations('Home');
+  const router = useRouter();
 
   if (groups.length === 0) {
     return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
   }
 
   const handleCancelRequest = async (groupId: string) => {
-    // const response = await leaveGroup(groupId);
-    // if (response.success) {
-    //   router.reload();
-    // }
+    const response = await cancelRequestToJoinGroup({ groupId });
+
+    if (!response.success) {
+      toast.success(t('M15'));
+
+      return;
+    }
+
+    toast.success(t('M162'));
+    router.refresh();
   };
 
   return (

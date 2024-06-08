@@ -97,11 +97,11 @@ export async function acceptRequestToJoinGroup(
   );
 }
 
-// export async function cancelRequestToJoinGroup(params: Params) {
-//   return requestService.delete(
-//     getPathname({ path: endpoints.group., params }),
-//   );
-// }
+export async function cancelRequestToJoinGroup(params: Params) {
+  return requestService.post(
+    getPathname({ path: endpoint.group.cancelRequestJoin, params }),
+  );
+}
 
 export async function getPostInGroup({
   params,

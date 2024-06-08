@@ -29,6 +29,7 @@ export default function Tabs({ className, tabs, ...props }: TabsProps) {
     >
       {tabs.map((tab, i) => (
         <Link
+          prefetch
           key={tab.href}
           href={tab.href}
           className={cn(

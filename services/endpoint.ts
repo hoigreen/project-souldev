@@ -64,6 +64,7 @@ export const endpoint = {
     deteleGroup: '/api/group-media/delete-group/:groupId',
     leaveGroup: '/api/group-media/leave-group/:groupId',
     acceptRequestJoin: '/api/group-media/accept-request-join-group/:groupId',
+    cancelRequestJoin: '/api/group-media/remove-request-join-group/:groupId',
     getListMember: '/api/group-media/get-list-member/:groupId',
     addMember: '/api/group-media/add-member/:groupId',
     removeMember: '/api/group-media/remove-member/:groupId',
