@@ -1,7 +1,7 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
-import MyGroups from '@/components/groups/my-groups';
-import { getMyGroups } from '@/lib/actions/group';
+import GroupsRequestedToJoin from '@/components/groups/groups-requested-to-join';
+import { getGroupsRequestedToJoin } from '@/lib/actions/group';
 import { Metadata } from 'next';
 import {
   getTranslations,
@@ -10,7 +10,7 @@ import {
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: 'My groups',
+  title: 'Request join groups',
 };
 
 export default async function HomePage({
@@ -21,17 +21,17 @@ export default async function HomePage({
   unstableSetRequestLocale(locale);
   const t = await getTranslations('Home');
 
-  const myGroupsResponse = await getMyGroups();
+  const groupRequestedToJoinResponse = await getGroupsRequestedToJoin();
 
-  if (!myGroupsResponse.success) {
+  if (!groupRequestedToJoinResponse.success) {
     return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
   }
 
   return (
     <div className="space-y-3">
-      <Heading title={t('M125')} size={1} />
+      <Heading title={t('M128')} size={1} />
       <Suspense fallback={<div>Loading ...</div>}>
-        <MyGroups groups={myGroupsResponse.data} />
+        <GroupsRequestedToJoin groups={groupRequestedToJoinResponse.data} />
       </Suspense>
     </div>
   );

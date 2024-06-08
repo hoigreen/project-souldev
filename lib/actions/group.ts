@@ -116,12 +116,8 @@ export async function getPostInGroup({
   );
 }
 
-// export async function leaveGroup({
-//   query,
-// }: {
-//   query?: Query;
-// }): Promise<PostsResponse> {
-//   return requestService.get(
-//     getPathname({ path: endpoint.group.getPostsInMyGroups, query }),
-//   );
-// }
+export async function leaveGroup(params: Params): Promise<Response> {
+  return requestService.post(
+    getPathname({ path: endpoint.group.leaveGroup, params }),
+  );
+}

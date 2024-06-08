@@ -1,6 +1,6 @@
 import { Heading } from '@/components/app/heading';
 import Tabs, { ITabs } from '@/components/ui/app/tabs';
-import { Add } from 'iconsax-react';
+import { Add, TickCircle, UserTick } from 'iconsax-react';
 import { Compass, UsersRound } from 'lucide-react';
 import {
   getTranslations,
@@ -23,6 +23,16 @@ export default async function GroupsLayout({
       href: '/groups',
       label: t('M123'),
       icon: <Compass size={16} />,
+    },
+    {
+      href: '/groups/request-join',
+      label: t('M156'),
+      icon: <TickCircle size={16} />,
+    },
+    {
+      href: '/groups/joined',
+      label: t('M145'),
+      icon: <UserTick size={16} />,
     },
     {
       href: '/groups/my-groups',
