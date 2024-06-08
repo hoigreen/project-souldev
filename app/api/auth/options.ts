@@ -42,11 +42,11 @@ export const authOptions: NextAuthOptions = {
         try {
           const dataLogin = await login(credentials);
 
-          if (!dataLogin) {
+          if (!dataLogin.success) {
             return null;
           }
 
-          const user = dataLogin.data as User;
+          const user = dataLogin.data;
 
           return user;
         } catch (error) {
@@ -143,6 +143,10 @@ export const authOptions: NextAuthOptions = {
 
         const res = await authGoogle(signUpData);
 
+        if (!res?.success) {
+          throw new Error('Failed to authenticate with Google');
+        }
+
         if (res.data.token) {
           cookie.set({
             name: process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
@@ -162,12 +166,16 @@ export const authOptions: NextAuthOptions = {
           terms: true,
         };
 
-        const data = await authGitHub(signUpData);
+        const res = await authGitHub(signUpData);
 
-        if (data.data.token) {
+        if (!res?.success) {
+          throw new Error('Failed to authenticate with Google');
+        }
+
+        if (res.data.token) {
           cookie.set({
             name: process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
-            value: data.data.token as string,
+            value: res.data.token as string,
             expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
             path: '/',
           });

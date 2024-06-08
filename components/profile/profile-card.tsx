@@ -1,6 +1,6 @@
 'use client';
 
-import { AuthType, Profile, ViewDetailsActionPeoples } from '@/lib/definitions';
+import { Profile, ViewDetailsActionPeoples } from '@/lib/definitions';
 import React from 'react';
 import { Card } from '../ui/card';
 import { cn, getFullName } from '@/lib/utils';
@@ -14,6 +14,7 @@ import { Label } from '../ui/label';
 import { Badge } from '../ui/badge';
 import { useModalActions } from '@/hooks/use-modal';
 import { Modals } from '@/lib/constants';
+import { AuthType } from '@/lib/enums';
 
 type ProfileCardProps = React.HTMLAttributes<HTMLDivElement> & {
   profile: Profile;

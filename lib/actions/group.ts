@@ -37,8 +37,10 @@ export async function getGroupsRequestedToJoin(): Promise<GroupsResponseNoPagina
   return requestService.get(endpoint.group.getGroupsRequestedToJoin);
 }
 
-export async function getMembersOfGroup(params: Params) {
-  return requestService.get<MembersOfGroupsResponse>(
+export async function getMembersOfGroup(
+  params: Params,
+): Promise<MembersOfGroupsResponse> {
+  return requestService.get(
     getPathname({ path: endpoint.group.getListMember, params }),
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { AuthType, Profile, UserBasic } from '@/lib/definitions';
+import { Profile, UserBasic } from '@/lib/definitions';
 import React from 'react';
 import { cn, getFullName } from '@/lib/utils';
 import {
@@ -22,6 +22,7 @@ import { ViewImageDialog } from '@/components/ui/dialogs/view-image-dialog';
 import toast from 'react-hot-toast';
 import { useRouter } from '@/navigation';
 import { handleAddFriend, handleCancelRequest } from '@/services/people';
+import { AuthType } from '@/lib/enums';
 
 type BasicInfoCardProps = React.HTMLAttributes<HTMLDivElement> & {
   profile: Profile;

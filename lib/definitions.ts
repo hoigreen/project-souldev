@@ -1,6 +1,8 @@
 import React from 'react';
 import { IMessage } from '@novu/notification-center';
 import { GroupRole } from './constants';
+import { AuthType } from './enums';
+import { User as AuthUser } from 'next-auth';
 
 export type Response = {
   success: boolean;
@@ -31,6 +33,32 @@ export interface Route {
   routes?: Route[];
 }
 
+export interface UserBasic {
+  _id: string;
+  first_name: string;
+  last_name: string;
+  image: string;
+}
+
+export type User = AuthUser &
+  UserBasic & {
+    email: string;
+    authType: AuthType;
+    mobile: string;
+    token: string;
+    refreshToken: string;
+    isOnboardingCompleted: boolean;
+    bio: string;
+    twiter: string;
+    facebook: string;
+    github: string;
+  };
+
+export type UserResponse = {
+  success: boolean;
+  data: User;
+};
+
 export interface FeatureItem {
   description: string;
   title: string;
@@ -59,12 +87,6 @@ export type OnboardingRequestBody = {
   bio?: string;
   isOnboardingCompleted: boolean;
 };
-
-export enum AuthType {
-  Local = 'local', // eslint-disable-line no-unused-vars
-  Google = 'google', // eslint-disable-line no-unused-vars
-  Github = 'github', // eslint-disable-line no-unused-vars
-}
 
 export enum IsVerifiedStatus {
   Verified = 1, // eslint-disable-line no-unused-vars
@@ -135,14 +157,6 @@ export enum ActionPost {
 export interface ViewDetailPostData {
   postId: string;
 }
-
-export interface UserBasic {
-  _id: string;
-  first_name: string;
-  last_name: string;
-  image: string;
-}
-
 export interface Comment {
   _id: string;
   user_id: UserBasic;

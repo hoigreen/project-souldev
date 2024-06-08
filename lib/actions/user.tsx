@@ -1,6 +1,7 @@
 'use server';
 
 import {
+  UserResponse,
   OnboardingRequestBody,
   ProfileAdvanceInfoBody,
   ProfileAdvanceInfoResponse,
@@ -13,6 +14,7 @@ import { Params } from '@/lib/url-builder';
 import { endpoint } from '@/services/endpoint';
 import requestService from '@/services/request-service';
 import { getPathname } from '@/services/url';
+import { User } from 'next-auth';
 
 // This file contain server actions
 

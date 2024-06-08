@@ -21,15 +21,15 @@ export default async function Page({
 
   if (!user) return <ErrorStage stage={ErrorStageType.Unauthorized} />;
 
-  const { data, success } = await getMySavedPosts();
+  const response = await getMySavedPosts();
 
-  if (!success) {
+  if (!response.success) {
     return <ErrorStage stage={ErrorStageType.ServerError} />;
   }
 
-  if (data.length === 0) {
+  if (response.data.length === 0) {
     return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
   }
 
-  return <MyPostsClient data={data} currentUserId={user._id} />;
+  return <MyPostsClient data={response} currentUserId={user._id} />;
 }

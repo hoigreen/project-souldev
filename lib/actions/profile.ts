@@ -9,6 +9,7 @@ import {
   MyFriendsResponse,
   ProfileResponse,
   MyFollowersResponse,
+  MyPostsResponse,
 } from '@/lib/definitions';
 import { endpoint } from '@/services/endpoint';
 import requestService from '@/services/request-service';
@@ -30,7 +31,7 @@ export async function createProfile() {
   return await requestService.post(endpoint.profile.createProfile);
 }
 
-export async function getMySavedPosts() {
+export async function getMySavedPosts(): Promise<MyPostsResponse> {
   return await requestService.get(endpoint.profile.getMySavedPosts);
 }
 
