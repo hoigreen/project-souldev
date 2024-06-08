@@ -35,7 +35,11 @@ export default async function HomePage({
     getPostsResponse,
     getRecommendedPeoplesResponse,
     getMyFollowingsResponse,
-  ] = await Promise.all([getPosts(), getRecommendPeoples(), getMyFollowings()]);
+  ] = await Promise.all([
+    getPosts({}),
+    getRecommendPeoples(),
+    getMyFollowings(),
+  ]);
 
   if (!getPostsResponse) {
     return <ErrorStage stage={ErrorStageType.ServerError} />;

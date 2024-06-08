@@ -13,9 +13,15 @@ import { endpoint } from '@/services/endpoint';
 import requestService from '@/services/request-service';
 import { getPathname } from '@/services/url';
 
-export async function getPosts(query?: Query): Promise<PostsResponse> {
+export async function getPosts({
+  params,
+  query,
+}: {
+  params?: Params;
+  query?: Query;
+}): Promise<PostsResponse> {
   return await requestService.get(
-    getPathname({ path: endpoint.posts.getAll, query }),
+    getPathname({ path: endpoint.posts.getAll, params, query }),
   );
 }
 

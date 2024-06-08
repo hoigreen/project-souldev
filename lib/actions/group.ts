@@ -6,6 +6,7 @@ import {
   GroupsResponse,
   GroupsResponseNoPagination,
   MembersOfGroupsResponse,
+  PostsResponse,
 } from '../definitions';
 import { Params, Query } from '../url-builder';
 import { getPathname } from '@/services/url';
@@ -102,7 +103,13 @@ export async function acceptRequestToJoinGroup(
 //   );
 // }
 
-export async function getPostInGroup(params: Params) {
+export async function getPostInGroup({
+  params,
+  query,
+}: {
+  params?: Params;
+  query?: Query;
+}): Promise<PostsResponse> {
   return requestService.get(
     getPathname({ path: endpoint.group.getPostsInGroup, params }),
   );

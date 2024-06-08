@@ -43,10 +43,12 @@ export default async function Page({
     return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
   }
 
-  const isCreator = group.creator_id === session.user._id;
+  const isManager = group.managers.some(
+    (manager) => manager.user_id === session.user._id,
+  );
 
   let tabs: ITabs[] = [];
-  if (isCreator) {
+  if (isManager) {
     tabs = [
       {
         href: `/group/${groupId}`,

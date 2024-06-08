@@ -20,6 +20,7 @@ type PostFormProps = {
   postId?: string;
   className?: string;
   initialData?: string;
+  groupId?: string;
   onPostCreated?: () => void;
 };
 
@@ -28,6 +29,7 @@ export default function PostForm({
   postId,
   className,
   initialData,
+  groupId,
   onPostCreated,
 }: PostFormProps): React.JSX.Element {
   const [files, setFiles] = React.useState<File[]>([]);
@@ -54,6 +56,9 @@ export default function PostForm({
       formData.append('image', file);
     });
 
+    // Create post in group
+    groupId && formData.append('group_id', groupId);
+
     if (action === ActionPost.Create) {
       await createPost(formData);
     } else {
@@ -65,13 +70,8 @@ export default function PostForm({
     }
 
     startTransition(() => {
-      router.replace('/home');
-      router.prefetch('/home');
+      onPostCreated && onPostCreated();
     });
-
-    if (onPostCreated) {
-      onPostCreated();
-    }
   };
 
   return (

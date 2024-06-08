@@ -8,12 +8,18 @@ import { useInView } from 'react-intersection-observer';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { Spinner } from '../app/spinner';
-import { Query } from '@/lib/url-builder';
+import { Params, Query } from '@/lib/url-builder';
 
 type ListPostsClientProps = React.HTMLAttributes<HTMLDivElement> & {
   data: PostsResponse;
   currentUserId: string;
-  queryFunction: (query?: Query) => Promise<PostsResponse>;
+  queryFunction: ({
+    params,
+    query,
+  }: {
+    params?: Params;
+    query?: Query;
+  }) => Promise<PostsResponse>;
 };
 
 export default function ListPostsClient({

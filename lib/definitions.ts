@@ -417,3 +417,7 @@ export type MembersOfGroupsResponse = {
   users: UserBasic[];
   managers: UserBasic[];
 };
+
+export type CreatePostData = {
+  groupId?: string;
+};

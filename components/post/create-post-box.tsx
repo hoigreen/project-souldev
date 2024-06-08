@@ -11,10 +11,12 @@ import AvatarUser from '@/components/ui/app/avatar-user';
 
 type CreatePostBoxProps = React.HTMLAttributes<HTMLDivElement> & {
   user: User;
+  groupId?: string;
 };
 
 export default function CreatePostBox({
   user,
+  groupId,
 }: CreatePostBoxProps): React.JSX.Element {
   const t = useTranslations('Home');
   const { onOpen } = useModalActions(Modals.CreatePost);
@@ -28,7 +30,10 @@ export default function CreatePostBox({
         className="size-14 border"
       />
 
-      <div className="flex grow items-center gap-2" onClick={() => onOpen()}>
+      <div
+        className="flex grow items-center gap-2"
+        onClick={() => onOpen({ groupId })}
+      >
         <Input
           type="text"
           placeholder={t('M10')}
