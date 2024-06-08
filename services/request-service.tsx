@@ -1,31 +1,32 @@
+import { Response } from '@/lib/definitions';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 export interface RequestService {
-  get: (
+  get: <T = Response>(
     url: string,
     config?: AxiosRequestConfig<any | undefined>,
-  ) => Promise<any>;
-  post: (
+  ) => Promise<T>;
+  post: <T = Response>(
     url: string,
     body?: Record<string, any> | FormData,
     config?: AxiosRequestConfig<any | undefined>,
-  ) => Promise<any>;
-  put: (
+  ) => Promise<T>;
+  put: <T = Response>(
     url: string,
     body: Record<string, any> | FormData,
     config?: AxiosRequestConfig<any | undefined>,
-  ) => Promise<any>;
-  patch: (
+  ) => Promise<T>;
+  patch: <T = Response>(
     url: string,
     body: Record<string, any> | FormData,
     config?: AxiosRequestConfig<any | undefined>,
-  ) => Promise<any>;
-  delete: (
+  ) => Promise<T>;
+  delete: <T = Response>(
     url: string,
     config?: AxiosRequestConfig<any | undefined>,
-  ) => Promise<any>;
+  ) => Promise<T>;
 }
 
 const instance = axios.create({

@@ -38,10 +38,8 @@ export async function getGroupsRequestedToJoin(): Promise<GroupsResponseNoPagina
   return requestService.get(endpoints.group.getGroupsRequestedToJoin);
 }
 
-export async function getMembersOfGroup(
-  params: Params,
-): Promise<MembersOfGroupsResponse> {
-  return requestService.get(
+export async function getMembersOfGroup(params: Params) {
+  return requestService.get<MembersOfGroupsResponse>(
     getEndpoint({ path: endpoints.group.getListMember, params }),
   );
 }
@@ -52,7 +50,7 @@ export async function getMembersOfGroup(
 //   );
 // }
 
-export async function createGroup(formData: FormData): Promise<Response> {
+export async function createGroup(formData: FormData) {
   return requestService.post(endpoints.group.create, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -75,19 +73,29 @@ export async function updateGroup(
   );
 }
 
-export async function deleteGroup(params: Params): Promise<void> {
+export async function deleteGroup(params: Params) {
   return requestService.delete(
     getEndpoint({ path: endpoints.group.deteleGroup, params }),
   );
 }
 
-export async function joinGroup(params: Params): Promise<Response> {
+export async function joinGroup(params: Params) {
   return requestService.post(
     getEndpoint({ path: endpoints.group.join, params }),
   );
 }
 
-// export async function cancelRequestToJoinGroup(params: Params): Promise<Response> {
+export async function acceptRequestToJoinGroup(
+  params: Params,
+  body: { requestUser_id: string },
+) {
+  return requestService.post(
+    getEndpoint({ path: endpoints.group.acceptRequestJoin, params }),
+    body,
+  );
+}
+
+// export async function cancelRequestToJoinGroup(params: Params) {
 //   return requestService.delete(
 //     getEndpoint({ path: endpoints.group., params }),
 //   );

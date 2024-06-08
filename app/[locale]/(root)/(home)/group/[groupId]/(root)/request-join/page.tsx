@@ -63,7 +63,7 @@ export default async function Page({
           })}
         </p>
         <Suspense fallback={<ListPeoplesLoading />}>
-          <RequestJoinGroup data={users} />
+          <RequestJoinGroup data={users} groupId={groupId} />
         </Suspense>
       </Card>
     </div>
