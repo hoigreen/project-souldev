@@ -117,7 +117,7 @@ export async function getPostInGroup({
 }
 
 export async function leaveGroup(params: Params): Promise<Response> {
-  return requestService.post(
+  return requestService.delete(
     getPathname({ path: endpoint.group.leaveGroup, params }),
   );
 }

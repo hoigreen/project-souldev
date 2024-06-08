@@ -6,6 +6,8 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { useRouter } from '@/navigation';
+import { leaveGroup } from '@/lib/actions/group';
+import toast from 'react-hot-toast';
 
 export function ConfirmLeaveGroupDialog() {
   const t = useTranslations('Home');
@@ -17,13 +19,16 @@ export function ConfirmLeaveGroupDialog() {
   });
 
   const handleClick = async () => {
-    // const response = await removeFriend(groupId);
-    // if (!response.success) {
-    //   toast.error(t('M15'));
-    //   return;
-    // }
-    // toast.success(t('M100'));
-    // router.refresh();
+    const response = await leaveGroup({ groupId });
+    if (!response.success) {
+      toast.error(t('M15'));
+
+      return;
+    }
+
+    toast.success(t('M171'));
+    router.push('/groups');
+    onClose();
   };
 
   return (
