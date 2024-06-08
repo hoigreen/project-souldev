@@ -40,8 +40,9 @@ export default async function Page({ params: { locale, postId } }: PageProps) {
       <BackLink />
 
       <PostCard
-        likes={post.likes}
         id={post._id}
+        likes={post.likes}
+        group={post.group_id}
         content={post.content}
         author={post.user_id}
         created={post.created}

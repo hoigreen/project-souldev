@@ -108,8 +108,9 @@ export default function SharePostForm({
 
       <Card className="p-3">
         <PostCard
-          likes={data.post_data.likes}
           id={data.post_data._id}
+          likes={data.post_data.likes}
+          group={data.post_data.group_id}
           content={data.post_data.content}
           author={data.post_data.user_id}
           created={data.post_data.created}

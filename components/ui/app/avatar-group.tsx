@@ -15,12 +15,12 @@ export default function AvatarGroup({
   return groupImage ? (
     <Image
       alt={groupName}
-      className={cn('absolute rounded object-contain', className)}
+      className={cn('absolute rounded object-fill', className)}
       fill
       src={groupImage}
     />
   ) : (
-    <div className="flex size-12 items-center justify-center rounded-full bg-neutral-200 dark:bg-neutral-700">
+    <div className="flex size-12 items-center justify-center rounded-lg bg-neutral-200 dark:bg-neutral-700">
       <p className="text-lg font-semibold text-neutral-500 dark:text-neutral-400">
         {getFirstInitials(groupName)}
       </p>
