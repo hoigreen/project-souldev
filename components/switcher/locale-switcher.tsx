@@ -19,6 +19,7 @@ import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import { Label } from '../ui/label';
+import cookie from '@/lib/cookie';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: LocaleSwitcher
@@ -34,6 +35,7 @@ export function LocaleSwitcher({ className, ...props }: LocaleSwitcherProps) {
   const router = useRouter();
 
   const handleSwitch = (locale: string) => {
+    cookie.set('NEXT_LOCALE', locale, 7);
     router.push(
       queryString.stringifyUrl({
         url: `/${locale}/${pathname}`,
@@ -116,6 +118,7 @@ export function LocaleSwitcherRadioGroup({
   const router = useRouter();
 
   const handleSwitch = (locale: string) => {
+    cookie.set('NEXT_LOCALE', locale, 7);
     router.push(
       queryString.stringifyUrl({
         url: `/${locale}/${pathname}`,
@@ -132,9 +135,9 @@ export function LocaleSwitcherRadioGroup({
         onValueChange={(value) => handleSwitch(value)}
       >
         <div className="flex items-center gap-3">
-          <RadioGroupItem value="en" id="r1" />
+          <RadioGroupItem value="en" id="l1" />
           <Label
-            htmlFor="r1"
+            htmlFor="l1"
             className="flex items-center gap-1 text-sm font-normal md:text-base "
           >
             <Image
@@ -149,9 +152,9 @@ export function LocaleSwitcherRadioGroup({
         </div>
 
         <div className="flex items-center gap-3">
-          <RadioGroupItem value="vi" id="r2" />
+          <RadioGroupItem value="vi" id="l2" />
           <Label
-            htmlFor="r2"
+            htmlFor="l2"
             className="flex items-center gap-1 text-sm font-normal md:text-base"
           >
             <Image

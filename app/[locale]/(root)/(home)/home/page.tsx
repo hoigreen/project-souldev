@@ -9,10 +9,7 @@ import { getMyFollowings, getRecommendPeoples } from '@/lib/actions/profile';
 import { Post, UserBasic } from '@/lib/definitions';
 import getSession from '@/lib/get-session';
 import { Metadata } from 'next';
-import {
-  getTranslations,
-  unstable_setRequestLocale as unstableSetRequestLocale,
-} from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { Fragment } from 'react';
 
 export const metadata: Metadata = {
@@ -25,7 +22,6 @@ export default async function HomePage({
 }: {
   params: { locale: string };
 }) {
-  unstableSetRequestLocale(locale);
   const t = await getTranslations('Home');
   const session = await getSession();
 

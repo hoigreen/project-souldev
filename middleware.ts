@@ -7,7 +7,7 @@ import { AUTH_PATH_REGEX, PUBLIC_PATH_REGEX } from './lib/regex';
 const nextIntlMiddleware = createIntlMiddleware({
   locales: ['en', 'vi'],
   defaultLocale: 'en',
-  localeDetection: false,
+  localeDetection: true,
 });
 
 const nextAuthMiddleware = () =>
