@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { Spinner } from '../app/spinner';
 import { Params, Query } from '@/lib/url-builder';
+import { Heading } from '../app/heading';
 
 type ListPostsClientProps = React.HTMLAttributes<HTMLDivElement> & {
   params?: Params;
@@ -70,6 +71,8 @@ export default function ListPostsClient({
 
   return (
     <div className={cn('mt-9 flex flex-col gap-10', className)}>
+      <Heading title={t('M154')} size={1} />
+
       {posts.map((item, index) => (
         <PostCard
           key={index}

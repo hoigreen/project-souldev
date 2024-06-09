@@ -6,7 +6,7 @@ import CreatePostBox from '@/components/post/create-post-box';
 import ListPostsClient from '@/components/post/list-posts-client';
 import { getPosts } from '@/lib/actions/post';
 import { getMyFollowings, getRecommendPeoples } from '@/lib/actions/profile';
-import { Post, UserBasic } from '@/lib/definitions';
+import { UserBasic } from '@/lib/definitions';
 import getSession from '@/lib/get-session';
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
@@ -17,11 +17,7 @@ export const metadata: Metadata = {
   description: 'Discover the latest news and stories',
 };
 
-export default async function HomePage({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+export default async function HomePage() {
   const t = await getTranslations('Home');
   const session = await getSession();
 
@@ -47,12 +43,6 @@ export default async function HomePage({
 
   if (!getMyFollowingsResponse) {
     return <ErrorStage stage={ErrorStageType.ServerError} />;
-  }
-
-  const posts: Post[] = getPostsResponse.items;
-
-  if (posts.length === 0) {
-    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
   }
 
   const myFollowings: UserBasic[] = (

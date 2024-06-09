@@ -15,7 +15,7 @@ export default function HomeLayout({
 
   return (
     <Fragment>
-      <main className="min-h-[calc(100vh-4.125rem)] bg-gray-100 dark:bg-neutral-900">
+      <main className="min-h-[calc(100vh-4.125rem)] bg-white dark:bg-black xl:bg-neutral-100 xl:dark:bg-neutral-900">
         <Headerbar />
 
         <LeftSidebar className="pt-14 md:pt-20" />
