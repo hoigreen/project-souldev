@@ -8,6 +8,12 @@ export type Response = {
   success: boolean;
 };
 
+export type ServerResponse<T> = {
+  success: boolean;
+  msg?: string;
+  data: T;
+};
+
 export interface Notification {
   id: string;
   seen: boolean;
