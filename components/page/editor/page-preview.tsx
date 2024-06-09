@@ -28,7 +28,7 @@ export function PagePreview({ className }: GroupEditorPreviewProps) {
   return (
     <div className={cn('min-h-full space-y-6', className)}>
       <Heading title={t('M189')} size={1} />
-      <div className="space-y-3 rounded-lg border bg-neutral-50 p-3 dark:bg-neutral-800 md:p-4 lg:p-6">
+      <div className="rounded-lg border bg-neutral-50 p-3 dark:bg-neutral-800 md:p-4 lg:p-6">
         <div className="space-y-3 rounded-lg border bg-white p-2 dark:bg-black md:p-3 lg:p-4">
           <div className="relative flex aspect-[24/9] w-full items-center justify-center overflow-hidden rounded-lg bg-neutral-200 dark:bg-neutral-700">
             {preview.image ? (

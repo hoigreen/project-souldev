@@ -419,6 +419,7 @@
     "M189": "Preview page",
     "M190": "<emphasize>{count}</emphasize> likes",
     "M191": "<emphasize>{count}</emphasize> followers",
-    "M192": "Page created successfully!"
+    "M192": "Page created successfully!",
+    "M193": "About"
   }
 }

@@ -84,13 +84,13 @@ export async function updatePage(
   );
 }
 
-// export async function getGroupDetails(
-//   params: Params,
-// ): Promise<GroupDetailResponse> {
-//   return requestService.get(
-//     getPathname({ path: endpoint.group.getDetails, params }),
-//   );
-// }
+export async function getPageDetails(
+  params: Params,
+): Promise<ServerResponse<Page>> {
+  return requestService.get(
+    getPathname({ path: endpoint.page.getDetails, params }),
+  );
+}
 
 // export async function leaveGroup(params: Params): Promise<Response> {
 //   return requestService.delete(
