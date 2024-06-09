@@ -1,6 +1,6 @@
+import { redirect } from '@/navigation';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
 
 export interface RequestService {
   get: (
@@ -66,7 +66,7 @@ instance.interceptors.response.use(
   (error) => {
     const status = error.response?.status || 500;
     if (status === 401) {
-      NextResponse.redirect('/auth/sign-in');
+      redirect('/auth/sign-out');
     } else {
       return Promise.reject(error); // Delegate error to calling side
     }
