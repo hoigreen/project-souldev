@@ -1,4 +1,6 @@
 import { Heading } from '@/components/app/heading';
+import { PageEditor } from '@/components/page/editor/page-editor';
+import { PagePreview } from '@/components/page/editor/page-preview';
 import { Metadata } from 'next';
 import {
   getTranslations,
@@ -20,7 +22,7 @@ export default async function Page({
   return (
     <div className="space-y-3">
       <Heading title={t('M131')} size={1} />
-      {/* <PageEditor preview={<PageEditorPreview />} /> */}
+      <PageEditor preview={<PagePreview />} />
     </div>
   );
 }

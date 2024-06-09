@@ -444,9 +444,9 @@ export type Page = {
   name: string;
   image_page: string[];
   email: string;
-  phone: string | null;
-  address: string | null;
-  website: string | null;
+  phone?: string;
+  address?: string;
+  website?: string;
   creator_id: UserBasic;
   followers: Follower[];
   likes: Like[];

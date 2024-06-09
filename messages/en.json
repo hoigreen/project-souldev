@@ -406,6 +406,19 @@
     "M176": "Like page successfully!",
     "M177": "Unlike page successfully!",
     "M178": "Follow page successfully!",
-    "M179": "Unfollow page successfully!"
+    "M179": "Unfollow page successfully!",
+    "M180": "Page infomation",
+    "M181": "Page name",
+    "M182": "Ex. Software Developer Page",
+    "M183": "Website",
+    "M184": "Ex. https://softwaredeveloper.com",
+    "M185": "Email",
+    "M186": "Ex. dsfoixc12312@gmail.com",
+    "M187": "Phone",
+    "M188": "Ex. 0312345678",
+    "M189": "Preview page",
+    "M190": "<emphasize>{count}</emphasize> likes",
+    "M191": "<emphasize>{count}</emphasize> followers",
+    "M192": "Page created successfully!"
   }
 }
