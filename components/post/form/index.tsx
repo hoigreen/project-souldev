@@ -17,6 +17,7 @@ import { useForm } from 'react-hook-form';
 
 type PostFormProps = {
   action: ActionPost;
+  pageId?: string;
   postId?: string;
   className?: string;
   initialData?: string;
@@ -26,6 +27,7 @@ type PostFormProps = {
 
 export default function PostForm({
   action,
+  pageId,
   postId,
   className,
   initialData,
@@ -58,6 +60,9 @@ export default function PostForm({
 
     // Create post in group
     groupId && formData.append('group_id', groupId);
+
+    // Create post in page
+    pageId && formData.append('page_id', pageId);
 
     if (action === ActionPost.Create) {
       await createPost(formData);

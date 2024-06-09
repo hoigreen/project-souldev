@@ -11,8 +11,9 @@ import React from 'react';
 export function CreatePostDialog(): React.JSX.Element {
   const isOpen = useModalOpen(Modals.CreatePost);
   const { onClose } = useModalActions(Modals.CreatePost);
-  const { groupId } = useModalData<CreatePostData>(Modals.CreatePost, {
+  const { groupId, pageId } = useModalData<CreatePostData>(Modals.CreatePost, {
     groupId: undefined,
+    pageId: undefined,
   });
   const router = useRouter();
   const t = useTranslations('Home');
@@ -21,6 +22,7 @@ export function CreatePostDialog(): React.JSX.Element {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="p-3">
         <PostForm
+          pageId={pageId}
           groupId={groupId}
           action={ActionPost.Create}
           onPostCreated={() => {

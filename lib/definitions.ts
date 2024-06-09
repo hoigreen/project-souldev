@@ -426,6 +426,7 @@ export type MembersOfGroupsResponse = {
 
 export type CreatePostData = {
   groupId?: string;
+  pageId?: string;
 };
 export type GroupDataModal = {
   groupId: string;
@@ -447,7 +448,7 @@ export type Page = {
   phone?: string;
   address?: string;
   website?: string;
-  creator_id: UserBasic;
+  creator_id: string;
   followers: Follower[];
   likes: Like[];
   description?: string;
