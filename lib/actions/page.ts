@@ -33,6 +33,14 @@ export async function likePage(params: { pageId: string }): Promise<Response> {
   );
 }
 
+export async function unlikePage(params: {
+  pageId: string;
+}): Promise<Response> {
+  return requestService.post(
+    getPathname({ path: endpoint.page.unlikePage, params }),
+  );
+}
+
 // export async function getGroupDetails(
 //   params: Params,
 // ): Promise<GroupDetailResponse> {

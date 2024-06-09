@@ -10,9 +10,10 @@ import { ImagePlus } from 'lucide-react';
 import Link from 'next/link';
 import { CloseCircle, Dislike, Like1, TickCircle } from 'iconsax-react';
 import { EmphasizedTextBold } from '../ui/emphasize';
-import { likePage } from '@/lib/actions/page';
+import { likePage, unlikePage } from '@/lib/actions/page';
 import toast from 'react-hot-toast';
 import { useRouter } from '@/navigation';
+import { Response } from '@/lib/definitions';
 
 type PageCardProps = React.HTMLAttributes<HTMLDivElement> & {
   classNames?: {
@@ -32,6 +33,7 @@ type PageCardProps = React.HTMLAttributes<HTMLDivElement> & {
   isLiked?: boolean;
   isFollowing?: boolean;
   isMyPage?: boolean;
+  onSuccessfulLike?: () => void;
 };
 
 export default function PageCard({
@@ -45,21 +47,24 @@ export default function PageCard({
   isLiked,
   isFollowing,
   isMyPage,
+  onSuccessfulLike,
 }: PageCardProps) {
   const t = useTranslations('Home');
   const router = useRouter();
 
   const handleLikePage = async () => {
-    const response = await likePage({ pageId });
+    const response = isLiked ? unlikePage({ pageId }) : likePage({ pageId });
 
-    if (!response.success) {
+    if (!(await response).success) {
       toast.error(t('M15'));
 
       return;
     }
 
-    toast.success(t('M176'));
+    toast.success(t(isLiked ? 'M177' : 'M176'));
     router.refresh();
+
+    onSuccessfulLike?.();
   };
 
   return (

@@ -46,6 +46,7 @@ export default function SuggestionPages({ className }: SuggestionPagesProps) {
             description={item.description}
             usersLiked={item.likes.length}
             usersFollowing={item.followers.length}
+            onSuccessfulLike={refetch}
           />
         ))}
       </div>
