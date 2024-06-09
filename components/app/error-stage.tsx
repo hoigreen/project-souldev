@@ -103,26 +103,29 @@ export function ErrorStage({
   return (
     <div
       className={twMerge(
-        'flex h-full flex-col items-center justify-center px-4 py-12',
+        'flex h-full flex-col items-center justify-center space-y-2 px-4 py-12 sm:space-y-5',
         className,
       )}
     >
       {image}
 
-      <div className="mt-5 text-center">
-        <h1 className="text-2xl font-bold capitalize">{title}</h1>
+      <div className="text-center">
+        <h1 className="text-lg font-bold capitalize md:text-2xl">{title}</h1>
         <p className="mx-auto mt-3 max-w-md text-sm text-gray-500">
           {description}
         </p>
         {data ? (
-          <div className="mt-5 max-w-lg overflow-hidden rounded border bg-neutral-100 text-left">
+          <div className="max-w-lg overflow-hidden rounded border bg-neutral-100 text-left">
             <div className="overflow-auto p-2">
               <pre className="text-xs">{JSON.stringify(data, null, 2)}</pre>
             </div>
           </div>
         ) : null}
         <Link
-          className={twMerge(buttonVariants(), 'mt-7.5 w-full max-w-xs')}
+          className={twMerge(
+            buttonVariants(),
+            'mt-7.5 w-fit max-w-xs sm:w-full',
+          )}
           href={href}
         >
           {action}
