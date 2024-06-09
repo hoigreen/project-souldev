@@ -28,6 +28,7 @@ type PageCardProps = React.HTMLAttributes<HTMLDivElement> & {
   usersFollowing: number;
   isLiked?: boolean;
   isFollowing?: boolean;
+  isMyPage?: boolean;
 };
 
 export default function PageCard({
@@ -37,11 +38,10 @@ export default function PageCard({
   avatar,
   name,
   usersLiked,
-  usersFollowing,
   description,
-  title,
   isLiked,
   isFollowing,
+  isMyPage,
 }: PageCardProps) {
   const t = useTranslations('Home');
 
@@ -84,47 +84,53 @@ export default function PageCard({
         </p>
       </div>
 
-      <div className="flex flex-col items-center gap-2 md:flex-row md:gap-3">
-        <Button
-          className={cn(
-            'flex w-full grow items-center gap-1 text-center text-xs sm:text-sm md:w-1/2',
-            classNames?.button,
-          )}
-          variant={isLiked ? 'outline' : 'default'}
-        >
-          {isLiked ? (
-            <>
-              <Dislike variant="Bold" size={16} />
-              {t('M173')}
-            </>
-          ) : (
-            <>
-              <Like1 variant="Bold" size={16} />
-              {t('M174')}
-            </>
-          )}
+      {isMyPage ? (
+        <Button className={cn('w-full text-xs sm:text-sm', classNames?.button)}>
+          {t('M140')}
         </Button>
+      ) : (
+        <div className="flex flex-col items-center gap-2 md:flex-row md:gap-3">
+          <Button
+            className={cn(
+              'flex w-full grow items-center gap-1 text-center text-xs sm:text-sm md:w-1/2',
+              classNames?.button,
+            )}
+            variant={isLiked ? 'outline' : 'default'}
+          >
+            {isLiked ? (
+              <>
+                <Dislike variant="Bold" size={16} />
+                {t('M173')}
+              </>
+            ) : (
+              <>
+                <Like1 variant="Bold" size={16} />
+                {t('M174')}
+              </>
+            )}
+          </Button>
 
-        <Button
-          className={cn(
-            'flex w-full grow items-center gap-1 text-center text-xs sm:text-sm md:w-1/2',
-            classNames?.button,
-          )}
-          variant="outline"
-        >
-          {isFollowing ? (
-            <>
-              <CloseCircle variant="Bulk" size={16} />
-              {t('M24')}
-            </>
-          ) : (
-            <>
-              <TickCircle variant="Bold" size={16} />
-              {t('M52')}
-            </>
-          )}
-        </Button>
-      </div>
+          <Button
+            className={cn(
+              'flex w-full grow items-center gap-1 text-center text-xs sm:text-sm md:w-1/2',
+              classNames?.button,
+            )}
+            variant="outline"
+          >
+            {isFollowing ? (
+              <>
+                <CloseCircle variant="Bulk" size={16} />
+                {t('M24')}
+              </>
+            ) : (
+              <>
+                <TickCircle variant="Bold" size={16} />
+                {t('M52')}
+              </>
+            )}
+          </Button>
+        </div>
+      )}
     </Card>
   );
 }

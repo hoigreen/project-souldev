@@ -75,6 +75,7 @@ export const endpoint = {
   page: {
     getList: '/api/page/get-pages',
     getLiked: '/api/page/get-liked-pages',
+    getMyPages: '/api/page/my-pages',
     getDetails: '/api/page/get-page-byId/:pageId',
     getPostsOfPage: '/api/page/get-posts/:pageId',
     getPostById: '/api/page/post/:postId',

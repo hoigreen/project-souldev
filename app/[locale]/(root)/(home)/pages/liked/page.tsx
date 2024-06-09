@@ -1,6 +1,6 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
-import LikedPages from '@/components/pages/liked-pages';
+import MyPages from '@/components/pages/my-pages';
 import { getPagesLiked } from '@/lib/actions/page';
 import { Metadata } from 'next';
 import {
@@ -31,7 +31,7 @@ export default async function Page({
     <div className="space-y-3">
       <Heading title={t('M134')} size={1} />
       <Suspense fallback={<div>Loading ...</div>}>
-        <LikedPages pages={response.data} />
+        <MyPages pages={response.data} />
       </Suspense>
     </div>
   );
