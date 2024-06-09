@@ -1,7 +1,12 @@
 'use server';
 
 import requestService from '@/services/request-service';
-import { Page, PaginationsResponse, ServerResponse } from '../definitions';
+import {
+  Page,
+  PaginationsResponse,
+  Response,
+  ServerResponse,
+} from '../definitions';
 import { Query } from '../url-builder';
 import { getPathname } from '@/services/url';
 import { endpoint } from '@/services/endpoint';
@@ -20,6 +25,12 @@ export async function getPagesLiked(): Promise<ServerResponse<Page[]>> {
 
 export async function getMyPages(): Promise<ServerResponse<Page[]>> {
   return requestService.get(endpoint.page.getMyPages);
+}
+
+export async function likePage(params: { pageId: string }): Promise<Response> {
+  return requestService.post(
+    getPathname({ path: endpoint.page.likePage, params }),
+  );
 }
 
 // export async function getGroupDetails(

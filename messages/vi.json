@@ -395,6 +395,7 @@
     "M172": "Xóa nhóm thành công",
     "M173": "Bỏ thích",
     "M174": "Thích",
-    "M175": "<emphasize>{count}</emphasize> người thích trang nàynày"
+    "M175": "<emphasize>{count}</emphasize> người thích trang này",
+    "M176": "Đã thích trang"
   }
 }

@@ -10,6 +10,9 @@ import { ImagePlus } from 'lucide-react';
 import Link from 'next/link';
 import { CloseCircle, Dislike, Like1, TickCircle } from 'iconsax-react';
 import { EmphasizedTextBold } from '../ui/emphasize';
+import { likePage } from '@/lib/actions/page';
+import toast from 'react-hot-toast';
+import { useRouter } from '@/navigation';
 
 type PageCardProps = React.HTMLAttributes<HTMLDivElement> & {
   classNames?: {
@@ -44,6 +47,20 @@ export default function PageCard({
   isMyPage,
 }: PageCardProps) {
   const t = useTranslations('Home');
+  const router = useRouter();
+
+  const handleLikePage = async () => {
+    const response = await likePage({ pageId });
+
+    if (!response.success) {
+      toast.error(t('M15'));
+
+      return;
+    }
+
+    toast.success(t('M176'));
+    router.refresh();
+  };
 
   return (
     <Card className={cn('flex w-full flex-col gap-2 p-3 md:p-6', className)}>
@@ -96,6 +113,7 @@ export default function PageCard({
               classNames?.button,
             )}
             variant={isLiked ? 'outline' : 'default'}
+            onClick={handleLikePage}
           >
             {isLiked ? (
               <>

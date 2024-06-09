@@ -1,5 +1,6 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
+import MyPages from '@/components/pages/my-pages';
 import { getMyPages } from '@/lib/actions/page';
 import { Metadata } from 'next';
 import {
@@ -29,7 +30,9 @@ export default async function Page({
   return (
     <div className="space-y-3">
       <Heading title={t('M130')} size={1} />
-      <Suspense fallback={<div>Loading ...</div>}></Suspense>
+      <Suspense fallback={<div>Loading ...</div>}>
+        <MyPages pages={response.data} />
+      </Suspense>
     </div>
   );
 }
