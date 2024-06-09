@@ -1,11 +1,11 @@
-import { Heading } from '@/components/app/heading';
-import SuggestionPages from '@/components/pages/suggestion-pages';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
+import { Heading } from '@/components/app/heading';
 import {
   getTranslations,
   unstable_setRequestLocale as unstableSetRequestLocale,
 } from 'next-intl/server';
-import { Suspense } from 'react';
+import SuggestionPages from '@/components/pages/suggestion-pages';
 
 export const metadata: Metadata = {
   title: 'Pages',

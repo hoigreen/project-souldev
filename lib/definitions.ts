@@ -444,6 +444,6 @@ export type Page = {
   creator_id: UserBasic;
   followers: Follower[];
   likes: Like[];
-  description: string | null;
+  description?: string;
   managers: Manager[];
 };

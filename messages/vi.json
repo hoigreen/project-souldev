@@ -392,6 +392,9 @@
     "M169": "Xác nhận rời nhóm!",
     "M170": "Bạn có chắc muốn rời nhóm không?",
     "M171": "Rời nhóm thành công",
-    "M172": "Xóa nhóm thành công"
+    "M172": "Xóa nhóm thành công",
+    "M173": "Bỏ thích",
+    "M174": "Thích",
+    "M175": "<emphasize>{count}</emphasize> người thích trang nàynày"
   }
 }

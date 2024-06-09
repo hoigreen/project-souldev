@@ -3,9 +3,10 @@
 import requestService from '@/services/request-service';
 import {
   GroupDetailResponse,
-  GroupsResponse,
   GroupsResponseNoPagination,
   MembersOfGroupsResponse,
+  Page,
+  PaginationsResponse,
   PostsResponse,
   Response,
 } from '../definitions';
@@ -13,9 +14,11 @@ import { Params, Query } from '../url-builder';
 import { getPathname } from '@/services/url';
 import { endpoint } from '@/services/endpoint';
 
-export async function getGroups(query?: Query): Promise<GroupsResponse> {
+export async function getPages(
+  query?: Query,
+): Promise<PaginationsResponse<Page[]>> {
   return requestService.get(
-    getPathname({ path: endpoint.group.getList, query }),
+    getPathname({ path: endpoint.page.getList, query }),
   );
 }
 

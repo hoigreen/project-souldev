@@ -1,15 +1,15 @@
-import { getGroups } from '@/lib/actions/group';
-import { GroupsResponse } from '@/lib/definitions';
+import { getPages } from '@/lib/actions/page';
+import { Page, PaginationsResponse } from '@/lib/definitions';
 import type { InfiniteData } from '@tanstack/react-query';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 export default function useInfiniteQueryPages({
   initialData,
 }: {
-  initialData?: InfiniteData<GroupsResponse, number>;
+  initialData?: InfiniteData<PaginationsResponse<Page[]>, number>;
 }) {
   const query = useInfiniteQuery({
-    queryKey: ['infinite-get-groups', initialData],
+    queryKey: ['infinite-get-pages', initialData],
     getNextPageParam: (lastPage, _, lastPageParam) => {
       if (lastPage.page === lastPage.totalPage) {
         return undefined;
@@ -20,7 +20,7 @@ export default function useInfiniteQueryPages({
     initialData,
     initialPageParam: 1,
     queryFn: async ({ pageParam }) => {
-      const response = await getGroups({ page: pageParam });
+      const response = await getPages({ page: pageParam });
 
       if (!response) {
         throw new Error('No response');
