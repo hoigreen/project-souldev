@@ -20,6 +20,7 @@ export default async function Page({
   return (
     <div className="space-y-3">
       <Heading title={t('M131')} size={1} />
+      {/* <PageEditor preview={<PageEditorPreview />} /> */}
     </div>
   );
 }

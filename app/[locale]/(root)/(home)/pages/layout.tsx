@@ -1,6 +1,6 @@
 import { Heading } from '@/components/app/heading';
 import Tabs, { ITabs } from '@/components/ui/app/tabs';
-import { Add, Flag, Like1 } from 'iconsax-react';
+import { Add, Flag, Like1, TickCircle } from 'iconsax-react';
 import { Compass } from 'lucide-react';
 import {
   getTranslations,
@@ -30,6 +30,11 @@ export default async function GroupsLayout({
       icon: <Like1 variant="TwoTone" size={16} />,
     },
     {
+      href: '/pages/following',
+      label: t('M24'),
+      icon: <TickCircle variant="Bold" size={16} />,
+    },
+    {
       href: '/pages/my-pages',
       label: t('M130'),
       icon: <Flag variant="TwoTone" size={16} />,
@@ -43,7 +48,7 @@ export default async function GroupsLayout({
 
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
-      <Heading title={t('M129')} />
+      <Heading title={t('M129')} className="hidden md:block" />
 
       <div className="space-y-4">
         <Tabs tabs={tabs} />

@@ -27,6 +27,10 @@ export async function getMyPages(): Promise<ServerResponse<Page[]>> {
   return requestService.get(endpoint.page.getMyPages);
 }
 
+export async function getPagesFollowing(): Promise<ServerResponse<Page[]>> {
+  return requestService.get(endpoint.page.getPagesFollowing);
+}
+
 export async function likePage(params: { pageId: string }): Promise<Response> {
   return requestService.post(
     getPathname({ path: endpoint.page.likePage, params }),
@@ -38,6 +42,22 @@ export async function unlikePage(params: {
 }): Promise<Response> {
   return requestService.post(
     getPathname({ path: endpoint.page.unlikePage, params }),
+  );
+}
+
+export async function followPage(params: {
+  pageId: string;
+}): Promise<Response> {
+  return requestService.post(
+    getPathname({ path: endpoint.page.followPage, params }),
+  );
+}
+
+export async function unfollowPage(params: {
+  pageId: string;
+}): Promise<Response> {
+  return requestService.post(
+    getPathname({ path: endpoint.page.unFollowPage, params }),
   );
 }
 

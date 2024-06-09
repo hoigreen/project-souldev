@@ -5,15 +5,19 @@ import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { ImagePlus } from 'lucide-react';
 import Link from 'next/link';
 import { CloseCircle, Dislike, Like1, TickCircle } from 'iconsax-react';
 import { EmphasizedTextBold } from '../ui/emphasize';
-import { likePage, unlikePage } from '@/lib/actions/page';
+import {
+  followPage,
+  likePage,
+  unfollowPage,
+  unlikePage,
+} from '@/lib/actions/page';
 import toast from 'react-hot-toast';
 import { useRouter } from '@/navigation';
-import { Response } from '@/lib/definitions';
 
 type PageCardProps = React.HTMLAttributes<HTMLDivElement> & {
   classNames?: {
@@ -67,6 +71,23 @@ export default function PageCard({
     onSuccessfulLike?.();
   };
 
+  const handleFollowPage = async () => {
+    const response = isFollowing
+      ? unfollowPage({ pageId })
+      : followPage({ pageId });
+
+    if (!(await response).success) {
+      toast.error(t('M15'));
+
+      return;
+    }
+
+    toast.success(t(isLiked ? 'M179' : 'M178'));
+    router.refresh();
+
+    onSuccessfulLike?.();
+  };
+
   return (
     <Card className={cn('flex w-full flex-col gap-2 p-3 md:p-6', className)}>
       <div className="grow">
@@ -107,9 +128,16 @@ export default function PageCard({
       </div>
 
       {isMyPage ? (
-        <Button className={cn('w-full text-xs sm:text-sm', classNames?.button)}>
+        <Link
+          href={`/page/${pageId}`}
+          className={cn(
+            buttonVariants(),
+            'w-full text-xs sm:text-sm',
+            classNames?.button,
+          )}
+        >
           {t('M140')}
-        </Button>
+        </Link>
       ) : (
         <div className="flex flex-col items-center gap-2 md:flex-row md:gap-3">
           <Button
@@ -139,11 +167,12 @@ export default function PageCard({
               classNames?.button,
             )}
             variant="outline"
+            onClick={handleFollowPage}
           >
             {isFollowing ? (
               <>
                 <CloseCircle variant="Bulk" size={16} />
-                {t('M24')}
+                {t('M108')}
               </>
             ) : (
               <>
