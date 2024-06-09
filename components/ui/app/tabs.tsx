@@ -23,6 +23,8 @@ export default function Tabs({ className, tabs, ...props }: TabsProps) {
         'grid place-items-center gap-2 border-b sm:flex sm:items-center sm:justify-center',
         tabs.length === 1 && 'max-sm:flex',
         tabs.length >= 2 && 'max-sm:grid-cols-2',
+        'max-sm:fixed max-sm:inset-x-0 max-sm:bottom-0 max-sm:z-10 max-sm:flex max-sm:gap-0 max-sm:bg-white max-sm:py-2 max-sm:shadow-sm max-sm:dark:bg-black',
+        'max-sm:border-t',
         className,
       )}
       {...props}
@@ -34,6 +36,7 @@ export default function Tabs({ className, tabs, ...props }: TabsProps) {
           href={tab.href}
           className={cn(
             'flex w-full grow items-center justify-center gap-2 border-b-2 px-2 py-1 text-center text-sm transition-colors md:grow-0 md:gap-2 md:px-5 md:py-2.75 md:text-base',
+            'max-sm:flex-col-reverse',
             i === tabs.length - 1 &&
               tabs.length % 2 === 1 &&
               'max-sm:col-span-2',
@@ -42,7 +45,7 @@ export default function Tabs({ className, tabs, ...props }: TabsProps) {
               : 'border-transparent',
           )}
         >
-          {tab.label}
+          <span className="max-sm:text-sm max-xs:text-[8px]">{tab.label}</span>
           {tab.icon && tab.icon}
         </Link>
       ))}
