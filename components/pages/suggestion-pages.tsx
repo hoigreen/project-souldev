@@ -10,9 +10,9 @@ import GroupCard from '../group/group-card';
 import { joinGroup } from '@/lib/actions/group';
 import toast from 'react-hot-toast';
 
-type SuggestionGroupsProps = React.HTMLAttributes<HTMLDivElement>;
+type SuggestionPagesProps = React.HTMLAttributes<HTMLDivElement>;
 
-export default function SuggestionGroups({ className }: SuggestionGroupsProps) {
+export default function SuggestionPages({ className }: SuggestionPagesProps) {
   const t = useTranslations('Home');
   const { ref, inView } = useInView();
   const { data, fetchNextPage, isLoading, refetch } = useInfiniteQueryGroups(

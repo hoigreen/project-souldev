@@ -424,3 +424,26 @@ export type CreatePostData = {
 export type GroupDataModal = {
   groupId: string;
 };
+
+export type PaginationsResponse<T> = {
+  success: boolean;
+  items: T;
+  page: number;
+  pageSize: number;
+  totalPage: number;
+};
+
+export type Page = {
+  _id: string;
+  name: string;
+  image_page: string[];
+  email: string;
+  phone: string | null;
+  address: string | null;
+  website: string | null;
+  creator_id: UserBasic;
+  followers: Follower[];
+  likes: Like[];
+  description: string | null;
+  managers: Manager[];
+};

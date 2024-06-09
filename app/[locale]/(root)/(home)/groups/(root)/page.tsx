@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Groups',
 };
 
-export default async function HomePage({
+export default async function Page({
   params: { locale },
 }: {
   params: { locale: string };

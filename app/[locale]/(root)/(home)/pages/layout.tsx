@@ -43,7 +43,7 @@ export default async function GroupsLayout({
 
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
-      <Heading title={t('M131')} />
+      <Heading title={t('M129')} />
 
       <div className="space-y-4">
         <Tabs tabs={tabs} />

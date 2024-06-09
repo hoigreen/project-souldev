@@ -1,4 +1,5 @@
 import { Heading } from '@/components/app/heading';
+import SuggestionPages from '@/components/pages/suggestion-pages';
 import { Metadata } from 'next';
 import {
   getTranslations,
@@ -22,7 +23,9 @@ export default async function Page({
     <div className="space-y-3">
       <Heading title={t('M132')} size={1} />
 
-      <Suspense fallback={<div>Loading ...</div>}></Suspense>
+      <Suspense fallback={<div>Loading ...</div>}>
+        <SuggestionPages />
+      </Suspense>
     </div>
   );
 }
