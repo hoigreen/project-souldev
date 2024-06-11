@@ -283,8 +283,8 @@
     "M53": "Add friend",
     "M54": "... Show more",
     "M55": "Show less",
-    "M56": "Suggestions for you",
-    "M57": "Active friends",
+    "M56": "Suggestions pages for you",
+    "M57": "Suggestions groups for you",
     "M58": "Friends & Peoples",
     "M59": "Suggestions",
     "M60": "Friends request",
@@ -423,6 +423,9 @@
     "M193": "About",
     "M194": "Peoples",
     "M195": "Followers",
-    "M196": "Likes"
+    "M196": "Likes",
+    "M197": "View",
+    "M198": "No pages found yet",
+    "M199": "No groups found yet"
   }
 }

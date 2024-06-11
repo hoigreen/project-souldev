@@ -276,8 +276,8 @@
     "M53": "Thêm bạn",
     "M54": "... Đọc thêm",
     "M55": "Thu gọn",
-    "M56": "Đề xuất cho bạn",
-    "M57": "Bạn bè đang truy cập",
+    "M56": "Trang đề xuất cho bạn",
+    "M57": "Nhóm đề xuất cho bạn",
     "M58": "Bạn bè và mọi người",
     "M59": "Đề xuất",
     "M60": "Yêu cầu kết bạn",
@@ -416,6 +416,9 @@
     "M193": "Thông tin",
     "M194": "Mọi người",
     "M195": "Người theo dõi",
-    "M196": "Lượt thích"
+    "M196": "Lượt thích",
+    "M197": "Xem",
+    "M198": "Không có trang đê xuất",
+    "M199": "Không có hội nhóm đê xuất"
   }
 }
