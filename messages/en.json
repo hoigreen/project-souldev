@@ -420,6 +420,9 @@
     "M190": "<emphasize>{count}</emphasize> likes",
     "M191": "<emphasize>{count}</emphasize> followers",
     "M192": "Page created successfully!",
-    "M193": "About"
+    "M193": "About",
+    "M194": "Peoples",
+    "M195": "Followers",
+    "M196": "Likes"
   }
 }

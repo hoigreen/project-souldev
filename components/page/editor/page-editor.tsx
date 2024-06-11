@@ -27,10 +27,15 @@ import toast from 'react-hot-toast';
 
 export function PageEditor({
   className,
+  classNames,
   initialData,
   preview,
 }: {
   className?: string;
+  classNames?: {
+    form?: string;
+    preview?: string;
+  };
   initialData?: Page;
   preview?: React.ReactNode;
 }): React.JSX.Element {
@@ -107,7 +112,12 @@ export function PageEditor({
   return (
     <Form {...form}>
       <div className={cn('space-y-8', className)}>
-        <Card className="static z-10 mx-auto w-full max-w-lg p-3 md:p-4 xl:fixed xl:bottom-2 xl:right-2 xl:max-w-md">
+        <Card
+          className={cn(
+            'static z-10 mx-auto w-full max-w-lg p-3 md:p-4 xl:fixed xl:bottom-2 xl:right-2 xl:max-w-md',
+            classNames?.form,
+          )}
+        >
           <Heading title={t('M180')} size={1} />
 
           <div className="mt-3 space-y-2 py-2">
@@ -250,7 +260,7 @@ export function PageEditor({
           </form>
         </Card>
 
-        <Card className="p-3 md:p-4">{preview}</Card>
+        <Card className={cn('p-3 md:p-4', classNames?.preview)}>{preview}</Card>
       </div>
     </Form>
   );

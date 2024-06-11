@@ -46,7 +46,7 @@ export default async function PageDetailsLayout({
       icon: <InfoCircle size={16} />,
     },
     {
-      href: `/page/${pageId}/members`,
+      href: `/page/${pageId}/peoples`,
       label: t('M155'),
       icon: <Users size={16} />,
     },

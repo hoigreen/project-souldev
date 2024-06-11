@@ -413,6 +413,9 @@
     "M190": "<emphasize>{count}</emphasize> lượt thích",
     "M191": "<emphasize>{count}</emphasize> người theo dõi",
     "M192": "Tạo trang thành công!",
-    "M193": "Thông tin"
+    "M193": "Thông tin",
+    "M194": "Mọi người",
+    "M195": "Người theo dõi",
+    "M196": "Lượt thích"
   }
 }
