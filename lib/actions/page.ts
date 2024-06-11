@@ -86,7 +86,7 @@ export async function updatePage(
   params: Params,
   body: FormData,
 ): Promise<Response> {
-  return requestService.post(
+  return requestService.put(
     getPathname({ path: endpoint.page.update, params }),
     body,
     {
@@ -104,9 +104,3 @@ export async function getPageDetails(
     getPathname({ path: endpoint.page.getDetails, params }),
   );
 }
-
-// export async function deleteGroup(params: Params): Promise<Response> {
-//   return requestService.delete(
-//     getPathname({ path: endpoint.group.deteleGroup, params }),
-//   );
-// }

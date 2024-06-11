@@ -80,8 +80,12 @@ export function PageEditor({
     const formData = new FormData();
 
     formData.append('name', values.name);
-    values.image && formData.append('image', values.image);
     values.file && formData.append('image', values.file);
+    formData.append('email', values.email);
+    formData.append('phone', values.phone);
+    values.website && formData.append('website', values.website);
+    formData.append('address', values.address);
+    formData.append('description', values.description);
 
     if (initialData) {
       const response = await updatePage({ pageId: initialData?._id }, formData);
@@ -255,7 +259,7 @@ export function PageEditor({
               disabled={form.formState.isSubmitting}
               type="submit"
             >
-              {t('M131')}
+              {initialData ? t('M46') : t('M131')}
             </Button>
           </form>
         </Card>
