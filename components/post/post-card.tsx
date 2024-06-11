@@ -8,6 +8,7 @@ import {
   Group,
   Like,
   Locale,
+  Page,
   Share,
   SharePostData,
   UserProfile,
@@ -43,6 +44,7 @@ export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   };
   group?: Group;
   isDisabledComment?: boolean;
+  page?: Page;
 };
 
 export default function PostCard({
@@ -60,6 +62,7 @@ export default function PostCard({
   onClickShare,
   isDisabledComment,
   group,
+  page,
 }: PostCardProps): React.JSX.Element {
   const locale = useLocale();
   const t = useTranslations('Home');
@@ -95,7 +98,7 @@ export default function PostCard({
   return (
     <div
       className={cn(
-        'flex w-full flex-col rounded-xl bg-white px-3 py-4 shadow-lg dark:bg-black md:p-7',
+        'flex w-full flex-col rounded-xl bg-white px-3 py-4 shadow-lg dark:bg-black max-xl:border md:p-7',
         className,
       )}
     >
@@ -131,17 +134,17 @@ export default function PostCard({
                 </Link>
               </div>
             ) : (
-              <Link href={`/people/${author._id}`}>
+              <Link href={page ? `/page/${page._id}` : `/people/${author._id}`}>
                 <AvatarUser
-                  src={author.image}
+                  src={page ? page.image_page[0] : author.image}
                   alt="Profile"
-                  fallback={author.first_name}
+                  fallback={page ? page.name : author.first_name}
                   className="aspect-square size-12 cursor-pointer rounded-full border"
                 />
               </Link>
             )}
 
-            <div className={cn('block space-y-0.5', group && 'space-y-2')}>
+            <div className="space-y-1">
               {group && (
                 <Link href={`/group/${group._id}`} className="w-fit">
                   <h4 className="cursor-pointer text-lg font-bold leading-none">
@@ -152,13 +155,18 @@ export default function PostCard({
 
               <div
                 className={cn(
-                  'space-y-0.5',
+                  'space-y-2',
                   group && 'flex items-baseline gap-2 space-y-0',
                 )}
               >
-                <Link href={`/people/${author._id}`} className="w-fit">
+                <Link
+                  href={page ? `/page/${page._id}` : `/people/${author._id}`}
+                  className="w-fit"
+                >
                   <h4 className="cursor-pointer text-base font-semibold leading-none">
-                    {getFullName(author.first_name, author.last_name)}
+                    {page
+                      ? page.name
+                      : getFullName(author.first_name, author.last_name)}
                   </h4>
                 </Link>
                 <Link

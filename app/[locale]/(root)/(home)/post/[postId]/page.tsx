@@ -6,7 +6,6 @@ import PostCard from '@/components/post/post-card';
 import { getPostById } from '@/lib/actions/post';
 import getSession from '@/lib/get-session';
 import { markdownToText } from '@/lib/markdown';
-import { getFullName } from '@/lib/utils';
 import { Metadata } from 'next';
 import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 
@@ -43,6 +42,7 @@ export default async function Page({ params: { locale, postId } }: PageProps) {
         id={post._id}
         likes={post.likes}
         group={post.group_id}
+        page={post.page_id}
         content={post.content}
         author={post.user_id}
         created={post.created}
@@ -57,7 +57,7 @@ export default async function Page({ params: { locale, postId } }: PageProps) {
         isDisabledComment
       />
 
-      <div className="w-full space-y-6 rounded-xl bg-white px-3 py-4 shadow-lg dark:bg-black md:p-7">
+      <div className="w-full space-y-6 rounded-xl px-3 py-4 md:p-7 xl:bg-white xl:shadow-lg xl:dark:bg-black">
         <CommentForm user={session.user} postId={post._id} />
 
         <ListComments comments={comments} />
@@ -78,6 +78,6 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${getFullName(response.post_data.user_id.first_name, response.post_data.user_id.last_name)} - ${markdownToText(response.post_data.content).slice(0, 50)}...`,
+    title: `${markdownToText(response.post_data.content).slice(0, 50)}...`,
   };
 }

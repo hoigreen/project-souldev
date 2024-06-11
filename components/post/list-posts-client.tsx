@@ -76,6 +76,7 @@ export default function ListPostsClient({
       {posts.map((item, index) => (
         <PostCard
           key={index}
+          page={item.page_id}
           group={item.group_id}
           likes={item.likes}
           id={item._id}

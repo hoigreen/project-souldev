@@ -79,7 +79,7 @@ export default function CommentForm({
 
   return (
     <form
-      className="flex items-start gap-1 py-4 md:gap-3"
+      className="flex items-start gap-1 rounded-lg border px-1 py-2 md:gap-3 md:py-4 xl:border-none"
       onSubmit={handleSubmit(onSubmit)}
     >
       <Avatar className="size-10 border">

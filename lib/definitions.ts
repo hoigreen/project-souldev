@@ -157,6 +157,25 @@ export type Group = {
   };
 };
 
+export interface Follower {
+  user_id: UserBasic;
+}
+
+export type Page = {
+  _id: string;
+  name: string;
+  image_page: string[];
+  email: string;
+  phone?: string;
+  address?: string;
+  website?: string;
+  creator_id: string;
+  followers: Follower[];
+  likes: Like[];
+  description?: string;
+  managers: Manager[];
+};
+
 export type Post = {
   _id: string;
   tittle: string;
@@ -167,6 +186,7 @@ export type Post = {
   id_category: string;
   likes: Like[];
   group_id?: Group;
+  page_id?: Page;
   shares: Share[];
   created?: string;
   commentsCount?: number;
@@ -224,10 +244,6 @@ export interface SharePostBody {
 export interface SharePostResponse {
   success: boolean;
   data: any;
-}
-
-export interface Follower {
-  user_id: UserBasic;
 }
 
 export interface Friend {
@@ -438,19 +454,4 @@ export type PaginationsResponse<T> = {
   page: number;
   pageSize: number;
   totalPage: number;
-};
-
-export type Page = {
-  _id: string;
-  name: string;
-  image_page: string[];
-  email: string;
-  phone?: string;
-  address?: string;
-  website?: string;
-  creator_id: string;
-  followers: Follower[];
-  likes: Like[];
-  description?: string;
-  managers: Manager[];
 };

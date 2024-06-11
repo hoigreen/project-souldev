@@ -46,6 +46,7 @@ export default function PeoplesPost({
               key={item._id}
               likes={item.likes}
               group={item.group_id}
+              page={item.page_id}
               currentUserId={currentUserId}
               id={item._id}
               content={item.content}

@@ -4,9 +4,13 @@ import { Modals } from '@/lib/constants';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useModalActions, useModalData, useModalOpen } from '@/hooks/use-modal';
 import React, { useEffect } from 'react';
-import { PostDetailResponse, ViewDetailPostData } from '@/lib/definitions';
+import {
+  Locale,
+  PostDetailResponse,
+  ViewDetailPostData,
+} from '@/lib/definitions';
 import { getPostById } from '@/lib/actions/post';
-import { cn, getFullName } from '@/lib/utils';
+import { calculateTime, cn, getFullName } from '@/lib/utils';
 import {
   Carousel,
   CarouselContent,
@@ -16,14 +20,15 @@ import {
 } from '@/components/ui/carousel';
 import { Card, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import ReactPost from '../react-post';
 import { useSession } from 'next-auth/react';
-import { MessageText1, Send } from 'iconsax-react';
+import { Clock, MessageText1, Send } from 'iconsax-react';
 import CommentForm from '../form/comment-form';
 import { Truncate } from '@/components/ui/truncate';
 import ListComments from '../list-comments';
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
+import AvatarUser from '@/components/ui/app/avatar-user';
+import { useLocale, useTranslations } from 'next-intl';
 
 export function ViewDetailPostDialog(): React.JSX.Element {
   const [postData, setPostData] =
@@ -37,6 +42,8 @@ export function ViewDetailPostDialog(): React.JSX.Element {
     postId: '',
   });
   const { data: session } = useSession();
+  const t = useTranslations('Home');
+  const locale = useLocale();
 
   async function getPostDetails() {
     const response = await getPostById({ postId });
@@ -135,26 +142,36 @@ export function ViewDetailPostDialog(): React.JSX.Element {
         >
           <div className="space-y-4 rounded-xl bg-neutral-100 p-4 dark:bg-neutral-700">
             <div className="flex items-center gap-3">
-              <Avatar className="size-12">
-                <AvatarImage
-                  src={postData.user_id.image}
-                  alt={String(postData.user_id.last_name)}
-                />
-                <AvatarFallback>
-                  {postData.user_id.first_name.charAt(0)}
-                  {postData.user_id.last_name.charAt(0)}
-                </AvatarFallback>
-              </Avatar>
+              <AvatarUser
+                className="size-12"
+                src={
+                  postData.page_id
+                    ? postData.page_id.image_page[0]
+                    : postData.user_id.image
+                }
+                alt="Avatar"
+                fallback={
+                  postData.page_id
+                    ? postData.page_id.name
+                    : postData.user_id.first_name
+                }
+              />
 
               <div className="space-y-1">
                 <p className="text-lg font-bold">
-                  {' '}
-                  {getFullName(
-                    postData.user_id.first_name,
-                    postData.user_id.last_name,
-                  )}
+                  {postData.page_id
+                    ? postData.page_id.name
+                    : getFullName(
+                        postData.user_id.first_name,
+                        postData.user_id.last_name,
+                      )}
                 </p>
-                <p className="text-sm font-medium">{postData.user_id.email}</p>
+                <div className="flex items-center gap-1 text-xs font-light italic leading-none">
+                  <Clock className="size-3" variant="TwoTone" />
+                  {postData.created
+                    ? calculateTime(postData.created, locale as Locale)
+                    : t('M8')}
+                </div>
               </div>
             </div>
 
