@@ -6,7 +6,7 @@ import { useRouter } from '@/navigation';
 import { useEffect } from 'react';
 
 export default function Page() {
-  const { status, data } = useSession();
+  const { status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
@@ -16,12 +16,10 @@ export default function Page() {
       return;
     }
 
-    signOut();
-
     signOut({ redirect: false }).then(() => {
       router.replace('/auth/sign-in');
     });
-  }, [data, router, status]);
+  }, [router, status]);
 
   return null;
 }

@@ -65,22 +65,28 @@ instance.interceptors.response.use(
   },
   (error) => {
     const status = error.response?.status || 500;
+
     if (status === 401) {
-      redirect('/auth/sign-out');
-    } else {
-      return Promise.reject(error); // Delegate error to calling side
+      Promise.resolve({
+        error: true,
+        status: 401,
+        message: 'Unauthorized',
+        redirect: '/auth/sign-out',
+      });
     }
+
+    return Promise.reject(error); // Delegate error to calling side
   },
 );
 
 const response = (response: AxiosResponse) => response.data;
 
 const error = (error: AxiosError) => {
-  if (error.response) {
-    return error.response.data;
-  } else {
-    return error;
+  if (error.response?.status === 401) {
+    redirect('/auth/sign-out');
   }
+
+  return error;
 };
 
 const requestService: RequestService = {

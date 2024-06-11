@@ -6,13 +6,15 @@ const signOut = async <R extends boolean = true>(
   options?: SignOutParams<R>,
 ) => {
   try {
-    await authSignOut(options);
+    const response = await authSignOut(options);
 
     cookie.delete(
       (process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string) ?? 'access_token',
     );
 
-    toast.success('Signed out successfully!');
+    if (response) {
+      toast.success('Sign out successfully');
+    }
   } catch (error: any) {
     console.error(error);
   }
