@@ -1,29 +1,23 @@
+'use client';
+
 import { Heading } from '@/components/app/heading';
 import PostForm from '@/components/post/form';
 import { ActionPost } from '@/lib/definitions';
-import { Metadata } from 'next';
-import {
-  getTranslations,
-  unstable_setRequestLocale as unstableSetRequestLocale,
-} from 'next-intl/server';
+import { useRouter } from '@/navigation';
+import { useTranslations } from 'next-intl';
 
-export default async function Page({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
-  unstableSetRequestLocale(locale);
-  const t = await getTranslations('Post');
+export default function Page() {
+  const t = useTranslations('Post');
+  const router = useRouter();
 
   return (
     <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
       <Heading title={t('M1')} />
 
-      <PostForm action={ActionPost.Create} />
+      <PostForm
+        action={ActionPost.Create}
+        onPostCreated={() => router.push('/home')}
+      />
     </div>
   );
 }
-
-export const metadata: Metadata = {
-  title: 'Create Post',
-};
