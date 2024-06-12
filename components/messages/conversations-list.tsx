@@ -9,6 +9,7 @@ import { HTMLAttributes, useEffect, useState } from 'react';
 import { useSocket } from '@/hooks/use-socket';
 import { Conversation, Message, User } from '@/lib/definitions';
 import useConversation from '@/hooks/use-conversation';
+import { ConversationBox } from './conversation-box';
 
 const conversationListVariants = cva(
   'w-full min-w-80 border-r bg-white sm:left-24 md:w-auto lg:block lg:w-80',
@@ -97,18 +98,18 @@ export function ConversationList({
       {...props}
     >
       <div className="flex h-full flex-col">
-        <div className="flex flex-col gap-4 border-b px-4 py-5">
-          <div className="text-2xl font-bold">{t('M200')}</div>
-        </div>
+        <h2 className="border-b px-2 py-4 text-2xl font-bold">{t('M200')}</h2>
 
-        {/* {items.map((item, index) => (
-          <ConversationBox
-            key={index}
-            data={item}
-            selected={conversationId === item._id}
-            currentUser={currentUser}
-          />
-        ))} */}
+        <div className="grow gap-2 overflow-y-auto">
+          {items.map((item, index) => (
+            <ConversationBox
+              key={index}
+              currentUser={currentUser}
+              data={item}
+              selected={conversationId === item._id}
+            />
+          ))}
+        </div>
       </div>
     </aside>
   );

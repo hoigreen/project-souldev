@@ -1,4 +1,3 @@
-import { Heading } from '@/components/app/heading';
 import { Metadata } from 'next';
 import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 
@@ -14,8 +13,6 @@ export default async function HomePage({
   unstableSetRequestLocale(locale);
 
   return (
-    <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12">
-      <Heading title="Message" />
-    </div>
+    <div className="space-y-4 md:space-y-6 lg:space-y-8 xl:space-y-12"></div>
   );
 }
