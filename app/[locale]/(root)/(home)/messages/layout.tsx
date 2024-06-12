@@ -1,3 +1,4 @@
+import { LeftSidebar } from '@/components/app/left-sidebar';
 import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
 
@@ -22,7 +23,8 @@ export default function MessageLayout({
   // }
 
   return (
-    <div className="h-screen p-2 px-4 py-14 pb-10 md:p-4 md:pt-20 xl:px-10">
+    <div className="h-screen p-2 px-4 py-14 pb-10 md:p-4 md:pt-20 xl:px-10 xl:pl-80">
+      <LeftSidebar />
       <div className="size-full">
         {/* <MessagesList
           initialItems={conversations.edges as Array<ConversationEdge>}
