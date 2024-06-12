@@ -455,3 +455,21 @@ export type PaginationsResponse<T> = {
   pageSize: number;
   totalPage: number;
 };
+
+export type Message = {
+  conversationId: string;
+  from: string;
+  to: string;
+  date: string;
+  text: string;
+};
+
+export type Conversation = {
+  _id: string;
+  createdAt: string;
+  user_id_1: UserBasic;
+  user_id_2: UserBasic;
+  messages: Message[];
+  created: string;
+  modified: string;
+};
