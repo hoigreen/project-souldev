@@ -94,4 +94,11 @@ export const endpoint = {
     followPage: '/api/page/follow-page/:pageId',
     unFollowPage: '/api/page/unfollow-page/:pageId',
   },
+
+  conversation: {
+    list: '/api/conversation/get-list-conversation',
+    detail: '/api/conversation/get-conversation/:conversationId',
+    messages: '/api/conversation/get-list-mess/:conversationId',
+    sendMessage: '/api/conversation/chat',
+  },
 };

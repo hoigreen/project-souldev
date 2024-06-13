@@ -1,8 +1,5 @@
 'use client';
 
-// import { ConversationBox } from '@/ui/messages/conversation-box';
-// import { useChatActions } from '@/hooks/stores/use-chat';
-// import { useActiveListActions } from '@/hooks/use-active-list';
 import { cva, VariantProps } from 'class-variance-authority';
 import { useTranslations } from 'next-intl';
 import { HTMLAttributes, useEffect, useState } from 'react';
@@ -11,8 +8,8 @@ import { Conversation, Message, User } from '@/lib/definitions';
 import useConversation from '@/hooks/use-conversation';
 import { ConversationBox } from './conversation-box';
 
-const conversationListVariants = cva(
-  'w-full min-w-80 border-r bg-white sm:left-24 md:w-auto lg:block lg:w-80',
+const conversationsListVariants = cva(
+  'w-full min-w-96 bg-white md:block md:w-96 md:overflow-hidden md:rounded-lg md:shadow-md',
   {
     variants: {
       isOpen: {
@@ -26,30 +23,29 @@ const conversationListVariants = cva(
   },
 );
 
-type ConversationListProps = HTMLAttributes<HTMLElement> &
-  Omit<VariantProps<typeof conversationListVariants>, 'isOpen'> & {
+type ConversationsListProps = HTMLAttributes<HTMLElement> &
+  Omit<VariantProps<typeof conversationsListVariants>, 'isOpen'> & {
     currentUser: User;
     initialItems: Conversation[];
   };
 
-export function ConversationList({
+export function ConversationsList({
   className,
   initialItems,
   currentUser,
   ...props
-}: ConversationListProps) {
+}: ConversationsListProps) {
   const { conversationId, isOpen } = useConversation();
   const t = useTranslations('Home');
-  const { socket } = useSocket();
+  const { socket: socketClient } = useSocket();
   const [items, setItems] = useState(initialItems ?? []);
 
   useEffect(() => {
-    console.log(socket);
-    if (!socket) {
+    if (!socketClient) {
       return;
     }
 
-    const _socket = socket.current;
+    const socket = socketClient.current;
 
     const handleReceiveMessage = (value: Message) => {
       const conversationIndex = items.findIndex(
@@ -69,36 +65,20 @@ export function ConversationList({
       }
     };
 
-    // const userOnlineHandler = (value: any) => {
-    //   addActiveMember(value.userId);
-    // };
-    // const userOfflineHandler = (value: any) => {
-    //   removeActiveMember(value.userId);
-    // };
-    // const conversationsUsers = items?.map((item) => item.node.users).flat();
-
-    // setActiveMember(
-    //   conversationsUsers.filter((e) => e.isOnline)?.map((e) => e.id),
-    // );
-
-    _socket?.on('RECEIVE_MESSAGE', handleReceiveMessage);
-    // _socket?.on('USER_OFFLINE', userOfflineHandler);
-    // _socket?.on('USER_ONLINE', userOnlineHandler);
+    socket?.on('RECEIVE_MESSAGE', handleReceiveMessage);
 
     return () => {
-      _socket?.off('MESSAGE_RECEIVED', handleReceiveMessage);
-      // _socket?.off('USER_OFFLINE', userOfflineHandler);
-      // _socket?.off('USER_ONLINE', userOnlineHandler);
+      socket?.off('MESSAGE_RECEIVED', handleReceiveMessage);
     };
-  }, [conversationId, currentUser._id, items, socket]);
+  }, [conversationId, currentUser._id, items, socketClient]);
 
   return (
     <aside
-      className={conversationListVariants({ className, isOpen })}
+      className={conversationsListVariants({ className, isOpen })}
       {...props}
     >
-      <div className="flex h-full flex-col">
-        <h2 className="border-b px-2 py-4 text-2xl font-bold">{t('M200')}</h2>
+      <div className="flex h-full flex-col gap-8 p-1">
+        <h2 className="px-2 py-4 text-2xl font-bold">{t('M200')}</h2>
 
         <div className="grow gap-2 overflow-y-auto">
           {items.map((item, index) => (

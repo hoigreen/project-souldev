@@ -10,7 +10,7 @@ import { calculateTime, getFullName } from '@/lib/utils';
 import { usePeopleInChat } from '@/hooks/use-people-in-chat';
 
 const conversationBoxVariants = cva(
-  'relative flex w-full cursor-pointer flex-col gap-2 border-b-2 border-neutral-200 px-3 py-4 transition hover:bg-neutral-100',
+  'relative flex w-full cursor-pointer flex-col gap-2 rounded-lg py-4 transition hover:bg-neutral-100 md:px-3',
   {
     variants: {
       selected: {
@@ -37,7 +37,7 @@ export function ConversationBox({
   currentUser,
   ...props
 }: ConversationBoxProps) {
-  const t = useTranslations('Index');
+  const t = useTranslations('Home');
   const router = useRouter();
   const people = usePeopleInChat(data, currentUser);
 
@@ -47,18 +47,17 @@ export function ConversationBox({
 
   return (
     <div {...props} className={className}>
-      {/* otherUser && ( */}
       <Link
         href={`/messages/${data._id}`}
         className={conversationBoxVariants({ className, selected })}
         onClick={() => router.refresh()}
       >
-        <div className="flex justify-between align-top">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <AvatarUser src={people.image} fallback={people.first_name} />
 
-            <div className="flex flex-col gap-0.5 focus:outline-none">
-              <p className="text-sm font-bold text-neutral-800">
+            <div className="flex flex-col gap-1 focus:outline-none">
+              <p className="text-base font-bold text-neutral-800">
                 {getFullName(people.first_name, people.last_name)}
               </p>
 

@@ -10,20 +10,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import signOut from '@/lib/sign-out';
-import { cva, VariantProps } from 'class-variance-authority';
 import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { FC, HTMLAttributes } from 'react';
 
-/* ---------------------------------------------------------------------------------------------------------------------
- * Component: UserMenu
- * ------------------------------------------------------------------------------------------------------------------ */
-
-export const userMenuVariants = cva('');
-
-export type UserMenuProps = HTMLAttributes<HTMLDivElement> &
-  VariantProps<typeof userMenuVariants>;
+export type UserMenuProps = HTMLAttributes<HTMLDivElement>;
 
 export const UserMenu: FC<UserMenuProps> = ({ className, ...props }) => {
   const { data } = useSession();
@@ -32,7 +24,7 @@ export const UserMenu: FC<UserMenuProps> = ({ className, ...props }) => {
   const user = data?.user;
 
   return (
-    <div className={userMenuVariants({ className })} {...props}>
+    <div className={className} {...props}>
       {user && (
         <DropdownMenu>
           <DropdownMenuTrigger className="data-state-open:bg-neutral-300 relative flex items-center gap-4 rounded-full p-1 transition hover:bg-neutral-300">
