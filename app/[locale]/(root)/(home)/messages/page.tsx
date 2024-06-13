@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: 'Messagea',
+  title: 'Messages',
 };
 
 export default async function HomePage({
