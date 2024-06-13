@@ -29,7 +29,6 @@ export function ConversationForm({
     register,
     handleSubmit,
     setValue,
-    watch,
     formState: { errors },
   } = useForm<MessageSchema>({
     resolver: zodResolver(messageSchema),
@@ -63,7 +62,8 @@ export function ConversationForm({
         onSubmit={handleSubmit(onSubmit)}
       >
         <Input
-          className="h-12 grow"
+          disabled={!!errors.text}
+          className={cn('h-12 grow', errors.text && 'border-red-500')}
           {...register('text', {
             setValueAs: (value) => {
               if (value) {
@@ -71,14 +71,15 @@ export function ConversationForm({
               }
             },
           })}
-          onKeyDown={(event: any) => {
-            const keyCode = event.which || event.keyCode;
-            if (keyCode === 13 && !event.shiftKey) {
+          onKeyDown={(event) => {
+            const keyCode = event.key;
+            if (keyCode === 'Enter' && !event.shiftKey) {
               handleSubmit(onSubmit)();
               event.preventDefault();
             }
           }}
         />
+
         <Button type="submit" className="size-12 rounded-full" title="Send">
           <Send variant="Bold" size={20} />
         </Button>
