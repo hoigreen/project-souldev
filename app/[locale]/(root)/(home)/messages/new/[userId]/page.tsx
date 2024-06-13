@@ -39,11 +39,13 @@ export default async function Page({ params: { locale, userId } }: PageProps) {
     );
   }
 
+  const user = response.data.user_id;
+
   return (
     <div className="flex h-full grow flex-col bg-white dark:bg-black md:overflow-auto md:rounded-lg md:shadow-md">
-      <ConversationHeaderNew user={response.data.user_id} />
+      <ConversationHeaderNew user={user} />
       <div className="grow bg-neutral-50"></div>
-      <ConversationForm peopleId={response.data.user_id._id} />
+      <ConversationForm peopleId={user._id} />
     </div>
   );
 }
