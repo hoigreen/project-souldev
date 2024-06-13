@@ -4,18 +4,18 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/navigation';
 import { HTMLAttributes, useMemo } from 'react';
-import { Conversation, User } from '@/lib/definitions';
+import { Conversation, UserBasic } from '@/lib/definitions';
 import AvatarUser from '../ui/app/avatar-user';
 import { calculateTime, getFullName } from '@/lib/utils';
 import { usePeopleInChat } from '@/hooks/use-people-in-chat';
 
 const conversationBoxVariants = cva(
-  'relative flex w-full cursor-pointer flex-col gap-2 rounded-lg py-4 transition hover:bg-neutral-100 md:px-3',
+  'relative flex w-full cursor-pointer flex-col gap-2 rounded-lg px-2 py-4 transition hover:bg-neutral-100 md:px-3',
   {
     variants: {
       selected: {
-        true: 'bg-neutral-200 before:absolute before:inset-y-0 before:right-0 before:h-full before:w-1 before:rounded before:bg-green-700 before:content-[""] dark:bg-neutral-700',
-        false: 'bg-white dark:bg-black',
+        true: 'bg-neutral-100 dark:bg-neutral-700',
+        false: 'bg-transparent',
       },
     },
     defaultVariants: {
@@ -26,7 +26,7 @@ const conversationBoxVariants = cva(
 
 type ConversationBoxProps = HTMLAttributes<HTMLDivElement> &
   VariantProps<typeof conversationBoxVariants> & {
-    currentUser: User;
+    currentUser: UserBasic;
     data: Conversation;
   };
 
