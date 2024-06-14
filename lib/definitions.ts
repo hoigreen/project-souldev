@@ -457,9 +457,10 @@ export type PaginationsResponse<T> = {
 };
 
 export type Message = {
+  _id: string;
   conversationId: string;
-  from: string;
-  to: string;
+  from: UserBasic;
+  to: UserBasic;
   date: string;
   text: string;
 };

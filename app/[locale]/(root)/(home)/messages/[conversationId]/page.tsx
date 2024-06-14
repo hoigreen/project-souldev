@@ -1,4 +1,5 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
+import { ConversationContainer } from '@/components/messages/conversation-container';
 import { ConversationForm } from '@/components/messages/conversation-form';
 import { ConversationHeader } from '@/components/messages/conversation-header';
 import { getConversationById } from '@/lib/actions/conversation';
@@ -84,13 +85,14 @@ export default async function Page({
         currentUser={session.user}
       />
 
-      <div className="grow bg-neutral-50"></div>
-      <ConversationForm peopleId={'123'} />
-      {/* <MessageWapper
-        conversation={conversation}
-        currentUser={currentUser as User}
-        messages={messages as PaginatedMessage}
-      /> */}
+      <ConversationContainer
+        className="grow bg-neutral-50"
+        conversation={response.data}
+        currentUser={session.user}
+        initialMessages={response.data.messages}
+      />
+
+      <ConversationForm peopleId={'665c324597e084a5e7df41f0'} />
     </div>
   );
 }

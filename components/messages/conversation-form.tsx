@@ -11,6 +11,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { MessageSchema, messageSchema } from '@/lib/validations/conversation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '../ui/input';
+import { useRouter } from '@/navigation';
 
 export type ConversationFormProps = HTMLAttributes<HTMLDivElement> & {
   peopleId: string;
@@ -22,6 +23,7 @@ export function ConversationForm({
   ...props
 }: ConversationFormProps) {
   const t = useTranslations('Home');
+  const router = useRouter();
   const { data: session } = useSession();
   const { socket: socketClient } = useSocket();
 
@@ -40,13 +42,15 @@ export function ConversationForm({
   if (!session) return null;
 
   const onSubmit: SubmitHandler<MessageSchema> = async (data) => {
-    setValue('text', '');
-
     socketClient.current?.emit('SEND_MESSAGE', {
       from: session.user._id,
       to: peopleId,
       text: data.text,
     });
+
+    setValue('text', '');
+
+    router.refresh();
   };
 
   return (

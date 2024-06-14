@@ -13,6 +13,7 @@ export function QueryProvider({
       new QueryClient({
         defaultOptions: {
           queries: {
+            refetchOnReconnect: false,
             refetchOnWindowFocus: false,
             refetchOnMount: false,
           },
