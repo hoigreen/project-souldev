@@ -51,6 +51,7 @@ export function ConversationContainer({
     }
 
     const messageReceivedHandler = async (message: Message) => {
+      console.log(message);
       const newMessage = {
         from: message.from,
         to: message.to,

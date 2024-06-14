@@ -2,7 +2,7 @@ import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { ConversationContainer } from '@/components/messages/conversation-container';
 import { ConversationForm } from '@/components/messages/conversation-form';
 import { ConversationHeader } from '@/components/messages/conversation-header';
-import { getConversationById } from '@/lib/actions/conversation';
+import { getConversationById, getMessages } from '@/lib/actions/conversation';
 import getSession from '@/lib/get-session';
 import { getFullName } from '@/lib/utils';
 import { Metadata } from 'next';
@@ -68,9 +68,20 @@ export default async function Page({
     );
   }
 
-  const response = await getConversationById(conversationId);
+  const [conversationResponse, messsagesResponse] = await Promise.all([
+    getConversationById(conversationId),
+    getMessages(conversationId),
+  ]);
 
-  if (!response.success) {
+  if (!conversationResponse.success) {
+    return (
+      <div className="h-full grow bg-white dark:bg-black md:overflow-auto md:rounded-lg md:shadow-md">
+        <ErrorStage stage={ErrorStageType.ServerError} />
+      </div>
+    );
+  }
+
+  if (!messsagesResponse.success) {
     return (
       <div className="h-full grow bg-white dark:bg-black md:overflow-auto md:rounded-lg md:shadow-md">
         <ErrorStage stage={ErrorStageType.ServerError} />
@@ -81,15 +92,15 @@ export default async function Page({
   return (
     <div className="flex h-full grow flex-col bg-white dark:bg-black md:overflow-auto md:rounded-lg md:shadow-md">
       <ConversationHeader
-        conversation={response.data}
+        conversation={conversationResponse.data}
         currentUser={session.user}
       />
 
       <ConversationContainer
         className="grow bg-neutral-50"
-        conversation={response.data}
+        conversation={conversationResponse.data}
         currentUser={session.user}
-        initialMessages={response.data.messages}
+        initialMessages={messsagesResponse.data}
       />
 
       <ConversationForm peopleId={'665c324597e084a5e7df41f0'} />

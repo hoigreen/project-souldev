@@ -1,6 +1,7 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { LeftSidebar } from '@/components/app/left-sidebar';
 import { ConversationsList } from '@/components/messages/conversations-list';
+import InitialSocket from '@/components/messages/initial-socket';
 import { getConversations } from '@/lib/actions/conversation';
 import { Conversation, User } from '@/lib/definitions';
 import getSession from '@/lib/get-session';
@@ -52,6 +53,8 @@ export default async function MessageLayout({
 
         {children}
       </div>
+
+      <InitialSocket />
     </div>
   );
 }

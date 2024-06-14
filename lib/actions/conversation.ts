@@ -2,7 +2,7 @@
 
 import { endpoint } from '@/services/endpoint';
 import requestService from '@/services/request-service';
-import { Conversation, ServerResponse } from '../definitions';
+import { Conversation, Message, ServerResponse } from '../definitions';
 import { getPathname } from '@/services/url';
 
 export async function getConversations(): Promise<
@@ -17,6 +17,17 @@ export async function getConversationById(
   return requestService.get(
     getPathname({
       path: endpoint.conversation.detail,
+      params: { conversationId },
+    }),
+  );
+}
+
+export async function getMessages(
+  conversationId: string,
+): Promise<ServerResponse<Message[]>> {
+  return requestService.get(
+    getPathname({
+      path: endpoint.conversation.messages,
       params: { conversationId },
     }),
   );
