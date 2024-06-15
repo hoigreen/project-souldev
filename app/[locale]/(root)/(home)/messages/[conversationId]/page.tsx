@@ -94,7 +94,7 @@ export default async function Page({
         className="grow bg-neutral-50"
         conversation={conversationResponse.data}
         currentUser={session.user}
-        initialMessages={messsagesResponse.data}
+        initialMessages={messsagesResponse.items}
       />
 
       <ConversationForm peopleId={peopleId} />

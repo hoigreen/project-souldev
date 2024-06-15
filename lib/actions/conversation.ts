@@ -2,7 +2,12 @@
 
 import { endpoint } from '@/services/endpoint';
 import requestService from '@/services/request-service';
-import { Conversation, Message, ServerResponse } from '../definitions';
+import {
+  Conversation,
+  Message,
+  PaginationsResponse,
+  ServerResponse,
+} from '../definitions';
 import { getPathname } from '@/services/url';
 
 export async function getConversations(): Promise<
@@ -24,7 +29,7 @@ export async function getConversationById(
 
 export async function getMessages(
   conversationId: string,
-): Promise<ServerResponse<Message[]>> {
+): Promise<PaginationsResponse<Message[]>> {
   return requestService.get(
     getPathname({
       path: endpoint.conversation.messages,

@@ -64,6 +64,12 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
       7,
     );
 
+    cookie.set(
+      process.env.NEXT_PUBLIC_USERID_COOKIE as string,
+      data.data._id,
+      7,
+    );
+
     await signInWithCredential(formData);
     toast.success(t('M56'));
   };

@@ -151,6 +151,15 @@ export const authOptions: NextAuthOptions = {
           cookie.set({
             name: process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
             value: res.data.token,
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+            path: '/',
+          });
+
+          cookie.set({
+            name: process.env.NEXT_PUBLIC_USERID_COOKIE as string,
+            value: res.data._id,
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+            path: '/',
           });
         }
       }
@@ -176,6 +185,13 @@ export const authOptions: NextAuthOptions = {
           cookie.set({
             name: process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
             value: res.data.token as string,
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+            path: '/',
+          });
+
+          cookie.set({
+            name: process.env.NEXT_PUBLIC_USERID_COOKIE as string,
+            value: res.data._id,
             expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
             path: '/',
           });
