@@ -1,11 +1,10 @@
+'use client';
+
 import { Message } from '@/lib/definitions';
-import { Link } from '@/navigation';
 import { VariantProps, cva } from 'class-variance-authority';
-import Image from 'next/image';
-import { HTMLAttributes, useMemo } from 'react';
-import { Avatar } from '../ui/avatar';
+import { HTMLAttributes } from 'react';
 import AvatarUser from '../ui/app/avatar-user';
-import { calculateTime, cn, getFullName } from '@/lib/utils';
+import { calculateTime, cn } from '@/lib/utils';
 
 const messageBoxVariants = cva(
   'flex max-w-full items-end gap-2 overflow-x-hidden px-6 py-4',
@@ -44,11 +43,11 @@ const messageBoxBodyVariants = cva('flex flex-col gap-2', {
   },
 });
 
-const messageBoxMessageVariants = cva('w-fit max-w-full', {
+const messageBoxMessageVariants = cva('w-fit max-w-full pb-1', {
   variants: {
     isOwn: {
-      true: 'ml-20',
-      false: 'mr-20',
+      true: 'ml-24',
+      false: 'mr-24',
     },
   },
   defaultVariants: {
@@ -79,25 +78,17 @@ export function MessageBox({
 
       <div className={messageBoxBodyVariants({ isOwn })}>
         <div className={messageBoxMessageVariants({ isOwn })}>
-          <div className="mb-1 flex w-full items-center justify-between gap-1">
-            {!isOwn && (
-              <div className="text-sm font-bold text-neutral-800">
-                {getFullName(data.from.first_name, data.from.last_name)}
-              </div>
-            )}
-
-            <div className="text-sm font-normal text-neutral-600">
-              {calculateTime(data.date)}
-            </div>
+          <div className="text-xs font-light italic">
+            {calculateTime(data.date)}
           </div>
 
-          <div className="w-full overflow-hidden rounded-2xl bg-transparent text-base">
+          <div className="w-full overflow-hidden rounded-lg text-sm shadow-md md:text-base">
             <div
               className={cn(
                 'flex flex-col whitespace-pre-line break-words p-3',
                 isOwn
-                  ? 'text-base-4 bg-neutral-100'
-                  : ' bg-white text-neutral-800',
+                  ? 'bg-neutral-200/60 dark:bg-neutral-700/60'
+                  : ' bg-white dark:bg-black',
               )}
             >
               {data.text}

@@ -35,9 +35,9 @@ module.exports = withNextIntl({
     ],
   },
 
-  // logging: {
-  //   fetches: {
-  //     fullUrl: true,
-  //   },
-  // },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
 });

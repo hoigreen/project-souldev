@@ -6,10 +6,7 @@ import { getConversationById, getMessages } from '@/lib/actions/conversation';
 import getSession from '@/lib/get-session';
 import { getFullName } from '@/lib/utils';
 import { Metadata } from 'next';
-import {
-  getTranslations,
-  unstable_setRequestLocale as unstableSetRequestLocale,
-} from 'next-intl/server';
+import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 
 type PageProps = {
   params: {
@@ -52,14 +49,6 @@ export default async function Page({
   unstableSetRequestLocale(locale);
   const session = await getSession();
 
-  if (!conversationId) {
-    return (
-      <div className="h-full grow bg-white dark:bg-black md:overflow-auto md:rounded-lg md:shadow-md">
-        <ErrorStage stage={ErrorStageType.ResourceNotFound} />
-      </div>
-    );
-  }
-
   if (!session) {
     return (
       <div className="h-full grow bg-white dark:bg-black md:overflow-auto md:rounded-lg md:shadow-md">
@@ -89,6 +78,11 @@ export default async function Page({
     );
   }
 
+  const peopleId =
+    conversationResponse.data.user_id_1._id === session.user._id
+      ? conversationResponse.data.user_id_2._id
+      : conversationResponse.data.user_id_1._id;
+
   return (
     <div className="flex h-full grow flex-col bg-white dark:bg-black md:overflow-auto md:rounded-lg md:shadow-md">
       <ConversationHeader
@@ -103,7 +97,7 @@ export default async function Page({
         initialMessages={messsagesResponse.data}
       />
 
-      <ConversationForm peopleId={'665c324597e084a5e7df41f0'} />
+      <ConversationForm peopleId={peopleId} />
     </div>
   );
 }

@@ -3,7 +3,6 @@
 import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import { Send } from 'iconsax-react';
-import { useSocket } from '@/hooks/use-socket';
 import { useSession } from 'next-auth/react';
 import { HTMLAttributes } from 'react';
 import { useTranslations } from 'next-intl';
@@ -12,6 +11,7 @@ import { MessageSchema, messageSchema } from '@/lib/validations/conversation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '../ui/input';
 import { useRouter } from '@/navigation';
+import { socket } from '@/socket';
 
 export type ConversationFormProps = HTMLAttributes<HTMLDivElement> & {
   peopleId: string;
@@ -25,7 +25,6 @@ export function ConversationForm({
   const t = useTranslations('Home');
   const router = useRouter();
   const { data: session } = useSession();
-  const { socket: socketClient } = useSocket();
 
   const {
     register,
@@ -42,7 +41,7 @@ export function ConversationForm({
   if (!session) return null;
 
   const onSubmit: SubmitHandler<MessageSchema> = async (data) => {
-    socketClient.current?.emit('SEND_MESSAGE', {
+    socket.emit('SEND_MESSAGE', {
       from: session.user._id,
       to: peopleId,
       text: data.text,

@@ -3,13 +3,13 @@
 import { cva, VariantProps } from 'class-variance-authority';
 import { useTranslations } from 'next-intl';
 import { HTMLAttributes, useEffect, useState } from 'react';
-import { useSocket } from '@/hooks/use-socket';
-import { Conversation, Message, User } from '@/lib/definitions';
+import { Conversation, MessageInfo, User } from '@/lib/definitions';
 import useConversation from '@/hooks/use-conversation';
 import { ConversationBox } from './conversation-box';
+import { socket } from '@/socket';
 
 const conversationsListVariants = cva(
-  'w-full min-w-96 bg-white md:block md:w-96 md:overflow-hidden md:rounded-lg md:shadow-md',
+  'w-full min-w-96 bg-white dark:border dark:bg-black md:block md:w-96 md:overflow-hidden md:rounded-lg md:shadow-md',
   {
     variants: {
       isOpen: {
@@ -37,19 +37,12 @@ export function ConversationsList({
 }: ConversationsListProps) {
   const { conversationId, isOpen } = useConversation();
   const t = useTranslations('Home');
-  const { socket: socketClient } = useSocket();
   const [items, setItems] = useState(initialItems ?? []);
 
   useEffect(() => {
-    if (!socketClient) {
-      return;
-    }
-
-    const socket = socketClient.current;
-
-    const handleReceiveMessage = (value: Message) => {
+    const handleReceiveMessage = (value: MessageInfo) => {
       const conversationIndex = items.findIndex(
-        (e) => e._id === value.conversationId,
+        (item) => item._id === value.conversationId,
       );
 
       if (conversationIndex !== -1) {
@@ -61,16 +54,16 @@ export function ConversationsList({
 
         setItems([updatedConversation, ...newItems]);
       } else {
-        setItems([...items]);
+        setItems(items);
       }
     };
 
-    socket?.on('RECEIVE_MESSAGE', handleReceiveMessage);
+    socket.on('RECEIVE_MESSAGE', handleReceiveMessage);
 
     return () => {
       socket?.off('MESSAGE_RECEIVED', handleReceiveMessage);
     };
-  }, [conversationId, currentUser._id, items, socketClient]);
+  }, [items]);
 
   return (
     <aside

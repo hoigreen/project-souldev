@@ -1,14 +1,17 @@
 'use client';
 
-import { usePeopleInChat } from '@/hooks/use-people-in-chat';
-import { useSocket } from '@/hooks/use-socket';
-import { Conversation, Message, UserBasic } from '@/lib/definitions';
+import {
+  Conversation,
+  Message,
+  MessageInfo,
+  UserBasic,
+} from '@/lib/definitions';
 import { cn } from '@/lib/utils';
-import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { HTMLAttributes, useEffect, useRef, useState } from 'react';
 import { InfiniteScrollContainer } from '../app/infinitiy-scroll-wrapper';
 import { MessageBox } from './message-box';
+import { socket } from '@/socket';
 
 export type ConversationContainerProps = HTMLAttributes<HTMLDivElement> & {
   conversation: Conversation;
@@ -26,12 +29,13 @@ export function ConversationContainer({
 }: ConversationContainerProps) {
   const t = useTranslations('Home');
   const [messages, setMessages] = useState<Message[]>(initialMessages);
-  const people = usePeopleInChat(conversation, currentUser);
   const messageRef = useRef<HTMLDivElement>(null);
-  const { data: session } = useSession();
-  const { socket: socketClient } = useSocket();
 
   useEffect(() => {
+    if (!socket) {
+      return;
+    }
+
     const scrollToEnd = () => {
       if (messageRef) {
         messageRef.current?.scrollTo({
@@ -42,28 +46,16 @@ export function ConversationContainer({
       }
     };
 
-    scrollToEnd();
+    const messageReceivedHandler = async (data: MessageInfo) => {
+      const newMessage = data.message as Message;
 
-    const socket = socketClient.current;
-
-    if (!socket) {
-      return;
-    }
-
-    const messageReceivedHandler = async (message: Message) => {
-      console.log(message);
-      const newMessage = {
-        from: message.from,
-        to: message.to,
-        text: message.text,
-      } as Message;
-
-      setMessages((current) => [newMessage, ...current]);
-      // if (message.from === currentUser._id || message.to === currentUser._id) {
-      //   setTimeout(() => {
-      //     scrollToEnd();
-      //   }, 500);
-      // }
+      if (
+        data.message.from._id === currentUser._id ||
+        data.message.to._id === currentUser._id
+      ) {
+        setMessages((current) => [newMessage, ...current]);
+        setTimeout(() => scrollToEnd(), 500);
+      }
     };
 
     socket.on('RECEIVE_MESSAGE', messageReceivedHandler);
@@ -71,7 +63,7 @@ export function ConversationContainer({
     return () => {
       socket.off('RECEIVE_MESSAGE', messageReceivedHandler);
     };
-  }, [conversation._id, currentUser, people, socketClient]);
+  }, [currentUser._id]);
 
   // const refreshMessages = async () => {
   //   const { data } = await queryMessages(
@@ -110,7 +102,7 @@ export function ConversationContainer({
       >
         {messages.map((message, index) => (
           <MessageBox
-            key={message._id}
+            key={index}
             data={message}
             isOwn={currentUser._id === message.from._id}
             isLast={index === messages.length}
