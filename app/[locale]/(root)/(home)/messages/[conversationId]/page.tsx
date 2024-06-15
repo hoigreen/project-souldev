@@ -95,6 +95,10 @@ export default async function Page({
         conversation={conversationResponse.data}
         currentUser={session.user}
         initialMessages={messsagesResponse.items}
+        initialPagination={{
+          hasNextPage: messsagesResponse.page < messsagesResponse.totalPage,
+          page: messsagesResponse.page,
+        }}
       />
 
       <ConversationForm peopleId={peopleId} />

@@ -9,6 +9,7 @@ import {
   ServerResponse,
 } from '../definitions';
 import { getPathname } from '@/services/url';
+import { Query } from '../url-builder';
 
 export async function getConversations(): Promise<
   ServerResponse<Conversation[]>
@@ -29,11 +30,13 @@ export async function getConversationById(
 
 export async function getMessages(
   conversationId: string,
+  query?: Query,
 ): Promise<PaginationsResponse<Message[]>> {
   return requestService.get(
     getPathname({
       path: endpoint.conversation.messages,
       params: { conversationId },
+      query,
     }),
   );
 }

@@ -40,6 +40,9 @@ export function ConversationBox({
   const people = usePeopleInChat(data, currentUser);
 
   const lastMessage = useMemo(() => {
+    if (data.messages.length === 0)
+      return { text: 'Start a new conversation', date: new Date().toString() };
+
     return data.messages[data.messages.length - 1];
   }, [data]);
 

@@ -4,6 +4,7 @@ import {
   Conversation,
   Message,
   MessageInfo,
+  PaginationsResponse,
   UserBasic,
 } from '@/lib/definitions';
 import { cn } from '@/lib/utils';
@@ -12,23 +13,29 @@ import { HTMLAttributes, useEffect, useRef, useState } from 'react';
 import { InfiniteScrollContainer } from '../app/infinitiy-scroll-wrapper';
 import { MessageBox } from './message-box';
 import { socket } from '@/socket';
+import { getMessages } from '@/lib/actions/conversation';
 
 export type ConversationContainerProps = HTMLAttributes<HTMLDivElement> & {
   conversation: Conversation;
   currentUser: UserBasic;
   initialMessages: Message[];
-  // initialPagination: PaginatedMessage['pageInfo'];
+  initialPagination: {
+    hasNextPage: boolean;
+    page: PaginationsResponse<Message[]>['page'];
+  };
 };
 
 export function ConversationContainer({
   conversation,
   initialMessages,
+  initialPagination,
   currentUser,
   className,
   ...props
 }: ConversationContainerProps) {
   const t = useTranslations('Home');
   const [messages, setMessages] = useState<Message[]>(initialMessages);
+  const [pagination, setPagination] = useState(initialPagination);
   const messageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -65,24 +72,26 @@ export function ConversationContainer({
     };
   }, [currentUser._id]);
 
-  // const refreshMessages = async () => {
-  //   const { data } = await queryMessages(
-  //     {
-  //       conversationId: Number(conversation.id),
-  //       first: MESSAGES_PER_REQUEST,
-  //       after: pagination?.endCursor,
-  //     },
-  //     {
-  //       Authorization: `Bearer ${session?.user.chatToken}`,
-  //     },
-  //   );
+  const handleNextPages = async () => {
+    const { items, success, page, totalPage } = await getMessages(
+      conversation._id,
+      {
+        page: initialPagination.page + 1,
+      },
+    );
 
-  //   const loadedMessages: MessageEdge[] = data.messages?.edges
-  //     ? (data.messages?.edges as MessageEdge[])
-  //     : ([] as MessageEdge[]);
-  //   setPagination(data.messages.pageInfo);
-  //   setMessages((current) => [...current, ...loadedMessages]);
-  // };
+    if (!success) {
+      return;
+    }
+
+    const loadedMessages: Message[] = items ?? ([] as Message[]);
+
+    setMessages((current) => [...current, ...loadedMessages]);
+    setPagination({
+      page,
+      hasNextPage: page < totalPage,
+    });
+  };
 
   return (
     <div
@@ -94,11 +103,11 @@ export function ConversationContainer({
         id="chat-messages"
         ref={messageRef}
         inverse
-        hasMore={true}
+        hasMore={!!pagination.hasNextPage}
         className="flex h-full flex-col-reverse overflow-y-auto"
         dataLength={messages.length}
-        onNext={() => console.log('onNext')}
-        onRefresh={() => console.log('onRefresh')}
+        onNext={handleNextPages}
+        onRefresh={() => console.log('resetting messages')}
       >
         {messages.map((message, index) => (
           <MessageBox
