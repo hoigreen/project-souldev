@@ -2,8 +2,8 @@
 
 import { cva, VariantProps } from 'class-variance-authority';
 import { Link, useRouter } from '@/navigation';
-import { HTMLAttributes, use, useMemo } from 'react';
-import { Conversation, UserBasic } from '@/lib/definitions';
+import { HTMLAttributes, useMemo } from 'react';
+import { Conversation, Message, UserBasic } from '@/lib/definitions';
 import AvatarUser from '../ui/app/avatar-user';
 import { calculateTime, getFullName } from '@/lib/utils';
 import { usePeopleInChat } from '@/hooks/use-people-in-chat';
@@ -47,7 +47,7 @@ export function ConversationBox({
 
   const lastMessage = useMemo(() => {
     if (data.messages.length === 0)
-      return { text: 'Start a new conversation', date: new Date().toString() };
+      return { text: 'Start a new conversation' } as Message;
 
     return data.messages[data.messages.length - 1];
   }, [data]);
@@ -63,7 +63,11 @@ export function ConversationBox({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="relative">
-              <AvatarUser src={people.image} fallback={people.first_name} />
+              <AvatarUser
+                src={people.image}
+                fallback={people.first_name}
+                className="size-12"
+              />
 
               {isOnline && (
                 <span className="absolute bottom-0 right-0 block size-2 rounded-full bg-green-500 ring ring-white md:size-3" />
@@ -81,9 +85,11 @@ export function ConversationBox({
             </div>
           </div>
 
-          <p className="shrink-0 text-xs font-light">
-            {calculateTime(lastMessage.date)}
-          </p>
+          {lastMessage?.date && (
+            <p className="shrink-0 text-xs font-light">
+              {calculateTime(lastMessage.date)}
+            </p>
+          )}
         </div>
       </Link>
     </div>

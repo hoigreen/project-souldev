@@ -41,10 +41,10 @@ export default async function MessageLayout({
   }
 
   return (
-    <div className="h-screen p-2 px-4 py-14 pb-10 md:p-4 md:pt-20 xl:px-10 xl:pl-80">
+    <div className="h-screen pt-14 md:p-4 md:pb-10 md:pt-20 xl:px-10 xl:pl-80">
       <LeftSidebar />
 
-      <div className="flex size-full p-2 md:gap-10 md:p-3 lg:p-4">
+      <div className="flex size-full md:gap-10 md:p-3 lg:p-4">
         <ConversationsList
           initialItems={response.data as Array<Conversation>}
           currentUser={session.user as User}

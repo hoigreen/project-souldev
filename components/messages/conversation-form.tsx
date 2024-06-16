@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import { Send } from 'iconsax-react';
 import { useSession } from 'next-auth/react';
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { MessageSchema, messageSchema } from '@/lib/validations/conversation';
@@ -25,12 +25,13 @@ export function ConversationForm({
   const t = useTranslations('Home');
   const router = useRouter();
   const { data: session } = useSession();
+  const messageRef = useRef(null);
 
   const {
     register,
     handleSubmit,
     setValue,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<MessageSchema>({
     resolver: zodResolver(messageSchema),
     defaultValues: {
@@ -56,7 +57,7 @@ export function ConversationForm({
     <div
       {...props}
       className={cn(
-        'flex w-full items-center justify-center border-t bg-white p-5',
+        'flex w-full items-center justify-center border-t bg-white p-5 dark:bg-black',
         className,
       )}
     >
@@ -65,8 +66,12 @@ export function ConversationForm({
         onSubmit={handleSubmit(onSubmit)}
       >
         <Input
-          disabled={!!errors.text}
-          className={cn('h-12 grow', errors.text && 'border-red-500')}
+          disabled={isSubmitting}
+          placeholder={t('M202')}
+          className={cn(
+            'h-12 grow dark:border dark:bg-neutral-700',
+            errors.text && 'border-red-500',
+          )}
           {...register('text', {
             setValueAs: (value) => {
               if (value) {

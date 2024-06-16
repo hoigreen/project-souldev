@@ -69,7 +69,7 @@ export function ConversationsList({
       socket.off('USER_ONLINE', handleUserOnline);
       socket.off('MESSAGE_RECEIVED', handleReceiveMessage);
     };
-  }, [items]);
+  }, [items, onlineAction]);
 
   return (
     <aside

@@ -91,7 +91,6 @@ export default async function Page({
       />
 
       <ConversationContainer
-        className="grow bg-neutral-50"
         conversation={conversationResponse.data}
         currentUser={session.user}
         initialMessages={messsagesResponse.items}

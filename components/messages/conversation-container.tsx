@@ -97,7 +97,10 @@ export function ConversationContainer({
     <div
       ref={messageRef}
       {...props}
-      className={cn('relative grow overflow-y-auto', className)}
+      className={cn(
+        'relative grow overflow-y-auto bg-neutral-50 dark:bg-neutral-900',
+        className,
+      )}
     >
       <InfiniteScrollContainer
         id="chat-messages"
@@ -114,7 +117,6 @@ export function ConversationContainer({
             key={index}
             data={message}
             isOwn={currentUser._id === message.from._id}
-            isLast={index === messages.length}
           />
         ))}
       </InfiniteScrollContainer>
