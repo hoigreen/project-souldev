@@ -55,6 +55,8 @@ export function ConversationsList({
       if (conversationIndex !== -1) {
         const updatedConversation = items[conversationIndex];
 
+        updatedConversation.messages.push(value.message);
+
         const newItems = items.filter(
           (conversation) => conversation._id !== updatedConversation._id,
         );
