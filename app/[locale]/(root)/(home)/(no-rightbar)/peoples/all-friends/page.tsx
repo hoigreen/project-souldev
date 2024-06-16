@@ -3,7 +3,7 @@ import { Heading } from '@/components/app/heading';
 import ListPeoples from '@/components/peoples/list-peoples';
 import { ListPeoplesLoading } from '@/components/peoples/loading';
 import { getMyFriendsList } from '@/lib/actions/profile';
-import { FriendActions } from '@/lib/definitions';
+import { FriendActions, ViewDetailsActionPeoples } from '@/lib/definitions';
 import { Metadata } from 'next';
 import {
   getTranslations,
@@ -39,7 +39,11 @@ export default async function HomePage({
     <div className="space-y-4">
       <Heading title={t('M96')} size={1} />
       <Suspense fallback={<ListPeoplesLoading />}>
-        <ListPeoples data={friendsListData} action={FriendActions.Remove} />
+        <ListPeoples
+          data={friendsListData}
+          action={FriendActions.Remove}
+          viewAction={ViewDetailsActionPeoples.viewFriends}
+        />
       </Suspense>
     </div>
   );

@@ -2,7 +2,11 @@
 
 import AvatarUser from '@/components/ui/app/avatar-user';
 import { Card } from '@/components/ui/card';
-import { FriendActions, UserBasic } from '@/lib/definitions';
+import {
+  FriendActions,
+  UserBasic,
+  ViewDetailsActionPeoples,
+} from '@/lib/definitions';
 import { cn, getFullName } from '@/lib/utils';
 import { Link, useRouter } from '@/navigation';
 import React, { useMemo } from 'react';
@@ -12,11 +16,13 @@ import { useTranslations } from 'next-intl';
 import { acceptFriendRequest, unfollow } from '@/lib/actions/profile';
 import toast from 'react-hot-toast';
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
+import { SendMessageButton } from '../messages/send-message-button';
 
 type ListPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
   data: UserBasic[];
   action?: FriendActions;
   handleAction?: (userId: string) => void;
+  viewAction?: ViewDetailsActionPeoples;
 };
 
 export default function ListPeoples({
@@ -25,6 +31,7 @@ export default function ListPeoples({
   handleAction,
   className,
   data,
+  viewAction,
 }: ListPeoplesProps) {
   const t = useTranslations('Home');
   const router = useRouter();
@@ -81,6 +88,11 @@ export default function ListPeoples({
                 {getFullName(item.first_name, item.last_name)}
               </p>
             </Link>
+
+            {viewAction &&
+              viewAction === ViewDetailsActionPeoples.viewFriends && (
+                <SendMessageButton userId={item._id} />
+              )}
 
             {action && action === FriendActions.Remove && (
               <RemoveFriendButton user={item} />

@@ -28,7 +28,6 @@ export function ViewDetailsPeoplesDialog(): React.JSX.Element {
     },
   );
 
-  // Get my friends list
   const { data: response, isLoading } = useQueryPeoplesUser(viewAction);
 
   if (isLoading) {
@@ -83,7 +82,11 @@ export function ViewDetailsPeoplesDialog(): React.JSX.Element {
         <div className="space-y-6">
           <PeoplesHeading viewAction={viewAction} />
 
-          <ListPeoples data={data} className="md:grid-cols-1" />
+          <ListPeoples
+            data={data}
+            className="md:grid-cols-1"
+            viewAction={viewAction}
+          />
         </div>
       </DialogContent>
     </Dialog>

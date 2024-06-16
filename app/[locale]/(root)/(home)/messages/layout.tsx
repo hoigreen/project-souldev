@@ -41,7 +41,7 @@ export default async function MessageLayout({
   }
 
   return (
-    <div className="h-screen pt-14 md:p-4 md:pb-10 md:pt-20 xl:px-10 xl:pl-80">
+    <div className="h-screen pt-14 md:p-4 md:pt-20 xl:px-10 xl:pl-80">
       <LeftSidebar />
 
       <div className="flex size-full md:gap-10 md:p-3 lg:p-4">

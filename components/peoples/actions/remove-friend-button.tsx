@@ -20,9 +20,13 @@ export default function RemoveFriendButton({
   const { onOpen } = useModalActions(Modals.RemoveFriend);
 
   return (
-    <Button className={cn('gap-1', className)} onClick={() => onOpen({ user })}>
+    <Button
+      className={cn('gap-1', className)}
+      onClick={() => onOpen({ user })}
+      variant="outline"
+    >
       <UserMinus size={16} variant="TwoTone" />
-      {t('M97')}
+      <span className="max-sm:hidden">{t('M97')}</span>
     </Button>
   );
 }

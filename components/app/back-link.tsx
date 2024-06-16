@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { twMerge } from 'tailwind-merge';
-import { ArrowLeft } from 'iconsax-react';
 import { buttonVariants } from '../ui/button';
 import React from 'react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
+import { ChevronLeft } from 'lucide-react';
 
 export function BackLink({
   label,
@@ -46,8 +46,8 @@ export function BackLink({
         onClick={handleBack}
         {...props}
       >
-        <ArrowLeft size={16} variant="TwoTone" />
-        <span>{label ?? t('M49')}</span>
+        <ChevronLeft size={24} />
+        <span className="hidden md:block">{label ?? t('M49')}</span>
       </Link>
     </div>
   );

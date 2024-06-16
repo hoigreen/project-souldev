@@ -430,6 +430,9 @@
     "M200": "Messages",
     "M201": "Currently online",
     "M202": "Input your message ...",
-    "M203": "No conversations found"
+    "M203": "No conversations found",
+    "M204": "Search",
+    "M205": "My friends",
+    "M206": "Send message"
   }
 }
