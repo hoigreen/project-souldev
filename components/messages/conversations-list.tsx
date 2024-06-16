@@ -7,6 +7,7 @@ import { Conversation, MessageInfo, User } from '@/lib/definitions';
 import useConversation from '@/hooks/use-conversation';
 import { ConversationBox } from './conversation-box';
 import { socket } from '@/socket';
+import { useOnlineActions } from '@/hooks/use-online';
 
 const conversationsListVariants = cva(
   'w-full min-w-96 bg-white dark:border dark:bg-black md:block md:w-96 md:overflow-hidden md:rounded-lg md:shadow-md',
@@ -38,8 +39,11 @@ export function ConversationsList({
   const { conversationId, isOpen } = useConversation();
   const t = useTranslations('Home');
   const [items, setItems] = useState(initialItems ?? []);
+  const onlineAction = useOnlineActions();
 
   useEffect(() => {
+    const handleUserOnline = (value: any) => onlineAction.set(value);
+
     const handleReceiveMessage = (value: MessageInfo) => {
       const conversationIndex = items.findIndex(
         (item) => item._id === value.conversationId,
@@ -58,10 +62,12 @@ export function ConversationsList({
       }
     };
 
+    socket.on('USERS_ONLINE', handleUserOnline);
     socket.on('RECEIVE_MESSAGE', handleReceiveMessage);
 
     return () => {
-      socket?.off('MESSAGE_RECEIVED', handleReceiveMessage);
+      socket.off('USER_ONLINE', handleUserOnline);
+      socket.off('MESSAGE_RECEIVED', handleReceiveMessage);
     };
   }, [items]);
 

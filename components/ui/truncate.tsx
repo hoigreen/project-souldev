@@ -3,9 +3,7 @@ import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import React, { HTMLAttributes } from 'react';
 import { Typography } from './typography';
-
-export interface TruncateProps extends HTMLAttributes<HTMLDivElement> {
-  isHtml?: boolean;
+interface TruncateProps extends HTMLAttributes<HTMLDivElement> {
   maxLength?: number;
   text: string;
 }
@@ -13,7 +11,6 @@ export interface TruncateProps extends HTMLAttributes<HTMLDivElement> {
 export function Truncate({
   className,
   text,
-  isHtml = false,
   maxLength = 200,
   ...props
 }: TruncateProps): React.JSX.Element {
@@ -23,11 +20,8 @@ export function Truncate({
 
   return (
     <div className={cn(className)} {...props}>
-      {isHtml ? (
-        <Typography content={isTruncated ? truncatedText : text} />
-      ) : (
-        <div>{isTruncated ? truncatedText : text}</div>
-      )}
+      <Typography content={isTruncated ? truncatedText : text} />
+
       {hasTruncated && (
         <span
           className="cursor-pointer text-sm font-medium"
