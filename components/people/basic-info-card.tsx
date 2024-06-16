@@ -23,15 +23,18 @@ import toast from 'react-hot-toast';
 import { useRouter } from '@/navigation';
 import { handleAddFriend, handleCancelRequest } from '@/services/people';
 import { AuthType } from '@/lib/enums';
+import { SendMessageButton } from '../messages/send-message-button';
 
 type BasicInfoCardProps = React.HTMLAttributes<HTMLDivElement> & {
   profile: Profile;
   myFollowings: UserBasic[];
+  myFriends: UserBasic[];
 };
 
 export default function BasicInfoCard({
   className,
   myFollowings,
+  myFriends,
   profile,
   ...props
 }: BasicInfoCardProps) {
@@ -146,7 +149,13 @@ export default function BasicInfoCard({
       </div>
 
       <div className="flex items-center justify-between gap-1 md:mx-auto md:max-w-md md:gap-2">
-        {myFollowings.find((user) => user._id === profile.user_id._id) ? (
+        {myFriends.find((friend) => friend._id === profile.user_id._id) ? (
+          <SendMessageButton
+            userId={profile.user_id._id}
+            className="w-full text-xs sm:text-base"
+            loadingClassName="w-full"
+          />
+        ) : myFollowings.find((user) => user._id === profile.user_id._id) ? (
           <Button
             className="w-full text-xs sm:text-base"
             variant="outline"

@@ -12,10 +12,15 @@ import { useSession } from 'next-auth/react';
 
 type ConversationBoxProps = {
   className?: string;
+  loadingClassName?: string;
   userId: string;
 };
 
-export function SendMessageButton({ userId, className }: ConversationBoxProps) {
+export function SendMessageButton({
+  userId,
+  className,
+  loadingClassName,
+}: ConversationBoxProps) {
   const t = useTranslations('Home');
   const router = useRouter();
   const { data: session } = useSession();
@@ -30,7 +35,9 @@ export function SendMessageButton({ userId, className }: ConversationBoxProps) {
   }
 
   if (isLoading) {
-    return <Skeleton className="h-10 w-32 rounded-lg" />;
+    return (
+      <Skeleton className={cn('h-10 w-32 rounded-lg', loadingClassName)} />
+    );
   }
 
   if (!response?.success) {

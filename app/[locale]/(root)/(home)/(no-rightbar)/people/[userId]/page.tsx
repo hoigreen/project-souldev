@@ -7,7 +7,11 @@ import SkillCard from '@/components/people/skills-card';
 import { ProfileCardLoadingSkeleton } from '@/components/post/loading';
 import PeoplesPost from '@/components/post/people-posts';
 import { getPostsByUserId } from '@/lib/actions/post';
-import { getMyFollowings, getProfileById } from '@/lib/actions/profile';
+import {
+  getMyFollowings,
+  getMyFriendsList,
+  getProfileById,
+} from '@/lib/actions/profile';
 import { UserBasic } from '@/lib/definitions';
 import getSession from '@/lib/get-session';
 import { getFullName } from '@/lib/utils';
@@ -32,12 +36,17 @@ export default async function Page({ params: { locale, userId } }: PageProps) {
     return redirect('/auth/sign-in');
   }
 
-  const [profileResponse, postsResponse, myFollowingsResponse] =
-    await Promise.all([
-      getProfileById({ userId }),
-      getPostsByUserId({ userId }),
-      getMyFollowings(),
-    ]);
+  const [
+    profileResponse,
+    postsResponse,
+    myFollowingsResponse,
+    myFriendsReponse,
+  ] = await Promise.all([
+    getProfileById({ userId }),
+    getPostsByUserId({ userId }),
+    getMyFollowings(),
+    getMyFriendsList(),
+  ]);
 
   if (!profileResponse.success) {
     return <ErrorStage stage={ErrorStageType.PageNotFound} />;
@@ -51,7 +60,15 @@ export default async function Page({ params: { locale, userId } }: PageProps) {
     return <ErrorStage stage={ErrorStageType.ServerError} />;
   }
 
+  if (!myFriendsReponse) {
+    return <ErrorStage stage={ErrorStageType.ServerError} />;
+  }
+
   const myFollowings: UserBasic[] = myFollowingsResponse.listFollowingUser.map(
+    (item) => item.user_id,
+  );
+
+  const myFriends: UserBasic[] = myFriendsReponse.listFriend.map(
     (item) => item.user_id,
   );
 
@@ -67,6 +84,7 @@ export default async function Page({ params: { locale, userId } }: PageProps) {
         <BasicInfoCard
           profile={profileResponse.data}
           myFollowings={myFollowings}
+          myFriends={myFriends}
         />
 
         {/* Bio & Skill */}
