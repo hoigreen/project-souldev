@@ -42,7 +42,7 @@ export function ConversationBox({
   const usersOnline = useOnlineUsers();
   const isOnline = useMemo(
     () => usersOnline.includes(people._id),
-    [usersOnline],
+    [people._id, usersOnline],
   );
 
   const lastMessage = useMemo(() => {
