@@ -45,12 +45,10 @@ export function ConversationBox({
     [people._id, usersOnline],
   );
 
-  const lastMessage = useMemo(() => {
-    if (data.messages.length === 0)
-      return { text: 'Start a new conversation' } as Message;
-
-    return data.messages[data.messages.length - 1];
-  }, [data]);
+  const lastMessage =
+    data.messages.length === 0
+      ? ({ text: 'Start a new conversation' } as Message)
+      : data.messages[data.messages.length - 1];
 
   return (
     <div {...props} className={className}>

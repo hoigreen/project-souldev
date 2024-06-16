@@ -51,10 +51,8 @@ export function ConversationsList({
       const conversationIndex = items.findIndex(
         (item) => item._id === value.conversationId,
       );
-
       if (conversationIndex !== -1) {
         const updatedConversation = items[conversationIndex];
-
         updatedConversation.messages.push(value.message);
 
         const newItems = items.filter(
