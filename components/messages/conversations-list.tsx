@@ -2,15 +2,16 @@
 
 import { cva, VariantProps } from 'class-variance-authority';
 import { useTranslations } from 'next-intl';
-import { HTMLAttributes, useEffect, useState } from 'react';
+import { HTMLAttributes, useEffect, useMemo, useState } from 'react';
 import { Conversation, MessageInfo, User } from '@/lib/definitions';
 import useConversation from '@/hooks/use-conversation';
 import { ConversationBox } from './conversation-box';
 import { socket } from '@/socket';
 import { useOnlineActions } from '@/hooks/use-online';
-import { SearchNormal } from 'iconsax-react';
-import { Input } from '../ui/input';
 import { Heading } from '../app/heading';
+import { useSearchParams } from 'next/navigation';
+import { getConversations } from '@/lib/actions/conversation';
+import { ConversationSearchBox } from './conversation-search-box';
 
 const conversationsListVariants = cva(
   'w-full min-w-96 bg-white dark:border dark:bg-black md:block md:w-96 md:overflow-hidden md:rounded-lg md:shadow-md',
@@ -39,10 +40,16 @@ export function ConversationsList({
   currentUser,
   ...props
 }: ConversationsListProps) {
+  const searchParams = useSearchParams();
   const { conversationId, isOpen } = useConversation();
   const t = useTranslations('Home');
   const [items, setItems] = useState(initialItems ?? []);
   const onlineAction = useOnlineActions();
+
+  const keyword = useMemo(
+    () => searchParams.get('keyword') ?? '',
+    [searchParams],
+  );
 
   useEffect(() => {
     const handleUserOnline = (value: any) => onlineAction.set(value);
@@ -74,6 +81,21 @@ export function ConversationsList({
     };
   }, [items, onlineAction]);
 
+  useEffect(() => {
+    const handleSearchConversation = async () => {
+      const response = await getConversations({ keyword });
+
+      if (!response.success) {
+        setItems([] as Conversation[]);
+
+        return;
+      }
+      setItems(response.data);
+    };
+
+    handleSearchConversation();
+  }, [keyword]);
+
   return (
     <aside
       className={conversationsListVariants({ className, isOpen })}
@@ -82,18 +104,7 @@ export function ConversationsList({
       <div className="flex h-full flex-col gap-8 p-1">
         <Heading title={t('M200')} size={2} className="px-2 pt-3" />
 
-        <div className="relative w-full px-2">
-          <Input
-            placeholder={t('M14')}
-            type="search"
-            className="h-12 text-base font-medium"
-          />
-
-          <SearchNormal
-            className="absolute right-3 top-1/2 size-8 -translate-y-1/2"
-            variant="TwoTone"
-          />
-        </div>
+        <ConversationSearchBox className="px-2" />
 
         <div className="grow gap-2 overflow-y-auto">
           {items.length === 0 && (

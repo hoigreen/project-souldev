@@ -170,3 +170,7 @@ export enum MemberType {
   Member = 'member',
   Manager = 'manager',
 }
+
+export enum SearchParamKey {
+  Keyword = 'keyword',
+}

@@ -11,10 +11,12 @@ import {
 import { getPathname } from '@/services/url';
 import { Query } from '../url-builder';
 
-export async function getConversations(): Promise<
-  ServerResponse<Conversation[]>
-> {
-  return requestService.get(endpoint.conversation.list);
+export async function getConversations(
+  query?: Query,
+): Promise<ServerResponse<Conversation[]>> {
+  return requestService.get(
+    getPathname({ path: endpoint.conversation.list, query }),
+  );
 }
 
 export async function getConversationById(
