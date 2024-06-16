@@ -175,7 +175,7 @@ export function ViewDetailPostDialog(): React.JSX.Element {
               </div>
             </div>
 
-            <Truncate text={postData.content} isHtml />
+            <Truncate text={postData.content} />
           </div>
 
           <div className="flex gap-3.5">

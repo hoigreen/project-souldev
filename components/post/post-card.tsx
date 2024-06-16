@@ -184,7 +184,7 @@ export default function PostCard({
         </div>
 
         <div className="h-full min-h-max grow">
-          <Truncate text={content ?? ''} isHtml />
+          <Truncate text={content ?? ''} />
         </div>
 
         {/* Images */}
