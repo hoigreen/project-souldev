@@ -98,7 +98,7 @@ export function ConversationContainer({
       ref={messageRef}
       {...props}
       className={cn(
-        'relative grow overflow-y-auto bg-neutral-50 dark:bg-neutral-900',
+        'relative grow overflow-y-auto bg-neutral-50 dark:bg-black',
         className,
       )}
     >

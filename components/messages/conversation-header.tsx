@@ -56,9 +56,9 @@ export function ConversationHeader({
           <p className="text-base font-bold md:text-lg">
             {getFullName(people.first_name, people.last_name)}
           </p>
-          {isOnline && (
-            <p className="text-xs font-light italic md:text-sm">{t('M201')}</p>
-          )}
+          <p className="text-xs font-light italic md:text-sm">
+            {isOnline ? t('M201') : t('M207')}
+          </p>
         </div>
       </div>
     </div>

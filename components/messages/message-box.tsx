@@ -8,7 +8,7 @@ import { calculateTime, cn } from '@/lib/utils';
 import { useLocale } from 'next-intl';
 
 const messageBoxVariants = cva(
-  'flex max-w-full items-end gap-2 overflow-x-hidden px-6 py-4',
+  'flex max-w-full items-end gap-2 overflow-x-hidden px-6 py-2',
   {
     variants: {
       isOwn: {

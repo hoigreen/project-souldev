@@ -4,6 +4,7 @@ import { buttonVariants } from '../ui/button';
 import PageNotFoundImage from '@/public/illustrations/404.svg';
 import ServerErrorImage from '@/public/illustrations/500.svg';
 import UnauthorizedImage from '@/public/illustrations/401.svg';
+import FEATURE_IMAGE_6 from '@/public/svg/landing-page/feature-6.svg';
 import React from 'react';
 import Image from 'next/image';
 

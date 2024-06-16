@@ -433,6 +433,7 @@
     "M203": "No conversations found",
     "M204": "Search",
     "M205": "My friends",
-    "M206": "Send message"
+    "M206": "Send message",
+    "M207": "No active"
   }
 }

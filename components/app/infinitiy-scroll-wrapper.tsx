@@ -4,6 +4,7 @@ import InfiniteScroll, {
 } from 'react-infinite-scroll-component';
 import { Loader2Icon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { MessageStageNew } from '../messages/message-stage';
 
 export interface InfiniteScrollWrapperProps
   extends HTMLAttributes<HTMLDivElement> {
@@ -33,23 +34,29 @@ export const InfiniteScrollContainer = forwardRef<
     ref,
   ) => (
     <div ref={ref} id={id} className={className}>
-      <InfiniteScroll
-        pullDownToRefresh
-        hasMore={hasMore}
-        inverse={inverse}
-        dataLength={dataLength}
-        className={cn(inverse && 'flex flex-col-reverse')}
-        next={onNext}
-        scrollableTarget={id}
-        refreshFunction={onRefresh}
-        loader={
-          <div className="flex justify-center py-2">
-            <Loader2Icon className="size-8 animate-spin text-neutral-300" />
-          </div>
-        }
-      >
-        {children}
-      </InfiniteScroll>
+      {dataLength === 0 ? (
+        <div className="flex size-full flex-1 items-center justify-center">
+          <MessageStageNew />
+        </div>
+      ) : (
+        <InfiniteScroll
+          pullDownToRefresh
+          hasMore={hasMore}
+          inverse={inverse}
+          dataLength={dataLength}
+          className={cn(inverse && 'flex flex-col-reverse')}
+          next={onNext}
+          scrollableTarget={id}
+          refreshFunction={onRefresh}
+          loader={
+            <div className="flex justify-center py-2">
+              <Loader2Icon className="size-8 animate-spin text-neutral-300" />
+            </div>
+          }
+        >
+          {children}
+        </InfiniteScroll>
+      )}
     </div>
   ),
 );

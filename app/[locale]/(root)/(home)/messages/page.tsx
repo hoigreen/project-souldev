@@ -1,4 +1,5 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
+import { MessageStageEmpty } from '@/components/messages/message-stage';
 import { Metadata } from 'next';
 import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 
@@ -15,7 +16,7 @@ export default async function HomePage({
 
   return (
     <div className="hidden h-full grow overflow-hidden rounded-lg bg-white shadow-lg dark:bg-black md:flex md:flex-col">
-      <ErrorStage stage={ErrorStageType.ResourceNotFound} />
+      <MessageStageEmpty />
     </div>
   );
 }
