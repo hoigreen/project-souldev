@@ -9,8 +9,6 @@ import { ConversationBox } from './conversation-box';
 import { socket } from '@/socket';
 import { useOnlineActions } from '@/hooks/use-online';
 import { SearchNormal } from 'iconsax-react';
-import { useModalActions } from '@/hooks/use-modal';
-import { Modals } from '@/lib/constants';
 import { Input } from '../ui/input';
 import { Heading } from '../app/heading';
 
@@ -45,7 +43,6 @@ export function ConversationsList({
   const t = useTranslations('Home');
   const [items, setItems] = useState(initialItems ?? []);
   const onlineAction = useOnlineActions();
-  const { onOpen } = useModalActions(Modals.ViewDetailsPeoples);
 
   useEffect(() => {
     const handleUserOnline = (value: any) => onlineAction.set(value);
@@ -72,8 +69,8 @@ export function ConversationsList({
     socket.on('RECEIVE_MESSAGE', handleReceiveMessage);
 
     return () => {
-      socket.off('USER_ONLINE', handleUserOnline);
-      socket.off('MESSAGE_RECEIVED', handleReceiveMessage);
+      socket.off('USERS_ONLINE', handleUserOnline);
+      socket.off('RECEIVE_MESSAGE', handleReceiveMessage);
     };
   }, [items, onlineAction]);
 
