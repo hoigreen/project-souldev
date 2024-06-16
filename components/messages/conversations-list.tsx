@@ -80,6 +80,12 @@ export function ConversationsList({
         <h2 className="px-2 py-4 text-2xl font-bold">{t('M200')}</h2>
 
         <div className="grow gap-2 overflow-y-auto">
+          {items.length === 0 && (
+            <div className="flex h-full items-center justify-center">
+              <p className="text-center text-sm md:text-base">{t('M203')}</p>
+            </div>
+          )}
+
           {items.map((item, index) => (
             <ConversationBox
               key={index}
