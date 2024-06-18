@@ -173,4 +173,5 @@ export enum MemberType {
 
 export enum SearchParamKey {
   Keyword = 'keyword',
+  Page = 'page',
 }

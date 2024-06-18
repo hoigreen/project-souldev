@@ -111,6 +111,7 @@
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^5.2.0",
+    "use-debounce": "^10.0.1",
     "vaul": "^0.8.9",
     "zod": "^3.22.4",
     "zustand": "^4.5.2"

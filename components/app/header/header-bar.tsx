@@ -1,4 +1,6 @@
-import { Link } from '@/navigation';
+'use client';
+
+import { Link, usePathname } from '@/navigation';
 import Image from 'next/image';
 import { HTMLAttributes } from 'react';
 import LogoTextSvg from '@/public/logo-text.svg';
@@ -6,10 +8,8 @@ import LogoTextDarkSvg from '@/public/logo-text-dark.svg';
 import { UserMenu } from './user-menu';
 import { NotificationsMenu } from './notifications-menu';
 import { MenuMobile } from './menu-mobile';
-import { Input } from '@/components/ui/input';
-import { useTranslations } from 'next-intl';
-import { SearchNormal } from 'iconsax-react';
 import { cn } from '@/lib/utils';
+import { SearchBar } from '@/components/search/search-bar';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: Headerbar
@@ -18,7 +18,7 @@ import { cn } from '@/lib/utils';
 export type HeaderbarProps = HTMLAttributes<HTMLElement>;
 
 export function Headerbar({ className, ...props }: HeaderbarProps) {
-  const t = useTranslations('Home');
+  const pathname = usePathname();
 
   return (
     <nav
@@ -48,28 +48,12 @@ export function Headerbar({ className, ...props }: HeaderbarProps) {
         </Link>
       </div>
 
-      {/* Searchbar */}
-      <div className="relative hidden w-full max-w-md grow md:block">
-        <Input
-          placeholder={t('M14')}
-          type="search"
-          className="h-14 text-base font-medium"
-        />
+      {!pathname.startsWith('/search') && (
+        <SearchBar className="hidden max-w-md grow md:block" />
+      )}
 
-        <SearchNormal
-          className="absolute right-3 top-1/2 size-8 -translate-y-1/2"
-          variant="TwoTone"
-        />
-      </div>
-
-      {/* Avatar dropdown */}
       <div className="flex items-center gap-2 md:gap-3">
-        {/* Message */}
-
-        {/* Notification */}
         <NotificationsMenu />
-
-        {/* User menu */}
         <UserMenu />
       </div>
     </nav>
