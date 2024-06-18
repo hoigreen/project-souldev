@@ -33,8 +33,8 @@ export function RemoveFriendDialog() {
       return;
     }
 
+    onClose();
     toast.success(t('M100'));
-
     router.refresh();
   };
 

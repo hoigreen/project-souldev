@@ -20,9 +20,7 @@ export function ViewLikesPostDialog(): React.JSX.Element {
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent>
-          <div className="space-y-6">
-            <ErrorStage stage={ErrorStageType.ResourceNotFound} />
-          </div>
+          <ErrorStage stage={ErrorStageType.ResourceNotFound} />
         </DialogContent>
       </Dialog>
     );

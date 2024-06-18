@@ -62,21 +62,34 @@ export function ViewDetailPostDialog(): React.JSX.Element {
     getPostDetails().then();
     setIsUpdateData(false);
 
+    return () => {
+      setPostData(undefined);
+      setComments(undefined);
+    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postId, isOpen, isUpdateData]);
 
   const isHasImage: boolean | undefined =
     postData && postData?.images.length > 0;
 
-  if (!postData) {
-    return <></>;
-  }
-
   const handleCloseDialog = () => {
     onClose();
     setPostData(undefined);
+
     setComments(undefined);
   };
+  if (!postData) {
+    return (
+      <Dialog open={isOpen} onOpenChange={handleCloseDialog}>
+        <DialogContent>
+          <div className="max-w-4xl">
+            <ErrorStage stage={ErrorStageType.ResourceNotFound} />
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={handleCloseDialog}>

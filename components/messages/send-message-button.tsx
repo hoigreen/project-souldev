@@ -66,7 +66,9 @@ export function SendMessageButton({
       )}
     >
       <Send2 size={16} />
-      <span className="max-sm:hidden">{t('M206')}</span>
+      <span className="max-sm:hidden md:hidden lg:block xl:hidden xl:rounded-xl 2xl:block 2xl:rounded-lg">
+        {t('M206')}
+      </span>
     </Link>
   );
 }

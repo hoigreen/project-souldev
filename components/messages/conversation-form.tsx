@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import { Send } from 'iconsax-react';
 import { useSession } from 'next-auth/react';
-import { HTMLAttributes, useRef } from 'react';
+import { HTMLAttributes } from 'react';
 import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { MessageSchema, messageSchema } from '@/lib/validations/conversation';
@@ -25,7 +25,6 @@ export function ConversationForm({
   const t = useTranslations('Home');
   const router = useRouter();
   const { data: session } = useSession();
-  const messageRef = useRef(null);
 
   const {
     register,
@@ -49,7 +48,6 @@ export function ConversationForm({
     });
 
     setValue('text', '');
-
     router.refresh();
   };
 
@@ -79,13 +77,6 @@ export function ConversationForm({
               }
             },
           })}
-          onKeyDown={(event) => {
-            const keyCode = event.key;
-            if (keyCode === 'Enter' && !event.shiftKey) {
-              handleSubmit(onSubmit)();
-              event.preventDefault();
-            }
-          }}
         />
 
         <Button type="submit" className="size-12 rounded-full" title="Send">

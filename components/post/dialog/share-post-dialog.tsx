@@ -15,7 +15,7 @@ export function SharePostDialog(): React.JSX.Element {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="p-3">
-        <SharePostForm postId={postId} onSharedSuccess={() => onClose()} />
+        <SharePostForm postId={postId} onSharedSuccess={onClose} />
       </DialogContent>
     </Dialog>
   );

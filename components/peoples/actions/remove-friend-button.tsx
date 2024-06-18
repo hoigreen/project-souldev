@@ -26,7 +26,9 @@ export default function RemoveFriendButton({
       variant="outline"
     >
       <UserMinus size={16} variant="TwoTone" />
-      <span className="max-sm:hidden">{t('M97')}</span>
+      <span className="max-sm:hidden md:hidden lg:block xl:hidden xl:rounded-xl 2xl:block 2xl:rounded-lg">
+        {t('M97')}
+      </span>
     </Button>
   );
 }

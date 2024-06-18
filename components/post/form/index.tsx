@@ -9,7 +9,6 @@ import { ActionPost } from '@/lib/definitions';
 import { htmlToMarkdown, markdownToHTML } from '@/lib/markdown';
 import { cn } from '@/lib/utils';
 import { PostSchema, commentSchema } from '@/lib/validations/post';
-import { useRouter } from '@/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import React from 'react';
@@ -26,7 +25,6 @@ type PostFormProps = {
 };
 
 export default function PostForm({
-  action,
   pageId,
   postId,
   className,
@@ -37,7 +35,6 @@ export default function PostForm({
   const [files, setFiles] = React.useState<File[]>([]);
   const t = useTranslations('Post');
   const [isPending, startTransition] = React.useTransition();
-  const router = useRouter();
 
   const {
     setValue,
@@ -64,15 +61,7 @@ export default function PostForm({
     // Create post in page
     pageId && formData.append('page_id', pageId);
 
-    if (action === ActionPost.Create) {
-      await createPost(formData);
-    } else {
-      // await editThread({
-      //   threadId,
-      //   text: values.thread,
-      //   path: pathname,
-      // });
-    }
+    await createPost(formData);
 
     startTransition(() => {
       onPostCreated && onPostCreated();
