@@ -360,11 +360,11 @@ export interface RemoveFriendData {
 }
 
 export enum FriendActions {
-  Remove = 'remove', // eslint-disable-line no-unused-vars
-  Accept = 'accept', // eslint-disable-line no-unused-vars
-  Cancel = 'cancel', // eslint-disable-line no-unused-vars
-  UnFollow = 'unfollow', // eslint-disable-line no-unused-vars
-  CancelRequest = 'cancelRequest', // eslint-disable-line no-unused-vars
+  Remove = 'remove',
+  Accept = 'accept',
+  Cancel = 'cancel',
+  UnFollow = 'unfollow',
+  CancelRequest = 'cancelRequest',
 }
 
 export type MyFriendRequestsResponse = {
@@ -395,9 +395,10 @@ export type CancelFriendRequestResponse = {
 };
 
 export enum ViewDetailsActionPeoples {
-  viewFriends = 'viewFriends', // eslint-disable-line no-unused-vars -- View friends
-  viewFollowers = 'viewFollowers', // eslint-disable-line no-unused-vars -- View followers
-  viewFollowings = 'viewFollowings', // eslint-disable-line no-unused-vars -- View followings
+  viewDetail = 'viewDetail',
+  viewFriends = 'viewFriends',
+  viewFollowers = 'viewFollowers',
+  viewFollowings = 'viewFollowings',
 }
 
 export interface ViewDetailPeoplesData {

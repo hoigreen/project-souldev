@@ -35,7 +35,7 @@ export default function PeoplesPost({
       <div
         className={cn(
           'grid w-full gap-4 lg:grid-cols-2',
-          posts.length === 1 && 'lg:grid-cols-1',
+          posts.length <= 1 && 'lg:grid-cols-1',
         )}
       >
         {posts.length === 0 ? (

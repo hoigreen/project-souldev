@@ -4,19 +4,17 @@ import { buttonVariants } from '../ui/button';
 import PageNotFoundImage from '@/public/illustrations/404.svg';
 import ServerErrorImage from '@/public/illustrations/500.svg';
 import UnauthorizedImage from '@/public/illustrations/401.svg';
-import FEATURE_IMAGE_6 from '@/public/svg/landing-page/feature-6.svg';
 import React from 'react';
 import Image from 'next/image';
 
 export enum ErrorStageType {
-  PageNotFound = 'PageNotFound', // eslint-disable-line no-unused-vars -- used
-  ServerError = 'ServerError', // eslint-disable-line no-unused-vars -- used
-  Unauthorized = 'Unauthorized', // eslint-disable-line no-unused-vars -- used
-  ResourceNotFound = 'ResourceNotFound', // eslint-disable-line no-unused-vars -- used
+  PageNotFound = 'PageNotFound',
+  ServerError = 'ServerError',
+  Unauthorized = 'Unauthorized',
+  ResourceNotFound = 'ResourceNotFound',
 }
 
 type ErrorStageTypeMap = {
-  // eslint-disable-next-line no-unused-vars -- used
   [key in ErrorStageType]: {
     title: string;
     description: string;
@@ -91,15 +89,23 @@ const errorStageTypeMap: ErrorStageTypeMap = {
 };
 
 export function ErrorStage({
-  data,
   stage,
   className,
+  title,
+  description,
 }: {
   className?: string;
-  data?: unknown;
+  title?: string;
+  description?: string;
   stage: ErrorStageType;
 }): React.JSX.Element {
-  const { title, description, action, href, image } = errorStageTypeMap[stage];
+  const {
+    title: defaultTitle,
+    description: defaultDescription,
+    action,
+    href,
+    image,
+  } = errorStageTypeMap[stage];
 
   return (
     <div
@@ -111,17 +117,13 @@ export function ErrorStage({
       {image}
 
       <div className="text-center">
-        <h1 className="text-lg font-bold capitalize md:text-2xl">{title}</h1>
+        <h1 className="text-lg font-bold capitalize md:text-2xl">
+          {title ?? defaultTitle}
+        </h1>
         <p className="mx-auto mt-3 max-w-md text-sm text-gray-500">
-          {description}
+          {description ?? defaultDescription}
         </p>
-        {data ? (
-          <div className="max-w-lg overflow-hidden rounded border bg-neutral-100 text-left">
-            <div className="overflow-auto p-2">
-              <pre className="text-xs">{JSON.stringify(data, null, 2)}</pre>
-            </div>
-          </div>
-        ) : null}
+
         <Link
           className={twMerge(
             buttonVariants(),

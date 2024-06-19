@@ -10,6 +10,8 @@ import {
   ProfileResponse,
   MyFollowersResponse,
   MyPostsResponse,
+  PaginationsResponse,
+  UserBasic,
 } from '@/lib/definitions';
 import { endpoint } from '@/services/endpoint';
 import requestService from '@/services/request-service';
@@ -94,4 +96,12 @@ export async function unfollow(
   return await requestService.post(endpoint.profile.unfollow, {
     toUser_id: toUserId,
   });
+}
+
+export async function searchPeople(
+  query?: Query,
+): Promise<PaginationsResponse<UserBasic[]>> {
+  return await requestService.get(
+    getPathname({ path: endpoint.profile.search, query }),
+  );
 }

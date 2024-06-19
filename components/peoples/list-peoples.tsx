@@ -11,7 +11,7 @@ import { cn, getFullName } from '@/lib/utils';
 import { Link, useRouter } from '@/navigation';
 import React, { useMemo } from 'react';
 import RemoveFriendButton from './actions/remove-friend-button';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 import { acceptFriendRequest, unfollow } from '@/lib/actions/profile';
 import toast from 'react-hot-toast';
@@ -92,6 +92,19 @@ export default function ListPeoples({
             {viewAction &&
               viewAction === ViewDetailsActionPeoples.viewFriends && (
                 <SendMessageButton userId={item._id} />
+              )}
+
+            {viewAction &&
+              viewAction === ViewDetailsActionPeoples.viewDetail && (
+                <Link
+                  href={`/people/${item._id}`}
+                  className={cn(
+                    buttonVariants(),
+                    'block w-fit text-xs sm:text-sm',
+                  )}
+                >
+                  {t('M140')}
+                </Link>
               )}
 
             {action && action === FriendActions.Remove && (

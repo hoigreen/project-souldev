@@ -48,6 +48,7 @@ export const endpoint = {
     acceptFriendRequest: '/api/profile/accept-friend-request',
     removeFriendRequest: '/api/profile/remove-friend-request',
     removeFriend: '/api/profile/remove-friend',
+    search: '/api/profile/search',
   },
 
   group: {
