@@ -39,7 +39,11 @@ export default function PeoplesPost({
         )}
       >
         {posts.length === 0 ? (
-          <ErrorStage stage={ErrorStageType.ResourceNotFound} />
+          <ErrorStage
+            stage={ErrorStageType.ResourceNotFound}
+            title={t('M2')}
+            description={t('M208')}
+          />
         ) : (
           posts.map((item) => (
             <PostCard

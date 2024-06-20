@@ -434,6 +434,7 @@
     "M204": "Search",
     "M205": "My friends",
     "M206": "Send message",
-    "M207": "No active"
+    "M207": "No active",
+    "M208": "This person has no posts yet"
   }
 }
