@@ -35,6 +35,10 @@ export default async function HomePage({
     return <ErrorStage stage={ErrorStageType.ServerError} />;
   }
 
+  if (!getMyFollowingsResponse.listFollowingUser) {
+    return <ErrorStage stage={ErrorStageType.ServerError} />;
+  }
+
   const myFollowings: UserBasic[] =
     getMyFollowingsResponse.listFollowingUser.map((item) => item.user_id);
 
@@ -49,7 +53,7 @@ export default async function HomePage({
       </div>
 
       <div className="space-y-3">
-        <Heading title={t('M56')} size={1} />
+        <Heading title={t('M59')} size={1} />
         <Suspense fallback={<ListPeoplesLoading />}>
           <SuggestionPeoples myFollowings={myFollowings} />
         </Suspense>
