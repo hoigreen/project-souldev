@@ -24,6 +24,20 @@ export const metadata: Metadata = {
     template: '%s | SoulDev',
   },
   description: 'Social network for developers - Soulmate of Dev',
+  openGraph: {
+    url: '/',
+    title: 'SoulDev',
+    type: 'website',
+    description: 'Social network for developers - Soulmate of Dev',
+    images: [
+      {
+        url: '/logo.png',
+        alt: 'SoulDev',
+        width: 600,
+        height: 600,
+      },
+    ],
+  },
 } satisfies Metadata;
 
 export const viewport: Viewport = {
