@@ -1,78 +1,158 @@
 # project-souldev
 
-## Getting started
+**SoulDev** - Welcome to **SoulDev**, the ultimate destination for developers to connect, collaborate, and innovate. Join our vibrant community to exchange ideas, share insights, and build together. Experience the power of unity in coding.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Introduction
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Welcome to the repository of our social media web application! This README provides an overview of the project, including the technologies used in both the frontend and backend, setup instructions, and contribution guidelines. This repository contains the source code for a social media web application. The application enables users to create profiles, share posts, interact in real-time, and more. It leverages modern web technologies to provide a seamless and responsive user experience.
 
-## Add your files
+## Table of Contents
+- [Introduction](#introduction)
+- [Tech Stack](#tech-stack)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+  - [Infrastructure](#infrastructure)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Application](#running-the-application)
+- [Contributing](#contributing)
+- [License](#license)
+</details>
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## Live preview:
+Production has been deploy at url [SoulDev](https://souldev.online)
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/hoi.truongquoc107/project-financial-management-frontend.git
-git branch -M main
-git push -uf origin main
-```
+## Tech Stack
 
-## Integrate with your tools
+### Frontend
 
-- [ ] [Set up project integrations](https://gitlab.com/hoi.truongquoc107/project-financial-management-frontend/-/settings/integrations)
+- **Framework UI**: [NextJS 14](https://nextjs.org/)
+- **UI Library**: [ReactJS](https://reactjs.org/)
+- **Programming Languages**: TypeScript, JavaScript
+- **Realtime Platform**: [Socket.io Client](https://socket.io/)
+- **API Handling, Data Fetching**: NextJS Server Actions, [Axios](https://axios-http.com/), [React Query](https://react-query.tanstack.com/)
+- **Authentication & Authorization**: [NextAuth](https://next-auth.js.org/)
+- **Source Version Control**: Git, [GitHub](https://github.com/)
 
-## Collaborate with your team
+### Backend
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+- **Programming Language**: JavaScript
+- **Database**: [MongoDB](https://www.mongodb.com/), [Redis](https://redis.io/)
+- **Source Version Control**: Git, [GitLab](https://gitlab.com/)
+- **Frameworks and Libraries**: 
+  - [Express](https://expressjs.com/)
+  - [Cloudinary](https://cloudinary.com/)
+  - [Socket.io](https://socket.io/)
+  - [Swagger](https://swagger.io/)
+  - and more...
 
-## Test and Deploy
+### Infrastructure
 
-Use the built-in continuous integration in GitLab.
+- **Server**: [Vercel](https://vercel.com/)
+- **CI/CD**: [GitLab CI/CD](https://docs.gitlab.com/ee/ci/)
+- **Cloud Services**: [AWS EC2](https://aws.amazon.com/ec2/)
+- **Containerization**: [Docker](https://www.docker.com/), [Docker Compose](https://docs.docker.com/compose/)
+- **Notification Center**: [Novu](https://novu.co/)
+- **Domain Hosting**: [Hostinger](https://www.hostinger.com/)
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## Screenshots 📸
+![image](https://github.com/hoigreen/project-souldev/assets/88929110/4470647a-29c0-40e9-80c7-8e9d982d378c)
 
----
+![image](https://github.com/hoigreen/project-souldev/assets/88929110/362f7ee5-d4f4-4877-b8e4-7cb67c40d1d8)
 
-# Editing this README
+![image](https://github.com/hoigreen/project-souldev/assets/88929110/d90af734-7de2-4b52-af74-a8d164c8cee8)
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+![image](https://github.com/hoigreen/project-souldev/assets/88929110/764d9622-41c4-487b-b2ca-dd2099c67f47)
 
-## Suggestions for a good README
+![image](https://github.com/hoigreen/project-souldev/assets/88929110/5ef136fb-15c0-44c7-aba4-0bcd5457b190)
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+![image](https://github.com/hoigreen/project-souldev/assets/88929110/4463b32b-70fb-4b91-9524-15702e07893d)
 
-## Name
+## Features:
+1. **News Feeds**
+   - Real-time updates from friends and followed pages
+   - Personalized content based on user interests
+   - Ability to like, comment, and share posts
 
-Choose a self-explaining name for your project.
+2. **Groups**
+   - Create and join groups based on interests
+   - Group-specific discussions and posts
+   - Admin and moderator roles for managing groups
 
-## Description
+3. **Pages**
+   - Create and manage pages for businesses, brands, or interests
+   - Post updates and interact with followers
+   - Analytics for page performance
 
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+4. **Chatting**
+   - Real-time messaging with friends and groups
+   - Support for text, images, videos, and file sharing
+   - Online status and typing indicators
 
-## Badges
+5. **Profile**
+   - Customizable user profiles with bio, profile picture, and cover photo
+   - Timeline of user’s posts and activities
+   - Privacy settings for controlling profile visibility
 
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+6. **Notifications**
+   - Real-time notifications for likes, comments, shares, and messages
+   - Notification center for managing all alerts
+   - Customizable notification preferences
 
-## Visuals
+7. **Search**
+   - Advanced search functionality to find people, pages, and groups
+   - Filtered search results based on relevance and interests
 
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+8. **Content Management**
+    - Rich text editor for creating posts
+    - Media library for managing uploaded images and videos
+    - Drafts and scheduled posts
+
+9. **Dark Mode**
+    - Toggle between light and dark themes
+    - Enhanced readability and reduced eye strain
+
+
+### Prerequisites
+Before you get started, you need to install the following prerequisites:
+
+- [Node.js](https://nodejs.org/en) - JavaScript runtime environment with v18 or higher.
+- NodeJS package management like [pnpm](https://pnpm.io/) or [Bun](https://bun.sh/).
+- MongoDB
+- Redis
+- Git
+
+
+Once you have Node.js and bun (or pnpm) installed, you can proceed with the project setup:
 
 ## Installation
 
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+1. Clone the project from the remote repository:
+```bash
+# Clone on method HTTPS
+git clone https://github.com/hoigreen/project-souldev.git
 
-## Usage
 
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+# Clone on method SSH
+git clone git@github.com:hoigreen/project-souldev.git
+```
+
+2. Install project dependencies:
+``` bash
+pnpm install
+# or with Bun
+bun install
+```
+
+4. Setup file .env with your config project.
+
+5. Starting client and server
+``` bash
+bun dev
+```
+
+The SoulDev application will run localy at address http://localhost:3000
 
 ## Support
 
@@ -101,3 +181,14 @@ For open source projects, say how it is licensed.
 ## Project status
 
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+
+
+## About my team
+
+1. Truong Quoc Hoi
+  - [LinkedIn](https://www.linkedin.com/in/hoigreen/)
+  - [Facebook](https://www.facebook.com/hoigreen)
+
+2. Huy Nguyen
+  - [LinkedIn](https://www.linkedin.com/in/%C4%91%E1%BB%A9c-huy/)
+  - [Facebook](https://www.facebook.com/huynguyen07080401)
