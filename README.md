@@ -7,6 +7,7 @@
 Welcome to the repository of our social media web application! This README provides an overview of the project, including the technologies used in both the frontend and backend, setup instructions, and contribution guidelines. This repository contains the source code for a social media web application. The application enables users to create profiles, share posts, interact in real-time, and more. It leverages modern web technologies to provide a seamless and responsive user experience.
 
 ## Table of Contents
+
 - [Introduction](#introduction)
 - [Tech Stack](#tech-stack)
   - [Frontend](#frontend)
@@ -21,6 +22,7 @@ Welcome to the repository of our social media web application! This README provi
 </details>
 
 ## Live preview:
+
 Production has been deploy at url [SoulDev](https://souldev.online)
 
 ## Tech Stack
@@ -40,7 +42,7 @@ Production has been deploy at url [SoulDev](https://souldev.online)
 - **Programming Language**: JavaScript
 - **Database**: [MongoDB](https://www.mongodb.com/), [Redis](https://redis.io/)
 - **Source Version Control**: Git, [GitLab](https://gitlab.com/)
-- **Frameworks and Libraries**: 
+- **Frameworks and Libraries**:
   - [Express](https://expressjs.com/)
   - [Cloudinary](https://cloudinary.com/)
   - [Socket.io](https://socket.io/)
@@ -57,6 +59,7 @@ Production has been deploy at url [SoulDev](https://souldev.online)
 - **Domain Hosting**: [Hostinger](https://www.hostinger.com/)
 
 ## Screenshots 📸
+
 ![image](https://github.com/hoigreen/project-souldev/assets/88929110/4470647a-29c0-40e9-80c7-8e9d982d378c)
 
 ![image](https://github.com/hoigreen/project-souldev/assets/88929110/362f7ee5-d4f4-4877-b8e4-7cb67c40d1d8)
@@ -70,51 +73,60 @@ Production has been deploy at url [SoulDev](https://souldev.online)
 ![image](https://github.com/hoigreen/project-souldev/assets/88929110/4463b32b-70fb-4b91-9524-15702e07893d)
 
 ## Features:
+
 1. **News Feeds**
+
    - Real-time updates from friends and followed pages
    - Personalized content based on user interests
    - Ability to like, comment, and share posts
 
 2. **Groups**
+
    - Create and join groups based on interests
    - Group-specific discussions and posts
    - Admin and moderator roles for managing groups
 
 3. **Pages**
+
    - Create and manage pages for businesses, brands, or interests
    - Post updates and interact with followers
    - Analytics for page performance
 
 4. **Chatting**
+
    - Real-time messaging with friends and groups
    - Support for text, images, videos, and file sharing
    - Online status and typing indicators
 
 5. **Profile**
+
    - Customizable user profiles with bio, profile picture, and cover photo
    - Timeline of user’s posts and activities
    - Privacy settings for controlling profile visibility
 
 6. **Notifications**
+
    - Real-time notifications for likes, comments, shares, and messages
    - Notification center for managing all alerts
    - Customizable notification preferences
 
 7. **Search**
+
    - Advanced search functionality to find people, pages, and groups
    - Filtered search results based on relevance and interests
 
 8. **Content Management**
-    - Rich text editor for creating posts
-    - Media library for managing uploaded images and videos
-    - Drafts and scheduled posts
+
+   - Rich text editor for creating posts
+   - Media library for managing uploaded images and videos
+   - Drafts and scheduled posts
 
 9. **Dark Mode**
-    - Toggle between light and dark themes
-    - Enhanced readability and reduced eye strain
-
+   - Toggle between light and dark themes
+   - Enhanced readability and reduced eye strain
 
 ### Prerequisites
+
 Before you get started, you need to install the following prerequisites:
 
 - [Node.js](https://nodejs.org/en) - JavaScript runtime environment with v18 or higher.
@@ -123,12 +135,12 @@ Before you get started, you need to install the following prerequisites:
 - Redis
 - Git
 
-
 Once you have Node.js and bun (or pnpm) installed, you can proceed with the project setup:
 
 ## Installation
 
 1. Clone the project from the remote repository:
+
 ```bash
 # Clone on method HTTPS
 git clone https://github.com/hoigreen/project-souldev.git
@@ -139,7 +151,8 @@ git clone git@github.com:hoigreen/project-souldev.git
 ```
 
 2. Install project dependencies:
-``` bash
+
+```bash
 pnpm install
 # or with Bun
 bun install
@@ -148,7 +161,8 @@ bun install
 4. Setup file .env with your config project.
 
 5. Starting client and server
-``` bash
+
+```bash
 bun dev
 ```
 
@@ -182,13 +196,14 @@ For open source projects, say how it is licensed.
 
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
 
-
 ## About my team
 
 1. Truong Quoc Hoi
-  - [LinkedIn](https://www.linkedin.com/in/hoigreen/)
-  - [Facebook](https://www.facebook.com/hoigreen)
+
+- [LinkedIn](https://www.linkedin.com/in/hoigreen/)
+- [Facebook](https://www.facebook.com/hoigreen)
 
 2. Huy Nguyen
-  - [LinkedIn](https://www.linkedin.com/in/%C4%91%E1%BB%A9c-huy/)
-  - [Facebook](https://www.facebook.com/huynguyen07080401)
+
+- [LinkedIn](https://www.linkedin.com/in/%C4%91%E1%BB%A9c-huy/)
+- [Facebook](https://www.facebook.com/huynguyen07080401)
