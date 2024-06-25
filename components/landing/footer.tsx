@@ -1,5 +1,3 @@
-import * as React from 'react';
-import { VariantProps, cva } from 'class-variance-authority';
 import { useTranslations } from 'next-intl';
 import Container from '../ui/containter';
 import Logo from '@/public/logo-text.svg';
@@ -7,26 +5,23 @@ import LogoDark from '@/public/logo-text-dark.svg';
 import Image from 'next/image';
 import { Route } from '@/lib/definitions';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
+import { HTMLAttributes } from 'react';
 
-/* ---------------------------------------------------------------------------------------------------------------------
- * Component: FooterMenu
- * ------------------------------------------------------------------------------------------------------------------ */
-
-const footerMenuVariants = cva('pb-6 pt-8 max-sm:hidden md:py-10');
-
-export type FooterMenuProps = React.HTMLAttributes<HTMLElement> &
-  VariantProps<typeof footerMenuVariants> & {
-    routes: Route[];
-  };
+export type FooterMenuProps = HTMLAttributes<HTMLElement> & {
+  routes: Route[];
+};
 
 export function FooterMenu({ className, routes, ...props }: FooterMenuProps) {
   const t = useTranslations('Landing');
 
   return (
-    <Container className={footerMenuVariants({ className })} {...props}>
+    <Container
+      className={cn('pb-6 pt-8 max-sm:hidden md:py-10', className)}
+      {...props}
+    >
       <div className="flex flex-col justify-between gap-4 md:flex-row">
-        {/* Logo */}
-        <div className="">
+        <div>
           <div className="max-w-md space-y-8">
             <Image
               src={Logo}
@@ -50,7 +45,7 @@ export function FooterMenu({ className, routes, ...props }: FooterMenuProps) {
 
         <div className="flex flex-col items-start justify-between gap-4 md:flex-row">
           <div className="flex-1">
-            <ul className="flex flex-col gap-6 text-sm font-medium md:text-base xl:text-lg">
+            <ul className="flex flex-col gap-6 text-sm md:text-base xl:text-lg">
               {routes.map((route, index) => (
                 <Link
                   key={index}
@@ -68,7 +63,7 @@ export function FooterMenu({ className, routes, ...props }: FooterMenuProps) {
           <div className="flex-1">
             <div className="space-y-5">
               <h3 className="text-xl font-bold xl:text-2xl">{t('M9')}</h3>
-              <ul className="space-y-4 font-medium xl:text-lg">
+              <ul className="space-y-4 xl:text-lg">
                 <li>
                   <p className="mb-2">{t('M10')}</p>
                 </li>
@@ -87,16 +82,9 @@ export function FooterMenu({ className, routes, ...props }: FooterMenuProps) {
   );
 }
 
-/* ---------------------------------------------------------------------------------------------------------------------
- * Component: FooterMobileMenu
- * ------------------------------------------------------------------------------------------------------------------ */
-
-const footerMobileMenuVariants = cva('hidden py-6 max-sm:block');
-
-export type FooterMobileMenuProps = React.HTMLAttributes<HTMLElement> &
-  VariantProps<typeof footerMobileMenuVariants> & {
-    routes: Route[];
-  };
+export type FooterMobileMenuProps = HTMLAttributes<HTMLElement> & {
+  routes: Route[];
+};
 
 export function FooterMobileMenu({
   className,
@@ -106,7 +94,7 @@ export function FooterMobileMenu({
   const t = useTranslations('Landing');
 
   return (
-    <Container className={footerMobileMenuVariants({ className })} {...props}>
+    <Container className={cn('hidden py-6 max-sm:block', className)} {...props}>
       <div className="grid grid-cols-2 gap-4">
         <div className="max-w-md space-y-6">
           <Image
@@ -159,16 +147,9 @@ export function FooterMobileMenu({
   );
 }
 
-/* ---------------------------------------------------------------------------------------------------------------------
- * Component: Footer
- * ------------------------------------------------------------------------------------------------------------------ */
-
-const footerVariants = cva('border-t border-border bg-background text-primary');
-
-export type FooterProps = React.HTMLAttributes<HTMLElement> &
-  VariantProps<typeof footerVariants> & {
-    routes: Route[];
-  };
+export type FooterProps = HTMLAttributes<HTMLElement> & {
+  routes: Route[];
+};
 
 export default function Footer({
   className,
@@ -178,12 +159,18 @@ export default function Footer({
   const t = useTranslations('Landing');
 
   return (
-    <div className={footerVariants({ className })} {...props}>
+    <div
+      className={cn(
+        'border-t border-border bg-background text-primary',
+        className,
+      )}
+      {...props}
+    >
       <FooterMenu routes={routes} />
 
       <FooterMobileMenu routes={routes} />
 
-      <p className="w-full gap-y-4 border-t pb-8 pt-6 text-center text-sm font-medium md:py-6 md:text-base xl:text-lg">
+      <p className="w-full gap-y-4 border-t pb-8 pt-6 text-center text-sm md:py-6 md:text-base xl:text-lg">
         {t('M7')}
       </p>
     </div>

@@ -32,7 +32,7 @@ export default async function CompanyOnboardingLayout({
         </div>
       </header>
 
-      <main className="mx-4 flex grow flex-col items-center justify-center sm:p-4 md:mx-0">
+      <main className="mx-4 flex grow flex-col items-center justify-center pb-10 sm:p-4 md:mx-0">
         {children}
       </main>
     </div>

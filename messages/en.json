@@ -185,7 +185,8 @@
     "M22": "https://github.com/username",
     "M23": "Edit",
     "M24": "Something went wrong, please try again.",
-    "M25": "Update avatar successfully!"
+    "M25": "Update avatar successfully!",
+    "M26": "Update information successfully"
   },
   "Post": {
     "M1": "Create post",

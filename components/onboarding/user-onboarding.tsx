@@ -51,35 +51,35 @@ export default function UserOnboarding() {
     const response = await completeOnboarding(
       { _id: user._id },
       {
+        ...formData,
         first_name: formData.first_name.trim(),
         last_name: formData.last_name.trim(),
         mobile: formData.mobile.trim(),
-        bio: formData.bio,
-        facebook: formData.facebook,
-        github: formData.github,
         isOnboardingCompleted: true,
       },
     );
 
     if (!response.success) {
-      return toast.error(t('M24'));
-    } else {
-      await createProfile();
-      await update({ isOnboardingCompleted: true });
-      startTransition(() => {
-        router.push('/home');
-      });
+      toast.error(t('M24'));
+
+      return;
     }
+
+    await createProfile();
+    await update({ isOnboardingCompleted: true });
+
+    startTransition(() => {
+      toast.success(t('M26'));
+      router.push('/home');
+    });
   };
 
   return (
     <SectionContainer className="w-full space-y-6 pb-8 md:max-w-3xl md:pb-0">
       <Heading size={2} title={t('M7')} subtitle={t('M8')} />
 
-      {/* Avatar */}
       <UploadAvatar user={user} />
 
-      {/* Form */}
       <Form {...form}>
         <form
           className="space-y-3 md:space-y-4"

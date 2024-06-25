@@ -19,6 +19,7 @@ export function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL as string),
   title: {
     default: 'SoulDev',
     template: '%s | SoulDev',
@@ -65,7 +66,7 @@ export default async function LocaleLayout({
 
   return (
     <html className={roboto.variable} lang={locale} suppressHydrationWarning>
-      <body className="scroll-smooth antialiased">
+      <body className="scroll-smooth font-sans antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -1,7 +1,6 @@
 'use server';
 
 import {
-  UserResponse,
   OnboardingRequestBody,
   ProfileAdvanceInfoBody,
   ProfileAdvanceInfoResponse,
@@ -14,15 +13,9 @@ import { Params } from '@/lib/url-builder';
 import { endpoint } from '@/services/endpoint';
 import requestService from '@/services/request-service';
 import { getPathname } from '@/services/url';
-import { User } from 'next-auth';
 
-// This file contain server actions
-
-export async function login(body: { email: string; password: string }) {
-  const data = await requestService.post(endpoint.user.login, body);
-
-  return data;
-}
+export const login = async (body: { email: string; password: string }) =>
+  requestService.post(endpoint.user.login, body);
 
 export async function getCurrentUser(params: Params) {
   const data = await requestService.get(
