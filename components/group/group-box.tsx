@@ -6,6 +6,7 @@ import React from 'react';
 import Image from 'next/image';
 import { ImagePlus } from 'lucide-react';
 import Link from 'next/link';
+import { Truncate } from '../ui/truncate';
 
 type GroupBoxProps = React.HTMLAttributes<HTMLDivElement> & {
   classNames?: {
@@ -52,7 +53,7 @@ export default function GroupBox({
         )}
       </Link>
 
-      <div className="grow space-y-1">
+      <div className="max-w-[calc(100%-7rem)] grow space-y-1">
         <Link
           href={`/group/${groupId}`}
           className="block truncate text-sm font-medium text-neutral-800 dark:text-neutral-200 sm:text-base"

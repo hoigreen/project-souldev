@@ -12,6 +12,7 @@ import {
   MyPostsResponse,
   PaginationsResponse,
   UserBasic,
+  Response,
 } from '@/lib/definitions';
 import { endpoint } from '@/services/endpoint';
 import requestService from '@/services/request-service';
@@ -87,6 +88,12 @@ export async function acceptFriendRequest(
 export async function removeFriend(toUserId: string) {
   return await requestService.post(endpoint.profile.removeFriend, {
     toUser_id: toUserId,
+  });
+}
+
+export async function follow(userId: string): Promise<Response> {
+  return await requestService.post(endpoint.profile.follow, {
+    toUser_id: userId,
   });
 }
 

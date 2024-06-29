@@ -363,6 +363,7 @@ export enum FriendActions {
   Remove = 'remove',
   Accept = 'accept',
   Cancel = 'cancel',
+  Follow = 'follow',
   UnFollow = 'unfollow',
   CancelRequest = 'cancelRequest',
 }

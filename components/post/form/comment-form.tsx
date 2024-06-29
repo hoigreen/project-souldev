@@ -72,6 +72,7 @@ export default function CommentForm({
   };
 
   const handleCreatedComment = () => {
+    setValue('content', '');
     setFiles([]);
     setShowAddImages(false);
     reset();

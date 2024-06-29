@@ -44,6 +44,7 @@ export const endpoint = {
     getMyFollowings: '/api/profile/get-followings',
     getMyFriendRequest: '/api/profile/get-friends-requests',
     addFriend: '/api/profile/add-friend',
+    follow: '/api/profile/follow',
     unfollow: '/api/profile/unfollow',
     acceptFriendRequest: '/api/profile/accept-friend-request',
     removeFriendRequest: '/api/profile/remove-friend-request',

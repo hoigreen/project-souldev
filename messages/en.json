@@ -436,6 +436,8 @@
     "M205": "My friends",
     "M206": "Send message",
     "M207": "No active",
-    "M208": "This person has no posts yet"
+    "M208": "This person has no posts yet",
+    "M209": "Unfollow",
+    "M210": "Follow successfully!"
   }
 }

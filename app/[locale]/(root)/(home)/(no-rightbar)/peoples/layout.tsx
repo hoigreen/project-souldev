@@ -1,6 +1,7 @@
 import { Heading } from '@/components/app/heading';
 import Tabs, { ITabs } from '@/components/ui/app/tabs';
 import { Profile2User, UserAdd, UserSearch, UserTick } from 'iconsax-react';
+import { XSquare } from 'lucide-react';
 import { Metadata } from 'next';
 import {
   getTranslations,
@@ -37,6 +38,11 @@ export default async function PeoplesLayout({
       href: '/peoples/following',
       label: t('M61'),
       icon: <UserTick variant="TwoTone" size={16} />,
+    },
+    {
+      href: '/peoples/unfollow',
+      label: t('M209'),
+      icon: <XSquare size={16} />,
     },
     {
       href: '/peoples/all-friends',

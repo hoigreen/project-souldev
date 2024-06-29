@@ -50,7 +50,7 @@ export default function PageBox({
         />
       </Link>
 
-      <div className="grow space-y-1">
+      <div className="max-w-[calc(100%-7rem)] grow space-y-1">
         <Link
           href={`/page/${pageId}`}
           className="block truncate text-sm font-medium text-neutral-800 dark:text-neutral-200 sm:text-base"

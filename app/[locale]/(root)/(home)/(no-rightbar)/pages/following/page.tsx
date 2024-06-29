@@ -1,8 +1,7 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { Heading } from '@/components/app/heading';
 import FollowingPages from '@/components/pages/following-pages';
-import MyPages from '@/components/pages/my-pages';
-import { getPagesFollowing, getPagesLiked } from '@/lib/actions/page';
+import { getPagesFollowing } from '@/lib/actions/page';
 import { Metadata } from 'next';
 import {
   getTranslations,
@@ -25,7 +24,12 @@ export default async function Page({
   const response = await getPagesFollowing();
 
   if (!response.success) {
-    return <ErrorStage stage={ErrorStageType.ServerError} />;
+    return (
+      <div className="space-y-3">
+        <Heading title={t('M24')} size={1} />
+        <ErrorStage stage={ErrorStageType.ServerError} />;
+      </div>
+    );
   }
 
   return (

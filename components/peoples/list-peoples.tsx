@@ -9,11 +9,11 @@ import {
 } from '@/lib/definitions';
 import { cn, getFullName } from '@/lib/utils';
 import { Link, useRouter } from '@/navigation';
-import React, { useMemo } from 'react';
+import React, { ReactNode, useMemo, useTransition } from 'react';
 import RemoveFriendButton from './actions/remove-friend-button';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
-import { acceptFriendRequest, unfollow } from '@/lib/actions/profile';
+import { acceptFriendRequest, follow, unfollow } from '@/lib/actions/profile';
 import toast from 'react-hot-toast';
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { SendMessageButton } from '../messages/send-message-button';
@@ -35,6 +35,7 @@ export default function ListPeoples({
 }: ListPeoplesProps) {
   const t = useTranslations('Home');
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const sanitizedData = useMemo(() => data.filter((item) => item), [data]);
 
   const handleAccept = async (userId: string) => {
@@ -61,6 +62,21 @@ export default function ListPeoples({
 
     toast.success(t('M107'));
     router.refresh();
+  };
+
+  const handleFollow = async (userId: string) => {
+    const response = await follow(userId);
+
+    startTransition(() => {
+      if (!response.success) {
+        toast.error(t('M15'));
+
+        return;
+      }
+
+      toast.success(t('M210'));
+      router.refresh();
+    });
   };
 
   if (!sanitizedData.length) {
@@ -117,6 +133,16 @@ export default function ListPeoples({
                 onClick={() => handleAccept(item._id)}
               >
                 {t('M104')}
+              </Button>
+            )}
+
+            {action && action === FriendActions.Follow && (
+              <Button
+                className="w-fit text-xs sm:text-sm"
+                disabled={isPending}
+                onClick={() => handleFollow(item._id)}
+              >
+                {t('M52')}
               </Button>
             )}
 

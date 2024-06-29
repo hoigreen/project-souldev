@@ -40,21 +40,18 @@ export default async function Page({ params: { locale, postId } }: PageProps) {
 
       <PostCard
         id={post._id}
-        likes={post.likes}
         group={post.group_id}
         page={post.page_id}
-        content={post.content}
         author={post.user_id}
         created={post.created}
-        countComments={post.commentsCount}
+        countComments={comments.length}
         currentUserId={session.user._id}
-        images={post.images}
-        shares={post.shares}
         classNames={{
           imageContainer: 'h-full md:min-h-[40rem]',
           image: 'object-center',
         }}
         isDisabledComment
+        {...post}
       />
 
       <div className="w-full space-y-6 rounded-xl px-3 py-4 md:p-7 xl:bg-white xl:shadow-lg xl:dark:bg-black">
