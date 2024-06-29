@@ -34,7 +34,7 @@ export default function PeoplesPost({
 
       <div
         className={cn(
-          'grid w-full gap-4 lg:grid-cols-2',
+          'grid w-full gap-4',
           posts.length <= 1 && 'lg:grid-cols-1',
         )}
       >
@@ -48,16 +48,14 @@ export default function PeoplesPost({
           posts.map((item) => (
             <PostCard
               key={item._id}
-              likes={item.likes}
+              className="mx-auto w-full max-w-2xl border"
               group={item.group_id}
               page={item.page_id}
               currentUserId={currentUserId}
               id={item._id}
-              content={item.content}
               author={item.user_id}
-              created={item.created}
-              images={item.images}
-              shares={item.shares}
+              countComments={item.commentsCount}
+              {...item}
             />
           ))
         )}

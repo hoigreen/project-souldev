@@ -33,13 +33,18 @@ export default function GroupBox({
   const t = useTranslations('Home');
 
   return (
-    <div className={cn('flex w-full items-center gap-2 p-2', className)}>
+    <div
+      className={cn(
+        'flex w-full items-center justify-between gap-2',
+        className,
+      )}
+    >
       <Link
         href={`/group/${groupId}`}
         className="relative block aspect-square size-14 overflow-hidden rounded-lg border object-contain"
       >
         {avatar ? (
-          <Image src={avatar} alt={name} fill className="" />
+          <Image src={avatar} alt={name} fill />
         ) : (
           <div className="flex size-full items-center justify-center overflow-hidden rounded-lg">
             <ImagePlus size={24} className="text-background" />

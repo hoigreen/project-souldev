@@ -69,7 +69,10 @@ export default function BasicInfoCard({
   ];
 
   return (
-    <Card className={cn('space-y-6 p-4 md:p-6', className)} {...props}>
+    <Card
+      className={cn('space-y-2 p-4 md:space-y-3 md:p-6', className)}
+      {...props}
+    >
       <div className="flex flex-col justify-center gap-3 md:gap-4">
         <div className="relative mx-auto">
           {profile.user_id.image ? (

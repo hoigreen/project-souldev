@@ -35,7 +35,12 @@ export default function PageBox({
   const t = useTranslations('Home');
 
   return (
-    <div className={cn('flex w-full items-center gap-2 p-2', className)}>
+    <div
+      className={cn(
+        'flex w-full items-center justify-between gap-2',
+        className,
+      )}
+    >
       <Link href={`/page/${pageId}`}>
         <AvatarUser
           src={avatar!}
