@@ -5,6 +5,7 @@
   "description": "SoulDev - A platform for developers to share their mindset and knowledge",
   "scripts": {
     "build": "next build",
+    "bun:lint-staged": "bun exec lint-staged",
     "bun:update": "bun update --latest",
     "dev": "next dev",
     "lint": "next lint",
@@ -12,7 +13,7 @@
     "start": "next start"
   },
   "simple-git-hooks": {
-    "pre-commit": "npm exec lint-staged"
+    "pre-commit": "bun bun:lint-staged"
   },
   "lint-staged": {
     "*": "prettier --write --ignore-unknown ."
