@@ -438,6 +438,8 @@
     "M207": "No active",
     "M208": "This person has no posts yet",
     "M209": "Unfollow",
-    "M210": "Follow successfully!"
+    "M210": "Follow successfully!",
+    "M211": "Save post successfully!",
+    "M212": "Unsave post successfully!"
   }
 }

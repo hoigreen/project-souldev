@@ -4,13 +4,14 @@ import { RightSidebar } from '@/components/app/right-sidebar';
 import RecommendPeoples from '@/components/peoples/recomend-peoples';
 import CreatePostBox from '@/components/post/create-post-box';
 import ListPostsClient from '@/components/post/list-posts-client';
+import { ListPostsClientLoading } from '@/components/post/loading';
 import { getPosts } from '@/lib/actions/post';
 import { getMyFollowings, getRecommendPeoples } from '@/lib/actions/profile';
 import { UserBasic } from '@/lib/definitions';
 import getSession from '@/lib/get-session';
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { Fragment } from 'react';
+import { Fragment, Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Feeds',
@@ -65,11 +66,13 @@ export default async function HomePage() {
           />
         </div>
 
-        <ListPostsClient
-          queryFunction={getPosts}
-          data={getPostsResponse}
-          currentUserId={session.user._id}
-        />
+        <Suspense fallback={<ListPostsClientLoading />}>
+          <ListPostsClient
+            queryFunction={getPosts}
+            data={getPostsResponse}
+            currentUserId={session.user._id}
+          />
+        </Suspense>
       </div>
 
       <RightSidebar />

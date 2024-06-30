@@ -190,6 +190,7 @@ export type Post = {
   shares: Share[];
   created?: string;
   commentsCount?: number;
+  isSaved?: boolean;
   __v?: number;
   createdAt?: string;
   updatedAt?: string;

@@ -7,9 +7,9 @@ import useInfiniteQueryPosts from '@/hooks/use-infinity-query-posts';
 import { useInView } from 'react-intersection-observer';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
-import { Spinner } from '../app/spinner';
 import { Params, Query } from '@/lib/url-builder';
 import { Heading } from '../app/heading';
+import { PostCardLoading } from './loading';
 
 type ListPostsClientProps = React.HTMLAttributes<HTMLDivElement> & {
   params?: Params;
@@ -37,7 +37,6 @@ export default function ListPostsClient({
   const {
     data: postsResponse,
     fetchNextPage,
-    hasNextPage,
     isFetchingNextPage,
   } = useInfiniteQueryPosts({
     params,
@@ -47,16 +46,6 @@ export default function ListPostsClient({
     },
     queryFunction,
   });
-
-  const loadMoreContent = useMemo(() => {
-    if (isFetchingNextPage) {
-      return t('M3');
-    } else if (hasNextPage) {
-      return t('M4');
-    }
-
-    return t('M5');
-  }, [t, isFetchingNextPage, hasNextPage]);
 
   const posts = useMemo(
     () => postsResponse?.pages.map((page) => page.items).flat() ?? [],
@@ -90,13 +79,8 @@ export default function ListPostsClient({
         />
       ))}
 
-      <div
-        ref={ref}
-        className="flex items-center justify-center gap-3 py-3 "
-        onClick={() => fetchNextPage()}
-      >
-        {isFetchingNextPage && <Spinner />}
-        <span className="block text-sm italic">{loadMoreContent}</span>
+      <div ref={ref} onClick={() => fetchNextPage()}>
+        {isFetchingNextPage && <PostCardLoading />}
       </div>
     </div>
   );

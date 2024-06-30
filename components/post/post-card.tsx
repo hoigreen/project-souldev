@@ -25,6 +25,9 @@ import AvatarUser from '@/components/ui/app/avatar-user';
 import { Button } from '@/components/ui/button';
 import { Truncate } from '@/components/ui/truncate';
 import AvatarGroup from '../ui/app/avatar-group';
+import { savePost, unsavePost } from '@/lib/actions/post';
+import toast from 'react-hot-toast';
+import { useRouter } from '@/navigation';
 
 export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   id: string;
@@ -45,6 +48,7 @@ export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   group?: Group;
   isDisabledComment?: boolean;
   page?: Page;
+  isSaved?: boolean;
 };
 
 export default function PostCard({
@@ -63,9 +67,11 @@ export default function PostCard({
   isDisabledComment,
   group,
   page,
+  isSaved,
 }: PostCardProps): React.JSX.Element {
   const locale = useLocale();
   const t = useTranslations('Home');
+  const { refresh } = useRouter();
   const { onOpen: onOpenViewLikesPost } = useModalActions<UserProfile[]>(
     Modals.ViewLikesPost,
   );
@@ -94,6 +100,29 @@ export default function PostCard({
     () => likes.map((like) => like.user_id),
     [likes],
   );
+
+  const handleSave = async () => {
+    if (isSaved) {
+      const response = await unsavePost({ postId: id });
+
+      if (!response.success) {
+        toast.error(t('M15'));
+        return;
+      }
+
+      return refresh();
+    }
+
+    const response = await savePost({ postId: id });
+
+    if (!response.success) {
+      toast.error(t('M15'));
+      return;
+    }
+
+    toast.success(t(isSaved ? 'M212' : 'M211'));
+    refresh();
+  };
 
   return (
     <div
@@ -180,7 +209,9 @@ export default function PostCard({
             </div>
           </div>
 
-          <ArchiveMinus size={24} variant="TwoTone" />
+          <Button variant="ghost" className="p-0" onClick={handleSave}>
+            <ArchiveMinus size={24} variant="TwoTone" />
+          </Button>
         </div>
 
         <div className="h-full min-h-max grow">

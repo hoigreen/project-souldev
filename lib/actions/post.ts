@@ -4,6 +4,7 @@ import {
   MyPostsResponse,
   PostDetailResponse,
   PostsResponse,
+  Response,
   SharePostBody,
   SharePostResponse,
   countMyPostsResponse,
@@ -79,5 +80,17 @@ export async function sharePost(
   return await requestService.post(
     getPathname({ path: endpoint.posts.sharePost, params }),
     body,
+  );
+}
+
+export async function savePost(params: Params): Promise<Response> {
+  return requestService.post(
+    getPathname({ path: endpoint.posts.savePost, params }),
+  );
+}
+
+export async function unsavePost(params: Params): Promise<Response> {
+  return requestService.post(
+    getPathname({ path: endpoint.posts.unsavePost, params }),
   );
 }
