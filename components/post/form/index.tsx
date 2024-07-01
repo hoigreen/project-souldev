@@ -93,7 +93,7 @@ export default function PostForm({
       <Button
         type="submit"
         size="lg"
-        disabled={isPending || isSubmitting}
+        loading={isPending || isSubmitting}
         className="w-full"
       >
         {postId ? t('M16') : t('M1')}
