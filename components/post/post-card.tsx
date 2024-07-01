@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn, calculateTime, getFullName } from '@/lib/utils';
-import React, { useMemo } from 'react';
+import React, { useMemo, useTransition } from 'react';
 import {
   Group,
   Like,
@@ -28,6 +28,7 @@ import AvatarGroup from '../ui/app/avatar-group';
 import { savePost, unsavePost } from '@/lib/actions/post';
 import toast from 'react-hot-toast';
 import { useRouter } from '@/navigation';
+import { Spinner } from '../app/spinner';
 
 export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   id: string;
@@ -69,6 +70,7 @@ export default function PostCard({
   page,
   isSaved,
 }: PostCardProps): React.JSX.Element {
+  const [isPending, startTransition] = useTransition();
   const locale = useLocale();
   const t = useTranslations('Home');
   const { refresh } = useRouter();
@@ -110,7 +112,10 @@ export default function PostCard({
         return;
       }
 
-      return refresh();
+      toast.success(t('M212'));
+      startTransition(() => {
+        return refresh();
+      });
     }
 
     const response = await savePost({ postId: id });
@@ -120,8 +125,10 @@ export default function PostCard({
       return;
     }
 
-    toast.success(t(isSaved ? 'M212' : 'M211'));
-    refresh();
+    toast.success(t('M211'));
+    startTransition(() => {
+      refresh();
+    });
   };
 
   return (
@@ -210,7 +217,15 @@ export default function PostCard({
           </div>
 
           <Button variant="ghost" className="p-0" onClick={handleSave}>
-            <ArchiveMinus size={24} variant="TwoTone" />
+            {isPending ? (
+              <Spinner className="size-6" />
+            ) : (
+              <ArchiveMinus
+                size={24}
+                variant={isSaved ? 'Bold' : 'TwoTone'}
+                className={cn(isSaved && 'text-blue-600 dark:text-blue-300')}
+              />
+            )}
           </Button>
         </div>
 
