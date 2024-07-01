@@ -324,11 +324,11 @@ export default function PostCard({
           </div>
 
           <div className="flex items-center gap-2 text-xs sm:text-sm">
-            {countComments && countComments !== 0 && (
+            {countComments && countComments !== 0 ? (
               <span>
                 {countComments} {t('M6')}
               </span>
-            )}
+            ) : null}
 
             {shares.length > 0 && (
               <span>
