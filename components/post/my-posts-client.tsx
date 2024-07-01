@@ -30,14 +30,12 @@ export default function MyPostsClient({
       {data.data.map((item, index) => (
         <PostCard
           key={index}
-          likes={item.likes}
           currentUserId={currentUserId}
           id={item._id}
-          content={item.content}
           author={item.user_id}
           created={item.created}
-          images={item.images}
-          shares={item.shares}
+          countComments={item.commentsCount}
+          {...item}
         />
       ))}
     </div>

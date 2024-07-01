@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn, calculateTime, getFullName } from '@/lib/utils';
-import React, { useMemo, useTransition } from 'react';
+import React, { useCallback, useMemo, useTransition } from 'react';
 import {
   Group,
   Like,
@@ -103,7 +103,7 @@ export default function PostCard({
     [likes],
   );
 
-  const handleSave = async () => {
+  const handleSave = useCallback(async () => {
     if (isSaved) {
       const response = await unsavePost({ postId: id });
 
@@ -112,10 +112,12 @@ export default function PostCard({
         return;
       }
 
-      toast.success(t('M212'));
       startTransition(() => {
-        return refresh();
+        refresh();
       });
+
+      toast.success(t('M212'));
+      return;
     }
 
     const response = await savePost({ postId: id });
@@ -125,11 +127,11 @@ export default function PostCard({
       return;
     }
 
-    toast.success(t('M211'));
     startTransition(() => {
       refresh();
     });
-  };
+    toast.success(t('M211'));
+  }, [id, isSaved, refresh, t]);
 
   return (
     <div
@@ -322,7 +324,7 @@ export default function PostCard({
           </div>
 
           <div className="flex items-center gap-2 text-xs sm:text-sm">
-            {countComments !== 0 && (
+            {countComments && countComments !== 0 && (
               <span>
                 {countComments} {t('M6')}
               </span>
