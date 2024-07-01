@@ -50,6 +50,7 @@ export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
   isDisabledComment?: boolean;
   page?: Page;
   isSaved?: boolean;
+  isLiked?: boolean;
 };
 
 export default function PostCard({
@@ -69,6 +70,7 @@ export default function PostCard({
   group,
   page,
   isSaved,
+  isLiked,
 }: PostCardProps): React.JSX.Element {
   const [isPending, startTransition] = useTransition();
   const locale = useLocale();
@@ -341,7 +343,10 @@ export default function PostCard({
         <div className="flex divide-x border-t border-neutral-200 dark:border-neutral-700">
           <ReactPost
             postId={id}
-            isLike={likes.some((like) => like.user_id._id === currentUserId)}
+            isLike={
+              isLiked ||
+              likes.some((like) => like.user_id._id === currentUserId)
+            }
           />
 
           {postActions.map((action, index) => (

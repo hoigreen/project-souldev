@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import { likePost, unlikePost } from '@/lib/actions/post';
 import { Button } from '@/components/ui/button';
+import { Spinner } from '../app/spinner';
 
 export default function ReactPost({
   postId,
@@ -20,10 +21,11 @@ export default function ReactPost({
   onReactedSuccess?: () => void;
   totalLikes?: number;
   isInPost?: boolean;
-}): React.JSX.Element {
+}) {
   const [isLiked, setIsLiked] = React.useState(isLike);
   const t = useTranslations('Home');
   const router = useRouter();
+  const [isPending, startTransition] = React.useTransition();
 
   const handleClick = async () => {
     if (isLike) {
@@ -32,9 +34,11 @@ export default function ReactPost({
       await likePost({ postId });
     }
 
-    setIsLiked(!isLiked);
-    router.refresh();
-    onReactedSuccess && onReactedSuccess();
+    startTransition(() => {
+      setIsLiked(!isLiked);
+      router.refresh();
+      onReactedSuccess && onReactedSuccess();
+    });
   };
 
   return (
@@ -46,15 +50,20 @@ export default function ReactPost({
           : 'grow gap-2 rounded-none bg-transparent px-4 py-3 hover:bg-neutral-100 dark:hover:bg-neutral-600',
       )}
       onClick={handleClick}
+      disabled={isPending}
     >
-      <Heart
-        variant={isLiked ? 'Bold' : 'TwoTone'}
-        size={20}
-        className={cn(
-          'cursor-pointer hover:opacity-85',
-          isLiked && 'text-red-500',
-        )}
-      />
+      {isPending ? (
+        <Spinner size={20} />
+      ) : (
+        <Heart
+          variant={isLiked ? 'Bold' : 'TwoTone'}
+          size={20}
+          className={cn(
+            'cursor-pointer hover:opacity-85',
+            isLiked && 'text-red-500',
+          )}
+        />
+      )}
       <p className="text-xs font-medium md:text-sm">
         {isInPost ? totalLikes ?? 0 : t('M9')}
       </p>

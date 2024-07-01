@@ -191,6 +191,7 @@ export type Post = {
   created?: string;
   commentsCount?: number;
   isSaved?: boolean;
+  isLiked?: boolean;
   __v?: number;
   createdAt?: string;
   updatedAt?: string;
