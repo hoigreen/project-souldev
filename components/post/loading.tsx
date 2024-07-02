@@ -2,9 +2,12 @@ import { Card } from '@/components/ui/card';
 import { Skeleton, TextSkeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import { ArchiveMinus, Clock } from 'iconsax-react';
-import { map, range } from 'lodash';
+import { range } from 'lodash';
 import React from 'react';
 import { Button } from '../ui/button';
+import { DialogContent } from '../ui/dialog';
+import { Separator } from '../ui/separator';
+import { Input } from '../ui/input';
 
 export function ProfileCardLoadingSkeleton() {
   return (
@@ -125,6 +128,133 @@ export function ListPostsClientLoading({
 
       {range(count).map((item) => (
         <PostCardLoading key={item} />
+      ))}
+    </div>
+  );
+}
+
+export function SharePostFormLoading({ className }: { className?: string }) {
+  return (
+    <div className={cn('space-y-2 md:space-y-4 lg:p-3', className)}>
+      <div className="flex items-center gap-3">
+        <Skeleton className="aspect-square size-10 rounded-full" />
+
+        <TextSkeleton text="base" className="w-32" />
+      </div>
+
+      <div className="grow space-y-1">
+        <TextSkeleton text="base" className="w-full" />
+        <TextSkeleton text="base" className="w-full" />
+        <TextSkeleton text="base" className="w-full" />
+      </div>
+
+      <Card className="p-3">
+        <PostCardLoading />
+      </Card>
+    </div>
+  );
+}
+
+export function ViewDetailPostLoading() {
+  return (
+    <DialogContent
+      className="max-w-7xl"
+      classNames={{
+        children:
+          'flex flex-col gap-4 bg-background md:p-3 lg:flex-row lg:gap-10',
+      }}
+    >
+      <div className="flex grow items-center justify-center md:p-3">
+        <div className="flex flex-1 rounded-xl">
+          <div className="relative aspect-square size-full">
+            <Skeleton className="size-full" />
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full space-y-6 bg-background lg:max-w-lg">
+        <div className="space-y-4 rounded-xl bg-neutral-100 p-4 dark:bg-neutral-700">
+          <div className="flex items-center gap-3">
+            <Skeleton className="aspect-square size-12 rounded-full" />
+
+            <div className="space-y-1">
+              <TextSkeleton text="lg" className="w-24" />
+              <div className="flex items-center gap-1">
+                <Clock className="size-3" variant="TwoTone" />
+                <TextSkeleton text="sm" className="w-20" />
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-1">
+            {range(5).map((item) => (
+              <TextSkeleton key={item} text="lg" className="w-full" />
+            ))}
+          </div>
+        </div>
+
+        <div className="flex gap-3.5">
+          <Skeleton className="h-12 min-w-24" />
+          {range(3).map((action) => (
+            <div
+              key={action}
+              className="flex items-center gap-1 rounded-lg bg-neutral-100 px-2 py-1 dark:bg-neutral-600"
+            >
+              <Skeleton className="size-5" />
+              <TextSkeleton text="sm" className="w-20" />
+            </div>
+          ))}
+        </div>
+
+        <Separator />
+
+        <CommentFormLoading />
+
+        <Separator />
+
+        <ListCommentLoading />
+      </div>
+    </DialogContent>
+  );
+}
+
+export function CommentFormLoading() {
+  return (
+    <div className="flex items-start gap-1 rounded-lg border px-1 py-2 md:gap-3 md:py-4 xl:border-none">
+      <Skeleton className="size-10 rounded-full" />
+
+      <div className="flex grow flex-col items-center gap-2">
+        <div className="flex w-full gap-2">
+          <Input
+            disabled
+            type="text"
+            name="content"
+            className="size-full grow border-none pr-12 text-sm md:text-base"
+          />
+
+          <Skeleton className="size-10 w-24" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ListCommentLoading() {
+  return (
+    <div className="mt-10 space-y-4 overflow-auto rounded-lg border p-3">
+      {range(5).map((comment) => (
+        <div className="space-y-2" key={comment}>
+          <div className="flex items-center gap-3">
+            <Skeleton className="aspect-square size-10 rounded-full" />
+
+            <div className="flex grow items-center justify-between">
+              <TextSkeleton text="base" className="w-24" />
+              <TextSkeleton text="sm" className="w-16" />
+            </div>
+          </div>
+
+          <TextSkeleton text="base" className="w-full" />
+        </div>
       ))}
     </div>
   );

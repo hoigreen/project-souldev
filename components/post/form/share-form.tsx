@@ -18,6 +18,7 @@ import PostCard from '../post-card';
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import useQueryPost from '@/hooks/use-query-post';
 import { Loading } from '@/components/ui/loading';
+import { SharePostFormLoading } from '../loading';
 
 type SharePostFormProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
   postId: string;
@@ -44,11 +45,11 @@ export default function SharePostForm({
   const { data, isLoading } = useQueryPost({ postId });
 
   if (!user) {
-    return <Loading />;
+    return <SharePostFormLoading />;
   }
 
   if (isLoading) {
-    return <Loading />;
+    return <SharePostFormLoading />;
   }
 
   if (!data) {
