@@ -11,6 +11,7 @@ export default function useQueryPeoplesUser(
 ) {
   switch (viewAction) {
     case ViewDetailsActionPeoples.viewFriends:
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       return useQuery({
         queryKey: ['query-get-my-friends', viewAction],
         queryFn: async () => await getMyFriendsList(),
@@ -28,6 +29,7 @@ export default function useQueryPeoplesUser(
         queryFn: async () => await getMyFollowings(),
       });
     case ViewDetailsActionPeoples.viewDetail:
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       return useQuery({
         queryKey: ['query-get-my-friends', viewAction],
         queryFn: async () => await getMyFriendsList(),

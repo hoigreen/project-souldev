@@ -440,6 +440,8 @@
     "M209": "Unfollow",
     "M210": "Follow successfully!",
     "M211": "Save post successfully!",
-    "M212": "Unsave post successfully!"
+    "M212": "Unsave post successfully!",
+    "M213": "Add",
+    "M214": "Add manager successfully!"
   }
 }

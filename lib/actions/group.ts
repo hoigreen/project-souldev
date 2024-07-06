@@ -121,3 +121,13 @@ export async function leaveGroup(params: Params): Promise<Response> {
     getPathname({ path: endpoint.group.leaveGroup, params }),
   );
 }
+
+export async function addManager(
+  params: Params,
+  body: { manager_id: string },
+): Promise<Response> {
+  return requestService.post(
+    getPathname({ path: endpoint.group.addManager, params }),
+    body,
+  );
+}

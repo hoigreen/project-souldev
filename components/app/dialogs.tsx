@@ -11,6 +11,7 @@ import { ViewDetailsPeoplesDialog } from '../peoples/dialog/view-details-peoples
 import { SignOutDialog } from '../auth/sign-out/dialog/sign-out-dialog';
 import { ConfirmLeaveGroupDialog } from '../group/dialog/confirm-leave-group-dialog';
 import { ConfirmDeleteGroupDialog } from '../group/dialog/confirm-delete-group-dialog';
+import { AddManagerDialog } from '../group/dialog/add-manager-dialog';
 
 export default function Dialogs(): React.JSX.Element {
   return (
@@ -25,6 +26,7 @@ export default function Dialogs(): React.JSX.Element {
       <ChangePasswordDialog />
       <ConfirmLeaveGroupDialog />
       <ConfirmDeleteGroupDialog />
+      <AddManagerDialog />
     </>
   );
 }

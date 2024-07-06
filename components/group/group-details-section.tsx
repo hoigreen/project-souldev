@@ -28,6 +28,9 @@ export default function GroupDetailsSection({
   const { onOpen: onOpenDialogDeleteGroup } = useModalActions(
     Modals.DeleteGroup,
   );
+  const { onOpen: onOpenDialogAddManage } = useModalActions(
+    Modals.AddGroupManager,
+  );
 
   return (
     <Card
@@ -64,7 +67,10 @@ export default function GroupDetailsSection({
 
         <div className="mt-3 flex items-center gap-3 md:mt-0 md:gap-4">
           {isManager && (
-            <Button className="flex items-center gap-2 text-sm md:text-base">
+            <Button
+              className="flex items-center gap-2 text-sm md:text-base"
+              onClick={() => onOpenDialogAddManage({ groupId: data._id })}
+            >
               <Add size={16} />
               <span>{t('M168')}</span>
             </Button>

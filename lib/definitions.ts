@@ -368,6 +368,8 @@ export enum FriendActions {
   Follow = 'follow',
   UnFollow = 'unfollow',
   CancelRequest = 'cancelRequest',
+
+  AddManager = 'addManager',
 }
 
 export type MyFriendRequestsResponse = {

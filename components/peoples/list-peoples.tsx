@@ -17,8 +17,10 @@ import { acceptFriendRequest, follow, unfollow } from '@/lib/actions/profile';
 import toast from 'react-hot-toast';
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { SendMessageButton } from '../messages/send-message-button';
+import { addManager } from '@/lib/actions/group';
 
 type ListPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
+  groupId?: string;
   data: UserBasic[];
   action?: FriendActions;
   handleAction?: (userId: string) => void;
@@ -26,6 +28,7 @@ type ListPeoplesProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 export default function ListPeoples({
+  groupId,
   action,
   title,
   handleAction,
@@ -75,6 +78,31 @@ export default function ListPeoples({
       }
 
       toast.success(t('M210'));
+      router.refresh();
+    });
+  };
+
+  const handleAddManager = async (managerId: string) => {
+    if (!groupId || groupId === '') {
+      return toast.error(t('M15'));
+    }
+    const response = await addManager(
+      {
+        groupId,
+      },
+      {
+        manager_id: managerId,
+      },
+    );
+
+    startTransition(() => {
+      if (!response.success) {
+        toast.error(t('M15'));
+
+        return;
+      }
+
+      toast.success(t('M214'));
       router.refresh();
     });
   };
@@ -153,6 +181,17 @@ export default function ListPeoples({
                 onClick={() => handleUnfollow(item._id)}
               >
                 {t('M108')}
+              </Button>
+            )}
+
+            {action && action === FriendActions.AddManager && (
+              <Button
+                className="w-fit text-xs sm:text-sm"
+                variant="outline"
+                disabled={isPending}
+                onClick={() => handleAddManager(item._id)}
+              >
+                {t('M213')}
               </Button>
             )}
 

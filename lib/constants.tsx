@@ -107,6 +107,7 @@ export enum Modals {
   ViewLikesPost = 'ViewLikesPost',
 
   // Group
+  AddGroupManager = 'AddGroupManager',
   LeaveGroup = 'LeaveGroup',
   DeleteGroup = 'DeleteGroup',
 }
