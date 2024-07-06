@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import { Send } from 'iconsax-react';
 import { useSession } from 'next-auth/react';
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, useCallback, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { MessageSchema, messageSchema } from '@/lib/validations/conversation';
@@ -12,6 +12,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '../ui/input';
 import { useRouter } from '@/navigation';
 import { socket } from '@/socket';
+import { useParams } from 'next/navigation';
+import { throttle } from 'lodash';
 
 export type ConversationFormProps = HTMLAttributes<HTMLDivElement> & {
   peopleId: string;
@@ -24,6 +26,7 @@ export function ConversationForm({
 }: ConversationFormProps) {
   const t = useTranslations('Home');
   const router = useRouter();
+  const { conversationId } = useParams();
   const { data: session } = useSession();
 
   const {
@@ -37,6 +40,18 @@ export function ConversationForm({
       text: '',
     },
   });
+
+  const emitTyping = useCallback(() => {
+    socket.emit('TYPING', {
+      conversationId,
+      to: peopleId,
+    });
+  }, [conversationId, peopleId]);
+
+  const handlethrottle = useMemo(
+    () => throttle(emitTyping, 4000),
+    [emitTyping],
+  );
 
   if (!session) return null;
 
@@ -64,6 +79,7 @@ export function ConversationForm({
         onSubmit={handleSubmit(onSubmit)}
       >
         <Input
+          onFocus={emitTyping}
           disabled={isSubmitting}
           placeholder={t('M202')}
           className={cn(
@@ -71,6 +87,7 @@ export function ConversationForm({
             errors.text && 'border-red-500',
           )}
           {...register('text', {
+            onChange: handlethrottle,
             setValueAs: (value) => {
               if (value) {
                 return value.trim();

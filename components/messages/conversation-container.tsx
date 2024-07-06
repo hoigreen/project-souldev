@@ -14,6 +14,8 @@ import { InfiniteScrollContainer } from '../app/infinitiy-scroll-wrapper';
 import { MessageBox } from './message-box';
 import { socket } from '@/socket';
 import { getMessages } from '@/lib/actions/conversation';
+import { MessageBoxTyping } from './message-box-typing';
+import { usePeopleInChat } from '@/hooks/use-people-in-chat';
 
 export type ConversationContainerProps = HTMLAttributes<HTMLDivElement> & {
   conversation: Conversation;
@@ -34,9 +36,11 @@ export function ConversationContainer({
   ...props
 }: ConversationContainerProps) {
   const t = useTranslations('Home');
+  const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [pagination, setPagination] = useState(initialPagination);
   const messageRef = useRef<HTMLDivElement>(null);
+  const people = usePeopleInChat(conversation, currentUser);
 
   useEffect(() => {
     if (!socket) {
@@ -53,6 +57,15 @@ export function ConversationContainer({
       }
     };
 
+    const handleTyping = (value: any) => {
+      if (value.conversationId === conversation._id) {
+        setIsTyping(true);
+        setTimeout(() => {
+          setIsTyping(false);
+        }, 5000);
+      }
+    };
+
     const messageReceivedHandler = async (data: MessageInfo) => {
       const newMessage = data.message as Message;
 
@@ -65,12 +78,14 @@ export function ConversationContainer({
       }
     };
 
+    socket.on('TYPING', handleTyping);
     socket.on('RECEIVE_MESSAGE', messageReceivedHandler);
 
     return () => {
+      socket.off('TYPING', handleTyping);
       socket.off('RECEIVE_MESSAGE', messageReceivedHandler);
     };
-  }, [currentUser._id]);
+  }, [conversation._id, currentUser._id]);
 
   const handleNextPages = async () => {
     const { items, success, page, totalPage } = await getMessages(
@@ -112,6 +127,7 @@ export function ConversationContainer({
         onNext={handleNextPages}
         onRefresh={() => console.log('resetting messages')}
       >
+        {isTyping && <MessageBoxTyping data={people} />}
         {messages.map((message, index) => (
           <MessageBox
             key={index}
