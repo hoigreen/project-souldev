@@ -9,7 +9,7 @@ import {
 } from '@/lib/definitions';
 import { cn, getFullName } from '@/lib/utils';
 import { Link, useRouter } from '@/navigation';
-import React, { ReactNode, useMemo, useTransition } from 'react';
+import React, { useMemo, useTransition } from 'react';
 import RemoveFriendButton from './actions/remove-friend-button';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';

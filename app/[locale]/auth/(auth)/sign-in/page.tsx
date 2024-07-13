@@ -1,5 +1,3 @@
-'use server';
-
 import {
   getTranslations,
   unstable_setRequestLocale as unstableSetRequestLocale,
@@ -64,7 +62,7 @@ export default async function Page({
       <div className="flex items-center justify-center gap-2 rounded border border-border p-3 md:p-5">
         <p className="text-sm font-normal ">{t('M2')}</p>
         <Link
-          className="text-sm font-semibold  hover:opacity-70"
+          className="text-sm font-semibold hover:opacity-70"
           href="/auth/sign-up"
         >
           {t('M3')}

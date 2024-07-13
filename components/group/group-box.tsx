@@ -5,8 +5,7 @@ import { useTranslations } from 'next-intl';
 import React from 'react';
 import Image from 'next/image';
 import { ImagePlus } from 'lucide-react';
-import Link from 'next/link';
-import { Truncate } from '../ui/truncate';
+import { Link } from '@/navigation';
 
 type GroupBoxProps = React.HTMLAttributes<HTMLDivElement> & {
   classNames?: {

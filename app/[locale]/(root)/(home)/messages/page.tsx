@@ -1,4 +1,3 @@
-import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { MessageStageEmpty } from '@/components/messages/message-stage';
 import { Metadata } from 'next';
 import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';

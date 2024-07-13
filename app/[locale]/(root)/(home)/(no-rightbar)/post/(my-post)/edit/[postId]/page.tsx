@@ -1,9 +1,9 @@
 import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 
 export default async function Page({
-  params: { locale, postId },
+  params: { locale },
 }: {
-  params: { locale: string; postId: string };
+  params: { locale: string };
 }) {
   unstableSetRequestLocale(locale);
 

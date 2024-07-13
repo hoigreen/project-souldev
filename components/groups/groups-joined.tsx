@@ -6,7 +6,6 @@ import React from 'react';
 import GroupCard from '../group/group-card';
 import { Group } from '@/lib/definitions';
 import { ErrorStage, ErrorStageType } from '../app/error-stage';
-import { buttonVariants } from '../ui/button';
 import { useRouter } from '@/navigation';
 
 type GroupsJoinedProps = React.HTMLAttributes<HTMLDivElement> & {

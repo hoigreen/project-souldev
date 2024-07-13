@@ -4,7 +4,6 @@ import { useTranslations } from 'next-intl';
 import { HTMLAttributes } from 'react';
 import { LogoutCurve } from 'iconsax-react';
 import { Button } from '@/components/ui/button';
-import signOut from '@/lib/sign-out';
 import { cn } from '@/lib/utils';
 import { useModalActions } from '@/hooks/use-modal';
 import { Modals } from '@/lib/constants';

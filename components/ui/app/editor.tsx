@@ -39,7 +39,7 @@ export const Editor = forwardRef<
   React.ComponentPropsWithoutRef<typeof Quill> & {
     disabled?: boolean;
   }
->(({ className, disabled, onChange, modules, ...props }, _) => {
+>(({ className, disabled, onChange, modules, ...props }) => {
   const wordCountRef = useRef<HTMLDivElement>(null);
 
   const updateWordCount = (count: number): void => {

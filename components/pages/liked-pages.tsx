@@ -1,7 +1,6 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { useTranslations } from 'next-intl';
 import React from 'react';
 import { ErrorStage, ErrorStageType } from '../app/error-stage';
 import { Page } from '@/lib/definitions';
@@ -13,7 +12,6 @@ type LikedPagesProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 export default function LikedPages({ className, pages }: LikedPagesProps) {
-  const t = useTranslations('Home');
   const { data: session } = useSession();
 
   if (!session) {

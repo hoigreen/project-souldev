@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 import { buttonVariants } from '../ui/button';
 import PageNotFoundImage from '@/public/illustrations/404.svg';
@@ -6,6 +5,7 @@ import ServerErrorImage from '@/public/illustrations/500.svg';
 import UnauthorizedImage from '@/public/illustrations/401.svg';
 import React from 'react';
 import Image from 'next/image';
+import { Link } from '@/navigation';
 
 export enum ErrorStageType {
   PageNotFound = 'PageNotFound',

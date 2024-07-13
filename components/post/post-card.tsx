@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { cn, calculateTime, getFullName } from '@/lib/utils';
 import React, { useCallback, useMemo, useTransition } from 'react';
 import {
@@ -27,7 +26,7 @@ import { Truncate } from '@/components/ui/truncate';
 import AvatarGroup from '../ui/app/avatar-group';
 import { savePost, unsavePost } from '@/lib/actions/post';
 import toast from 'react-hot-toast';
-import { useRouter } from '@/navigation';
+import { Link, useRouter } from '@/navigation';
 import { Spinner } from '../app/spinner';
 
 export type PostCardProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -71,7 +70,7 @@ export default function PostCard({
   page,
   isSaved,
   isLiked,
-}: PostCardProps): React.JSX.Element {
+}: PostCardProps) {
   const [isPending, startTransition] = useTransition();
   const locale = useLocale();
   const t = useTranslations('Home');

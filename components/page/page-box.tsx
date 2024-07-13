@@ -3,11 +3,9 @@
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import React from 'react';
-import Image from 'next/image';
-import { ImagePlus } from 'lucide-react';
-import Link from 'next/link';
 import AvatarUser from '../ui/app/avatar-user';
 import { EmphasizedTextBold } from '../ui/emphasize';
+import { Link } from '@/navigation';
 
 type PageBoxProps = React.HTMLAttributes<HTMLDivElement> & {
   classNames?: {

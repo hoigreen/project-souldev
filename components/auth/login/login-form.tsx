@@ -3,12 +3,11 @@
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
 import { useTranslations } from 'next-intl';
-import type { HTMLAttributes } from 'react';
+import { useTransition, type HTMLAttributes } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import toast from 'react-hot-toast';
-import Link from 'next/link';
 import cookie from '@/lib/cookie';
 import type { LoginSchema } from '@/lib/validations/auth';
 import { loginSchema } from '@/lib/validations/auth';
@@ -24,6 +23,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { login } from '@/lib/actions/user';
+import { Link } from '@/navigation';
 
 /* ---------------------------------------------------------------------------------------------------------------------
  * Component: LoginForm
@@ -35,6 +35,7 @@ export type LoginFormProps = HTMLAttributes<HTMLElement> &
   VariantProps<typeof loginFormVariants>;
 
 export function LoginForm({ className, ...props }: LoginFormProps) {
+  const [isPending, setTransition] = useTransition();
   const t = useTranslations('Auth');
   const { signInWithCredential } = useSignInWithCredential();
 
@@ -58,20 +59,21 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
       return;
     }
 
-    cookie.set(
-      process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
-      data.data.token,
-      7,
-    );
-
-    cookie.set(
-      process.env.NEXT_PUBLIC_USERID_COOKIE as string,
-      data.data._id,
-      7,
-    );
-
     await signInWithCredential(formData);
-    toast.success(t('M56'));
+
+    setTransition(() => {
+      cookie.set(
+        process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
+        data.data.token,
+        7,
+      );
+
+      cookie.set(
+        process.env.NEXT_PUBLIC_USERID_COOKIE as string,
+        data.data._id,
+        7,
+      );
+    });
   };
 
   return (
@@ -119,7 +121,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
 
             <Button
               className="w-full"
-              disabled={form.formState.isSubmitting}
+              loading={isPending || form.formState.isSubmitting}
               type="submit"
             >
               {t('M13')}

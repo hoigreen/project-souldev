@@ -4,9 +4,9 @@ import Logo from '@/public/logo-text.svg';
 import LogoDark from '@/public/logo-text-dark.svg';
 import Image from 'next/image';
 import { Route } from '@/lib/definitions';
-import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { HTMLAttributes } from 'react';
+import { Link } from '@/navigation';
 
 export type FooterMenuProps = HTMLAttributes<HTMLElement> & {
   routes: Route[];

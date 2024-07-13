@@ -1,7 +1,6 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { useTranslations } from 'next-intl';
 import React, { useEffect, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { ErrorStage, ErrorStageType } from '../app/error-stage';
@@ -11,7 +10,6 @@ import PageCard from '../page/page-card';
 type SuggestionPagesProps = React.HTMLAttributes<HTMLDivElement>;
 
 export default function SuggestionPages({ className }: SuggestionPagesProps) {
-  const t = useTranslations('Home');
   const { ref, inView } = useInView();
   const { data, fetchNextPage, isLoading, refetch } = useInfiniteQueryPages({});
 

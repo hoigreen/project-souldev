@@ -7,7 +7,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ImagePlus } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 
 type GroupCardProps = React.HTMLAttributes<HTMLDivElement> & {
   classNames?: {

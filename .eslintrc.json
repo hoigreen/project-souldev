@@ -4,10 +4,13 @@
     "next",
     "standard",
     "plugin:tailwindcss/recommended",
-    "prettier"
+    "prettier",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "eslint-config-prettier",
+    "plugin:prettier/recommended"
   ],
   "rules": {
-    "no-unused-vars": 0,
-    "no-empty-pattern": "off"
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }

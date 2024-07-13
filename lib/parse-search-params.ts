@@ -4,10 +4,6 @@ function parseQueryValue(
   return Array.isArray(value) ? value[0] : value;
 }
 
-function parseQueryValues(value: string[] | string): string[] {
-  return Array.isArray(value) ? value : [value];
-}
-
 export function parseStringParam<T extends string | undefined>(
   paramValue: string[] | string | undefined,
   defaultValue: T = undefined as T,

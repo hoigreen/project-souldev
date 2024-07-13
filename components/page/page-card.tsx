@@ -7,7 +7,6 @@ import React from 'react';
 import Image from 'next/image';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { ImagePlus } from 'lucide-react';
-import Link from 'next/link';
 import { CloseCircle, Dislike, Like1, TickCircle } from 'iconsax-react';
 import { EmphasizedTextBold } from '../ui/emphasize';
 import {
@@ -17,7 +16,7 @@ import {
   unlikePage,
 } from '@/lib/actions/page';
 import toast from 'react-hot-toast';
-import { useRouter } from '@/navigation';
+import { Link, useRouter } from '@/navigation';
 
 type PageCardProps = React.HTMLAttributes<HTMLDivElement> & {
   classNames?: {

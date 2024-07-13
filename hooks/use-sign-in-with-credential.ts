@@ -1,6 +1,8 @@
 import { SignInOptions, signIn } from 'next-auth/react';
 import { useRouter } from '@/navigation';
 import { useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import toast from 'react-hot-toast';
 
 function removeLocale(url: string) {
   if (url.startsWith('/en/') || url.startsWith('/vi/')) {
@@ -11,11 +13,13 @@ function removeLocale(url: string) {
 }
 
 export const useSignInWithCredential = (callback = '/') => {
+  const t = useTranslations('Auth');
   const searchParams = useSearchParams();
+  const router = useRouter();
+
   const callbackUrl = removeLocale(
     searchParams?.get('callbackUrl') ?? callback,
   );
-  const router = useRouter();
 
   const signInWithCredential = async (options?: SignInOptions) => {
     const res = await signIn('credentials', {
@@ -25,6 +29,7 @@ export const useSignInWithCredential = (callback = '/') => {
     });
 
     if (res?.ok) {
+      toast.success(t('M56'));
       router.push(callbackUrl);
     }
   };

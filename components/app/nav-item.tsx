@@ -2,9 +2,8 @@
 
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
 import React from 'react';
-import { usePathname } from '@/navigation';
+import { Link, usePathname } from '@/navigation';
 import { RoutesLink } from '@/lib/definitions';
 
 /* ---------------------------------------------------------------------------------------------------------------------

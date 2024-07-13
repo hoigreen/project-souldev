@@ -1,13 +1,12 @@
 'use client';
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { twMerge } from 'tailwind-merge';
 import { buttonVariants } from '../ui/button';
 import React from 'react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { ChevronLeft } from 'lucide-react';
+import { Link, useRouter } from '@/navigation';
 
 export function BackLink({
   label,

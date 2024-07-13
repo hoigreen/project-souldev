@@ -8,7 +8,6 @@ import {
   UserBasic,
 } from '@/lib/definitions';
 import { cn } from '@/lib/utils';
-import { useTranslations } from 'next-intl';
 import { HTMLAttributes, useEffect, useRef, useState } from 'react';
 import { InfiniteScrollContainer } from '../app/infinitiy-scroll-wrapper';
 import { MessageBox } from './message-box';
@@ -35,7 +34,6 @@ export function ConversationContainer({
   className,
   ...props
 }: ConversationContainerProps) {
-  const t = useTranslations('Home');
   const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [pagination, setPagination] = useState(initialPagination);
