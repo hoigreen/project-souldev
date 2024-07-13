@@ -39,7 +39,8 @@ export const Editor = forwardRef<
   React.ComponentPropsWithoutRef<typeof Quill> & {
     disabled?: boolean;
   }
->(({ className, disabled, onChange, modules, ...props }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+>(({ className, disabled, onChange, modules, ...props }, _) => {
   const wordCountRef = useRef<HTMLDivElement>(null);
 
   const updateWordCount = (count: number): void => {

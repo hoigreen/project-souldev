@@ -34,6 +34,7 @@ export function ConversationForm({
     handleSubmit,
     setValue,
     formState: { errors, isSubmitting },
+    setFocus,
   } = useForm<MessageSchema>({
     resolver: zodResolver(messageSchema),
     defaultValues: {
@@ -66,6 +67,8 @@ export function ConversationForm({
     router.refresh();
   };
 
+  setFocus('text');
+
   return (
     <div
       {...props}
@@ -87,6 +90,7 @@ export function ConversationForm({
             errors.text && 'border-red-500',
           )}
           {...register('text', {
+            onBlur: () => setFocus('text'),
             onChange: handlethrottle,
             setValueAs: (value) => {
               if (value) {
