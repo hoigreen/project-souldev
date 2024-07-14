@@ -100,7 +100,7 @@ export default function SharePostForm({
           className="absolute bottom-2 right-2 h-10 rounded-full md:block"
           size="lg"
           type="submit"
-          disabled={isSubmitting}
+          loading={isSubmitting}
         >
           {t('M7')}
         </Button>

@@ -188,7 +188,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
             <Button
               className="w-full"
               data-testid="submit"
-              disabled={!form.formState.isValid || isPending}
+              loading={form.formState.isSubmitting || isPending}
               type="submit"
             >
               {t('M3')}

@@ -123,7 +123,7 @@ export function ResetPasswordForm({
 
           <Button
             className="w-full"
-            disabled={form.formState.isSubmitting}
+            loading={form.formState.isSubmitting}
             type="submit"
           >
             {t('M52')}

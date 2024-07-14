@@ -256,7 +256,7 @@ export function PageEditor({
 
             <Button
               className="w-full"
-              disabled={form.formState.isSubmitting}
+              loading={form.formState.isSubmitting}
               type="submit"
             >
               {initialData ? t('M46') : t('M131')}

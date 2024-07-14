@@ -98,7 +98,11 @@ export function ProfileBasicInfoForm({
           <Heading size={1} title={t('M31')} />
 
           <div className="flex items-center gap-2">
-            <Button type="submit" className="flex items-center">
+            <Button
+              type="submit"
+              className="flex items-center"
+              loading={isPending || form.formState.isSubmitting}
+            >
               <ProfileTick
                 variant="TwoTone"
                 className="hidden size-6 md:block"

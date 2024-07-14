@@ -131,7 +131,7 @@ export function ChangePasswordForm({
 
           <Button
             className="w-full"
-            disabled={form.formState.isSubmitting}
+            loading={form.formState.isSubmitting}
             type="submit"
           >
             {t('M13')}

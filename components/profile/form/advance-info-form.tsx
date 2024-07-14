@@ -88,25 +88,15 @@ export function ProfileAdvanceInfoForm({
   ): Promise<void> => {
     try {
       const advanceData: ProfileAdvanceInfoBody = {
-        address: formData.address,
-        website: formData.website,
-        linkedIn: formData.linkedIn,
+        ...formData,
         skills: formData.skills.map(({ skill }) => skill),
         education: formData.education.map((item) => ({
-          school: item.school,
-          description: item.description,
-          from: item.from,
-          to: item.to,
+          ...item,
           current: item.current ?? true,
-          degree: item.degree,
         })),
         experience: formData.experience.map((item) => ({
-          company: item.company,
+          ...item,
           current: item.current ?? true,
-          description: item.description,
-          from: item.from,
-          to: item.to,
-          title: item.title,
         })),
       };
 
@@ -145,7 +135,11 @@ export function ProfileAdvanceInfoForm({
           <Heading size={1} title={t('M63')} />
 
           <div className="flex items-center gap-2">
-            <Button type="submit" className="flex items-center">
+            <Button
+              type="submit"
+              className="flex items-center"
+              loading={isPending || form.formState.isSubmitting}
+            >
               <ProfileTick
                 variant="TwoTone"
                 className="hidden size-6 md:block"

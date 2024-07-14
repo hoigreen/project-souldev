@@ -108,7 +108,7 @@ export default function CommentForm({
           <Button
             className="gap-1 rounded-full"
             type="submit"
-            disabled={isSubmitting}
+            loading={isSubmitting}
           >
             <MessageText1 size={16} />
             <span className="max-sm:hidden">{t('M7')}</span>

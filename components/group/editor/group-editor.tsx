@@ -139,7 +139,7 @@ export function GroupEditor({
 
             <Button
               className="w-full"
-              disabled={form.formState.isSubmitting}
+              loading={form.formState.isSubmitting}
               type="submit"
             >
               {t('M131')}

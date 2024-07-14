@@ -101,7 +101,7 @@ export function ForgetPasswordForm({
 
             <Button
               className="w-full"
-              disabled={form.formState.isSubmitting}
+              loading={form.formState.isSubmitting}
               type="submit"
             >
               {t('M43')}

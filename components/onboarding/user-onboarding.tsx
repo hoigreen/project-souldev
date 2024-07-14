@@ -174,7 +174,7 @@ export default function UserOnboarding() {
           <div className="flex justify-end">
             <Button
               type="submit"
-              disabled={isPending || form.formState.isSubmitting}
+              loading={isPending || form.formState.isSubmitting}
             >
               Submit
             </Button>
