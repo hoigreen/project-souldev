@@ -3,6 +3,7 @@ import { buttonVariants } from '../ui/button';
 import PageNotFoundImage from '@/public/illustrations/404.svg';
 import ServerErrorImage from '@/public/illustrations/500.svg';
 import UnauthorizedImage from '@/public/illustrations/401.svg';
+import ForbiddenImage from '@/public/illustrations/403.svg';
 import React from 'react';
 import Image from 'next/image';
 import { Link } from '@/navigation';
@@ -12,6 +13,7 @@ export enum ErrorStageType {
   ServerError = 'ServerError',
   Unauthorized = 'Unauthorized',
   ResourceNotFound = 'ResourceNotFound',
+  Forbidden = 'Forbidden',
 }
 
 type ErrorStageTypeMap = {
@@ -85,6 +87,21 @@ const errorStageTypeMap: ErrorStageTypeMap = {
       />
     ),
     title: 'Unauthorized',
+  },
+  [ErrorStageType.Forbidden]: {
+    action: 'Go back to home',
+    description: 'You are not allowed to access this page.',
+    href: '/',
+    image: (
+      <Image
+        src={ForbiddenImage}
+        width={284}
+        height={245}
+        className="aspect-[284/245] h-auto max-w-full"
+        alt="Forbidden"
+      />
+    ),
+    title: 'Forbidden',
   },
 };
 

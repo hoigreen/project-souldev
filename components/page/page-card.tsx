@@ -113,7 +113,7 @@ export default function PageCard({
         </Link>
 
         {description && (
-          <p className="truncate whitespace-normal text-xs font-light italic md:text-sm">
+          <p className="line-clamp-3 truncate whitespace-normal text-xs font-light italic md:text-sm">
             {description}
           </p>
         )}

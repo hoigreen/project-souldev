@@ -1,5 +1,3 @@
-'use client';
-
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import React from 'react';
@@ -44,7 +42,7 @@ export default function GroupBox({
         className="relative block aspect-square size-14 overflow-hidden rounded-lg border object-contain"
       >
         {avatar ? (
-          <Image src={avatar} alt={name} fill />
+          <Image src={avatar} alt={name} fill className="object-cover" />
         ) : (
           <div className="flex size-full items-center justify-center overflow-hidden rounded-lg">
             <ImagePlus size={24} className="text-background" />

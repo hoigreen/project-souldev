@@ -40,7 +40,7 @@ export default async function Page({
   );
 
   if (!isJoined) {
-    return <ErrorStage stage={ErrorStageType.ResourceNotFound} />;
+    return <ErrorStage stage={ErrorStageType.Forbidden} />;
   }
 
   const isManager = group.managers.some(
