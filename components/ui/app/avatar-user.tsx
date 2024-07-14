@@ -16,7 +16,7 @@ export default function AvatarUser({
 }): React.JSX.Element {
   return (
     <Avatar className={cn('aspect-square', className)}>
-      <AvatarImage src={src} alt={alt} />
+      <AvatarImage src={src} alt={alt} className="object-cover" />
       <AvatarFallback>{getFirstInitials(fallback)}</AvatarFallback>
     </Avatar>
   );
