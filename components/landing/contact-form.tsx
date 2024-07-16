@@ -78,7 +78,7 @@ export default function ContactForm({
 
                 <Button
                   className="absolute inset-y-1 right-1 md:inset-y-2 md:right-2 lg:inset-y-3  lg:right-3"
-                  disabled={isPending}
+                  loading={isPending}
                   size="xl"
                   type="submit"
                 >

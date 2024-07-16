@@ -1,9 +1,11 @@
 import { ErrorStage, ErrorStageType } from '@/components/app/error-stage';
 import { LeftSidebar } from '@/components/app/left-sidebar';
 import { ConversationsList } from '@/components/messages/conversations-list';
+import { lexend } from '@/components/ui/fonts';
 import { getConversations } from '@/lib/actions/conversation';
 import { Conversation, User } from '@/lib/definitions';
 import getSession from '@/lib/get-session';
+import { cn } from '@/lib/utils';
 import { unstable_setRequestLocale as unstableSetRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
 
@@ -44,7 +46,12 @@ export default async function MessageLayout({
     <div className="h-screen pt-14 md:p-4 md:pt-20 xl:px-10 xl:pl-80">
       <LeftSidebar />
 
-      <div className="flex size-full md:gap-10 md:p-3 lg:p-4">
+      <div
+        className={cn(
+          'flex size-full md:gap-10 md:p-3 lg:p-4',
+          lexend.className,
+        )}
+      >
         <ConversationsList
           initialItems={response.data as Array<Conversation>}
           currentUser={session.user as User}

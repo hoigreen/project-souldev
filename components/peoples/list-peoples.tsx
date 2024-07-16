@@ -167,7 +167,7 @@ export default function ListPeoples({
             {action && action === FriendActions.Follow && (
               <Button
                 className="w-fit text-xs sm:text-sm"
-                disabled={isPending}
+                loading={isPending}
                 onClick={() => handleFollow(item._id)}
               >
                 {t('M52')}
@@ -178,6 +178,7 @@ export default function ListPeoples({
               <Button
                 className="w-fit text-xs sm:text-sm"
                 variant="outline"
+                loading={isPending}
                 onClick={() => handleUnfollow(item._id)}
               >
                 {t('M108')}
@@ -188,7 +189,7 @@ export default function ListPeoples({
               <Button
                 className="w-fit text-xs sm:text-sm"
                 variant="outline"
-                disabled={isPending}
+                loading={isPending}
                 onClick={() => handleAddManager(item._id)}
               >
                 {t('M213')}
@@ -200,6 +201,7 @@ export default function ListPeoples({
                 className="w-fit text-xs sm:text-sm"
                 variant="outline"
                 onClick={() => handleAction(item._id)}
+                loading={isPending}
               >
                 {title}
               </Button>
