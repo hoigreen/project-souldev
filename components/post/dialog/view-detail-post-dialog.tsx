@@ -37,7 +37,7 @@ export function ViewDetailPostDialog() {
   const t = useTranslations('Home');
   const locale = useLocale();
 
-  const { data, isLoading, refetch } = useQueryPost({ postId });
+  const { data, isPending, refetch } = useQueryPost({ postId });
 
   const isHasImage = useMemo(
     () => data && data.post_data.images.length > 0,
@@ -46,23 +46,9 @@ export function ViewDetailPostDialog() {
   const postData = useMemo(() => data?.post_data, [data]);
   const comments = useMemo(() => data?.comment_data, [data]);
 
-  if (!postData || !comments) {
+  if (postData && comments) {
     return (
       <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent>
-          <div className="max-w-4xl">
-            <ErrorStage stage={ErrorStageType.ResourceNotFound} />
-          </div>
-        </DialogContent>
-      </Dialog>
-    );
-  }
-
-  return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      {isLoading ? (
-        <ViewDetailPostLoading />
-      ) : (
         <DialogContent
           className={cn(isHasImage ? 'max-w-7xl' : 'max-w-4xl')}
           classNames={{
@@ -208,7 +194,27 @@ export function ViewDetailPostDialog() {
             <ListComments comments={comments} />
           </div>
         </DialogContent>
-      )}
+      </Dialog>
+    );
+  }
+
+  if (isPending) {
+    return (
+      <Dialog open={isOpen} onOpenChange={onClose}>
+        <DialogContent>
+          <ViewDetailPostLoading />
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent>
+        <div className="max-w-4xl">
+          <ErrorStage stage={ErrorStageType.ResourceNotFound} />
+        </div>
+      </DialogContent>
     </Dialog>
   );
 }
