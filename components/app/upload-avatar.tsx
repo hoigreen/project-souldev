@@ -70,7 +70,7 @@ export function UploadAvatar({ user, className, ...props }: UploadAvatarProps) {
       {...props}
     >
       <Label
-        htmlFor="Logo"
+        htmlFor="image"
         className="relative overflow-hidden rounded-full"
         onMouseOver={() => setIsHover(true)}
         onMouseOut={() => setIsHover(false)}

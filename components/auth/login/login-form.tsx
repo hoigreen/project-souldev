@@ -48,20 +48,18 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
   });
 
   const onSubmit: SubmitHandler<LoginSchema> = async (formData) => {
-    const data = await login({
-      email: formData.email,
-      password: formData.password,
-    });
+    setTransition(async () => {
+      const data = await login({
+        email: formData.email,
+        password: formData.password,
+      });
 
-    if (!data.success) {
-      toast.error(t('M8'));
+      if (!data.success) {
+        toast.error(t('M8'));
 
-      return;
-    }
+        return;
+      }
 
-    await signInWithCredential(formData);
-
-    setTransition(() => {
       cookie.set(
         process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME as string,
         data.data.token,
@@ -73,6 +71,8 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
         data.data._id,
         7,
       );
+
+      await signInWithCredential(formData);
     });
   };
 
