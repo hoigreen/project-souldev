@@ -128,7 +128,8 @@
     "M60": "Xác nhận",
     "M61": "Bạn có chắc muốn đăng xuất không?",
     "M62": "Sau khi đăng xuất, bạn sẽ phải đăng nhập và xác thực lại để truy cập vào tài khoản",
-    "M63": "Hủy"
+    "M63": "Hủy",
+    "M64": "Đăng xuất tài khoản thành công"
   },
   "404": {
     "M1": "404",

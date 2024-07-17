@@ -128,7 +128,8 @@
     "M60": "Confirm",
     "M61": "Are you sure you want to sign out?",
     "M62": "After signing out, you will need to sign in again to use your account.",
-    "M63": "Cancel"
+    "M63": "Cancel",
+    "M64": "Sign out successfully"
   },
   "404": {
     "M1": "404",

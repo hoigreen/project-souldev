@@ -1,20 +1,25 @@
 import { Modals } from '@/lib/constants';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { useModalActions, useModalOpen } from '@/hooks/use-modal';
-import React from 'react';
+import React, { useTransition } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import signOut from '@/lib/sign-out';
+import toast from 'react-hot-toast';
 
 export function SignOutDialog() {
   const t = useTranslations('Auth');
   const isOpen = useModalOpen(Modals.SignOut);
   const { onClose } = useModalActions(Modals.SignOut);
+  const [isPending, startTransition] = useTransition();
 
   const handleSignOut = async () => {
-    await signOut();
+    toast.success(t('M64'));
+    startTransition(async () => {
+      await signOut();
 
-    onClose();
+      onClose();
+    });
   };
 
   return (
@@ -27,7 +32,11 @@ export function SignOutDialog() {
           </div>
 
           <div className="flex items-center justify-end gap-2">
-            <Button variant="outline" onClick={handleSignOut}>
+            <Button
+              variant="outline"
+              onClick={handleSignOut}
+              loading={isPending}
+            >
               {t('M60')}
             </Button>
             <Button onClick={onClose}>{t('M63')}</Button>
