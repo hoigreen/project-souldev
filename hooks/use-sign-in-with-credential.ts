@@ -12,7 +12,7 @@ function removeLocale(url: string) {
   return url;
 }
 
-export const useSignInWithCredential = (callback = '/') => {
+export const useSignInWithCredential = (callback = '/home') => {
   const t = useTranslations('Auth');
   const searchParams = useSearchParams();
   const router = useRouter();

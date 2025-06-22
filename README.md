@@ -23,7 +23,7 @@ Welcome to the repository of our social media web application! This README provi
 
 ## Live preview:
 
-Production has been deploy at url [SoulDev](https://souldev.online)
+Production has been deploy at url [SoulDev](https://souldev.space)
 
 ## Tech Stack
 
